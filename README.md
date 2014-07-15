@@ -6,4 +6,4 @@ Ongoing project between WPI and Ritsumeikan students.
 * [Stefan Alexander](http://github.com/stefafafan)
 * [Maxwell Perlman](http://github.com/MaxwellP)
 * [Asuka Wakao](http://github.com/AsukaWakao)
-* Ryo Hajika
+* [Ryo Hajika](http://github.com/Hzikajr)
