@@ -1,3 +1,4 @@
+<!-- Written by Maxwell Perlman -->
 <?php
 	#Database connection and global variables
 	include('connection.php');
@@ -7,7 +8,7 @@
 	$result = mysqli_query($DBC, $query);
 ?>
 <head>
-	<title>Tekupeco D&D</title>
+	<title>Tekupeco Databases</title>
 </head>
 <body>
 	<table style='width:300px'>
