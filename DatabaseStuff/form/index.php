@@ -1,6 +1,7 @@
 <?php
+	#Written by Maxwell Perlman
 	#Database connection and global variables
-	include('../connection.php');
+	include('../includes/includes.php');
 	/*Provided there is a connection to the database and properly formatted data baing submitted...*/
 	if(isset($_POST['submit']))
 	{
