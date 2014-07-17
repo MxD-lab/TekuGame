@@ -12,48 +12,45 @@ class ViewController: UIViewController {
                             
     @IBOutlet var iphoneText: UITextField
     @IBOutlet var ibeaconText: UITextField
-    @IBOutlet var httpOutput: UITextView
+    @IBOutlet var dataOutput: UITextView
+    var iphoneBeaconDictionary = NSDictionary()
     
     @IBAction func postPressed(sender: AnyObject) {
         println("You are posting")
-        
         var url = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
-        //var url = "http://posttestserver.com/post.php"
-        
         var str = "phone="+iphoneText.text+"&beacon="+ibeaconText.text+"&submit=submit"
-        println("the string: \(str)\n")
-        
-        var post = "POST"
-     
-        httpRequest(url, method: post, content: str)
+        //println("the string: \(str)\n")
+        httpRequest(url, content: str)
     }
     
     @IBAction func getPressed(sender: AnyObject) {
-        println("You are getting")
-        var url = "http://stefafafan.com"
-        var get = "GET"
-        httpRequest(url, method: get)
+        let url = "http://tekugame.mxd.media.ritsumei.ac.jp/results.json"
+        iphoneBeaconDictionary = updateDictionary(url)
+        println(iphoneBeaconDictionary)
+        dataOutput.text = ""
+        for obj in iphoneBeaconDictionary {
+            dataOutput.text = dataOutput.text + "\(obj.key)\t\(obj.value)\n"
+        }
+        
+        //println(iphoneBeaconDictionary["1"])
     }
     
-    // [Swift]POSTでAPIを叩く方法。（そしてJSONを取得する。）
+    // Function for posting to the server.
     // http://qiita.com/mochizukikotaro/items/e2da2d3186ec24e291a6
     // http://www.brianjcoleman.com/tutorial-post-to-web-server-api-in-swift-using-nsurlconnection/
-    func httpRequest(urlstring:String, method:String, content:String = "") {
+    func httpRequest(urlstring:String, content:String = "") {
         
         var url = NSURL.URLWithString(urlstring) // URL object from URL string.
         var request = NSMutableURLRequest(URL: url) // Request.
-        request.HTTPMethod = method // Could be POST or GET.
+        request.HTTPMethod = "POST" // Could be POST or GET.
         
         // Post has HTTPBody.
-        if method == "POST" {
-            var strData = content.dataUsingEncoding(NSUTF8StringEncoding)
-            request.HTTPBody = strData
-            request.setValue("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-                forHTTPHeaderField: "Accept")
-            request.setValue("gzip,deflate,sdch", forHTTPHeaderField: "Accept-Encoding")
-            request.setValue("ja,en-US;q=0.8,en;q=0.6", forHTTPHeaderField: "Accept-Language")
-            request.setValue("tekugame.mxd.media.ritsumei.ac.jp", forHTTPHeaderField: "Host")
-        }
+        var strData = content.dataUsingEncoding(NSUTF8StringEncoding)
+        request.HTTPBody = strData
+        request.setValue("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", forHTTPHeaderField: "Accept")
+        request.setValue("gzip,deflate,sdch", forHTTPHeaderField: "Accept-Encoding")
+        request.setValue("ja,en-US;q=0.8,en;q=0.6", forHTTPHeaderField: "Accept-Language")
+        request.setValue("tekugame.mxd.media.ritsumei.ac.jp", forHTTPHeaderField: "Host")
         
         // Values returned from server.
         var response: NSURLResponse? = nil
@@ -64,14 +61,20 @@ class ViewController: UIViewController {
         let results = NSString(data:reply, encoding:NSUTF8StringEncoding) // Encoded results.
         
         // Debug.
-        println("Request:\n\(request)\n")
-        println("Response HTML:\n \(results)\n")
-        println("Response:\n \(response)\n")
-        println("Error:\n \(error)")
-        httpOutput.text = "\(results)"
+        //println("Request:\n\(request)\n")
+        //println("Response HTML:\n \(results)\n")
+        //println("Response:\n \(response)\n")
+        //println("Error:\n \(error)")
         
         iphoneText.text = "";
         ibeaconText.text = "";
+    }
+    
+    // Update the dictionary with the JSON file from the server.
+    func updateDictionary(url:String) -> NSDictionary {
+        var jsonData = NSData(contentsOfURL: NSURL(string: url))
+        var error: NSError?
+        return NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
     }
     
     // Hide keyboard when background touched.

@@ -38,20 +38,19 @@
                                 </state>
                                 <connections>
                                     <action selector="getPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="8OQ-LU-Sfh"/>
-                                    <action selector="postPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="V6V-VE-cqH"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="847-ng-i6t">
-                                <rect key="frame" x="40" y="353" width="240" height="195"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="iBeacon" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RD7-Go-FEF">
                                 <rect key="frame" x="112" y="168" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="847-ng-i6t">
+                                <rect key="frame" x="40" y="325" width="240" height="195"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -61,7 +60,7 @@
                         <size key="landscapeSize" width="568" height="320"/>
                     </simulatedScreenMetrics>
                     <connections>
-                        <outlet property="httpOutput" destination="847-ng-i6t" id="VYX-Mz-owY"/>
+                        <outlet property="dataOutput" destination="847-ng-i6t" id="PMv-3m-vFW"/>
                         <outlet property="ibeaconText" destination="RD7-Go-FEF" id="Ro7-eK-eqN"/>
                         <outlet property="iphoneText" destination="4Zo-L2-dQq" id="XMl-CQ-bNH"/>
                     </connections>
