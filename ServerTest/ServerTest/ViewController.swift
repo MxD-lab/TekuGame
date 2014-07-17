@@ -13,13 +13,14 @@ class ViewController: UIViewController {
     @IBOutlet var iphoneText: UITextField
     @IBOutlet var ibeaconText: UITextField
     @IBOutlet var dataOutput: UITextView
+    
     var iphoneBeaconDictionary = NSDictionary()
+    var myBeaconId = "432"
+    var closePhones: [(NSString, NSString)] = []
     
     @IBAction func postPressed(sender: AnyObject) {
-        println("You are posting")
         var url = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
         var str = "phone="+iphoneText.text+"&beacon="+ibeaconText.text+"&submit=submit"
-        //println("the string: \(str)\n")
         httpRequest(url, content: str)
     }
     
@@ -28,11 +29,19 @@ class ViewController: UIViewController {
         iphoneBeaconDictionary = updateDictionary(url)
         println(iphoneBeaconDictionary)
         dataOutput.text = ""
+        closePhones.removeAll(keepCapacity: false)
         for obj in iphoneBeaconDictionary {
+            if (obj.value as NSString == myBeaconId) {
+                closePhones.append(obj.key as NSString, obj.value as NSString)
+            }
             dataOutput.text = dataOutput.text + "\(obj.key)\t\(obj.value)\n"
         }
         
-        //println(iphoneBeaconDictionary["1"])
+        println("\(closePhones.count)")
+        
+        for object in closePhones {
+            println("\(object)")
+        }
     }
     
     // Function for posting to the server.
