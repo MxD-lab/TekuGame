@@ -16,11 +16,15 @@ class ViewController: UIViewController {
     
     @IBAction func postPressed(sender: AnyObject) {
         println("You are posting")
+        
         var url = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
         //var url = "http://posttestserver.com/post.php"
+        
         var str = "phone="+iphoneText.text+"&beacon="+ibeaconText.text+"&submit=submit"
         println("the string: \(str)\n")
+        
         var post = "POST"
+     
         httpRequest(url, method: post, content: str)
     }
     
@@ -44,7 +48,8 @@ class ViewController: UIViewController {
         if method == "POST" {
             var strData = content.dataUsingEncoding(NSUTF8StringEncoding)
             request.HTTPBody = strData
-            request.setValue("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", forHTTPHeaderField: "Accept")
+            request.setValue("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                forHTTPHeaderField: "Accept")
             request.setValue("gzip,deflate,sdch", forHTTPHeaderField: "Accept-Encoding")
             request.setValue("ja,en-US;q=0.8,en;q=0.6", forHTTPHeaderField: "Accept-Language")
             request.setValue("tekugame.mxd.media.ritsumei.ac.jp", forHTTPHeaderField: "Host")
