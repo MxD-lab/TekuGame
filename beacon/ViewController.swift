@@ -168,6 +168,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         self.minor.text    = "\(beacon.minor)"
         self.accuracy.text = "\(beacon.accuracy)"
         self.rssi.text     = "\(beacon.rssi)"
+        
+        postPressed(beacon)
+        
+    
     }
     
     func reset(){
@@ -184,5 +188,55 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         // Dispose of any resources that can be recreated.
     }
     
+
+    
+}
+
+func postPressed(beacon:CLBeacon) {
+        println("You are posting")
+        var url = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
+        //var url = "http://posttestserver.com/post.php"
+    
+        var str = "phone=\(beacon.major)0&beacon=\(beacon.minor)&submit=submit";
+        println("the string: \(str)\n")
+    
+        var post = "POST"
+        httpRequest(url, post, content: str)
+}
+    
+    
+    
+    func httpRequest(urlstring:String, method:String, content:String = "") {
+        
+        var url = NSURL.URLWithString(urlstring) // URL object from URL string.
+        var request = NSMutableURLRequest(URL: url) // Request.
+        request.HTTPMethod = method // Could be POST or GET.
+        
+        // Post has HTTPBody.
+        if method == "POST" {
+            var strData = content.dataUsingEncoding(NSUTF8StringEncoding)
+            request.HTTPBody = strData
+            request.setValue("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", forHTTPHeaderField: "Accept")
+            request.setValue("gzip,deflate,sdch", forHTTPHeaderField: "Accept-Encoding")
+            request.setValue("ja,en-US;q=0.8,en;q=0.6", forHTTPHeaderField: "Accept-Language")
+            request.setValue("tekugame.mxd.media.ritsumei.ac.jp", forHTTPHeaderField: "Host")
+        }
+        
+        // Values returned from server.
+        var response: NSURLResponse? = nil
+        var error: NSError? = nil
+        
+        // Reply from server.
+        let reply = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&error)
+        let results = NSString(data:reply, encoding:NSUTF8StringEncoding) // Encoded results.
+        
+        // Debug.
+        println("Request:\n\(request)\n")
+        println("Response HTML:\n \(results)\n")
+        println("Response:\n \(response)\n")
+        println("Error:\n \(error)")
+        //httpOutput.text = "\(results)"
+        
+        
 }
 
