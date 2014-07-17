@@ -12,8 +12,8 @@
 </head>
 <body>
 	<div class="row">
-		<div class="col-md-3">PhoneID</div>
-		<div class="col-md-3">BeaconID</div>
+		<div class="col-md-2 col-md-offset-5">PhoneID</div>
+		<div class="col-md-2">BeaconID</div>
 	</div>
 	<?php
 		/*Creating an associative array to hold our database values*/
@@ -25,8 +25,8 @@
 			{
 				$phonebeacon_arr[$row['PhoneID']] = $row['BeaconID'];
 				echo "<div class='row'>";
-					echo "<div class='col-md-3'>" . $row['PhoneID'] . "</div>";
-					echo "<div class='col-md-3'>" . $row['BeaconID'] . "</div>";
+					echo "<div class='col-md-2 col-md-offset-5'>" . $row['PhoneID'] . "</div>";
+					echo "<div class='col-md-2'>" . $row['BeaconID'] . "</div>";
 				echo "</div>";
 			}
 		}
@@ -34,10 +34,6 @@
 		{
 			echo "error";
 		}
-		/*Create file pointer to json file*/
-		$fp = fopen('results.json', 'w+');
-		fwrite($fp, json_encode($phonebeacon_arr, JSON_FORCE_OBJECT));
-		fclose($fp);
 	?>
 	</div>
 </body>

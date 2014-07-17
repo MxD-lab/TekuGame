@@ -21,3 +21,23 @@
 <form method="link" action="http://tekugame.mxd.media.ritsumei.ac.jp/">
 	<input type="submit" value="go back...">
 </form>
+
+<?php 
+	/*Query  database for all phones and their nearest beacon location*/
+	$query = "SELECT * FROM Phones_and_Beacons";
+	/*Result of query*/
+	$result = mysqli_query($DBC, $query);
+	/*Creating an associative array to hold our database values*/
+	$phonebeacon_arr = array();
+	/*For each row in the database's table: print the phone's ID and it's beacon ID*/
+	if(mysqli_num_rows($result) != 0)
+	{
+		while ($row = mysqli_fetch_assoc($result))
+		{
+			$phonebeacon_arr[$row['PhoneID']] = $row['BeaconID'];
+		}
+	}
+	$fp = fopen('../results.json', 'w+');
+	fwrite($fp, json_encode($phonebeacon_arr, JSON_FORCE_OBJECT));
+	fclose($fp);
+?>
