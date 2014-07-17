@@ -34,8 +34,10 @@
 		{
 			echo "error";
 		}
-		/*Encoded associative array to json format*/
-		//echo "<br>" . json_encode($phonebeacon_arr, JSON_FORCE_OBJECT) . "<br>";
+		/*Create file pointer to json file*/
+		$fp = fopen('results.json', 'w+');
+		fwrite($fp, json_encode($phonebeacon_arr, JSON_FORCE_OBJECT));
+		fclose($fp);
 	?>
 	</div>
 </body>
