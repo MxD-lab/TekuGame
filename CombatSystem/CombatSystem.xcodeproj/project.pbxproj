@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A147A9B01978C34C0073C61C /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A147A9AF1978C34C0073C61C /* Enemy.swift */; };
+		A147A9B21978DD6E0073C61C /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A147A9B11978DD6E0073C61C /* Entity.swift */; };
+		A147A9B61978F47A0073C61C /* enemies.json in Resources */ = {isa = PBXBuildFile; fileRef = A147A9B51978F47A0073C61C /* enemies.json */; };
 		A1F4A6FA1977A702001579BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F4A6F91977A702001579BC /* AppDelegate.swift */; };
 		A1F4A6FC1977A702001579BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F4A6FB1977A702001579BC /* ViewController.swift */; };
 		A1F4A6FF1977A702001579BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F4A6FD1977A702001579BC /* Main.storyboard */; };
@@ -26,13 +29,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A1F4A6F41977A702001579BC /* CombatSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombatSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A12A03691978A9E900A1DD0F /* CombatSystem-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CombatSystem-Bridging-Header.h"; sourceTree = "<group>"; };
+		A147A9AF1978C34C0073C61C /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		A147A9B11978DD6E0073C61C /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		A147A9B31978F4590073C61C /* CombatSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CombatSystem.app; path = "/Users/maxwellperlman/Documents/CombatSystem/build/Debug-iphoneos/CombatSystem.app"; sourceTree = "<absolute>"; };
+		A147A9B41978F4590073C61C /* CombatSystemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CombatSystemTests.xctest; path = "/Users/maxwellperlman/Documents/CombatSystem/build/Debug-iphoneos/CombatSystemTests.xctest"; sourceTree = "<absolute>"; };
+		A147A9B51978F47A0073C61C /* enemies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = enemies.json; sourceTree = "<group>"; };
 		A1F4A6F81977A702001579BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1F4A6F91977A702001579BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1F4A6FB1977A702001579BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A1F4A6FE1977A702001579BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A1F4A7001977A702001579BC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A1F4A7061977A702001579BC /* CombatSystemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CombatSystemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F4A70B1977A702001579BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1F4A70C1977A702001579BC /* CombatSystemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatSystemTests.swift; sourceTree = "<group>"; };
 		A1F4A7181977A936001579BC /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -61,28 +68,22 @@
 			children = (
 				A1F4A6F61977A702001579BC /* CombatSystem */,
 				A1F4A7091977A702001579BC /* CombatSystemTests */,
-				A1F4A6F51977A702001579BC /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		A1F4A6F51977A702001579BC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A1F4A6F41977A702001579BC /* CombatSystem.app */,
-				A1F4A7061977A702001579BC /* CombatSystemTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		A1F4A6F61977A702001579BC /* CombatSystem */ = {
 			isa = PBXGroup;
 			children = (
+				A147A9B51978F47A0073C61C /* enemies.json */,
 				A1F4A6F91977A702001579BC /* AppDelegate.swift */,
 				A1F4A6FB1977A702001579BC /* ViewController.swift */,
 				A1F4A6FD1977A702001579BC /* Main.storyboard */,
 				A1F4A7001977A702001579BC /* Images.xcassets */,
 				A1F4A6F71977A702001579BC /* Supporting Files */,
 				A1F4A7181977A936001579BC /* Player.swift */,
+				A147A9AF1978C34C0073C61C /* Enemy.swift */,
+				A12A03691978A9E900A1DD0F /* CombatSystem-Bridging-Header.h */,
+				A147A9B11978DD6E0073C61C /* Entity.swift */,
 			);
 			path = CombatSystem;
 			sourceTree = "<group>";
@@ -129,7 +130,7 @@
 			);
 			name = CombatSystem;
 			productName = CombatSystem;
-			productReference = A1F4A6F41977A702001579BC /* CombatSystem.app */;
+			productReference = A147A9B31978F4590073C61C /* CombatSystem.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A1F4A7051977A702001579BC /* CombatSystemTests */ = {
@@ -147,7 +148,7 @@
 			);
 			name = CombatSystemTests;
 			productName = CombatSystemTests;
-			productReference = A1F4A7061977A702001579BC /* CombatSystemTests.xctest */;
+			productReference = A147A9B41978F4590073C61C /* CombatSystemTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -177,7 +178,7 @@
 				Base,
 			);
 			mainGroup = A1F4A6EB1977A701001579BC;
-			productRefGroup = A1F4A6F51977A702001579BC /* Products */;
+			productRefGroup = A1F4A6EB1977A701001579BC;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -193,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1F4A6FF1977A702001579BC /* Main.storyboard in Resources */,
+				A147A9B61978F47A0073C61C /* enemies.json in Resources */,
 				A1F4A7011977A702001579BC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -211,6 +213,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A147A9B01978C34C0073C61C /* Enemy.swift in Sources */,
+				A147A9B21978DD6E0073C61C /* Entity.swift in Sources */,
 				A1F4A6FC1977A702001579BC /* ViewController.swift in Sources */,
 				A1F4A7191977A936001579BC /* Player.swift in Sources */,
 				A1F4A6FA1977A702001579BC /* AppDelegate.swift in Sources */,
@@ -329,9 +333,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CombatSystem/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CombatSystem/CombatSystem-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -340,9 +347,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CombatSystem/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CombatSystem/CombatSystem-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -399,6 +408,7 @@
 				A1F4A7121977A702001579BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A1F4A7131977A702001579BC /* Build configuration list for PBXNativeTarget "CombatSystemTests" */ = {
 			isa = XCConfigurationList;
@@ -407,6 +417,7 @@
 				A1F4A7151977A702001579BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
