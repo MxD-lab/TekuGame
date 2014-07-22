@@ -11,7 +11,9 @@
 		$lon = $_POST['longitude'];
 		$lat = $_POST['latitude'];
 		/*Run the insert query on the database*/
-		$insert = "Insert INTO playerandlocation (phoneid, beaconid, longitude, latitude) VALUES ('$pid', '$bid' ,'$lon', '$lat') ON DUPLICATE KEY UPDATE beaconid=VALUES(beaconid) longitude=VALUES(longitude) latitude=VALUES(latitude)";
+		$insert = 	"Insert INTO playerandlocation (phoneid, beaconid, longitude, latitude)
+					VALUES ('$pid', '$bid' ,'$lon', '$lat')
+					ON DUPLICATE KEY UPDATE beaconid='$bid', longitude='$lon', latitude='$lat'";
 		$result = mysqli_query($DBC, $insert) or die(mysqli_connect_error());
 		echo "Data inserted...";
 	}
@@ -41,12 +43,15 @@
 			//$phonebeacon_arr["twitterid"]["phoneid"] = $row['phoneid'];
 			$phonebeacon_arr["phoneid"] = $row['phoneid'];
 			$phonebeacon_arr["beaconid"] = $row['beaconid'];
-			$phonebeacon_arr["level"] = $row['level'];
+			$phonebeacon_arr["longitude"] = $row['longitude'];
+			$phonebeacon_arr["latitude"] = $row['latitude'];
+			/*$phonebeacon_arr["level"] = $row['level'];
 			$phonebeacon_arr["health"] = $row['health'];
 			$phonebeacon_arr["currenthealth"] = $row['currenthealth'];
 			$phonebeacon_arr["strength"] = $row['strength'];
 			$phonebeacon_arr["magic"] = $row['magic'];
 			$phonebeacon_arr["speed"] = $row['speed'];
+			*/
 			array_push($returnarray, $phonebeacon_arr);
 		}
 	}
