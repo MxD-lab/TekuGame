@@ -12,6 +12,9 @@ import Foundation
 import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
+    //UI for map
+    @IBOutlet var long: UILabel
+    @IBOutlet var lat: UILabel
     
     // UI for twitter login
     @IBOutlet var loginText: UILabel
@@ -42,6 +45,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var manager = CLLocationManager()
     var beaconID = String()
     
+    //For map
+    var toPasslat:NSNumber?
+    var toPasslong:NSNumber?
+    
     // When login pressed for twitter
     @IBAction func loginPressed(sender: AnyObject) {
         var accountType:ACAccountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
@@ -70,7 +77,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     // When post pressed for HTTP Post to database
     @IBAction func postPressed(sender: AnyObject) {
         var url = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
-        var str = "phone="+username+"&beacon="+beaconID+"&submit=submit"
+        var str = "phone="+username+"&beacon="+beaconID+"&longitude=\(toPasslong)&latitude=\(toPasslat)&submit=submit"
         println("Posting: \(str)")
         httpRequest(url, content: str)
     }
@@ -137,6 +144,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        long.text = "\(toPasslong)"
+        lat.text = "\(toPasslat)"
         // Do any additional setup after loading the view, typically from a nib.
         //CLBeaconRegionを生成
         region = CLBeaconRegion(proximityUUID:proximityUUID,identifier:"EstimoteRegion")
@@ -292,7 +301,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+  
 
 }
 

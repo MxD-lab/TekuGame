@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0CD61D1197E228000BE4362 /* secondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CD61D0197E228000BE4362 /* secondViewController.swift */; };
+		F0CD61D3197E22F400BE4362 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CD61D2197E22F400BE4362 /* MapKit.framework */; };
 		F8A501CB1978E6C60026B408 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A501CA1978E6C60026B408 /* AppDelegate.swift */; };
 		F8A501CD1978E6C60026B408 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A501CC1978E6C60026B408 /* ViewController.swift */; };
 		F8A501D01978E6C60026B408 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8A501CE1978E6C60026B408 /* Main.storyboard */; };
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F0CD61D0197E228000BE4362 /* secondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = secondViewController.swift; sourceTree = "<group>"; };
+		F0CD61D2197E22F400BE4362 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F8A501C51978E6C60026B408 /* newServerBeaconProgram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = newServerBeaconProgram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8A501C91978E6C60026B408 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8A501CA1978E6C60026B408 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0CD61D3197E22F400BE4362 /* MapKit.framework in Frameworks */,
 				F8A501EC1978F0560026B408 /* Foundation.framework in Frameworks */,
 				F8A501EA1978F0500026B408 /* CoreLocation.framework in Frameworks */,
 				F8A501E81978E8920026B408 /* Accounts.framework in Frameworks */,
@@ -66,6 +71,7 @@
 		F8A501BC1978E6C60026B408 = {
 			isa = PBXGroup;
 			children = (
+				F0CD61D2197E22F400BE4362 /* MapKit.framework */,
 				F8A501EB1978F0560026B408 /* Foundation.framework */,
 				F8A501E91978F0500026B408 /* CoreLocation.framework */,
 				F8A501E71978E8920026B408 /* Accounts.framework */,
@@ -89,6 +95,7 @@
 			children = (
 				F8A501CA1978E6C60026B408 /* AppDelegate.swift */,
 				F8A501CC1978E6C60026B408 /* ViewController.swift */,
+				F0CD61D0197E228000BE4362 /* secondViewController.swift */,
 				F8A501CE1978E6C60026B408 /* Main.storyboard */,
 				F8A501D11978E6C60026B408 /* Images.xcassets */,
 				F8A501C81978E6C60026B408 /* Supporting Files */,
@@ -222,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8A501CD1978E6C60026B408 /* ViewController.swift in Sources */,
+				F0CD61D1197E228000BE4362 /* secondViewController.swift in Sources */,
 				F8A501CB1978E6C60026B408 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,11 +346,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: やまと 歌丸 (H4XC24B75K)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = newServerBeaconProgram/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -351,11 +361,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: やまと 歌丸 (H4XC24B75K)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = newServerBeaconProgram/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -412,6 +424,7 @@
 				F8A501E31978E6C60026B408 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F8A501E41978E6C60026B408 /* Build configuration list for PBXNativeTarget "newServerBeaconProgramTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +433,7 @@
 				F8A501E61978E6C60026B408 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
