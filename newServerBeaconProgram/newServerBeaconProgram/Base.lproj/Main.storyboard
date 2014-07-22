@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
@@ -74,7 +74,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="getPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="eKm-yD-g0O"/>
+                                    <action selector="getPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3WT-pe-lP3"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RD9-Mb-oIS">
@@ -131,7 +131,7 @@
                         <outlet property="accuracy" destination="smU-wK-8mI" id="aeV-Os-ZXV"/>
                         <outlet property="dataOutput" destination="RD9-Mb-oIS" id="Gol-zt-DLm"/>
                         <outlet property="distance" destination="gUf-z1-3QR" id="vkz-sq-TGm"/>
-                        <outlet property="getButton" destination="z6r-PF-NcD" id="E9X-ht-P7a"/>
+                        <outlet property="getButton" destination="z6r-PF-NcD" id="QPI-hs-bql"/>
                         <outlet property="lat" destination="JdF-8U-h60" id="RTr-35-lJv"/>
                         <outlet property="loginButton" destination="aEg-2z-TJ8" id="Cat-7y-dtk"/>
                         <outlet property="loginText" destination="6Xs-Tm-5Vc" id="NoR-b8-m7q"/>

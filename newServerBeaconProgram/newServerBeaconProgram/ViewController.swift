@@ -36,7 +36,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var accountStore = ACAccountStore()
     var username = String()
     // For HTTP requests
-    var iphoneBeaconDictionary = NSDictionary()
+    var iphoneBeaconDictionary: [NSDictionary] = []
     var myBeaconId = "432"
     var closePhones: [(NSString, NSString)] = []
     // For iBeacon
@@ -86,15 +86,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func getPressed(sender: AnyObject) {
         let url = "http://tekugame.mxd.media.ritsumei.ac.jp/results.json"
         iphoneBeaconDictionary = updateDictionary(url)
-//        println(iphoneBeaconDictionary)
+        println(iphoneBeaconDictionary)
         dataOutput.text = ""
-        closePhones.removeAll(keepCapacity: false)
-        for obj in iphoneBeaconDictionary {
-            if (obj.value as NSString == myBeaconId) {
-                closePhones.append(obj.key as NSString, obj.value as NSString)
-            }
-            dataOutput.text = dataOutput.text + "\(obj.key)\t\(obj.value)\n"
+        
+        for data in iphoneBeaconDictionary {
+            println(data["phoneid"])
+            println(data["beaconid"])
+            println(data["latitude"])
+            println(data["longitude"])
+            println("\n")
+            var pid = data["phoneid"] as String
+            var bid = data["beaconid"] as String
+            var lat = data["latitude"] as String
+            var lon = data["longitude"] as String
+            
+            dataOutput.text = "\(dataOutput.text)\(pid)\n\(bid)\n\(lat)\n\(lon)\n\n"
         }
+        
+//        closePhones.removeAll(keepCapacity: false)
+//        for obj in iphoneBeaconDictionary {
+//            if (obj.value as NSString == myBeaconId) {
+//                closePhones.append(obj.key as NSString, obj.value as NSString)
+//            }
+//            dataOutput.text = dataOutput.text + "\(obj.key)\t\(obj.value)\n"
+//        }
         
 //        println("\(closePhones.count)")
 //        
@@ -104,10 +119,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     // Update the dictionary with the JSON file from the server.
-    func updateDictionary(url:String) -> NSDictionary {
+    func updateDictionary(url:String) -> [NSDictionary] {
         var jsonData = NSData(contentsOfURL: NSURL(string: url))
         var error: NSError?
-        return NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
+//        println(jsonData)
+        var jsObj = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: &error) as [NSDictionary]
+//        println(jsObj)
+//        if let all = jsObj as? NSArray {
+//            if let first = all[0] as? NSDictionary {
+//                println(first)
+//            }
+//        }
+        return jsObj
     }
     
     // Function for posting to the server.
