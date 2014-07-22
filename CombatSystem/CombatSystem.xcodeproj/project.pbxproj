@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A139CB15197E029300A1E8F4 /* Ability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139CB14197E029300A1E8F4 /* Ability.swift */; };
+		A139CB19197E1BAE00A1E8F4 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139CB18197E1BAE00A1E8F4 /* Utility.swift */; };
+		A139CB1B197E1E3E00A1E8F4 /* Combat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139CB1A197E1E3E00A1E8F4 /* Combat.swift */; };
+		A139CB1D197E30E600A1E8F4 /* slime.png in Resources */ = {isa = PBXBuildFile; fileRef = A139CB1C197E30E600A1E8F4 /* slime.png */; };
+		A139CB1F197E36F700A1E8F4 /* dead.png in Resources */ = {isa = PBXBuildFile; fileRef = A139CB1E197E36F700A1E8F4 /* dead.png */; };
+		A139CB21197E379A00A1E8F4 /* gameover.png in Resources */ = {isa = PBXBuildFile; fileRef = A139CB20197E379A00A1E8F4 /* gameover.png */; };
 		A147A9B01978C34C0073C61C /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A147A9AF1978C34C0073C61C /* Enemy.swift */; };
 		A147A9B21978DD6E0073C61C /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A147A9B11978DD6E0073C61C /* Entity.swift */; };
 		A147A9B61978F47A0073C61C /* enemies.json in Resources */ = {isa = PBXBuildFile; fileRef = A147A9B51978F47A0073C61C /* enemies.json */; };
+		A161E830197C97D6002D2901 /* Job Code.txt in Resources */ = {isa = PBXBuildFile; fileRef = A161E82F197C97D6002D2901 /* Job Code.txt */; };
 		A1F4A6FA1977A702001579BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F4A6F91977A702001579BC /* AppDelegate.swift */; };
 		A1F4A6FC1977A702001579BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F4A6FB1977A702001579BC /* ViewController.swift */; };
 		A1F4A6FF1977A702001579BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F4A6FD1977A702001579BC /* Main.storyboard */; };
@@ -30,11 +37,18 @@
 
 /* Begin PBXFileReference section */
 		A12A03691978A9E900A1DD0F /* CombatSystem-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CombatSystem-Bridging-Header.h"; sourceTree = "<group>"; };
-		A147A9AF1978C34C0073C61C /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
-		A147A9B11978DD6E0073C61C /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
-		A147A9B31978F4590073C61C /* CombatSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CombatSystem.app; path = "/Users/maxwellperlman/Documents/CombatSystem/build/Debug-iphoneos/CombatSystem.app"; sourceTree = "<absolute>"; };
-		A147A9B41978F4590073C61C /* CombatSystemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CombatSystemTests.xctest; path = "/Users/maxwellperlman/Documents/CombatSystem/build/Debug-iphoneos/CombatSystemTests.xctest"; sourceTree = "<absolute>"; };
+		A139CB14197E029300A1E8F4 /* Ability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ability.swift; sourceTree = "<group>"; };
+		A139CB18197E1BAE00A1E8F4 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		A139CB1A197E1E3E00A1E8F4 /* Combat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combat.swift; sourceTree = "<group>"; };
+		A139CB1C197E30E600A1E8F4 /* slime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slime.png; sourceTree = "<group>"; };
+		A139CB1E197E36F700A1E8F4 /* dead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dead.png; sourceTree = "<group>"; };
+		A139CB20197E379A00A1E8F4 /* gameover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameover.png; sourceTree = "<group>"; };
+		A147A9AF1978C34C0073C61C /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Enemy.swift; path = CombatSystem/Enemy.swift; sourceTree = "<group>"; };
+		A147A9B11978DD6E0073C61C /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entity.swift; path = CombatSystem/Entity.swift; sourceTree = "<group>"; };
 		A147A9B51978F47A0073C61C /* enemies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = enemies.json; sourceTree = "<group>"; };
+		A161E82B197C910D002D2901 /* CombatSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CombatSystem.app; path = "/Users/maxwellperlman/Documents/CombatSystem/build/Debug-iphoneos/CombatSystem.app"; sourceTree = "<absolute>"; };
+		A161E82C197C910D002D2901 /* CombatSystemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CombatSystemTests.xctest; path = "/Users/maxwellperlman/Documents/CombatSystem/build/Debug-iphoneos/CombatSystemTests.xctest"; sourceTree = "<absolute>"; };
+		A161E82F197C97D6002D2901 /* Job Code.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Job Code.txt"; sourceTree = "<group>"; };
 		A1F4A6F81977A702001579BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1F4A6F91977A702001579BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1F4A6FB1977A702001579BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,7 +56,7 @@
 		A1F4A7001977A702001579BC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A1F4A70B1977A702001579BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1F4A70C1977A702001579BC /* CombatSystemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatSystemTests.swift; sourceTree = "<group>"; };
-		A1F4A7181977A936001579BC /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		A1F4A7181977A936001579BC /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = CombatSystem/Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +80,12 @@
 		A1F4A6EB1977A701001579BC = {
 			isa = PBXGroup;
 			children = (
+				A1F4A7181977A936001579BC /* Player.swift */,
+				A139CB1A197E1E3E00A1E8F4 /* Combat.swift */,
+				A147A9AF1978C34C0073C61C /* Enemy.swift */,
+				A147A9B11978DD6E0073C61C /* Entity.swift */,
+				A139CB18197E1BAE00A1E8F4 /* Utility.swift */,
+				A139CB14197E029300A1E8F4 /* Ability.swift */,
 				A1F4A6F61977A702001579BC /* CombatSystem */,
 				A1F4A7091977A702001579BC /* CombatSystemTests */,
 			);
@@ -74,16 +94,17 @@
 		A1F4A6F61977A702001579BC /* CombatSystem */ = {
 			isa = PBXGroup;
 			children = (
+				A139CB20197E379A00A1E8F4 /* gameover.png */,
+				A139CB1E197E36F700A1E8F4 /* dead.png */,
+				A139CB1C197E30E600A1E8F4 /* slime.png */,
+				A161E82F197C97D6002D2901 /* Job Code.txt */,
 				A147A9B51978F47A0073C61C /* enemies.json */,
 				A1F4A6F91977A702001579BC /* AppDelegate.swift */,
 				A1F4A6FB1977A702001579BC /* ViewController.swift */,
 				A1F4A6FD1977A702001579BC /* Main.storyboard */,
 				A1F4A7001977A702001579BC /* Images.xcassets */,
 				A1F4A6F71977A702001579BC /* Supporting Files */,
-				A1F4A7181977A936001579BC /* Player.swift */,
-				A147A9AF1978C34C0073C61C /* Enemy.swift */,
 				A12A03691978A9E900A1DD0F /* CombatSystem-Bridging-Header.h */,
-				A147A9B11978DD6E0073C61C /* Entity.swift */,
 			);
 			path = CombatSystem;
 			sourceTree = "<group>";
@@ -130,7 +151,7 @@
 			);
 			name = CombatSystem;
 			productName = CombatSystem;
-			productReference = A147A9B31978F4590073C61C /* CombatSystem.app */;
+			productReference = A161E82B197C910D002D2901 /* CombatSystem.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A1F4A7051977A702001579BC /* CombatSystemTests */ = {
@@ -148,7 +169,7 @@
 			);
 			name = CombatSystemTests;
 			productName = CombatSystemTests;
-			productReference = A147A9B41978F4590073C61C /* CombatSystemTests.xctest */;
+			productReference = A161E82C197C910D002D2901 /* CombatSystemTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -193,9 +214,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A161E830197C97D6002D2901 /* Job Code.txt in Resources */,
 				A1F4A6FF1977A702001579BC /* Main.storyboard in Resources */,
+				A139CB1D197E30E600A1E8F4 /* slime.png in Resources */,
+				A139CB21197E379A00A1E8F4 /* gameover.png in Resources */,
 				A147A9B61978F47A0073C61C /* enemies.json in Resources */,
 				A1F4A7011977A702001579BC /* Images.xcassets in Resources */,
+				A139CB1F197E36F700A1E8F4 /* dead.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,10 +238,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A139CB19197E1BAE00A1E8F4 /* Utility.swift in Sources */,
 				A147A9B01978C34C0073C61C /* Enemy.swift in Sources */,
 				A147A9B21978DD6E0073C61C /* Entity.swift in Sources */,
 				A1F4A6FC1977A702001579BC /* ViewController.swift in Sources */,
 				A1F4A7191977A936001579BC /* Player.swift in Sources */,
+				A139CB1B197E1E3E00A1E8F4 /* Combat.swift in Sources */,
+				A139CB15197E029300A1E8F4 /* Ability.swift in Sources */,
 				A1F4A6FA1977A702001579BC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

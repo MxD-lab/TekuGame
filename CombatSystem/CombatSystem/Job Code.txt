@@ -1,0 +1,115 @@
+/*Player.swift*/
+enum Jobs: String, Printable
+{
+	case none = "none"; /*THIS IS NOT AN ACTUAL CLASS, ONLY USED TO INDICATE A NO CLASS WEAKNESSES OR RESISTANCE FOR ENEMY*/
+	case Adventurer = "Adventurer";
+	case Warrior = "Warrior";
+	case Mage = "Mage";
+	case Ranger = "Ranger";
+	static let allJobsValues = [none, Adventurer, Warrior, Mage, Ranger];
+	var description : String
+	{
+		get
+		{
+			switch (self)
+			{
+				case none:
+					return "none";
+				case Adventurer:
+					return "Adventurer";
+				case Warrior:
+					return "Warrior";
+				case Mage:
+					return "Mage";
+				case Ranger:
+					return "Ranger";
+				default:
+					return "none";
+			}
+		}
+	}
+}
+func setJob() -> Void
+{
+	self.job = Jobs.Adventurer;
+	self.setBaseValues();
+}
+
+func setJob(newJob:Jobs) -> Void
+{
+	self.job = newJob;
+	self.setBaseValues();
+}
+
+func setBaseValues() -> Void
+{
+	switch self.job
+	{
+		case Jobs.Adventurer:
+			self.health = 5;
+			self.strength = 5;
+			self.magic = 5;
+			self.speed = 5;
+		case Jobs.Warrior:
+			self.health = 8;
+			self.strength = 9;
+			self.magic = 0;
+			self.speed = 3;
+		case Jobs.Mage:
+			self.health = 5;
+			self.strength = 0;
+			self.magic = 9;
+			self.speed = 6;
+		case Jobs.Ranger:
+			self.health = 4;
+			self.strength = 7;
+			self.magic = 0;
+			self.speed = 9;
+		default:
+			self.health = 0;
+			self.strength = 0;
+			self.magic = 0;
+			self.speed = 0;
+	}
+}
+
+switch self.job
+{
+    case Jobs.Adventurer:
+        println("Job:       Adventurer");
+    case Jobs.Warrior:
+        println("Job        Warrior");
+    case Jobs.Mage:
+        println("Job:       Mage");
+    case Jobs.Ranger:
+        println("Job:       Ranger");
+    default:
+        println("Job:       Unasigned");
+}
+                    /*
+                    if let enemtype = enemies as? NSDictionary {
+                        println("Type:");
+                        println(enemtype["type"]);
+                        println("Resistance:");
+                        println(enemtype["resistance"]);
+                        println("ResistanceVal:");
+                        println(enemtype["resistanceVal"]);
+                        println("Weakness:");
+                        println(enemtype["weakness"]);
+                        println("WeaknessVal:");
+                        println(enemtype["weaknessVal"]);
+                        
+                        for j in 0..5
+                        {
+                            if(enemtype["weakness"] as NSString == Jobs[j].toRaw())
+                            {
+                                self.weakness = Jobs[j].fromRaw(enemtype["weakness"]);
+                                println("SET WEAKNESS TO \(self.weakness)");
+                            }
+                            if(enemtype["resistance"] as NSString == Jobs[j].toRaw())
+                            {
+                                self.weakness = .fromRaw(enemtype["resistance"]);
+                                println("SET RESISTANCE TO \(self.resistance)");
+                            }
+                        }
+                    }*/

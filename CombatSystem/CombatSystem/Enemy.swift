@@ -20,7 +20,21 @@ enum Types: String, Printable
     {
         get
         {
-            return self.toRaw();
+            switch(self)
+            {
+                case empty:
+                    return "empty";
+                case Slime:
+                    return "Slime";
+                case Tree:
+                    return "Tree";
+                case Ghost:
+                    return "Ghost";
+                case Bird:
+                    return "Bird";
+                default:
+                    return "";
+            }
         }
     }
 }
@@ -28,62 +42,38 @@ enum Types: String, Printable
 class Enemy: Entity
 {
     var type:Types;
-    var weakness:Jobs;
+    var weakness:String;
     var weaknessValue:Int;
-    var resistance:Jobs;
-    var resistnaceValue:Int;
+    var resistance:String;
+    var resistanceValue:Int;
     
     init()
     {
         self.type = Types.empty;
-        self.weakness = Jobs.none;
+        self.weakness = "";
         self.weaknessValue = 0;
-        self.resistance = Jobs.none;
-        self.resistnaceValue = 0;
+        self.resistance = "";
+        self.resistanceValue = 0;
         super.init();
     }
     
     func setType() -> Void
     {
         self.type = Types.empty;
-        self.setWeaknessResistanceValues();
     }
     
     func setType(newType:Types) -> Void
     {
         self.type = newType;
-        self.setWeaknessResistanceValues();
     }
     
-    func setWeaknessResistanceValues()
+    func setStats(level:Int, health:Int, strength:Int, magic:Int, speed:Int) -> Void
     {
-        var filePath = NSBundle.mainBundle().pathForResource("enemies", ofType: "json");
-        var nsMutData = NSData(contentsOfFile: filePath);
-        let jsonObject:AnyObject! = NSJSONSerialization.JSONObjectWithData(nsMutData, options: NSJSONReadingOptions.MutableContainers, error: nil)
-        //println(jsonObject)
-        if let ar = jsonObject as? NSDictionary{
-            if let enem = ar["enemies"] as? NSArray {
-                //println("enemcount: \(enem.count)")
-                for enemies in enem {
-                    println("------------------");
-                    if let enemtype = enemies as? NSDictionary {
-                        println("Type:");
-                        println(enemtype["type"]);
-                        println("Resistance:");
-                        println(enemtype["resistance"]);
-                        println("ResistanceVal:");
-                        println(enemtype["resistanceVal"]);
-                        println("Weakness:");
-                        println(enemtype["weakness"]);
-                        println("WeaknessVal:");
-                        println(enemtype["weaknessVal"]);
-                    }
-                }
-                println("------------------");
-            }
-        }
-        println("SELF.WEAKNESS: \(self.weakness)");
-        
-        
+        self.level = level;
+        self.health = health;
+        self.currentHealth = health;
+        self.strength = strength;
+        self.magic = magic;
+        self.speed = speed;
     }
 }

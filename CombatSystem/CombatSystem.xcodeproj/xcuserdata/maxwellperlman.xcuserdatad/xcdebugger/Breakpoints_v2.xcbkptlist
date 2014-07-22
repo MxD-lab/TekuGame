@@ -24,39 +24,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CombatSystem/ViewController.swift"
-            timestampString = "427358597.371503"
+            timestampString = "427704262.114552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CombatSystem/ViewController.swift"
-            timestampString = "427351138.709793"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CombatSystem/ViewController.swift"
-            timestampString = "427345456.895195"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46">
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -66,13 +40,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CombatSystem/Enemy.swift"
-            timestampString = "427358130.91191"
+            timestampString = "427599078.666937"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "Enemy"
             landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ability.swift"
+            timestampString = "427689425.293784"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombatSystem/ViewController.swift"
+            timestampString = "427702727.044555"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

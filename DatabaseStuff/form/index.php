@@ -8,8 +8,10 @@
 		/*set the phone ID and beacon ID accordingly*/
 		$pid = $_POST['phone'];
 		$bid = $_POST['beacon'];
+		$lon = $_POST['longitude'];
+		$lat = $_POST['latitude'];
 		/*Run the insert query on the database*/
-		$insert = "Insert INTO Phones_and_Beacons (PhoneID, BeaconID) VALUES ('$pid', '$bid')";
+		$insert = "Insert INTO playerandlocation (phoneid, beaconid, longitude, latitude) VALUES ('$pid', '$bid' ,'$lon', '$lat') ON DUPLICATE KEY UPDATE beaconid=VALUES(beaconid) longitude=VALUES(longitude) latitude=VALUES(latitude)";
 		$result = mysqli_query($DBC, $insert) or die(mysqli_connect_error());
 		echo "Data inserted...";
 	}
@@ -22,22 +24,33 @@
 	<input type="submit" value="go back...">
 </form>
 
-<?php 
+<?php
 	/*Query  database for all phones and their nearest beacon location*/
-	$query = "SELECT * FROM Phones_and_Beacons";
+	$query = "SELECT * FROM playerandlocation";
 	/*Result of query*/
 	$result = mysqli_query($DBC, $query);
 	/*Creating an associative array to hold our database values*/
 	$phonebeacon_arr = array();
 	/*For each row in the database's table: print the phone's ID and it's beacon ID*/
+	$returnarray = array();
 	if(mysqli_num_rows($result) != 0)
 	{
 		while ($row = mysqli_fetch_assoc($result))
 		{
-			$phonebeacon_arr[$row['PhoneID']] = $row['BeaconID'];
+			#$phonebeacon_arr[$row['PhoneID']] = $row['BeaconID'];
+			//$phonebeacon_arr["twitterid"]["phoneid"] = $row['phoneid'];
+			$phonebeacon_arr["phoneid"] = $row['phoneid'];
+			$phonebeacon_arr["beaconid"] = $row['beaconid'];
+			$phonebeacon_arr["level"] = $row['level'];
+			$phonebeacon_arr["health"] = $row['health'];
+			$phonebeacon_arr["currenthealth"] = $row['currenthealth'];
+			$phonebeacon_arr["strength"] = $row['strength'];
+			$phonebeacon_arr["magic"] = $row['magic'];
+			$phonebeacon_arr["speed"] = $row['speed'];
+			array_push($returnarray, $phonebeacon_arr);
 		}
 	}
 	$fp = fopen('../results.json', 'w+');
-	fwrite($fp, json_encode($phonebeacon_arr, JSON_FORCE_OBJECT));
+	fwrite($fp, json_encode($returnarray));
 	fclose($fp);
 ?>
