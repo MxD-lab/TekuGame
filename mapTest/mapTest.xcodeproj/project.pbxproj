@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F01ECFD2197F44620051FF4C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01ECFD1197F44620051FF4C /* LoginViewController.swift */; };
+		F01ECFD4197F45BF0051FF4C /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01ECFD3197F45BF0051FF4C /* Accounts.framework */; };
+		F01ECFD6197F79970051FF4C /* iBeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = F01ECFD5197F79970051FF4C /* iBeacon.png */; };
+		F01ECFDC197F881A0051FF4C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01ECFDB197F881A0051FF4C /* CoreLocation.framework */; };
 		F0CD61B2197DFBD000BE4362 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CD61B1197DFBD000BE4362 /* AppDelegate.swift */; };
 		F0CD61B4197DFBD000BE4362 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CD61B3197DFBD000BE4362 /* ViewController.swift */; };
 		F0CD61B7197DFBD000BE4362 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0CD61B5197DFBD000BE4362 /* Main.storyboard */; };
@@ -26,6 +30,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F01ECFD1197F44620051FF4C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F01ECFD3197F45BF0051FF4C /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		F01ECFD5197F79970051FF4C /* iBeacon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iBeacon.png; sourceTree = "<group>"; };
+		F01ECFDB197F881A0051FF4C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F0CD61AC197DFBD000BE4362 /* mapTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mapTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0CD61B0197DFBD000BE4362 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0CD61B1197DFBD000BE4362 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F01ECFDC197F881A0051FF4C /* CoreLocation.framework in Frameworks */,
+				F01ECFD4197F45BF0051FF4C /* Accounts.framework in Frameworks */,
 				F0CD61CF197DFBF600BE4362 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,6 +70,8 @@
 		F0CD61A3197DFBD000BE4362 = {
 			isa = PBXGroup;
 			children = (
+				F01ECFDB197F881A0051FF4C /* CoreLocation.framework */,
+				F01ECFD3197F45BF0051FF4C /* Accounts.framework */,
 				F0CD61CE197DFBF600BE4362 /* MapKit.framework */,
 				F0CD61AE197DFBD000BE4362 /* mapTest */,
 				F0CD61C1197DFBD000BE4362 /* mapTestTests */,
@@ -82,7 +94,9 @@
 				F0CD61B1197DFBD000BE4362 /* AppDelegate.swift */,
 				F0CD61B3197DFBD000BE4362 /* ViewController.swift */,
 				F0CD61B5197DFBD000BE4362 /* Main.storyboard */,
+				F01ECFD1197F44620051FF4C /* LoginViewController.swift */,
 				F0CD61B8197DFBD000BE4362 /* Images.xcassets */,
+				F01ECFD5197F79970051FF4C /* iBeacon.png */,
 				F0CD61AF197DFBD000BE4362 /* Supporting Files */,
 			);
 			path = mapTest;
@@ -195,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0CD61B7197DFBD000BE4362 /* Main.storyboard in Resources */,
+				F01ECFD6197F79970051FF4C /* iBeacon.png in Resources */,
 				F0CD61B9197DFBD000BE4362 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F01ECFD2197F44620051FF4C /* LoginViewController.swift in Sources */,
 				F0CD61B4197DFBD000BE4362 /* ViewController.swift in Sources */,
 				F0CD61B2197DFBD000BE4362 /* AppDelegate.swift in Sources */,
 			);
@@ -406,6 +422,7 @@
 				F0CD61CA197DFBD000BE4362 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F0CD61CB197DFBD000BE4362 /* Build configuration list for PBXNativeTarget "mapTestTests" */ = {
 			isa = XCConfigurationList;
@@ -414,6 +431,7 @@
 				F0CD61CD197DFBD000BE4362 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
