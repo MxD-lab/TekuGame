@@ -102,34 +102,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             dataOutput.text = "\(dataOutput.text)\(pid)\n\(bid)\n\(lat)\n\(lon)\n\n"
         }
-        
-//        closePhones.removeAll(keepCapacity: false)
-//        for obj in iphoneBeaconDictionary {
-//            if (obj.value as NSString == myBeaconId) {
-//                closePhones.append(obj.key as NSString, obj.value as NSString)
-//            }
-//            dataOutput.text = dataOutput.text + "\(obj.key)\t\(obj.value)\n"
-//        }
-        
-//        println("\(closePhones.count)")
-//        
-//        for object in closePhones {
-//            println("\(object)")
-//        }
     }
     
     // Update the dictionary with the JSON file from the server.
     func updateDictionary(url:String) -> [NSDictionary] {
         var jsonData = NSData(contentsOfURL: NSURL(string: url))
         var error: NSError?
-//        println(jsonData)
         var jsObj = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: &error) as [NSDictionary]
-//        println(jsObj)
-//        if let all = jsObj as? NSArray {
-//            if let first = all[0] as? NSDictionary {
-//                println(first)
-//            }
-//        }
         return jsObj
     }
     
@@ -164,6 +143,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
         self.view.endEditing(true)
     }
+ 
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
