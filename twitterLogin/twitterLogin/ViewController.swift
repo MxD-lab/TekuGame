@@ -14,8 +14,8 @@ import Accounts
 
 class ViewController: UIViewController {
     
-    @IBOutlet var signinButton: UIButton
-    @IBOutlet var greetingText: UILabel
+    @IBOutlet var signinButton: UIButton!
+    @IBOutlet var greetingText: UILabel!
     var accountStore = ACAccountStore()
     var username = String()
     
