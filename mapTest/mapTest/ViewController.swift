@@ -15,7 +15,7 @@ import CoreLocation
 
 class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate{
     
-    @IBOutlet var distance: UILabel
+    @IBOutlet var distance: UILabel!
     @IBOutlet var mapView: MKMapView
     @IBOutlet var playerIDLabel: UILabel
     

@@ -18,7 +18,7 @@ class secondViewController: UIViewController, MKMapViewDelegate {
     var lat:NSNumber?
     var long:NSNumber?
     
-    @IBOutlet var mapView: MKMapView
+    @IBOutlet var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

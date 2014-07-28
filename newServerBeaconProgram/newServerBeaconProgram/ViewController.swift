@@ -13,24 +13,24 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     //UI for map
-    @IBOutlet var long: UILabel
-    @IBOutlet var lat: UILabel
+    @IBOutlet var long: UILabel!
+    @IBOutlet var lat: UILabel!
     
     // UI for twitter login
-    @IBOutlet var loginText: UILabel
-    @IBOutlet var loginButton: UIButton
+    @IBOutlet var loginText: UILabel!
+    @IBOutlet var loginButton: UIButton!
     // UI for HTTP request
-    @IBOutlet var postButton: UIButton
-    @IBOutlet var getButton: UIButton
-    @IBOutlet var dataOutput: UITextView
+    @IBOutlet var postButton: UIButton!
+    @IBOutlet var getButton: UIButton!
+    @IBOutlet var dataOutput: UITextView!
     // UI for iBeacon
-    @IBOutlet var status : UILabel
-    @IBOutlet var uuid : UILabel
-    @IBOutlet var major : UILabel
-    @IBOutlet var minor : UILabel
-    @IBOutlet var accuracy : UILabel
-    @IBOutlet var rssi : UILabel
-    @IBOutlet var distance : UILabel
+    @IBOutlet var status : UILabel!
+    @IBOutlet var uuid : UILabel!
+    @IBOutlet var major : UILabel!
+    @IBOutlet var minor : UILabel!
+    @IBOutlet var accuracy : UILabel!
+    @IBOutlet var rssi : UILabel!
+    @IBOutlet var distance : UILabel!
     
     // For twitter login
     var accountStore = ACAccountStore()
@@ -84,7 +84,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     // When get pressed for getting JSON data from server
     @IBAction func getPressed(sender: AnyObject) {
-        let url = "http://tekugame.mxd.media.ritsumei.ac.jp/results.json"
+        let url = "http://tekugame.mxd.media.ritsumei.ac.jp/json/playerandlocation.json"
         iphoneBeaconDictionary = updateDictionary(url)
         println(iphoneBeaconDictionary)
         dataOutput.text = ""
@@ -174,12 +174,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             println("許可承認")
             self.status.text = "Starting Monitor"
             //デバイスに許可を促す
-            if(UIDevice.currentDevice().systemVersion.substringToIndex(1).toInt() >= 8){
+//            if(UIDevice.currentDevice().systemVersion.substringToIndex(1).toInt() >= 8){
+//                //iOS8以降は許可をリクエストする関数をCallする
+//                self.manager.requestAlwaysAuthorization()
+//            }else{
+//                self.manager.startRangingBeaconsInRegion(self.region)
+//            }
+            let position = 1
+            let index = advance(UIDevice.currentDevice().systemVersion.startIndex, position)
+            let numb = UIDevice.currentDevice().systemVersion[index]
+            
+            if(String(numb).toInt() >= 8){
                 //iOS8以降は許可をリクエストする関数をCallする
                 self.manager.requestAlwaysAuthorization()
             }else{
                 self.manager.startRangingBeaconsInRegion(self.region)
             }
+
         case .Restricted, .Denied:
             //デバイスから拒否状態
             println("Restricted")
