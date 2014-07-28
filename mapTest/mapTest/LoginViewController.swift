@@ -11,9 +11,9 @@ import Accounts
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet var loginText: UILabel
-    @IBOutlet var loginButton: UIButton
-    @IBOutlet var startButton: UIButton
+    @IBOutlet var loginText: UILabel!
+    @IBOutlet var loginButton: UIButton!
+    @IBOutlet var startButton: UIButton!
     var accountStore = ACAccountStore()
     var username = String()
     

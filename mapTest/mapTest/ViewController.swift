@@ -16,8 +16,8 @@ import CoreLocation
 class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate{
     
     @IBOutlet var distance: UILabel!
-    @IBOutlet var mapView: MKMapView
-    @IBOutlet var playerIDLabel: UILabel
+    @IBOutlet var mapView: MKMapView!
+    @IBOutlet var playerIDLabel: UILabel!
     
     var playerID:String?
     var lat:NSNumber?
@@ -120,12 +120,24 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
             println("許可承認")
 //            self.status.text = "Starting Monitor"
             //デバイスに許可を促す
-            if(UIDevice.currentDevice().systemVersion.substringToIndex(1).toInt() >= 8){
+//            if(UIDevice.currentDevice().systemVersion.substringToIndex(1).toInt() >= 8){
+//                //iOS8以降は許可をリクエストする関数をCallする
+//                self.manager.requestAlwaysAuthorization()
+//            }else{
+//                self.manager.startRangingBeaconsInRegion(self.region)
+//            }
+            
+            let position = 1
+            let index = advance(UIDevice.currentDevice().systemVersion.startIndex, position)
+            let numb = UIDevice.currentDevice().systemVersion[index]
+            
+            if(String(numb).toInt() >= 8){
                 //iOS8以降は許可をリクエストする関数をCallする
                 self.manager.requestAlwaysAuthorization()
             }else{
                 self.manager.startRangingBeaconsInRegion(self.region)
             }
+            
         case .Restricted, .Denied:
             //デバイスから拒否状態
             println("Restricted")
@@ -190,7 +202,7 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         println("ぷいぷい")
         mapView.removeAnnotations(allPins)
         allPins = []
-        let url = "http://tekugame.mxd.media.ritsumei.ac.jp/results.json"
+        let url = "http://tekugame.mxd.media.ritsumei.ac.jp/playerandlocation.json"
         var jsonData = NSData(contentsOfURL: NSURL(string: url))
         var error: NSError?
         var jsObj = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: &error) as [NSDictionary]
