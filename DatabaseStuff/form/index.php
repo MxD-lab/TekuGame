@@ -25,37 +25,74 @@
 <form method="link" action="http://tekugame.mxd.media.ritsumei.ac.jp/">
 	<input type="submit" value="go back...">
 </form>
-
+<!-- OUTPUT ALL TABLES TO JSON -->
 <?php
 	/*Query  database for all phones and their nearest beacon location*/
 	$query = "SELECT * FROM playerandlocation";
 	/*Result of query*/
 	$result = mysqli_query($DBC, $query);
 	/*Creating an associative array to hold our database values*/
-	$phonebeacon_arr = array();
+	$player_arr = array();
 	/*For each row in the database's table: print the phone's ID and it's beacon ID*/
 	$returnarray = array();
 	if(mysqli_num_rows($result) != 0)
 	{
 		while ($row = mysqli_fetch_assoc($result))
 		{
-			#$phonebeacon_arr[$row['PhoneID']] = $row['BeaconID'];
-			//$phonebeacon_arr["twitterid"]["phoneid"] = $row['phoneid'];
-			$phonebeacon_arr["phoneid"] = $row['phoneid'];
-			$phonebeacon_arr["beaconid"] = $row['beaconid'];
-			$phonebeacon_arr["longitude"] = $row['longitude'];
-			$phonebeacon_arr["latitude"] = $row['latitude'];
-			/*$phonebeacon_arr["level"] = $row['level'];
-			$phonebeacon_arr["health"] = $row['health'];
-			$phonebeacon_arr["currenthealth"] = $row['currenthealth'];
-			$phonebeacon_arr["strength"] = $row['strength'];
-			$phonebeacon_arr["magic"] = $row['magic'];
-			$phonebeacon_arr["speed"] = $row['speed'];
-			*/
-			array_push($returnarray, $phonebeacon_arr);
+			$player_arr["phoneid"] = $row['phoneid'];
+			$player_arr["beaconid"] = $row['beaconid'];
+			$player_arr["longitude"] = $row['longitude'];
+			$player_arr["latitude"] = $row['latitude'];
+			array_push($returnarray, $player_arr);
 		}
 	}
-	$fp = fopen('../results.json', 'w+');
+	$fp = fopen('../json/playerandlocation.json', 'w+');
+	fwrite($fp, json_encode($returnarray));
+	fclose($fp);
+?>
+<?php
+	/*Query  database for all phones and their nearest beacon location*/
+	$query = "SELECT * FROM playerabilities";
+	/*Result of query*/
+	$result = mysqli_query($DBC, $query);
+	/*Creating an associative array to hold our database values*/
+	$player_ability_arr = array();
+	/*For each row in the database's table: print the phone's ID and it's beacon ID*/
+	$returnarray = array();
+	if(mysqli_num_rows($result) != 0)
+	{
+		while ($row = mysqli_fetch_assoc($result))
+		{
+			$player_ability_arr["playerid"] = $row['playerid'];
+			$player_ability_arr["physicalabilities"] = $row['physicalabilities'];
+			$player_ability_arr["magicalabilities"] = $row['magicalabilities'];
+			array_push($returnarray, $player_ability_arr);
+		}
+	}
+	$fp = fopen('../json/playerabilities.json', 'w+');
+	fwrite($fp, json_encode($returnarray));
+	fclose($fp);
+?>
+<?php
+	/*Query  database for all phones and their nearest beacon location*/
+	$query = "SELECT * FROM beacon";
+	/*Result of query*/
+	$result = mysqli_query($DBC, $query);
+	/*Creating an associative array to hold our database values*/
+	$beacon_arr = array();
+	/*For each row in the database's table: print the phone's ID and it's beacon ID*/
+	$returnarray = array();
+	if(mysqli_num_rows($result) != 0)
+	{
+		while ($row = mysqli_fetch_assoc($result))
+		{
+			$beacon_arr["ID"] = $row['ID'];
+			$beacon_arr["longitude"] = $row['longitude'];
+			$beacon_arr["latitude"] = $row['latitude'];
+			array_push($returnarray, $beacon_arr);
+		}
+	}
+	$fp = fopen('../json/beacons.json', 'w+');
 	fwrite($fp, json_encode($returnarray));
 	fclose($fp);
 ?>
