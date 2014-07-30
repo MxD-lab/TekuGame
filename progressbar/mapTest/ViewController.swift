@@ -12,19 +12,29 @@
 import UIKit
 import MapKit
 import CoreLocation
+import CoreMotion
 
 class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate{
-    
+    //formaps
     @IBOutlet var distance: UILabel!
     @IBOutlet var mapView: MKMapView!
+    //for beacon
     @IBOutlet var playerIDLabel: UILabel!
     @IBOutlet var nearbeacon: UIProgressView!
     @IBOutlet var nearplayer: UILabel!
-    
+    //for steps
+    @IBOutlet var steplabel: UILabel!
+
+    //for steps
+    var stepCount:Int!
+    var prevSteps:Int!
+
+    //for maps
     var playerID:String?
     var lat:NSNumber?
     var long:NSNumber?
     
+    //arrays
     var players:[NSDictionary] = []
     var allPins:NSMutableArray = []
     var presetPins:NSMutableArray = []
@@ -32,6 +42,7 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
     
     // For iBeacon
     let proximityUUID = NSUUID(UUIDString:"B9407F30-F5F8-466E-AFF9-25556B57FE6D")
+    //B9407F30-F5F8-466E-AFF9-25556B57FE6D
     var region  = CLBeaconRegion()
     var manager = CLLocationManager()
     var beaconID = String()
@@ -40,6 +51,12 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        stepCount = 0
+        getHistoricalSteps()
+        updateSteps()
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateStepLabel"), userInfo: nil, repeats: true)
+        
         
         playerIDLabel.text = "@\(playerID)さんよっす。"
         nearbeacon.transform = CGAffineTransformMakeScale( 1.0
@@ -110,13 +127,7 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         //デリゲートの設定
         manager.delegate = self
         
-        /*
-        位置情報サービスへの認証状態を取得する
-        NotDetermined   --  アプリ起動後、位置情報サービスへのアクセスを許可するかまだ選択されていない状態
-        Restricted      --  設定 > 一般 > 機能制限により位置情報サービスの利用が制限中
-        Denied          --  ユーザーがこのアプリでの位置情報サービスへのアクセスを許可していない
-        Authorized      --  位置情報サービスへのアクセスを許可している
-        */
+      
         switch CLLocationManager.authorizationStatus() {
         case .Authorized, .AuthorizedWhenInUse:
             //iBeaconによる領域観測を開始する
@@ -152,6 +163,9 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         }
 
     }
+//viewlodeおわり
+    
+    
 
     @IBAction func updateLocation(sender: AnyObject) {
         var centerCoordinate : CLLocationCoordinate2D = CLLocationCoordinate2DMake(mapView.userLocation.coordinate.latitude, mapView.userLocation.coordinate.longitude)
@@ -244,6 +258,8 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
                 
                 near_beacon.addObject(bid)
                 nearplayer.text = "\(near_beacon.count)"
+
+                nearbeacon.progress = Float(near_beacon.count / 10)
                 
             }
             
@@ -260,26 +276,13 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         return annotation
     }
     
-    //以下 CCLocationManagerデリゲートの実装---------------------------------------------->
-    
-    /*
-    - (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
-    Parameters
-    manager : The location manager object reporting the event.
-    region  : The region that is being monitored.
-    */
+   
     func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {
         manager.requestStateForRegion(region)
 //        self.status.text = "Scanning..."
     }
     
-    /*
-    - (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
-    Parameters
-    manager :The location manager object reporting the event.
-    state   :The state of the specified region. For a list of possible values, see the CLRegionState type.
-    region  :The region whose state was determined.
-    */
+   
     func locationManager(manager: CLLocationManager!, didDetermineState state: CLRegionState, forRegion inRegion: CLRegion!) {
         if (state == .Inside) {
             //領域内にはいったときに距離測定を開始
@@ -287,27 +290,12 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         }
     }
     
-    /*
-    リージョン監視失敗（bluetoosの設定を切り替えたりフライトモードを入切すると失敗するので１秒ほどのdelayを入れて、再トライするなど処理を入れること）
-    - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
-    Parameters
-    manager : The location manager object reporting the event.
-    region  : The region for which the error occurred.
-    error   : An error object containing the error code that indicates why region monitoring failed.
-    */
+   
     func locationManager(manager: CLLocationManager!, monitoringDidFailForRegion region: CLRegion!, withError error: NSError!) {
         println("monitoringDidFailForRegion \(error)")
 //        self.status.text = "Error :("
     }
-    
-    /*
-    - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-    Parameters
-    manager : The location manager object that was unable to retrieve the location.
-    error   : The error object containing the reason the location or heading could not be retrieved.
-    */
-    //通信失敗
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("didFailWithError \(error)")
     }
     
@@ -320,15 +308,7 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         manager.stopRangingBeaconsInRegion(region as CLBeaconRegion)
            }
     
-    /*
-    beaconsを受信するデリゲートメソッド。複数あった場合はbeaconsに入る
-    - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
-    Parameters
-    manager : The location manager object reporting the event.
-    beacons : An array of CLBeacon objects representing the beacons currently in range. You can use the information in these objects to determine the range of each beacon and its identifying information.
-    region  : The region object containing the parameters that were used to locate the beacons
-    */
-    func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: NSArray!, inRegion region: CLBeaconRegion!) {
+       func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: NSArray!, inRegion region: CLBeaconRegion!) {
         //println(beacons)
         
         if(beacons.count == 0) { return }
@@ -360,6 +340,50 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
 
     
     }
+    
+    
+    func getHistoricalSteps() {
+        if(CMStepCounter.isStepCountingAvailable()){
+            //StepCounterのインスタンス作成
+            var stepCounter = CMStepCounter()
+            var mainQueue:NSOperationQueue! = NSOperationQueue()
+            var todate:NSDate! = NSDate()
+            
+            //歩数を取得
+            stepCounter.queryStepCountStartingFrom(startDateOfToday(), to: todate, toQueue: mainQueue, withHandler: {numberOfSteps, error in
+                println("Historical:\(numberOfSteps)")
+                self.prevSteps = numberOfSteps
+                })
+        }
+    }
+    
+    func updateSteps() {
+        if(CMStepCounter.isStepCountingAvailable()){
+            //StepCounterのインスタンス作成
+            var stepCounter = CMStepCounter()
+            var mainQueue:NSOperationQueue! = NSOperationQueue()
+            var todate:NSDate! = NSDate()
+            
+            //歩数を取得
+            stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: {numberOfSteps, timestamp, error in
+                self.stepCount = numberOfSteps + self.prevSteps
+                println("Update: \(numberOfSteps)")
+                })
+        }
+    }
+    
+    func updateStepLabel() {
+        steplabel.text = "\(stepCount)"
+    }
+    
+    
+    //今日の０時０分を取得
+    func startDateOfToday() -> NSDate! {
+        var calender = NSCalendar.currentCalendar()
+        var components = calender.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: NSDate())
+        return calender.dateFromComponents(components)
+    }
+
 
 
 }

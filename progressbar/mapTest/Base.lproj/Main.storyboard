@@ -84,7 +84,8 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="はろー" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FrE-Co-g4e">
-                                <rect key="frame" x="0.0" y="29" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="21"/>
+                                <color key="backgroundColor" red="0.71593214439999997" green="0.899783679" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -101,8 +102,15 @@
                                 <color key="tintColor" red="0.38805760389999999" green="0.67397121829999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
                             </progressView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="steps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6EV-5B-tVx">
+                                <rect key="frame" x="0.0" y="450" width="320" height="34"/>
+                                <color key="backgroundColor" red="0.71593214439999997" green="0.899783679" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <color key="highlightedColor" red="0.71593214439999997" green="0.899783679" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FzT-m9-gGa">
-                                <rect key="frame" x="258" y="382" width="42" height="21"/>
+                                <rect key="frame" x="258" y="399" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -121,6 +129,7 @@
                         <outlet property="nearbeacon" destination="kQc-Ou-ZZf" id="X0G-vd-5NM"/>
                         <outlet property="nearplayer" destination="FzT-m9-gGa" id="6Ko-t2-2Yr"/>
                         <outlet property="playerIDLabel" destination="FrE-Co-g4e" id="jU3-03-ASm"/>
+                        <outlet property="steplabel" destination="6EV-5B-tVx" id="Wme-99-6ny"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
