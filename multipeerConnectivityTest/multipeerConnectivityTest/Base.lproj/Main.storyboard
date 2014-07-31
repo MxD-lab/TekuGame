@@ -14,68 +14,43 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mypeer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jN8-vQ-9Mn">
-                                <rect key="frame" x="0.0" y="74" width="320" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FBu-TZ-1Cx">
-                                <rect key="frame" x="0.0" y="243" width="320" height="30"/>
-                                <state key="normal" title="Start Advertising">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iP-ty-zWF">
+                                <rect key="frame" x="40" y="20" width="249" height="402"/>
+                                <color key="backgroundColor" red="1" green="0.85304927675332898" blue="0.6287248587682992" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.31991390310000001" green="0.31991390310000001" blue="0.31991390310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uQc-Kq-7bx">
+                                <rect key="frame" x="40" y="436" width="179" height="30"/>
+                                <color key="backgroundColor" red="0.78688147474932302" green="0.79103894337793512" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vy-DA-Nck">
+                                <rect key="frame" x="232" y="436" width="57" height="30"/>
+                                <state key="normal" title="送信">
+                                    <color key="titleColor" red="0.89937481624296955" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnStartAdvertising:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="r3d-C4-0hh"/>
+                                    <action selector="btntest:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gMz-Kq-V1L"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ti1-LM-2Bf">
-                                <rect key="frame" x="0.0" y="281" width="320" height="30"/>
-                                <state key="normal" title="Stop Advertising">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnStopAdvertising:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="XJZ-QB-18W"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TuL-N7-gIM">
-                                <rect key="frame" x="0.0" y="334" width="320" height="30"/>
-                                <state key="normal" title="Start Browsing">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnStartBrowsing:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qkQ-aL-rTF"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJe-O6-XLH">
-                                <rect key="frame" x="0.0" y="372" width="320" height="30"/>
-                                <state key="normal" title="Stop Browsing">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnStopBrowsing:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="yGb-Xu-SF3"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="yourpeer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KA-Oj-j3L">
-                                <rect key="frame" x="0.0" y="144" width="320" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.31991390306122447" green="0.31991390306122447" blue="0.31991390306122447" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
-                        <size key="portraitSize" width="320" height="568"/>
-                        <size key="landscapeSize" width="568" height="320"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics">
+                        <size key="portraitSize" width="320" height="480"/>
+                        <size key="landscapeSize" width="480" height="320"/>
                     </simulatedScreenMetrics>
                     <connections>
-                        <outlet property="labelMyPeer" destination="jN8-vQ-9Mn" id="jSH-Fe-1Zn"/>
-                        <outlet property="labelYourPeer" destination="5KA-Oj-j3L" id="0pd-Np-Rno"/>
+                        <outlet property="outputText" destination="9iP-ty-zWF" id="4Qq-Tz-cue"/>
+                        <outlet property="textInput" destination="uQc-Kq-7bx" id="4d2-J4-6v3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

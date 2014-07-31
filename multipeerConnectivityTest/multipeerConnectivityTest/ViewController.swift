@@ -19,23 +19,35 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
     var nearbyServiceBrowser:MCNearbyServiceBrowser!
     var session:MCSession!
     
-    @IBOutlet var labelMyPeer: UILabel!
-    @IBOutlet var labelYourPeer: UILabel!
+    var otherPeerID:MCPeerID!
     
-    @IBAction func btnStartAdvertising(sender: AnyObject) {
-        startAdvertising()
-    }
+//    @IBOutlet var labelMyPeer: UILabel!
+//    @IBOutlet var labelYourPeer: UILabel!
+    @IBOutlet var outputText: UITextView!
+    @IBOutlet var textInput: UITextField!
     
-    @IBAction func btnStopAdvertising(sender: AnyObject) {
-        nearbyServiceAdvertiser.stopAdvertisingPeer()
-    }
+//    @IBAction func btnStartAdvertising(sender: AnyObject) {
+//        startAdvertising()
+//    }
     
-    @IBAction func btnStartBrowsing(sender: AnyObject) {
-        nearbyServiceBrowser.startBrowsingForPeers()
-    }
+//    @IBAction func btnStopAdvertising(sender: AnyObject) {
+//        nearbyServiceAdvertiser.stopAdvertisingPeer()
+//    }
     
-    @IBAction func btnStopBrowsing(sender: AnyObject) {
-        nearbyServiceBrowser.stopBrowsingForPeers()
+//    @IBAction func btnStartBrowsing(sender: AnyObject) {
+//        nearbyServiceBrowser.startBrowsingForPeers()
+//    }
+    
+//    @IBAction func btnStopBrowsing(sender: AnyObject) {
+//        nearbyServiceBrowser.stopBrowsingForPeers()
+//    }
+    
+    @IBAction func btntest(sender: AnyObject) {
+        var error:NSError?
+        var message:NSString = textInput.text
+        outputText.text = outputText.text + "\n自分： \(message)"
+        textInput.text = ""
+        session.sendData(message.dataUsingEncoding(NSUTF8StringEncoding), toPeers: NSArray(object: otherPeerID), withMode: MCSessionSendDataMode.Reliable, error: &error)
     }
     
     override func viewDidLoad() {
@@ -47,7 +59,7 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
         var namePeerID:NSString = myPeerID.displayName
         println("myPeerID.displayName \(namePeerID)")
         
-        labelMyPeer.text = myPeerID.displayName
+//        labelMyPeer.text = myPeerID.displayName
         serviceType = "p2ptest"
         
         nearbyServiceBrowser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: serviceType)
@@ -56,7 +68,8 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
         session = MCSession(peer: myPeerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
         session.delegate = self
         
-        
+        startAdvertising()
+        nearbyServiceBrowser.startBrowsingForPeers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,7 +103,7 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
     func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
         println("found peer: \(peerID.displayName)")
         showAlert("found peer", message: peerID.displayName)
-        labelYourPeer.text = peerID.displayName
+//        labelYourPeer.text = peerID.displayName
         
         nearbyServiceBrowser.invitePeer(peerID, toSession: session, withContext: "Welcome".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true), timeout: 10)
         
@@ -138,6 +151,11 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
     // Called when a remote peer sends an NSData object to the local peer. (required)
     func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
         var receivedData:NSString = NSString(data: data, encoding: NSUTF8StringEncoding)
+        println("\(receivedData)")
+        dispatch_async(dispatch_get_main_queue(), {
+            self.outputText.text = self.outputText.text + "\nヤツ： \(receivedData)"
+        })
+        
         showAlert("didReceiveData", message: receivedData)
     }
     
@@ -169,7 +187,8 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
             println("session sends data!")
             var error:NSError?
             var message:NSString = "message from \(myPeerID.displayName)"
-            session.sendData(message.dataUsingEncoding(NSUTF8StringEncoding), toPeers: NSArray(object: peerID), withMode: MCSessionSendDataMode.Reliable, error: &error)
+            otherPeerID = peerID
+//            session.sendData(message.dataUsingEncoding(NSUTF8StringEncoding), toPeers: NSArray(object: otherPeerID), withMode: MCSessionSendDataMode.Reliable, error: &error)
         }
     }
     
@@ -190,6 +209,10 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
         nearbyServiceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: discoveryInfo, serviceType: serviceType)
         nearbyServiceAdvertiser.delegate = self
         nearbyServiceAdvertiser.startAdvertisingPeer()
+    }
+    
+    override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
+        self.view.endEditing(true)
     }
     
 }
