@@ -58,6 +58,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     // Initial setup for map.
     func initialMapSetup() {
+        
         var centerCoordinate : CLLocationCoordinate2D = CLLocationCoordinate2DMake(34.982397, 135.964603)
         lat = 34.982397
         long = 135.964603
@@ -133,7 +134,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let span = MKCoordinateSpanMake(0.003, 0.003)
         var centerPosition = MKCoordinateRegionMake(centerCoordinate, span)
         mapView.setRegion(centerPosition,animated:true)
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -158,6 +158,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     // Makes an HTTP POST request for the player's ID, beacon, and GPS coordinates.
     func post() {
+        
+        lat = mapView.userLocation.coordinate.latitude
+        long = mapView.userLocation.coordinate.longitude
+        
         var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
         var str = "phone=\(playerID!)&beacon=\(beaconID!)&longitude=\(long!)&latitude=\(lat!)&submit=submit"
         var url = NSURL.URLWithString(urlstring) // URL object from URL string.
@@ -217,6 +221,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         allPins = []
         for pin in presetPins {
             self.mapView.addAnnotation(pin as MKAnnotation)
+            allPins.addObject(pin as MKAnnotation)
         }
     }
     
@@ -230,7 +235,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         allPins.addObject(annotation)
         return annotation
     }
-   
+    
     func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {
         manager.requestStateForRegion(region)
     }
