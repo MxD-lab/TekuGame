@@ -34,4 +34,5 @@ http://qiita.com/oggata/items/5de43d71692d1abcff7c
 https://github.com/oggata/iBeaconDemo/blob/master/iBeaconDemo/ViewController.swift
   
 Multipeer Connectivity Framework  
-https://hirooka.pro/?p=3264
+https://hirooka.pro/?p=3264  
+http://dev.classmethod.jp/references/ios-multipeer-apiusage/
