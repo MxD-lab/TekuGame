@@ -11,26 +11,30 @@ import Accounts
 
 class LoginViewController: UIViewController {
     
+    // Login UI.
     @IBOutlet var loginText: UILabel!
     @IBOutlet var loginButton: UIButton!
     @IBOutlet var startButton: UIButton!
+    
+    // Account store and string for account username.
     var accountStore = ACAccountStore()
     var username = String()
     
+    // Ask the user permission to user the account information and login.
     @IBAction func loginPressed(sender: AnyObject) {
         var accountType:ACAccountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
         var haveAccess:Bool = false
-        let handler: ACAccountStoreRequestAccessCompletionHandler =
-        {
-            granted, error in
+        let handler: ACAccountStoreRequestAccessCompletionHandler = { granted, error in
             if(!granted) {
                 println("ユーザーがアクセスを拒否しました。")
-            } else {
+            }
+            else {
                 println("ユーザーがアクセスを許可しました。")
                 haveAccess = true
             }
         }
         accountStore.requestAccessToAccountsWithType(accountType, options: nil, handler)
+        
         var twitterAccounts:NSArray = accountStore.accountsWithAccountType(accountType)
         if (twitterAccounts.count > 0) {
             username = twitterAccounts[0].username
@@ -51,6 +55,7 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Pass the player's username to the next view controller.
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         if (segue.identifier == "map") {
             var mapVC = segue.destinationViewController as ViewController
