@@ -46,6 +46,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         playerIDLabel.text = "@\(playerID!)さんよっす。"
         initialMapSetup()
         beaconSetup()
+        get()
 
         setInterval("updateStepLabel", seconds: 1)
         setInterval("postAndGet", seconds: 5)
@@ -187,7 +188,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     // Gets JSON data from the server and updates corresponding fields such as pins on the map and number of nearby players.
     func get() {
-        let url = "http://tekugame.mxd.media.ritsumei.ac.jp/playerandlocation.json"
+        let url = "http://tekugame.mxd.media.ritsumei.ac.jp/json/playerandlocation.json"
         var jsonData = NSData(contentsOfURL: NSURL(string: url))
         var error: NSError?
         var jsObj = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: &error) as [NSDictionary]
