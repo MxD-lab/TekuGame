@@ -30,9 +30,9 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
     var prevSteps:Int!
 
     //for maps
-    var playerID:String?
-    var lat:NSNumber?
-    var long:NSNumber?
+    var playerID:String!
+    var lat:NSNumber!
+    var long:NSNumber!
     
     //arrays
     var players:[NSDictionary] = []
@@ -42,10 +42,9 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
     
     // For iBeacon
     let proximityUUID = NSUUID(UUIDString:"B9407F30-F5F8-466E-AFF9-25556B57FE6D")
-    //B9407F30-F5F8-466E-AFF9-25556B57FE6D
     var region  = CLBeaconRegion()
     var manager = CLLocationManager()
-    var beaconID = String()
+    var beaconID:String! = ""
     
     
     override func viewDidLoad() {
@@ -58,12 +57,9 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateStepLabel"), userInfo: nil, repeats: true)
         
         
-        playerIDLabel.text = "@\(playerID)さんよっす。"
-        nearbeacon.transform = CGAffineTransformMakeScale( 1.0
-            , 3.0 ); // 横方向に1倍、縦方向に3倍して表示する
-        
+        playerIDLabel.text = "@\(playerID!)さんよっす。"
+        nearbeacon.transform = CGAffineTransformMakeScale( 1.0, 3.0 ); // 横方向に1倍、縦方向に3倍して表示する
 
-        
         mapView.showsUserLocation = true
         var centerCoordinate : CLLocationCoordinate2D = CLLocationCoordinate2DMake(34.982397, 135.964603)
         lat = 34.982397
@@ -86,29 +82,15 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         request.transportType = MKDirectionsTransportType.Walking //移動手段 Walking:徒歩/Automobile:車
         
         let directions = MKDirections(request:request)
-        directions.calculateDirectionsWithCompletionHandler({
-            (response:MKDirectionsResponse!, error:NSError!) -> Void in
+        directions.calculateDirectionsWithCompletionHandler({ (response:MKDirectionsResponse!, error:NSError!) -> Void in
             if (error? || response.routes.isEmpty) {
                 return
             }
             let route: MKRoute = response.routes[0] as MKRoute
             self.mapView.addOverlay(route.polyline!)
-            })
+        })
         
-        //アノテーションというピンを地図に刺すことができる
-        //出発点：六本木　〜　目的地：渋谷　の２点に刺す
-//        var theRoppongiAnnotation = MKPointAnnotation()
-//        theRoppongiAnnotation.coordinate = fromCoordinate
-//        theRoppongiAnnotation.title = "BKC"
-//        theRoppongiAnnotation.subtitle = "stefafafanかっこいいです"
-//        self.mapView.addAnnotation(theRoppongiAnnotation)
         presetPins.addObject(createPin(fromCoordinate, title: "BKC", subtitle: "すてにゃん"))
-        
-//        var theShibuyaAnnotation = MKPointAnnotation()
-//        theShibuyaAnnotation.coordinate = toCoordinate
-//        theShibuyaAnnotation.title = "南草津駅"
-//        theShibuyaAnnotation.subtitle = "はい"
-//        self.mapView.addAnnotation(theShibuyaAnnotation)
         presetPins.addObject(createPin(toCoordinate, title: "南草津駅", subtitle: "せやな"))
         
         //カメラの設定をしてみる（少し手前に傾けた状態）
@@ -120,14 +102,13 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         
         NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: Selector("postAndGet"), userInfo: nil, repeats: true)
         
-             // Do any additional setup after loading the view, typically from a nib.
+        // Do any additional setup after loading the view, typically from a nib.
         //CLBeaconRegionを生成
         region = CLBeaconRegion(proximityUUID:proximityUUID,identifier:"EstimoteRegion")
         
         //デリゲートの設定
         manager.delegate = self
         
-      
         switch CLLocationManager.authorizationStatus() {
         case .Authorized, .AuthorizedWhenInUse:
             //iBeaconによる領域観測を開始する
@@ -164,8 +145,6 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
 
     }
 //viewlodeおわり
-    
-    
 
     @IBAction func updateLocation(sender: AnyObject) {
         var centerCoordinate : CLLocationCoordinate2D = CLLocationCoordinate2DMake(mapView.userLocation.coordinate.latitude, mapView.userLocation.coordinate.longitude)
@@ -188,14 +167,16 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
     }
     
     func postAndGet() {
-        println("とりあえずですよ")
         post()
         get()
     }
     
     func post() {
         var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
-        var str = "phone="+playerID!+"&beacon=\(beaconID)&longitude=\(long)&latitude=\(lat)&submit=submit"
+        var str1 = "phone=\(playerID!)"
+        var str2 = "&beacon=\(beaconID!)"
+        var str3 = "&longitude=\(long!)"
+        var str = "phone=\(playerID!)&beacon=\(beaconID!)&longitude=\(long!)&latitude=\(lat!)&submit=submit"
         println("ぽすとしてるやつ: \(str)")
         var url = NSURL.URLWithString(urlstring) // URL object from URL string.
         var request = NSMutableURLRequest(URL: url) // Request.
@@ -220,7 +201,6 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
     }
     
     func get() {
-        println("ぷいぷい")
         mapView.removeAnnotations(allPins)
         allPins = []
         let url = "http://tekugame.mxd.media.ritsumei.ac.jp/playerandlocation.json"
@@ -230,8 +210,6 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         
         players = jsObj
         
-//        println(players)
-        
         for pin in presetPins {
             self.mapView.addAnnotation(pin as MKAnnotation)
         }
@@ -239,11 +217,6 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         near_beacon = []
         
         for data in players {
-//            println(data["phoneid"])
-//            println(data["beaconid"])
-//            println(data["latitude"])
-//            println(data["longitude"])
-//            println("\n")
             var pid = data["phoneid"] as String
             var bid = data["beaconid"] as String
             var lati = data["latitude"] as NSString
@@ -275,13 +248,11 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         allPins.addObject(annotation)
         return annotation
     }
-    
    
     func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {
         manager.requestStateForRegion(region)
 //        self.status.text = "Scanning..."
     }
-    
    
     func locationManager(manager: CLLocationManager!, didDetermineState state: CLRegionState, forRegion inRegion: CLRegion!) {
         if (state == .Inside) {
@@ -290,7 +261,6 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         }
     }
     
-   
     func locationManager(manager: CLLocationManager!, monitoringDidFailForRegion region: CLRegion!, withError error: NSError!) {
         println("monitoringDidFailForRegion \(error)")
 //        self.status.text = "Error :("
@@ -306,9 +276,9 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
     
     func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
         manager.stopRangingBeaconsInRegion(region as CLBeaconRegion)
-           }
+    }
     
-       func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: NSArray!, inRegion region: CLBeaconRegion!) {
+    func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: NSArray!, inRegion region: CLBeaconRegion!) {
         //println(beacons)
         
         if(beacons.count == 0) { return }
@@ -324,11 +294,10 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         accuracy        :   精度
         rssi            :   電波強度
         */
-    self.beaconID = "\(beacon.major)\(beacon.minor)"
+        self.beaconID = "\(beacon.major)\(beacon.minor)"
         
-    if (beacon.proximity == CLProximity.Unknown) {
+        if (beacon.proximity == CLProximity.Unknown) {
             self.distance.text = "Unknown Proximity"
-       
             return
         } else if (beacon.proximity == CLProximity.Immediate) {
             self.distance.text = "Immediate"
@@ -337,8 +306,6 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         } else if (beacon.proximity == CLProximity.Far) {
             self.distance.text = "Far"
         }
-
-    
     }
     
     
@@ -353,7 +320,7 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
             stepCounter.queryStepCountStartingFrom(startDateOfToday(), to: todate, toQueue: mainQueue, withHandler: {numberOfSteps, error in
                 println("Historical:\(numberOfSteps)")
                 self.prevSteps = numberOfSteps
-                })
+            })
         }
     }
     
@@ -368,7 +335,7 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
             stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: {numberOfSteps, timestamp, error in
                 self.stepCount = numberOfSteps + self.prevSteps
                 println("Update: \(numberOfSteps)")
-                })
+            })
         }
     }
     
@@ -376,15 +343,11 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         steplabel.text = "\(stepCount)"
     }
     
-    
     //今日の０時０分を取得
     func startDateOfToday() -> NSDate! {
         var calender = NSCalendar.currentCalendar()
         var components = calender.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: NSDate())
         return calender.dateFromComponents(components)
     }
-
-
-
 }
 
