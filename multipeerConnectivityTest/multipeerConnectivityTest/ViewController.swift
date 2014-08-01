@@ -9,6 +9,7 @@
 // https://hirooka.pro/?p=3264 を参考に
 
 import UIKit
+import Accounts
 import MultipeerConnectivity
 
 class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessionDelegate, UIAlertViewDelegate, MCNearbyServiceAdvertiserDelegate {
@@ -20,40 +21,31 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
     var session:MCSession!
     
     var otherPeerID:MCPeerID!
+    var otherPeers:NSMutableArray = NSMutableArray()
     
-//    @IBOutlet var labelMyPeer: UILabel!
-//    @IBOutlet var labelYourPeer: UILabel!
+    var accountStore = ACAccountStore()
+    var username = "guest"
+    
+    @IBAction func btnLogin(sender: AnyObject) {
+        getAccount()
+        loginButton.hidden = true
+    }
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet var outputText: UITextView!
     @IBOutlet var textInput: UITextField!
     
-//    @IBAction func btnStartAdvertising(sender: AnyObject) {
-//        startAdvertising()
-//    }
-    
-//    @IBAction func btnStopAdvertising(sender: AnyObject) {
-//        nearbyServiceAdvertiser.stopAdvertisingPeer()
-//    }
-    
-//    @IBAction func btnStartBrowsing(sender: AnyObject) {
-//        nearbyServiceBrowser.startBrowsingForPeers()
-//    }
-    
-//    @IBAction func btnStopBrowsing(sender: AnyObject) {
-//        nearbyServiceBrowser.stopBrowsingForPeers()
-//    }
-    
     @IBAction func btntest(sender: AnyObject) {
         var error:NSError?
-        var message:NSString = textInput.text
-        outputText.text = outputText.text + "\n自分： \(message)"
+        var chatmessage:NSString = "\(username): \(textInput.text)"
+        outputText.text = "\(outputText.text)\n    →\(chatmessage)"
         textInput.text = ""
-        session.sendData(message.dataUsingEncoding(NSUTF8StringEncoding), toPeers: NSArray(object: otherPeerID), withMode: MCSessionSendDataMode.Reliable, error: &error)
+        session.sendData(chatmessage.dataUsingEncoding(NSUTF8StringEncoding), toPeers: otherPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         var uuid:NSUUID = NSUUID.UUID()
         myPeerID = MCPeerID(displayName: uuid.UUIDString)
         var namePeerID:NSString = myPeerID.displayName
@@ -75,6 +67,32 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func getAccount () {
+        var accountType:ACAccountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+        var haveAccess:Bool = false
+        let handler: ACAccountStoreRequestAccessCompletionHandler =
+        {
+            granted, error in
+            if(!granted) {
+                println("ユーザーがアクセスを拒否しました。")
+            } else {
+                println("ユーザーがアクセスを許可しました。")
+                haveAccess = true
+            }
+        }
+        accountStore.requestAccessToAccountsWithType(accountType, options: nil, handler)
+        var twitterAccounts:NSArray = accountStore.accountsWithAccountType(accountType)
+        if (twitterAccounts.count > 0) {
+            username = twitterAccounts[0].username
+        }
+        else {
+            username = "guest"
+        }
+        
+        usernameLabel.text = username
+        
     }
     
     func showAlert(title:String!, message:String!) {
@@ -151,9 +169,8 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
     // Called when a remote peer sends an NSData object to the local peer. (required)
     func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
         var receivedData:NSString = NSString(data: data, encoding: NSUTF8StringEncoding)
-        println("\(receivedData)")
         dispatch_async(dispatch_get_main_queue(), {
-            self.outputText.text = self.outputText.text + "\nヤツ： \(receivedData)"
+            self.outputText.text = "\(self.outputText.text)\n\(receivedData)"
         })
         
         showAlert("didReceiveData", message: receivedData)
@@ -188,6 +205,7 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
             var error:NSError?
             var message:NSString = "message from \(myPeerID.displayName)"
             otherPeerID = peerID
+            otherPeers.addObject(otherPeerID)
 //            session.sendData(message.dataUsingEncoding(NSUTF8StringEncoding), toPeers: NSArray(object: otherPeerID), withMode: MCSessionSendDataMode.Reliable, error: &error)
         }
     }

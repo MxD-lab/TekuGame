@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F81723A8198B2B3900142BC3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F81723A7198B2B3900142BC3 /* Accounts.framework */; };
 		F83C4F6319873BEF00DBFD8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83C4F6219873BEF00DBFD8B /* AppDelegate.swift */; };
 		F83C4F6519873BEF00DBFD8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83C4F6419873BEF00DBFD8B /* ViewController.swift */; };
 		F83C4F6819873BEF00DBFD8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83C4F6619873BEF00DBFD8B /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F81723A7198B2B3900142BC3 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		F83C4F5D19873BEF00DBFD8B /* multipeerConnectivityTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = multipeerConnectivityTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F83C4F6119873BEF00DBFD8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F83C4F6219873BEF00DBFD8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F81723A8198B2B3900142BC3 /* Accounts.framework in Frameworks */,
 				F83C4F8019873BFA00DBFD8B /* MultipeerConnectivity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,6 +63,7 @@
 		F83C4F5419873BEF00DBFD8B = {
 			isa = PBXGroup;
 			children = (
+				F81723A7198B2B3900142BC3 /* Accounts.framework */,
 				F83C4F7F19873BFA00DBFD8B /* MultipeerConnectivity.framework */,
 				F83C4F5F19873BEF00DBFD8B /* multipeerConnectivityTest */,
 				F83C4F7219873BEF00DBFD8B /* multipeerConnectivityTestTests */,
@@ -404,6 +408,7 @@
 				F83C4F7B19873BEF00DBFD8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F83C4F7C19873BEF00DBFD8B /* Build configuration list for PBXNativeTarget "multipeerConnectivityTestTests" */ = {
 			isa = XCConfigurationList;
@@ -412,6 +417,7 @@
 				F83C4F7E19873BEF00DBFD8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
