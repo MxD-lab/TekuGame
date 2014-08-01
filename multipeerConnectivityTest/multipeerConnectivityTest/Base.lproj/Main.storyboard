@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <scenes>
@@ -18,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iP-ty-zWF">
-                                <rect key="frame" x="40" y="62" width="249" height="355"/>
+                                <rect key="frame" x="40" y="62" width="249" height="339"/>
                                 <color key="backgroundColor" red="1" green="0.85304927675332898" blue="0.6287248587682992" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.31991390310000001" green="0.31991390310000001" blue="0.31991390310000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -56,6 +55,12 @@
                                 <color key="textColor" red="0.65389827806122447" green="0.65389827806122447" blue="0.65389827806122447" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itV-57-bid">
+                                <rect key="frame" x="142" y="409" width="147" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.65389827810000001" green="0.65389827810000001" blue="0.65389827810000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.31991390306122447" green="0.31991390306122447" blue="0.31991390306122447" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -67,6 +72,7 @@
                     <connections>
                         <outlet property="loginButton" destination="JOk-Nv-LDZ" id="oGo-5R-R7c"/>
                         <outlet property="outputText" destination="9iP-ty-zWF" id="4Qq-Tz-cue"/>
+                        <outlet property="peerCountLabel" destination="itV-57-bid" id="Gnz-0A-twQ"/>
                         <outlet property="textInput" destination="uQc-Kq-7bx" id="4d2-J4-6v3"/>
                         <outlet property="usernameLabel" destination="Idq-6D-C7Q" id="etT-oj-pUa"/>
                     </connections>

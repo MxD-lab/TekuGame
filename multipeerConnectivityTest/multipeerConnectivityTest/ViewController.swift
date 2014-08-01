@@ -30,6 +30,7 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
         getAccount()
         loginButton.hidden = true
     }
+    @IBOutlet weak var peerCountLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet var outputText: UITextView!
@@ -50,8 +51,7 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
         myPeerID = MCPeerID(displayName: uuid.UUIDString)
         var namePeerID:NSString = myPeerID.displayName
         println("myPeerID.displayName \(namePeerID)")
-        
-//        labelMyPeer.text = myPeerID.displayName
+
         serviceType = "p2ptest"
         
         nearbyServiceBrowser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: serviceType)
@@ -95,10 +95,6 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
         
     }
     
-    func showAlert(title:String!, message:String!) {
-        var alert:UIAlertView = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: "OK")
-    }
-    
     // MARK: - MCNearbyServiceBrowserDelegate
     
     // --------------------
@@ -120,8 +116,6 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
     // Called when a new peer appears. (required)
     func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
         println("found peer: \(peerID.displayName)")
-        showAlert("found peer", message: peerID.displayName)
-//        labelYourPeer.text = peerID.displayName
         
         nearbyServiceBrowser.invitePeer(peerID, toSession: session, withContext: "Welcome".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true), timeout: 10)
         
@@ -144,7 +138,6 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
     func advertiser(advertiser: MCNearbyServiceAdvertiser!, didNotStartAdvertisingPeer error: NSError!) {
         if (error) {
             println(error.localizedDescription)
-            showAlert("ERROR didNotStartAdvertisingPeer", message: error.localizedDescription)
         }
     }
     
@@ -154,7 +147,6 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
     // Called when a remote peer invites the app to join a session. (required)
     func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {
         invitationHandler(true, session)
-        showAlert("didReceiveInvitationFromPeer", message: "accept invitation!")
     }
     
     // MARK: - MCSessionDelegate
@@ -172,8 +164,6 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
         dispatch_async(dispatch_get_main_queue(), {
             self.outputText.text = "\(self.outputText.text)\n\(receivedData)"
         })
-        
-        showAlert("didReceiveData", message: receivedData)
     }
     
     // session:didStartReceivingResourceWithName:fromPeer:withProgress:
@@ -201,12 +191,12 @@ class ViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSessio
         println("state \(state) ")
         
         if (state == MCSessionState.Connected && session != nil) {
-            println("session sends data!")
-            var error:NSError?
-            var message:NSString = "message from \(myPeerID.displayName)"
             otherPeerID = peerID
             otherPeers.addObject(otherPeerID)
-//            session.sendData(message.dataUsingEncoding(NSUTF8StringEncoding), toPeers: NSArray(object: otherPeerID), withMode: MCSessionSendDataMode.Reliable, error: &error)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.peerCountLabel.text = "\(self.otherPeers.count + 1)"
+            })
         }
     }
     
