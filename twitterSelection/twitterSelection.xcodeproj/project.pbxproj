@@ -13,7 +13,7 @@
 		F8BAAFCF1991B68800372A63 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8BAAFCE1991B68800372A63 /* Images.xcassets */; };
 		F8BAAFDB1991B68800372A63 /* twitterSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BAAFDA1991B68800372A63 /* twitterSelectionTests.swift */; };
 		F8BAAFE51991B72F00372A63 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8BAAFE41991B72F00372A63 /* Accounts.framework */; };
-		F8BAAFE91991C36200372A63 /* SecondViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BAAFE81991C36200372A63 /* SecondViewContoller.swift */; };
+		F8BAAFEB1991EBB100372A63 /* SecondViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BAAFEA1991EBB100372A63 /* SecondViewContoller.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,7 @@
 		F8BAAFD91991B68800372A63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8BAAFDA1991B68800372A63 /* twitterSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twitterSelectionTests.swift; sourceTree = "<group>"; };
 		F8BAAFE41991B72F00372A63 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		F8BAAFE81991C36200372A63 /* SecondViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecondViewContoller.swift; path = ../SecondViewContoller.swift; sourceTree = "<group>"; };
+		F8BAAFEA1991EBB100372A63 /* SecondViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewContoller.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +81,7 @@
 		F8BAAFC41991B68800372A63 /* twitterSelection */ = {
 			isa = PBXGroup;
 			children = (
-				F8BAAFE81991C36200372A63 /* SecondViewContoller.swift */,
+				F8BAAFEA1991EBB100372A63 /* SecondViewContoller.swift */,
 				F8BAAFC71991B68800372A63 /* AppDelegate.swift */,
 				F8BAAFC91991B68800372A63 /* ViewController.swift */,
 				F8BAAFCB1991B68800372A63 /* Main.storyboard */,
@@ -216,7 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8BAAFE91991C36200372A63 /* SecondViewContoller.swift in Sources */,
+				F8BAAFEB1991EBB100372A63 /* SecondViewContoller.swift in Sources */,
 				F8BAAFCA1991B68800372A63 /* ViewController.swift in Sources */,
 				F8BAAFC81991B68800372A63 /* AppDelegate.swift in Sources */,
 			);
