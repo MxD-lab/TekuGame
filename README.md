@@ -37,5 +37,5 @@ Multipeer Connectivity Framework
 https://hirooka.pro/?p=3264  
 http://dev.classmethod.jp/references/ios-multipeer-apiusage/
 
-UIPickerView
+UIPickerView  
 http://www.techotopia.com/index.php/An_iOS_6_iPhone_UIPickerView_Example
