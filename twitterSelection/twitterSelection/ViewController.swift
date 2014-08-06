@@ -12,7 +12,6 @@ import Accounts
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var accountStore = ACAccountStore()
-    var username = String()
     var twitterAccounts = NSArray()
     
     @IBOutlet weak var twitterPickerView: UIPickerView!
@@ -20,32 +19,30 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBAction func refreshContent(sender: AnyObject) {
         twitterPickerView.reloadAllComponents()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        getAccounts()
         twitterPickerView.delegate = self
-        
+        twitterPickerView.reloadAllComponents()
+    }
+    
+    func getAccounts() {
         var accountType:ACAccountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
         var haveAccess:Bool = false
         let handler: ACAccountStoreRequestAccessCompletionHandler =
         {
             granted, error in
-            if(!granted) {
-                println("ユーザーがアクセスを拒否しました。")
-            } else {
-                println("ユーザーがアクセスを許可しました。")
-                haveAccess = true
-            }
+//            if(!granted) {
+//                println("ユーザーがアクセスを拒否しました。")
+//            } else {
+//                println("ユーザーがアクセスを許可しました。")
+//            }
         }
         accountStore.requestAccessToAccountsWithType(accountType, options: nil, handler)
         twitterAccounts = accountStore.accountsWithAccountType(accountType)
-        if (twitterAccounts.count > 0) {
-            username = twitterAccounts[0].username
-            println(twitterAccounts[0].accountDescription)
-        }
-        
-        twitterPickerView.reloadAllComponents()
     }
 
     func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
