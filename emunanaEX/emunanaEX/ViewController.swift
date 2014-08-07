@@ -43,7 +43,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     
     func getHistoricalSteps() {
         if(CMStepCounter.isStepCountingAvailable()){
@@ -54,7 +53,6 @@ class ViewController: UIViewController {
             
             //歩数を取得
             stepCounter.queryStepCountStartingFrom(startDateOfToday(), to: todate, toQueue: mainQueue, withHandler: {numberOfSteps, error in
-                println("Historical:\(numberOfSteps)")
                 self.prevSteps = numberOfSteps
             })
         }
@@ -70,7 +68,6 @@ class ViewController: UIViewController {
             //歩数を取得
             stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: {numberOfSteps, timestamp, error in
                 self.stepCount = numberOfSteps + self.prevSteps
-//                println("Update: \(numberOfSteps)")
             })
         }
         
@@ -86,17 +83,9 @@ class ViewController: UIViewController {
             })
         }
         
-        
-//        var motionManager = CMMotionManager()
         motionManager.accelerometerUpdateInterval = 0.1
         if (motionManager.accelerometerAvailable) {
-            var mainQueue:NSOperationQueue! = NSOperationQueue()
-            println("hello")
             motionManager.startAccelerometerUpdates()
-//            motionManager.startAccelerometerUpdatesToQueue(mainQueue, withHandler: {accemdata, error in
-//                println("aaaa")
-//                println(accemdata.acceleration.x)
-//            })
         }
     }
     
@@ -121,7 +110,6 @@ class ViewController: UIViewController {
         
         return actionName
     }
-    
     
     //今日の０時０分を取得
     func startDateOfToday() -> NSDate! {
