@@ -4,8 +4,14 @@
 //
 //  Created by 若尾あすか on 2014/07/28.
 //  Copyright (c) 2014年 若尾あすか. All rights reserved.
-//http://griffin-stewie.hatenablog.com/entry/2013/09/22/130002
-//http://wonderpla.net/blog/engineer/iPhone5s_M7chip/
+
+
+// CMStepCounter - number of steps
+// CMMotionActivityManager - gets motion data (walking/running/vehicle/stationary)
+// CMMotionManager - magnetic field, acceleration, gyro data (rotation rate), devicemotion (attitude, rotationrate, acceleration, magneticfield)
+// CMPedometer (iOS 8.0) - number of steps, distance, floors (1 floor ~= 3 meters)
+// CMAltimeter (iOS 8.0) - change in current altitude
+// CMAttitude - rotation matrix/quaternion/euler angles of orientation
 
 import UIKit
 import CoreMotion
@@ -13,8 +19,12 @@ import CoreMotion
 class ViewController: UIViewController {
     
     @IBOutlet var steplabel: UILabel!
+    @IBOutlet weak var activityLabel: UILabel!
+    @IBOutlet weak var confidenceBar: UIProgressView!
     var stepCount:Int!
     var prevSteps:Int!
+    var activitystring:String!
+    var confidencenum:Float! = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,10 +69,36 @@ class ViewController: UIViewController {
                 println("Update: \(numberOfSteps)")
             })
         }
+        
+        if (CMMotionActivityManager.isActivityAvailable()) {
+            var activityManager = CMMotionActivityManager()
+            var mainQueue:NSOperationQueue! = NSOperationQueue()
+            
+            activityManager.startActivityUpdatesToQueue(mainQueue, withHandler: { activity in
+                if (self.activityToString(activity) != "") {
+                    self.activitystring = self.activityToString(activity)
+                    self.confidencenum = Float(activity.confidence.toRaw())
+                }
+            })
+        }
     }
     
     func updateStepLabel() {
         steplabel.text = "\(stepCount)"
+        activityLabel.text = activitystring
+        confidenceBar.progress = confidencenum / 2
+    }
+    
+    func activityToString(act:CMMotionActivity) -> String {
+        var actionName = ""
+        
+        if (act.unknown) { actionName += "Unknown " }
+        if (act.stationary) { actionName += "Stationary " }
+        if (act.walking) { actionName += "Walking " }
+        if (act.running) { actionName += "Running " }
+        if (act.automotive) { actionName += "Automotive " }
+        
+        return actionName
     }
     
     
