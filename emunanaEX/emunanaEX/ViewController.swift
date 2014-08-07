@@ -21,10 +21,14 @@ class ViewController: UIViewController {
     @IBOutlet var steplabel: UILabel!
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var confidenceBar: UIProgressView!
+    @IBOutlet weak var xaccelLabel: UILabel!
+    @IBOutlet weak var yaccelLabel: UILabel!
+    @IBOutlet weak var zaccelLabel: UILabel!
     var stepCount:Int!
     var prevSteps:Int!
     var activitystring:String!
     var confidencenum:Float! = 0
+    var motionManager = CMMotionManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +70,7 @@ class ViewController: UIViewController {
             //歩数を取得
             stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: {numberOfSteps, timestamp, error in
                 self.stepCount = numberOfSteps + self.prevSteps
-                println("Update: \(numberOfSteps)")
+//                println("Update: \(numberOfSteps)")
             })
         }
         
@@ -81,12 +85,29 @@ class ViewController: UIViewController {
                 }
             })
         }
+        
+        
+//        var motionManager = CMMotionManager()
+        motionManager.accelerometerUpdateInterval = 0.1
+        if (motionManager.accelerometerAvailable) {
+            var mainQueue:NSOperationQueue! = NSOperationQueue()
+            println("hello")
+            motionManager.startAccelerometerUpdates()
+//            motionManager.startAccelerometerUpdatesToQueue(mainQueue, withHandler: {accemdata, error in
+//                println("aaaa")
+//                println(accemdata.acceleration.x)
+//            })
+        }
     }
     
     func updateStepLabel() {
         steplabel.text = "\(stepCount)"
         activityLabel.text = activitystring
         confidenceBar.progress = confidencenum / 2
+        var acc = motionManager.accelerometerData.acceleration
+        xaccelLabel.text = NSString(format: "%.4f m/s^2", acc.x * 9.81)
+        yaccelLabel.text = NSString(format: "%.4f m/s^2", acc.y * 9.81)
+        zaccelLabel.text = NSString(format: "%.4f m/s^2", acc.z * 9.81)
     }
     
     func activityToString(act:CMMotionActivity) -> String {
