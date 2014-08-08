@@ -9,9 +9,9 @@
 // CMStepCounter - number of steps
 // CMMotionActivityManager - gets motion data (walking/running/vehicle/stationary)
 // CMMotionManager - magnetic field, acceleration, gyro data (rotation rate), devicemotion (attitude, rotationrate, acceleration, magneticfield)
+// CMAttitude - rotation matrix/quaternion/euler angles of orientation
 // CMPedometer (iOS 8.0) - number of steps, distance, floors (1 floor ~= 3 meters)
 // CMAltimeter (iOS 8.0) - change in current altitude
-// CMAttitude - rotation matrix/quaternion/euler angles of orientation
 
 import UIKit
 import CoreMotion
@@ -44,7 +44,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         getHistoricalSteps()
         updateSteps()
         NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateStepLabel"), userInfo: nil, repeats: true)
-        //clManager.requestAlwaysAuthorization()
+        //clManager.requestAlwaysAuthorization() iOS 8.0
         clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         clManager.startUpdatingLocation()
         clManager.delegate = self
@@ -110,8 +110,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         zaccelLabel.text = NSString(format: "%.4f m/s^2", acc.z * 9.81)
         altitudeLabel.text = NSString(format: "%.2f m +/- %.2f", altitudeNum, vAcc)
         speedLabel.text = NSString(format: "%.2f m/s", speedNum)
-        //println(clManager.location.altitude)
-        
     }
     
     func activityToString(act:CMMotionActivity) -> String {
@@ -138,8 +136,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         altitudeNum = Float(loc.altitude)
         vAcc = Float(loc.verticalAccuracy)
         speedNum = loc.speed
-        println(altitudeNum)
-        println(speedNum)
     }
 }
 
