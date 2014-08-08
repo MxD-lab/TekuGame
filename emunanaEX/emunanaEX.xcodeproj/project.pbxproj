@@ -13,6 +13,7 @@
 		F0B2F757198617D100432E1C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B2F756198617D100432E1C /* Images.xcassets */; };
 		F0B2F763198617D100432E1C /* emunanaEXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B2F762198617D100432E1C /* emunanaEXTests.swift */; };
 		F814761419933F50001A7CF9 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F814761319933F50001A7CF9 /* CoreMotion.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		F8AA4C89199495C200CCA302 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8AA4C88199495C100CCA302 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		F0B2F761198617D100432E1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0B2F762198617D100432E1C /* emunanaEXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = emunanaEXTests.swift; sourceTree = "<group>"; };
 		F814761319933F50001A7CF9 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		F8AA4C88199495C100CCA302 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8AA4C89199495C200CCA302 /* CoreLocation.framework in Frameworks */,
 				F814761419933F50001A7CF9 /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,6 +63,7 @@
 		F0B2F741198617D000432E1C = {
 			isa = PBXGroup;
 			children = (
+				F8AA4C88199495C100CCA302 /* CoreLocation.framework */,
 				F814761319933F50001A7CF9 /* CoreMotion.framework */,
 				F0B2F74C198617D100432E1C /* emunanaEX */,
 				F0B2F75F198617D100432E1C /* emunanaEXTests */,
@@ -162,7 +166,6 @@
 				TargetAttributes = {
 					F0B2F749198617D000432E1C = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 628U27X7NX;
 					};
 					F0B2F75B198617D100432E1C = {
 						CreatedOnToolsVersion = 6.0;
@@ -332,7 +335,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: やまと 歌丸 (H4XC24B75K)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = emunanaEX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -345,7 +348,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: やまと 歌丸 (H4XC24B75K)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = emunanaEX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

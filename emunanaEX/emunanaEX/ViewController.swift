@@ -15,20 +15,27 @@
 
 import UIKit
 import CoreMotion
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
     
-    @IBOutlet var steplabel: UILabel!
+    @IBOutlet weak var steplabel: UILabel!
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var confidenceBar: UIProgressView!
     @IBOutlet weak var xaccelLabel: UILabel!
     @IBOutlet weak var yaccelLabel: UILabel!
     @IBOutlet weak var zaccelLabel: UILabel!
+    @IBOutlet weak var altitudeLabel: UILabel!
+    @IBOutlet weak var speedLabel: UILabel!
     var stepCount:Int!
     var prevSteps:Int!
     var activitystring:String!
     var confidencenum:Float! = 0
+    var altitudeNum:Float! = 0
+    var vAcc:Float! = 0
+    var speedNum:Double! = 0
     var motionManager = CMMotionManager()
+    var clManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +44,10 @@ class ViewController: UIViewController {
         getHistoricalSteps()
         updateSteps()
         NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateStepLabel"), userInfo: nil, repeats: true)
+        //clManager.requestAlwaysAuthorization()
+        clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        clManager.startUpdatingLocation()
+        clManager.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -97,6 +108,10 @@ class ViewController: UIViewController {
         xaccelLabel.text = NSString(format: "%.4f m/s^2", acc.x * 9.81)
         yaccelLabel.text = NSString(format: "%.4f m/s^2", acc.y * 9.81)
         zaccelLabel.text = NSString(format: "%.4f m/s^2", acc.z * 9.81)
+        altitudeLabel.text = NSString(format: "%.2f m +/- %.2f", altitudeNum, vAcc)
+        speedLabel.text = NSString(format: "%.2f m/s", speedNum)
+        //println(clManager.location.altitude)
+        
     }
     
     func activityToString(act:CMMotionActivity) -> String {
@@ -116,6 +131,15 @@ class ViewController: UIViewController {
         var calender = NSCalendar.currentCalendar()
         var components = calender.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: NSDate())
         return calender.dateFromComponents(components)
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        var loc: AnyObject = locations[locations.count-1]
+        altitudeNum = Float(loc.altitude)
+        vAcc = Float(loc.verticalAccuracy)
+        speedNum = loc.speed
+        println(altitudeNum)
+        println(speedNum)
     }
 }
 
