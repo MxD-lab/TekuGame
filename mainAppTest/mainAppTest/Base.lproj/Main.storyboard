@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="mainAppTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="げーむ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FnD-2m-t66">
+                                <rect key="frame" x="135" y="177" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l9M-ZE-Yfo">
+                                <rect key="frame" x="130" y="409" width="60" height="30"/>
+                                <state key="normal" title="続きから">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="frR-iT-aVI" kind="show" id="0Xz-13-6QQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1s-Gn-qpP">
+                                <rect key="frame" x="130" y="351" width="60" height="30"/>
+                                <state key="normal" title="最初から">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="nDv-Yp-x5l" kind="show" id="fkF-W3-xbb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
+                        <size key="portraitSize" width="320" height="568"/>
+                        <size key="landscapeSize" width="568" height="320"/>
+                    </simulatedScreenMetrics>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="601" y="71"/>
+        </scene>
+        <!--Twitter Select View Controller-->
+        <scene sceneID="W26-d4-eIk">
+            <objects>
+                <viewController id="O2w-JZ-Qao" customClass="twitterSelectViewController" customModule="mainAppTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CyG-bb-rRT"/>
+                        <viewControllerLayoutGuide type="bottom" id="xkf-Sa-s7w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gUB-cQ-IKh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="55q-ba-q9o">
+                                <rect key="frame" x="123" y="404" width="75" height="30"/>
+                                <state key="normal" title="かんりょー">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="nDv-Yp-x5l" kind="show" identifier="twselect_accreate" id="T9K-pp-C4g"/>
+                                </connections>
+                            </button>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j95-Pb-b2q">
+                                <rect key="frame" x="0.0" y="203" width="320" height="162"/>
+                            </pickerView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ツイッターアカウント選択" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuw-ev-L92">
+                                <rect key="frame" x="58" y="133" width="204" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
+                        <size key="portraitSize" width="320" height="568"/>
+                        <size key="landscapeSize" width="568" height="320"/>
+                    </simulatedScreenMetrics>
+                    <connections>
+                        <outlet property="twitterPickerView" destination="j95-Pb-b2q" id="NCp-Z7-H0d"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LpE-wX-xzf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1479" y="-656"/>
+        </scene>
+        <!--Account Create View Controller-->
+        <scene sceneID="tKe-sP-9nI">
+            <objects>
+                <viewController id="nDv-Yp-x5l" customClass="AccountCreateViewController" customModule="mainAppTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Elh-xL-LZ7"/>
+                        <viewControllerLayoutGuide type="bottom" id="S9d-Eu-uJM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aUg-FM-HM0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="アカウント作成" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rs6-jK-DNm">
+                                <rect key="frame" x="101" y="143" width="119" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7S6-Tt-0HC">
+                                <rect key="frame" x="115" y="413" width="90" height="30"/>
+                                <state key="normal" title="キャラつくろ">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="fLS-4s-91n" kind="show" identifier="accreate_charcreate" id="EMU-yr-1uf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLS-Rq-S2x">
+                                <rect key="frame" x="48" y="323" width="225" height="30"/>
+                                <state key="normal" title="ツイッターアカウントを利用する">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="O2w-JZ-Qao" kind="show" identifier="accreate_twselect" id="S5C-ML-awY"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ID: @ " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O68-A1-4l4">
+                                <rect key="frame" x="0.0" y="229" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
+                        <size key="portraitSize" width="320" height="568"/>
+                        <size key="landscapeSize" width="568" height="320"/>
+                    </simulatedScreenMetrics>
+                    <connections>
+                        <outlet property="playerIDLabel" destination="O68-A1-4l4" id="oXN-QE-7L5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r4K-XG-Ys0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1041" y="71"/>
+        </scene>
+        <!--Character Create View Controller-->
+        <scene sceneID="A7n-O9-dUP">
+            <objects>
+                <viewController id="fLS-4s-91n" customClass="CharacterCreateViewController" customModule="mainAppTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Yf-9p-FUm"/>
+                        <viewControllerLayoutGuide type="bottom" id="UIv-Ap-I6H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0KF-Hq-dPn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="キャラ作成" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vci-f4-cKg">
+                                <rect key="frame" x="118" y="129" width="85" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mii-vB-F5u">
+                                <rect key="frame" x="130" y="398" width="60" height="30"/>
+                                <state key="normal" title="すたーと">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="kwz-uD-Hpi" kind="show" identifier="charcreate_map" id="jYA-ma-5K2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
+                        <size key="portraitSize" width="320" height="568"/>
+                        <size key="landscapeSize" width="568" height="320"/>
+                    </simulatedScreenMetrics>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="onE-yA-GBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1581" y="71"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="acK-dZ-xT3">
+            <objects>
+                <viewController id="kwz-uD-Hpi" customClass="MapViewController" customModule="mainAppTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DwI-hT-RLV"/>
+                        <viewControllerLayoutGuide type="bottom" id="FBo-np-MTM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AlU-7x-VyX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v9Q-4N-LkZ">
+                                <rect key="frame" x="13" y="424" width="294" height="138"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="今日の歩数：- 歩" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZa-mL-EvR">
+                                        <rect key="frame" x="140" y="20" width="134" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="速度: - m/s" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIb-ml-KUM">
+                                        <rect key="frame" x="9" y="58" width="265" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="高度： - m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ObL-em-cAT">
+                                        <rect key="frame" x="9" y="97" width="265" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.26338769629902714" green="1" blue="0.98575646781496806" alpha="0.47999999999999998" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ex8-bO-nfp">
+                                <rect key="frame" x="20" y="37" width="280" height="30"/>
+                                <state key="normal" title="@playerid">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="5kj-lA-l77" kind="show" id="6Ro-2r-JbP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RiL-MP-DSb">
+                                <rect key="frame" x="235" y="37" width="65" height="30"/>
+                                <state key="normal" title=" 現在地へ">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateLocation:" destination="kwz-uD-Hpi" eventType="touchUpInside" id="QXk-vr-k2A"/>
+                                </connections>
+                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vRS-fM-G7q">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
+                        <size key="portraitSize" width="320" height="568"/>
+                        <size key="landscapeSize" width="568" height="320"/>
+                    </simulatedScreenMetrics>
+                    <connections>
+                        <outlet property="altitudeLabel" destination="ObL-em-cAT" id="M03-OP-lT9"/>
+                        <outlet property="mapView" destination="vRS-fM-G7q" id="HL0-Bo-CRt"/>
+                        <outlet property="speedLabel" destination="IIb-ml-KUM" id="Dr8-vw-IFe"/>
+                        <outlet property="statusButton" destination="Ex8-bO-nfp" id="4jH-5G-D0k"/>
+                        <outlet property="steplabel" destination="VZa-mL-EvR" id="djN-hb-Qa4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mP6-nz-8e7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1581" y="858"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="1F3-9f-Pjh">
+            <objects>
+                <viewController id="YPD-55-G00" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FXJ-Rs-mgb"/>
+                        <viewControllerLayoutGuide type="bottom" id="S8A-Z0-fA6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hZN-uT-v6C">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="戦闘" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UN8-ai-1d3">
+                                <rect key="frame" x="267" y="62" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
+                        <size key="portraitSize" width="320" height="568"/>
+                        <size key="landscapeSize" width="568" height="320"/>
+                    </simulatedScreenMetrics>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tyZ-qm-giD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2163" y="982"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Jv5-5t-EHV">
+            <objects>
+                <viewController id="5kj-lA-l77" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ahf-ce-ocf"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qfu-sC-5Jz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vnb-k4-Kru">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Go1-oY-aEk">
+                                <rect key="frame" x="145" y="440" width="30" height="30"/>
+                                <state key="normal" title="戻る">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="kwz-uD-Hpi" kind="show" id="01y-4x-iNO"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ステータス" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVN-I4-4Qv">
+                                <rect key="frame" x="118" y="139" width="85" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
+                        <size key="portraitSize" width="320" height="568"/>
+                        <size key="landscapeSize" width="568" height="320"/>
+                    </simulatedScreenMetrics>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bIR-fu-Jf1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2022" y="131"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="YYj-vG-sjg">
+            <objects>
+                <viewController id="frR-iT-aVI" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3CX-T5-4yw"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hbt-hg-4jh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B1F-99-1cV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="アカウント選択" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bw2-mt-ZiU">
+                                <rect key="frame" x="101" y="171" width="119" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jpk-oE-DTU">
+                                <rect key="frame" x="53" y="441" width="75" height="30"/>
+                                <state key="normal" title="新しく作る">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="nDv-Yp-x5l" kind="show" id="Ym7-ie-ty9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEp-Fq-Udq">
+                                <rect key="frame" x="200" y="441" width="60" height="30"/>
+                                <state key="normal" title="すたーと">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="kwz-uD-Hpi" kind="show" id="taW-nz-cbX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
+                        <size key="portraitSize" width="320" height="568"/>
+                        <size key="landscapeSize" width="568" height="320"/>
+                    </simulatedScreenMetrics>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pGi-9f-fYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="601" y="858"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="T9K-pp-C4g"/>
+        <segue reference="jYA-ma-5K2"/>
+    </inferredMetricsTieBreakers>
+</document>
