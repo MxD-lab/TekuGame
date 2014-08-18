@@ -19,16 +19,17 @@ extension GameScene: UIPickerViewDataSource
 {
     func numberOfComponentsInPickerView(colorPicker: UIPickerView!) -> Int
     {
-        return 2;
+        return 1;
     }
     func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int
     {
-        switch(component)
+        switch(pickerView)
         {
-            case 0:
+            case typePicker:
                 return num.count;
-            case 1:
-                switch(picker.selectedRowInComponent(0))
+            case actionPicker:
+                println("VALUE: \(typePicker.selectedRowInComponent(component))");
+                switch(typePicker.selectedRowInComponent(component))
                 {
                 case 0:
                     return utility.count;
@@ -46,12 +47,12 @@ extension GameScene: UIPickerViewDelegate
 {
     func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String!
     {
-        switch(component)
+        switch(pickerView)
         {
-        case 0:
+        case typePicker:
             return num[row];
-        case 1:
-            switch(picker.selectedRowInComponent(0))
+        case actionPicker:
+            switch(typePicker.selectedRowInComponent(0))
             {
             case 0:
                 return utility[row];
@@ -68,7 +69,15 @@ extension GameScene: UIPickerViewDelegate
     }
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
     {
-        picker.reloadAllComponents();
+        switch(pickerView)
+        {
+        case typePicker:
+            typePicker.reloadAllComponents();
+        case actionPicker:
+            actionPicker.reloadAllComponents();
+        default:
+            break;
+        }
     }
 }
 
@@ -76,7 +85,8 @@ class GameScene: SKScene
 {
     let background = SKSpriteNode(imageNamed: "background.png");
     let status:UILabel = UILabel(frame: CGRectMake( 0, 0, 548, 20));
-    let picker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
+    let typePicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
+    let actionPicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let enemyImage:SKSpriteNode = SKSpriteNode(imageNamed: "enemy.png");
     
     var count:Int = 0;
@@ -89,10 +99,22 @@ class GameScene: SKScene
         status.textColor = UIColor.blackColor();
         self.view.addSubview(status);
         
+        /*
         picker.center = CGPointMake(284, 280);
         picker.delegate = self;
         picker.reloadAllComponents();
         self.view.addSubview(picker);
+        */
+        
+        typePicker.center = CGPointMake(284, 200);
+        typePicker.delegate = self;
+        typePicker.reloadAllComponents();
+        self.view.addSubview(typePicker);
+        
+        actionPicker.center = CGPointMake(284, 100);
+        actionPicker.delegate = self;
+        actionPicker.reloadAllComponents();
+        self.view.addSubview(actionPicker);
         
         background.anchorPoint = CGPoint(x: 0, y: 0);
         background.size = self.size;
@@ -101,7 +123,7 @@ class GameScene: SKScene
 
         enemyImage.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)+10);
         enemyImage.zPosition = 1;
-        self.addChild(enemyImage);
+        //self.addChild(enemyImage);
     }
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent)
     {
