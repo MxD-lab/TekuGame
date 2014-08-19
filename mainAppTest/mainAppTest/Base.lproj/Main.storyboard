@@ -352,10 +352,10 @@
             </objects>
             <point key="canvasLocation" x="2022" y="131"/>
         </scene>
-        <!--View Controller-->
+        <!--Account Selection View Controller-->
         <scene sceneID="YYj-vG-sjg">
             <objects>
-                <viewController id="frR-iT-aVI" sceneMemberID="viewController">
+                <viewController id="frR-iT-aVI" customClass="AccountSelectionViewController" customModule="mainAppTest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3CX-T5-4yw"/>
                         <viewControllerLayoutGuide type="bottom" id="Hbt-hg-4jh"/>
@@ -376,7 +376,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="nDv-Yp-x5l" kind="show" id="Ym7-ie-ty9"/>
+                                    <segue destination="nDv-Yp-x5l" kind="show" identifier="acselect_accreate" id="Ym7-ie-ty9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEp-Fq-Udq">
@@ -385,9 +385,12 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="kwz-uD-Hpi" kind="show" id="taW-nz-cbX"/>
+                                    <segue destination="kwz-uD-Hpi" kind="show" identifier="accselect_map" id="taW-nz-cbX"/>
                                 </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sjD-ED-sfh">
+                                <rect key="frame" x="0.0" y="235" width="320" height="162"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -396,6 +399,9 @@
                         <size key="portraitSize" width="320" height="568"/>
                         <size key="landscapeSize" width="568" height="320"/>
                     </simulatedScreenMetrics>
+                    <connections>
+                        <outlet property="accountPickerView" destination="sjD-ED-sfh" id="SCi-cK-sXb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pGi-9f-fYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -403,7 +409,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jYA-ma-5K2"/>
-        <segue reference="fkF-W3-xbb"/>
+        <segue reference="taW-nz-cbX"/>
+        <segue reference="Ym7-ie-ty9"/>
     </inferredMetricsTieBreakers>
 </document>

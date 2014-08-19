@@ -56,7 +56,6 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
         if (segue.identifier == "twselect_accreate") {
             var nextVC = segue.destinationViewController as AccountCreateViewController
             nextVC.playerID = twitterAccounts[twitterPickerView.selectedRowInComponent(0)].username
-//            nextVC.playerID = "stefafafan"
         }
     }
 }

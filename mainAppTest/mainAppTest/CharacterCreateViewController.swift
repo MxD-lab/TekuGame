@@ -24,6 +24,25 @@ class CharacterCreateViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         if (segue.identifier == "charcreate_map" && playerID != "") {
+            
+            var prefs = NSUserDefaults.standardUserDefaults()
+            var accounts = NSMutableArray()
+            if (prefs.objectForKey("useraccounts")) {
+                accounts = prefs.objectForKey("useraccounts") as NSMutableArray
+            }
+            var hasAccount = false
+            for account in accounts {
+                if (account as String == playerID) {
+                    hasAccount = true
+                }
+            }
+            
+            if (!hasAccount) {
+                accounts.addObject(playerID)
+            }
+            
+            prefs.setObject(accounts, forKey: "useraccounts")
+            
             var nextVC = segue.destinationViewController as MapViewController
             nextVC.playerID = playerID
         }

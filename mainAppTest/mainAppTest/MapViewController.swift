@@ -16,20 +16,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // MapKit, CoreLocation
 //    @IBOutlet var distance: UILabel!        // Label that shows distance from iBeacon.
     @IBOutlet var mapView: MKMapView!       // iOS Map.
+    @IBOutlet weak var statusButton: UIButton!
+    @IBOutlet weak var speedLabel: UILabel!
+    @IBOutlet weak var altitudeLabel: UILabel!
+    var clManager = CLLocationManager()
     var playerID:String!                    // Player's ID passed from the previous ViewController.
     var lat:NSNumber!                       // Player's GPS coordinates (latitude).
     var long:NSNumber!                      // Player's GPS coordinates (longitude).
+    var altitudeNum:Float! = 0
+    var vAcc:Float! = 0
+    var speedNum:Double! = 0
     var players:[NSDictionary] = []         // NSArray of NSDictionary, each element is a player entry. This comes from the server.
     var allPins:NSMutableArray = []         // All of the pins set on the Map including preset pins and players.
     var presetPins:NSMutableArray = []      // Array of only the preset pins.
     var near_beacon:NSMutableArray = []     // Array of players with the same nearby beacon.
-    @IBOutlet weak var statusButton: UIButton!
-    var clManager = CLLocationManager()
-    @IBOutlet weak var speedLabel: UILabel!
-    @IBOutlet weak var altitudeLabel: UILabel!
-    var altitudeNum:Float! = 0
-    var vAcc:Float! = 0
-    var speedNum:Double! = 0
+    
+    // Internet Connection.
     @IBOutlet weak var netConnectionLabel: UILabel!
     
     // iBeacon
@@ -44,8 +46,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet var steplabel: UILabel!   // Label display number of counts of today's steps.
     var stepCount:Int!                  // Number of steps.
     var prevSteps:Int!                  // Number of steps since the start of the day until the application has launched.
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,24 +93,24 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         var fromCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(34.982397, 135.964603)
         var toCoordinate   :CLLocationCoordinate2D = CLLocationCoordinate2DMake(35.003917, 135.947349)
-        var fromPlacemark = MKPlacemark(coordinate:fromCoordinate, addressDictionary:nil)
-        var toPlacemark = MKPlacemark(coordinate:toCoordinate, addressDictionary:nil)
-        var fromItem = MKMapItem(placemark:fromPlacemark);
-        var toItem = MKMapItem(placemark:toPlacemark);
-        let request = MKDirectionsRequest()
-        request.setSource(fromItem)
-        request.setDestination(toItem)
-        request.requestsAlternateRoutes = true; //複数経路
-        request.transportType = MKDirectionsTransportType.Walking //移動手段 Walking:徒歩/Automobile:車
+//        var fromPlacemark = MKPlacemark(coordinate:fromCoordinate, addressDictionary:nil)
+//        var toPlacemark = MKPlacemark(coordinate:toCoordinate, addressDictionary:nil)
+//        var fromItem = MKMapItem(placemark:fromPlacemark);
+//        var toItem = MKMapItem(placemark:toPlacemark);
+//        let request = MKDirectionsRequest()
+//        request.setSource(fromItem)
+//        request.setDestination(toItem)
+//        request.requestsAlternateRoutes = true; //複数経路
+//        request.transportType = MKDirectionsTransportType.Walking //移動手段 Walking:徒歩/Automobile:車
         
-        let directions = MKDirections(request:request)
-        directions.calculateDirectionsWithCompletionHandler({ (response:MKDirectionsResponse!, error:NSError!) -> Void in
-            if (error? || response.routes.isEmpty) {
-                return
-            }
-            let route: MKRoute = response.routes[0] as MKRoute
-            self.mapView.addOverlay(route.polyline!)
-            })
+//        let directions = MKDirections(request:request)
+//        directions.calculateDirectionsWithCompletionHandler({ (response:MKDirectionsResponse!, error:NSError!) -> Void in
+//            if (error? || response.routes.isEmpty) {
+//                return
+//            }
+//            let route: MKRoute = response.routes[0] as MKRoute
+//            self.mapView.addOverlay(route.polyline!)
+//            })
         
         presetPins.addObject(createPin(fromCoordinate, title: "BKC", subtitle: "すてにゃん"))
         presetPins.addObject(createPin(toCoordinate, title: "南草津駅", subtitle: "せやな"))
@@ -162,13 +162,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     // For drawing a route on the MapKit.
-    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
-        let route: MKPolyline = overlay as MKPolyline
-        let routeRenderer = MKPolylineRenderer(polyline:route)
-        routeRenderer.lineWidth = 5.0
-        routeRenderer.strokeColor = UIColor.redColor()
-        return routeRenderer
-    }
+//    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+//        let route: MKPolyline = overlay as MKPolyline
+//        let routeRenderer = MKPolylineRenderer(polyline:route)
+//        routeRenderer.lineWidth = 5.0
+//        routeRenderer.strokeColor = UIColor.redColor()
+//        return routeRenderer
+//    }
     
     // Simply posts and gets.
     func postAndGet() {
@@ -328,7 +328,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
             stepCounter.queryStepCountStartingFrom(startDateOfToday(), to: todate, toQueue: mainQueue, withHandler: {numberOfSteps, error in
                 self.prevSteps = numberOfSteps
-                })
+            })
         }
     }
     
@@ -341,7 +341,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
             stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: {numberOfSteps, timestamp, error in
                 self.stepCount = numberOfSteps + self.prevSteps
-                })
+            })
         }
     }
     
@@ -359,6 +359,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return calender.dateFromComponents(components)
     }
     
+    // CoreLocation updates.
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         var loc: AnyObject = locations[locations.count-1]
         altitudeNum = Float(loc.altitude)
