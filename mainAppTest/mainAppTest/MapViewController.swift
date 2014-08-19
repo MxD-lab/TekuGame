@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import CoreMotion
+import Darwin
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
     
@@ -34,6 +35,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // Internet Connection.
     @IBOutlet weak var netConnectionLabel: UILabel!
     
+    // Enemy encounter step count.
+    var encountStepCount:Int! = 0
+    
     // iBeacon
 //    @IBOutlet var nearbeacon: UIProgressView!                                       // Progress bar showing the number of people near the same beacon.
 //    @IBOutlet var nearplayer: UILabel!                                              // Label that shows number of people near beacon.
@@ -44,8 +48,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // CoreMotion
     @IBOutlet var steplabel: UILabel!   // Label display number of counts of today's steps.
-    var stepCount:Int!                  // Number of steps.
-    var prevSteps:Int!                  // Number of steps since the start of the day until the application has launched.
+    var stepCount:Int! = 0                  // Number of steps.
+    var prevSteps:Int! = 0                  // Number of steps since the start of the day until the application has launched.
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +73,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         setInterval("updateStepLabel", seconds: 1)
         setInterval("postAndGet", seconds: 15)
+        setInterval("checkEncounter", seconds: 10)
     }
     
     // Calls the given function every n seconds.
@@ -365,5 +370,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         altitudeNum = Float(loc.altitude)
         vAcc = Float(loc.verticalAccuracy)
         speedNum = loc.speed
+    }
+    
+    func checkEncounter() {
+        if (encountStepCount < stepCount) {
+            if (encountStepCount != 0) {
+                println("Encounter")
+            }
+            var thousands = round(Float(stepCount / 1000)) + 1
+            encountStepCount = Int(thousands) * 1000 + Int(arc4random_uniform(200)) - 100
+            println("Encounter at \(encountStepCount)")
+        }
+        else {
+            
+        }
     }
 }
