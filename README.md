@@ -38,4 +38,7 @@ https://hirooka.pro/?p=3264
 http://dev.classmethod.jp/references/ios-multipeer-apiusage/
 
 UIPickerView  
-http://www.techotopia.com/index.php/An_iOS_6_iPhone_UIPickerView_Example
+http://www.techotopia.com/index.php/An_iOS_6_iPhone_UIPickerView_Example  
+  
+Internet Connection  
+http://ios-blog.co.uk/tutorials/check-if-active-internet-connection-exists-on-ios-device/
