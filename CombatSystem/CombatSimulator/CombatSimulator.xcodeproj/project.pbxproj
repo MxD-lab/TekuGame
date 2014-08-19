@@ -1,0 +1,420 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A1407B1E19A31A7C00EBEC01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1407B1D19A31A7C00EBEC01 /* AppDelegate.swift */; };
+		A1407B2019A31A7C00EBEC01 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1407B1F19A31A7C00EBEC01 /* ViewController.swift */; };
+		A1407B2319A31A7C00EBEC01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1407B2119A31A7C00EBEC01 /* Main.storyboard */; };
+		A1407B2519A31A7C00EBEC01 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1407B2419A31A7C00EBEC01 /* Images.xcassets */; };
+		A1407B3119A31A7C00EBEC01 /* CombatSimulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1407B3019A31A7C00EBEC01 /* CombatSimulatorTests.swift */; };
+		A1407B3B19A31AD600EBEC01 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1407B3A19A31AD600EBEC01 /* Classes.swift */; };
+		A1407B3D19A31B4500EBEC01 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1407B3C19A31B4500EBEC01 /* Utility.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A1407B2B19A31A7C00EBEC01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1407B1019A31A7C00EBEC01 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1407B1719A31A7C00EBEC01;
+			remoteInfo = CombatSimulator;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A1407B1819A31A7C00EBEC01 /* CombatSimulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombatSimulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1407B1C19A31A7C00EBEC01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1407B1D19A31A7C00EBEC01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A1407B1F19A31A7C00EBEC01 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A1407B2219A31A7C00EBEC01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A1407B2419A31A7C00EBEC01 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A1407B2A19A31A7C00EBEC01 /* CombatSimulatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CombatSimulatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1407B2F19A31A7C00EBEC01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1407B3019A31A7C00EBEC01 /* CombatSimulatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatSimulatorTests.swift; sourceTree = "<group>"; };
+		A1407B3A19A31AD600EBEC01 /* Classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
+		A1407B3C19A31B4500EBEC01 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A1407B1519A31A7C00EBEC01 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1407B2719A31A7C00EBEC01 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A1407B0F19A31A7C00EBEC01 = {
+			isa = PBXGroup;
+			children = (
+				A1407B1A19A31A7C00EBEC01 /* CombatSimulator */,
+				A1407B2D19A31A7C00EBEC01 /* CombatSimulatorTests */,
+				A1407B1919A31A7C00EBEC01 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A1407B1919A31A7C00EBEC01 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1407B1819A31A7C00EBEC01 /* CombatSimulator.app */,
+				A1407B2A19A31A7C00EBEC01 /* CombatSimulatorTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A1407B1A19A31A7C00EBEC01 /* CombatSimulator */ = {
+			isa = PBXGroup;
+			children = (
+				A1407B1D19A31A7C00EBEC01 /* AppDelegate.swift */,
+				A1407B1F19A31A7C00EBEC01 /* ViewController.swift */,
+				A1407B2119A31A7C00EBEC01 /* Main.storyboard */,
+				A1407B2419A31A7C00EBEC01 /* Images.xcassets */,
+				A1407B1B19A31A7C00EBEC01 /* Supporting Files */,
+				A1407B3A19A31AD600EBEC01 /* Classes.swift */,
+				A1407B3C19A31B4500EBEC01 /* Utility.swift */,
+			);
+			path = CombatSimulator;
+			sourceTree = "<group>";
+		};
+		A1407B1B19A31A7C00EBEC01 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A1407B1C19A31A7C00EBEC01 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A1407B2D19A31A7C00EBEC01 /* CombatSimulatorTests */ = {
+			isa = PBXGroup;
+			children = (
+				A1407B3019A31A7C00EBEC01 /* CombatSimulatorTests.swift */,
+				A1407B2E19A31A7C00EBEC01 /* Supporting Files */,
+			);
+			path = CombatSimulatorTests;
+			sourceTree = "<group>";
+		};
+		A1407B2E19A31A7C00EBEC01 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A1407B2F19A31A7C00EBEC01 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A1407B1719A31A7C00EBEC01 /* CombatSimulator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1407B3419A31A7C00EBEC01 /* Build configuration list for PBXNativeTarget "CombatSimulator" */;
+			buildPhases = (
+				A1407B1419A31A7C00EBEC01 /* Sources */,
+				A1407B1519A31A7C00EBEC01 /* Frameworks */,
+				A1407B1619A31A7C00EBEC01 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CombatSimulator;
+			productName = CombatSimulator;
+			productReference = A1407B1819A31A7C00EBEC01 /* CombatSimulator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A1407B2919A31A7C00EBEC01 /* CombatSimulatorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1407B3719A31A7C00EBEC01 /* Build configuration list for PBXNativeTarget "CombatSimulatorTests" */;
+			buildPhases = (
+				A1407B2619A31A7C00EBEC01 /* Sources */,
+				A1407B2719A31A7C00EBEC01 /* Frameworks */,
+				A1407B2819A31A7C00EBEC01 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1407B2C19A31A7C00EBEC01 /* PBXTargetDependency */,
+			);
+			name = CombatSimulatorTests;
+			productName = CombatSimulatorTests;
+			productReference = A1407B2A19A31A7C00EBEC01 /* CombatSimulatorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A1407B1019A31A7C00EBEC01 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Maxwell Perlman";
+				TargetAttributes = {
+					A1407B1719A31A7C00EBEC01 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					A1407B2919A31A7C00EBEC01 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = A1407B1719A31A7C00EBEC01;
+					};
+				};
+			};
+			buildConfigurationList = A1407B1319A31A7C00EBEC01 /* Build configuration list for PBXProject "CombatSimulator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A1407B0F19A31A7C00EBEC01;
+			productRefGroup = A1407B1919A31A7C00EBEC01 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A1407B1719A31A7C00EBEC01 /* CombatSimulator */,
+				A1407B2919A31A7C00EBEC01 /* CombatSimulatorTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A1407B1619A31A7C00EBEC01 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1407B2319A31A7C00EBEC01 /* Main.storyboard in Resources */,
+				A1407B2519A31A7C00EBEC01 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1407B2819A31A7C00EBEC01 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A1407B1419A31A7C00EBEC01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1407B3D19A31B4500EBEC01 /* Utility.swift in Sources */,
+				A1407B2019A31A7C00EBEC01 /* ViewController.swift in Sources */,
+				A1407B1E19A31A7C00EBEC01 /* AppDelegate.swift in Sources */,
+				A1407B3B19A31AD600EBEC01 /* Classes.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1407B2619A31A7C00EBEC01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1407B3119A31A7C00EBEC01 /* CombatSimulatorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A1407B2C19A31A7C00EBEC01 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1407B1719A31A7C00EBEC01 /* CombatSimulator */;
+			targetProxy = A1407B2B19A31A7C00EBEC01 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A1407B2119A31A7C00EBEC01 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A1407B2219A31A7C00EBEC01 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A1407B3219A31A7C00EBEC01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A1407B3319A31A7C00EBEC01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A1407B3519A31A7C00EBEC01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = CombatSimulator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A1407B3619A31A7C00EBEC01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = CombatSimulator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		A1407B3819A31A7C00EBEC01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CombatSimulator.app/CombatSimulator";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CombatSimulatorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		A1407B3919A31A7C00EBEC01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CombatSimulator.app/CombatSimulator";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CombatSimulatorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A1407B1319A31A7C00EBEC01 /* Build configuration list for PBXProject "CombatSimulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1407B3219A31A7C00EBEC01 /* Debug */,
+				A1407B3319A31A7C00EBEC01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1407B3419A31A7C00EBEC01 /* Build configuration list for PBXNativeTarget "CombatSimulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1407B3519A31A7C00EBEC01 /* Debug */,
+				A1407B3619A31A7C00EBEC01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A1407B3719A31A7C00EBEC01 /* Build configuration list for PBXNativeTarget "CombatSimulatorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1407B3819A31A7C00EBEC01 /* Debug */,
+				A1407B3919A31A7C00EBEC01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A1407B1019A31A7C00EBEC01 /* Project object */;
+}
