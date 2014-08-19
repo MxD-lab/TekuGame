@@ -13,7 +13,7 @@ func isConnectedToInternet() -> Bool {
     var url = NSURL.URLWithString("http://tekugame.mxd.media.ritsumei.ac.jp/json/playerandlocation.json")
     var error:NSErrorPointer = nil
     var data = NSData.dataWithContentsOfURL(url, options: NSDataReadingOptions.DataReadingUncached, error: error)
-    if (data) {
+    if ((data) != nil) {
         return true
     }
     return false

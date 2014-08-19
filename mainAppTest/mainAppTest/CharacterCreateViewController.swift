@@ -27,7 +27,7 @@ class CharacterCreateViewController: UIViewController {
             
             var prefs = NSUserDefaults.standardUserDefaults()
             var accounts = NSMutableArray()
-            if (prefs.objectForKey("useraccounts")) {
+            if ((prefs.objectForKey("useraccounts")) != nil) {
                 accounts = prefs.objectForKey("useraccounts") as NSMutableArray
             }
             var hasAccount = false

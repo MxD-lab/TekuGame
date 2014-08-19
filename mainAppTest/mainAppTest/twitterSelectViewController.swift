@@ -28,7 +28,7 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     func getAccounts() {
-        var accountType:ACAccountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+        var accountType:ACAccountType! = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
         var haveAccess:Bool = false
         let handler: ACAccountStoreRequestAccessCompletionHandler = { granted, error in }
         accountStore.requestAccessToAccountsWithType(accountType, options: nil, handler)

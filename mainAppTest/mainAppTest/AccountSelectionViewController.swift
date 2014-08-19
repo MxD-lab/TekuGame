@@ -20,7 +20,7 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
         // Do any additional setup after loading the view, typically from a nib.
         
         var prefs = NSUserDefaults.standardUserDefaults()
-        if (prefs.objectForKey("useraccounts")) {
+        if ((prefs.objectForKey("useraccounts")) != nil) {
             accounts = prefs.objectForKey("useraccounts") as NSMutableArray
         }
         
