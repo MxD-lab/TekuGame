@@ -20,7 +20,9 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        getAccounts()
+        while (twitterAccounts.count == 0) {
+            getAccounts()
+        }
         twitterPickerView.delegate = self
         twitterPickerView.reloadAllComponents()
     }
@@ -53,8 +55,8 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         if (segue.identifier == "twselect_accreate") {
             var nextVC = segue.destinationViewController as AccountCreateViewController
-//            nextVC.playerID = twitterAccounts[twitterPickerView.selectedRowInComponent(0)].username
-            nextVC.playerID = "stefafafan"
+            nextVC.playerID = twitterAccounts[twitterPickerView.selectedRowInComponent(0)].username
+//            nextVC.playerID = "stefafafan"
         }
     }
 }

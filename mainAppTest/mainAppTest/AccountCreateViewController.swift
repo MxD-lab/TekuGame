@@ -17,6 +17,12 @@ class AccountCreateViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         playerIDLabel.text = "ID: @\(playerID)"
+//        if (isConnectedToInternet()) {
+//            println("has internet")
+//        }
+//        else {
+//            println("no internet")
+//        }
     }
 
     override func didReceiveMemoryWarning() {
