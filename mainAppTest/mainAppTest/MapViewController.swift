@@ -30,7 +30,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var altitudeNum:Float! = 0
     var vAcc:Float! = 0
     var speedNum:Double! = 0
-    
+    @IBOutlet weak var netConnectionLabel: UILabel!
     
     // iBeacon
 //    @IBOutlet var nearbeacon: UIProgressView!                                       // Progress bar showing the number of people near the same beacon.
@@ -56,14 +56,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         statusButton.setTitle("@\(playerID)", forState: UIControlState.Normal)
         initialMapSetup()
         beaconSetup()
-        get()
+        if (isConnectedToInternet()) {
+            get()
+        }
+        else {
+            netConnectionLabel.text = "インターネットの接続が切れています。"
+        }
         //clManager.requestAlwaysAuthorization() iOS 8.0
         clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         clManager.startUpdatingLocation()
         clManager.delegate = self
         
         setInterval("updateStepLabel", seconds: 1)
-        setInterval("postAndGet", seconds: 5)
+        setInterval("postAndGet", seconds: 15)
     }
     
     // Calls the given function every n seconds.
@@ -167,8 +172,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // Simply posts and gets.
     func postAndGet() {
-        post()
-        get()
+        if (isConnectedToInternet()) {
+            netConnectionLabel.text = ""
+            post()
+            get()
+        }
+        else {
+            netConnectionLabel.text = "インターネットの接続が切れています。"
+        }
     }
     
     // Makes an HTTP POST request for the player's ID, beacon, and GPS coordinates.
