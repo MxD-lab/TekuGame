@@ -35,7 +35,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // iBeacon
 //    @IBOutlet var nearbeacon: UIProgressView!                                       // Progress bar showing the number of people near the same beacon.
 //    @IBOutlet var nearplayer: UILabel!                                              // Label that shows number of people near beacon.
-    let proximityUUID = NSUUID(UUIDString:"B9407F30-F5F8-466E-AFF9-25556B57FE6D")   // UUID of iBeacon.
+    let proximityUUID = NSUUID(UUIDString:"undefine")   // UUID of iBeacon.
     var region  = CLBeaconRegion()                                                  // Region defined for iBeacons.
     var manager = CLLocationManager()                                               // Location manager for iBeacons.
     var beaconID:String! = ""                                                       // ID of the nearest beacon.
