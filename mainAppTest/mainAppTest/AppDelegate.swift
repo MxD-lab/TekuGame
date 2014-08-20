@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
-
+    var stepcount:Int! = 0
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
@@ -27,6 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication!) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        
+        if (stepcount != 0 && stepcount % 1000 == 0) {
+            var notification = UILocalNotification()
+            notification.fireDate = NSDate()
+            notification.alertBody = "hello world \(stepcount)"
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        }
     }
 
     func applicationWillEnterForeground(application: UIApplication!) {

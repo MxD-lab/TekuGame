@@ -328,6 +328,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         steplabel.text = "今日の歩数：\(stepCount) 歩"
         altitudeLabel.text = NSString(format: "%.2f m +/- %.2f", altitudeNum, vAcc)
         speedLabel.text = NSString(format: "%.2f m/s", speedNum)
+        
+        var appdel:AppDelegate = (UIApplication.sharedApplication().delegate) as AppDelegate
+        appdel.stepcount = 500
     }
     
     // Returns an NSDate object of the beginning of the day.

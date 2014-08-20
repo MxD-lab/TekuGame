@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
@@ -96,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LpE-wX-xzf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1479" y="-656"/>
+            <point key="canvasLocation" x="1474" y="-645"/>
         </scene>
         <!--Account Create View Controller-->
         <scene sceneID="tKe-sP-9nI">
@@ -322,7 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyZ-qm-giD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1041" y="1446"/>
+            <point key="canvasLocation" x="1022" y="1448"/>
         </scene>
         <!--Status View Controller-->
         <scene sceneID="Jv5-5t-EHV">
@@ -362,7 +363,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bIR-fu-Jf1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2022" y="131"/>
+            <point key="canvasLocation" x="2023" y="139"/>
         </scene>
         <!--Account Selection View Controller-->
         <scene sceneID="YYj-vG-sjg">
@@ -421,7 +422,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Ym7-ie-ty9"/>
-        <segue reference="SrI-uO-wjn"/>
+        <segue reference="01y-4x-iNO"/>
+        <segue reference="T9K-pp-C4g"/>
     </inferredMetricsTieBreakers>
 </document>
