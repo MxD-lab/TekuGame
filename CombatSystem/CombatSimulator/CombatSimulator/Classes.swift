@@ -10,11 +10,18 @@ import Foundation
 
 enum Types:String, Printable
 {
-    case Humanoid = "Humanoid"
-    case Insect = "Insect"
-    case Alien = "Alien"
+    case Humanoid = "Humanoid";
+    case Insect = "Insect";
+    case Alien = "Alien";
+    case Beast = "Beast";
+    case Construct = "Construct";
+    case Undead = "Undead";
+    case Elemental = "Elemental";
+    case Slime = "Slime";
+    case Demon = "Demon";
+    case Dragon = "Dragon";
     case empty = "";
-    static let allValues = [Types.Humanoid, Types.Insect, Types.Alien];
+    static let allValues = [Types.Humanoid, Types.Insect, Types.Alien, Types.Beast, Types.Construct, Types.Undead, Types.Elemental, Types.Slime, Types.Demon, Types.Dragon];
     
     var description:String
     {
@@ -34,6 +41,20 @@ enum Types:String, Printable
                 return "Insect";
             case Types.Alien:
                 return "Alien";
+            case Types.Beast:
+                return "Beast";
+            case Types.Construct:
+                return "Construct";
+            case Types.Undead:
+                return "Undead";
+            case Types.Elemental:
+                return "Elemental";
+            case Types.Slime:
+                return "Slime";
+            case Types.Demon:
+                return "Demon";
+            case Types.Dragon:
+                return "Dragon";
             default:
                 return "";
         }
@@ -47,6 +68,10 @@ class enemy
     var strength:Int;
     var magic:Int;
     var speed:Int;
+    var currentHealth:Int;
+    var currentStrength:Int;
+    var currentMagic:Int;
+    var currentSpeed:Int;
     var type:Types;
     
     init()
@@ -56,6 +81,10 @@ class enemy
         self.strength = 1;
         self.magic = 1;
         self.speed = 1;
+        self.currentHealth = 1;
+        self.currentStrength = 1;
+        self.currentMagic = 1;
+        self.currentSpeed = 1;
         self.type = Types.empty;
     }
 }
@@ -71,6 +100,7 @@ class player
     var currentStrength:Int;
     var currentMagic:Int;
     var currentSpeed:Int;
+    var points:Int;
     
     init()
     {
@@ -83,5 +113,6 @@ class player
         self.currentStrength = 1;
         self.currentMagic = 1;
         self.currentSpeed = 1;
+        self.points = 0;
     }
 }

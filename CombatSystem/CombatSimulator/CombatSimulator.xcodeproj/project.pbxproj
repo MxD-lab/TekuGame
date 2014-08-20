@@ -14,6 +14,7 @@
 		A1407B3119A31A7C00EBEC01 /* CombatSimulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1407B3019A31A7C00EBEC01 /* CombatSimulatorTests.swift */; };
 		A1407B3B19A31AD600EBEC01 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1407B3A19A31AD600EBEC01 /* Classes.swift */; };
 		A1407B3D19A31B4500EBEC01 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1407B3C19A31B4500EBEC01 /* Utility.swift */; };
+		A1BD6B3E19A4733000AB5A56 /* Combat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BD6B3D19A4733000AB5A56 /* Combat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		A1407B3019A31A7C00EBEC01 /* CombatSimulatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatSimulatorTests.swift; sourceTree = "<group>"; };
 		A1407B3A19A31AD600EBEC01 /* Classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
 		A1407B3C19A31B4500EBEC01 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		A1BD6B3D19A4733000AB5A56 /* Combat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Combat.swift; path = ../Combat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		A1407B1A19A31A7C00EBEC01 /* CombatSimulator */ = {
 			isa = PBXGroup;
 			children = (
+				A1BD6B3D19A4733000AB5A56 /* Combat.swift */,
 				A1407B1D19A31A7C00EBEC01 /* AppDelegate.swift */,
 				A1407B1F19A31A7C00EBEC01 /* ViewController.swift */,
 				A1407B2119A31A7C00EBEC01 /* Main.storyboard */,
@@ -217,6 +220,7 @@
 				A1407B3D19A31B4500EBEC01 /* Utility.swift in Sources */,
 				A1407B2019A31A7C00EBEC01 /* ViewController.swift in Sources */,
 				A1407B1E19A31A7C00EBEC01 /* AppDelegate.swift in Sources */,
+				A1BD6B3E19A4733000AB5A56 /* Combat.swift in Sources */,
 				A1407B3B19A31AD600EBEC01 /* Classes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +409,7 @@
 				A1407B3619A31A7C00EBEC01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A1407B3719A31A7C00EBEC01 /* Build configuration list for PBXNativeTarget "CombatSimulatorTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +418,7 @@
 				A1407B3919A31A7C00EBEC01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

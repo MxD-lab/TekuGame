@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombatSimulator/Utility.swift"
+            timestampString = "430203636.357211"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "setStats(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CombatSimulator.setStats (CombatSimulator.enemy) -&gt; CombatSimulator.enemy"
+                  moduleName = "CombatSimulator"
+                  urlString = "file:///Users/maxwellperlman/Documents/GITHUB%7CTekugame/CombatSystem/CombatSimulator/CombatSimulator/Utility.swift"
+                  timestampString = "430203636.374426"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "160"
+                  endingLineNumber = "160"
+                  offsetFromSymbolStart = "558">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CombatSimulator.setStats (CombatSimulator.enemy) -&gt; CombatSimulator.enemy"
+                  moduleName = "CombatSimulator"
+                  urlString = "file:///Users/maxwellperlman/Documents/GITHUB%7CTekugame/CombatSystem/CombatSimulator/CombatSimulator/Utility.swift"
+                  timestampString = "430203636.375453"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "160"
+                  endingLineNumber = "160"
+                  offsetFromSymbolStart = "6495">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
