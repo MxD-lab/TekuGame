@@ -1,4 +1,4 @@
-tekugames
+tekugame
 =========
 Ongoing project between WPI and Ritsumeikan students.  
 
