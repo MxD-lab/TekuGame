@@ -1,16 +1,24 @@
 //
-//  statusViewController.swift
+//  battleViewController.swift
 //  mainAppTest
 //
-//  Created by ステファンアレクサンダー on 2014/08/19.
+//  Created by ステファンアレクサンダー on 2014/08/20.
 //  Copyright (c) 2014年 ステファンアレクサンダー. All rights reserved.
 //
 
 import UIKit
 
-class statusViewController: UIViewController {
+class battleViewController: UIViewController {
     
     var playerID:String!
+    
+    @IBAction func battleEndPressed(sender: AnyObject) {
+        battleEnd()
+    }
+    
+    func battleEnd() {
+        performSegueWithIdentifier("battle_map", sender: self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +31,7 @@ class statusViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        if (segue.identifier == "status_map") {
+        if (segue.identifier == "battle_map") {
             var nextVC = segue.destinationViewController as MapViewController
             nextVC.playerID = playerID
         }

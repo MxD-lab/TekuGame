@@ -98,24 +98,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         var fromCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(34.982397, 135.964603)
         var toCoordinate   :CLLocationCoordinate2D = CLLocationCoordinate2DMake(35.003917, 135.947349)
-//        var fromPlacemark = MKPlacemark(coordinate:fromCoordinate, addressDictionary:nil)
-//        var toPlacemark = MKPlacemark(coordinate:toCoordinate, addressDictionary:nil)
-//        var fromItem = MKMapItem(placemark:fromPlacemark);
-//        var toItem = MKMapItem(placemark:toPlacemark);
-//        let request = MKDirectionsRequest()
-//        request.setSource(fromItem)
-//        request.setDestination(toItem)
-//        request.requestsAlternateRoutes = true; //複数経路
-//        request.transportType = MKDirectionsTransportType.Walking //移動手段 Walking:徒歩/Automobile:車
-        
-//        let directions = MKDirections(request:request)
-//        directions.calculateDirectionsWithCompletionHandler({ (response:MKDirectionsResponse!, error:NSError!) -> Void in
-//            if (error? || response.routes.isEmpty) {
-//                return
-//            }
-//            let route: MKRoute = response.routes[0] as MKRoute
-//            self.mapView.addOverlay(route.polyline!)
-//            })
         
         presetPins.addObject(createPin(fromCoordinate, title: "BKC", subtitle: "すてにゃん"))
         presetPins.addObject(createPin(toCoordinate, title: "南草津駅", subtitle: "せやな"))
@@ -165,15 +147,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // For drawing a route on the MapKit.
-//    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
-//        let route: MKPolyline = overlay as MKPolyline
-//        let routeRenderer = MKPolylineRenderer(polyline:route)
-//        routeRenderer.lineWidth = 5.0
-//        routeRenderer.strokeColor = UIColor.redColor()
-//        return routeRenderer
-//    }
     
     // Simply posts and gets.
     func postAndGet() {
@@ -376,13 +349,29 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if (encountStepCount < stepCount) {
             if (encountStepCount != 0) {
                 println("Encounter")
+                encount()
             }
-            var thousands = round(Float(stepCount / 1000)) + 1
+            var thousands = lroundf(Float(stepCount / 1000)) + 1
             encountStepCount = Int(thousands) * 1000 + Int(arc4random_uniform(200)) - 100
             println("Encounter at \(encountStepCount)")
         }
         else {
             
+        }
+    }
+    
+    func encount() {
+        performSegueWithIdentifier("map_battle", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+        if (segue.identifier == "map_status") {
+            var nextVC = segue.destinationViewController as statusViewController
+            nextVC.playerID = playerID
+        }
+        else if (segue.identifier == "map_battle") {
+            var nextVC = segue.destinationViewController as battleViewController
+            nextVC.playerID = playerID
         }
     }
 }
