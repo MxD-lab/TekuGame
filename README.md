@@ -3,7 +3,7 @@ tekugames
 Ongoing project between WPI and Ritsumeikan students.  
 
 ###Members (Ordered alphabetically by last name)
-* [Stefan Alexander](http://github.com/stefafafan) - Lead Programmer and Design
+* [Stefan Alexander](http://github.com/stefafafan) - Lead Programmer and Designer
 * Kohno Hitomi - Artist
 * [Maxwell Perlman](http://github.com/MaxwellP) - Lead Designer and Programmer
 * [Asuka Wakao](http://github.com/AsukaWakao) - Programmer
@@ -42,3 +42,9 @@ http://www.techotopia.com/index.php/An_iOS_6_iPhone_UIPickerView_Example
   
 Internet Connection  
 http://ios-blog.co.uk/tutorials/check-if-active-internet-connection-exists-on-ios-device/
+  
+Dispatch to main queue  
+http://stackoverflow.com/a/16647719  
+  
+Timer in background.  
+http://stackoverflow.com/a/19174810
