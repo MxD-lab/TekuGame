@@ -24,6 +24,9 @@ func encounter(p:player, e:enemy) -> Void
         break;
     }
     var actionResults:(Entity, Entity);
+    var postActionPlayer:player = player();
+    var postActionEnemy:enemy = enemy();
+    
     while(!isDead)
     {
         switch(turnPlayer)
@@ -31,13 +34,14 @@ func encounter(p:player, e:enemy) -> Void
         case true:
             println("   Player's move...");
             actionResults = doAction(p, e, Action.P_Punch);
-            p = actionResults.0;
-            e = actionResults.1;
-            println("       Enemy Current Health: \(e.currentHealth)");
+            postActionPlayer = actionResults.0 as player;
+            postActionEnemy = actionResults.1 as enemy;
+            println("       Enemy Current Health: \(postActionEnemy.currentHealth)");
             break;
         default:
             println("   Enemy's move...");
-            /*switch(e.type)
+            /*
+            switch(e.type)
             {
             case Types.Humanoid:
                 break;
@@ -61,22 +65,23 @@ func encounter(p:player, e:enemy) -> Void
                 break;
             default:
                 break;
-            }*/
-            actionResults = doAction(e, p, Action.P_Punch);
-            p = actionResults.0;
-            e = actionResults.1;
-            println("       Player Current Health: \(p.currentHealth)");
+            }
+            */
+            actionResults = doAction(p, e, Action.P_Punch);
+            postActionPlayer = actionResults.0 as player;
+            postActionEnemy = actionResults.1 as enemy;
+            println("       Player Current Health: \(postActionPlayer.currentHealth)");
             break;
         }
         if(p.currentHealth <= 0)
         {
             isDead = true;
-            println("      Player Died");
+            println("       Player Died");
         }
         if(e.currentHealth <= 0)
         {
             isDead = true;
-            println("      Enemy Died");
+            println("       Enemy Died");
         }
         turnPlayer = !turnPlayer;
     }
@@ -93,6 +98,7 @@ func doAction(user:Entity, target:Entity, action:Action) -> (Entity, Entity)
             damage += user.strength - target.strength;
         }
         target.currentHealth -= damage;
+        println("           Damage: \(damage)");
         return (user, target);
     case Action.E_EnergyBall:
         var damage:Int = 5;
