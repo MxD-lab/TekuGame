@@ -11,21 +11,10 @@ import Foundation
 
 func encounter(p:player, e:enemy) -> Void
 {
-    var random = arc4random_uniform(2);
     var turnPlayer:Bool = false;
     var isDead:Bool = false;
-    switch(random)
-    {
-    case 1:
-        turnPlayer = true;
-        break;
-    default:
-        turnPlayer = false;
-        break;
-    }
-    var actionResults:(Entity, Entity);
-    var postActionPlayer:player = player();
-    var postActionEnemy:enemy = enemy();
+    
+    turnPlayer = (p.speed > e.speed ? true : false);
     
     while(!isDead)
     {
@@ -33,10 +22,8 @@ func encounter(p:player, e:enemy) -> Void
         {
         case true:
             println("   Player's move...");
-            actionResults = doAction(p, e, Action.P_Punch);
-            postActionPlayer = actionResults.0 as player;
-            postActionEnemy = actionResults.1 as enemy;
-            println("       Enemy Current Health: \(postActionEnemy.currentHealth)");
+            doAction(p, e, Action.P_Punch);
+            println("       Enemy Current Health: \(e.currentHealth)");
             break;
         default:
             println("   Enemy's move...");
@@ -67,10 +54,8 @@ func encounter(p:player, e:enemy) -> Void
                 break;
             }
             */
-            actionResults = doAction(p, e, Action.P_Punch);
-            postActionPlayer = actionResults.0 as player;
-            postActionEnemy = actionResults.1 as enemy;
-            println("       Player Current Health: \(postActionPlayer.currentHealth)");
+            doAction(e, p, Action.P_Punch);
+            println("       Player Current Health: \(p.currentHealth)");
             break;
         }
         if(p.currentHealth <= 0)
@@ -87,7 +72,7 @@ func encounter(p:player, e:enemy) -> Void
     }
 }
 
-func doAction(user:Entity, target:Entity, action:Action) -> (Entity, Entity)
+func doAction(user:Entity, target:Entity, action:Action)
 {
     switch(action)
     {
@@ -95,20 +80,21 @@ func doAction(user:Entity, target:Entity, action:Action) -> (Entity, Entity)
         var damage:Int = 5;
         if(user.strength > target.strength)
         {
-            damage += user.strength - target.strength;
+            damage += (user.strength - target.strength)/2;
         }
         target.currentHealth -= damage;
-        println("           Damage: \(damage)");
-        return (user, target);
+        println("       Damage:\(damage)");
+        break;
     case Action.E_EnergyBall:
         var damage:Int = 5;
         if(user.magic > target.magic)
         {
-            damage += user.magic - target.magic;
+            damage += (user.magic - target.magic)/2;
         }
         target.currentHealth -= damage;
-        return (user, target);
+        println("       Damage:\(damage)");
+        break;
     default:
-        return (user, target);
+        break;
     }
 }

@@ -181,7 +181,7 @@ func setStats(p:player, h:Double, st:Double, m:Double, sp:Double) -> player
             newP.strength += newP.points/4;
             newP.magic += newP.points/4;
             newP.speed += newP.points/4;
-            newP.points -= newP.points;
+            newP.points = 0;
             return newP;
     }
 }

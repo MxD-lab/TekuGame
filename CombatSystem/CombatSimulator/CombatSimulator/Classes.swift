@@ -21,7 +21,18 @@ enum Types:String, Printable
     case Demon = "Demon";
     case Dragon = "Dragon";
     case empty = "";
-    static let allValues = [Types.Humanoid, Types.Insect, Types.Alien, Types.Beast, Types.Construct, Types.Undead, Types.Elemental, Types.Slime, Types.Demon, Types.Dragon];
+    static let allValues = [
+        Types.Humanoid,
+        Types.Insect,
+        Types.Alien,
+        Types.Beast,
+        Types.Construct,
+        Types.Undead,
+        Types.Elemental,
+        Types.Slime,
+        Types.Demon,
+        Types.Dragon
+        ];
     
     var description:String
     {
@@ -63,8 +74,13 @@ enum Types:String, Printable
 
 enum Action:String, Printable
 {
-    case P_Punch = "P_Punch";
-    case E_EnergyBall = "E_EnergyBall"
+    case P_Punch = "P_Punch";;
+    case E_EnergyBall = "E_EnergyBall";
+    static let allValues = [
+        Action.P_Punch,
+        Action.E_EnergyBall
+        ];
+
     var description:String
     {
         get
