@@ -73,7 +73,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         setInterval("updateStepLabel", seconds: 1)
         setInterval("postAndGet", seconds: 15)
-        setInterval("checkEncounter", seconds: 10)
+        setInterval("checkEncounter", seconds: 1)
     }
     
     // Calls the given function every n seconds.
@@ -329,8 +329,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         altitudeLabel.text = NSString(format: "%.2f m +/- %.2f", altitudeNum, vAcc)
         speedLabel.text = NSString(format: "%.2f m/s", speedNum)
         
-        var appdel:AppDelegate = (UIApplication.sharedApplication().delegate) as AppDelegate
-        appdel.stepcount = 500
     }
     
     // Returns an NSDate object of the beginning of the day.
@@ -351,20 +349,28 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func checkEncounter() {
         if (encountStepCount < stepCount) {
             if (encountStepCount != 0) {
-                println("Encounter")
                 encount()
             }
-            var thousands = lroundf(Float(stepCount / 1000)) + 1
-            encountStepCount = Int(thousands) * 1000 + Int(arc4random_uniform(200)) - 100
-            println("Encounter at \(encountStepCount)")
         }
-        else {
-            
+        if (encountStepCount == 0) {
+            updateEncounterStep()
         }
     }
     
+    func updateEncounterStep() {
+        var thousands = lroundf(Float(stepCount) / 1000.0) + 1
+        encountStepCount = Int(thousands) * 1000 + Int(arc4random_uniform(200)) - 100
+        println("Encounter at \(encountStepCount)")
+        var appdel:AppDelegate = (UIApplication.sharedApplication().delegate) as AppDelegate
+        appdel.encounterstep = encountStepCount
+    }
+    
     func encount() {
-        performSegueWithIdentifier("map_battle", sender: self)
+        var state = UIApplication.sharedApplication().applicationState
+        if (state == UIApplicationState.Active) {
+            performSegueWithIdentifier("map_battle", sender: self)
+            updateEncounterStep()
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {

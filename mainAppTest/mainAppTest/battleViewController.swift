@@ -36,4 +36,12 @@ class battleViewController: UIViewController {
             nextVC.playerID = playerID
         }
     }
+    
+    override func shouldAutorotate() -> Bool {
+        return true
+    }
+    
+    override func supportedInterfaceOrientations() -> Int {
+        return Int(UIInterfaceOrientationMask.Landscape.toRaw())
+    }
 }
