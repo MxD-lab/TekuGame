@@ -13,6 +13,7 @@ import CoreMotion
 import Darwin
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
+    @IBOutlet weak var encountLabel: UILabel!
     
     // MapKit, CoreLocation
 //    @IBOutlet var distance: UILabel!        // Label that shows distance from iBeacon.
@@ -26,7 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var long:NSNumber!                      // Player's GPS coordinates (longitude).
     var altitudeNum:Float! = 0
     var vAcc:Float! = 0
-    var speedNum:Double! = 0
+    var speedNum:Float! = 0
     var players:[NSDictionary] = []         // NSArray of NSDictionary, each element is a player entry. This comes from the server.
     var allPins:NSMutableArray = []         // All of the pins set on the Map including preset pins and players.
     var presetPins:NSMutableArray = []      // Array of only the preset pins.
@@ -318,7 +319,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             var todate:NSDate! = NSDate()
             
             stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: {numberOfSteps, timestamp, error in
-                self.stepCount = numberOfSteps + self.prevSteps
+                self.stepCount = numberOfSteps*50 + self.prevSteps
             })
         }
     }
@@ -361,6 +362,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         var thousands = lroundf(Float(stepCount) / 1000.0) + 1
         encountStepCount = Int(thousands) * 1000 + Int(arc4random_uniform(200)) - 100
         println("Encounter at \(encountStepCount)")
+        encountLabel.text = "Next encount: \(encountStepCount)"
         var appdel:AppDelegate = (UIApplication.sharedApplication().delegate) as AppDelegate
         appdel.encounterstep = encountStepCount
     }
@@ -368,7 +370,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func encount() {
         var state = UIApplication.sharedApplication().applicationState
         if (state == UIApplicationState.Active) {
-            performSegueWithIdentifier("map_battle", sender: self)
+            performSegueWithIdentifier("map_game", sender: self)
             updateEncounterStep()
         }
     }

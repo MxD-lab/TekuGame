@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             dispatch_async(lowQueue, { () -> Void in
                 stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: {numberOfSteps, timestamp, error in
-                    self.stepCount = numberOfSteps + self.prevSteps
+                    self.stepCount = numberOfSteps*50 + self.prevSteps
                 })
             })
         }
