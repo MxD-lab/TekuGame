@@ -64,7 +64,7 @@ enum Types:String, Printable
 enum Action:String, Printable
 {
     case P_Punch = "P_Punch";
-    case E_EneergyBall = "E_EnergyBall"
+    case E_EnergyBall = "E_EnergyBall"
     var description:String
     {
         get
@@ -79,16 +79,15 @@ enum Action:String, Printable
         {
         case Action.P_Punch:
             return "P_Punch";
-        case Action.E_EneergyBall:
+        case Action.E_EnergyBall:
             return "E_EnergyBall";
         default:
             return "";
         }
     }
-
 }
 
-class enemy
+class Entity
 {
     var level:Int;
     var health:Int;
@@ -99,8 +98,6 @@ class enemy
     var currentStrength:Int;
     var currentMagic:Int;
     var currentSpeed:Int;
-    var type:Types;
-    
     init()
     {
         self.level = 1;
@@ -112,34 +109,25 @@ class enemy
         self.currentStrength = 1;
         self.currentMagic = 1;
         self.currentSpeed = 1;
-        self.type = Types.empty;
     }
 }
 
-class player
+class enemy:Entity
 {
-    var level:Int;
-    var health:Int;
-    var strength:Int;
-    var magic:Int;
-    var speed:Int;
-    var currentHealth:Int;
-    var currentStrength:Int;
-    var currentMagic:Int;
-    var currentSpeed:Int;
-    var points:Int;
-    
+    var type:Types;
     init()
     {
-        self.level = 1;
-        self.health = 1;
-        self.strength = 1;
-        self.magic = 1;
-        self.speed = 1;
-        self.currentHealth = 1;
-        self.currentStrength = 1;
-        self.currentMagic = 1;
-        self.currentSpeed = 1;
+        self.type = Types.empty;
+        super.init();
+    }
+}
+
+class player:Entity
+{
+    var points:Int;
+    init()
+    {
         self.points = 0;
+        super.init();
     }
 }

@@ -23,13 +23,16 @@ func encounter(p:player, e:enemy) -> Void
         turnPlayer = false;
         break;
     }
+    var actionResults:(Entity, Entity);
     while(!isDead)
     {
         switch(turnPlayer)
         {
         case true:
             println("   Player's move...");
-            e.currentHealth -= 5;
+            actionResults = doAction(p, e, Action.P_Punch);
+            p = actionResults.0;
+            e = actionResults.1;
             println("       Enemy Current Health: \(e.currentHealth)");
             break;
         default:
@@ -59,7 +62,9 @@ func encounter(p:player, e:enemy) -> Void
             default:
                 break;
             }*/
-            p.currentHealth -= 5;
+            actionResults = doAction(e, p, Action.P_Punch);
+            p = actionResults.0;
+            e = actionResults.1;
             println("       Player Current Health: \(p.currentHealth)");
             break;
         }
@@ -74,5 +79,30 @@ func encounter(p:player, e:enemy) -> Void
             println("      Enemy Died");
         }
         turnPlayer = !turnPlayer;
+    }
+}
+
+func doAction(user:Entity, target:Entity, action:Action) -> (Entity, Entity)
+{
+    switch(action)
+    {
+    case Action.P_Punch:
+        var damage:Int = 5;
+        if(user.strength > target.strength)
+        {
+            damage += user.strength - target.strength;
+        }
+        target.currentHealth -= damage;
+        return (user, target);
+    case Action.E_EnergyBall:
+        var damage:Int = 5;
+        if(user.magic > target.magic)
+        {
+            damage += user.magic - target.magic;
+        }
+        target.currentHealth -= damage;
+        return (user, target);
+    default:
+        return (user, target);
     }
 }
