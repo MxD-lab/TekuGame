@@ -61,6 +61,33 @@ enum Types:String, Printable
     }
 }
 
+enum Action:String, Printable
+{
+    case P_Punch = "P_Punch";
+    case E_EneergyBall = "E_EnergyBall"
+    var description:String
+    {
+        get
+        {
+            return self.toRaw();
+        }
+    }
+    
+    func typeToString() -> String
+    {
+        switch(self)
+        {
+        case Action.P_Punch:
+            return "P_Punch";
+        case Action.E_EneergyBall:
+            return "E_EnergyBall";
+        default:
+            return "";
+        }
+    }
+
+}
+
 class enemy
 {
     var level:Int;
