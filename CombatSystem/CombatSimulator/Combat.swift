@@ -22,7 +22,7 @@ func encounter(p:player, e:enemy) -> Void
         {
         case true:
             println("   Player's move...");
-            doAction(p, e, Action.P_Punch);
+            //doAction(p, e, Action.P_Punch);
             println("       Enemy Current Health: \(e.currentHealth)");
             break;
         default:
@@ -54,7 +54,7 @@ func encounter(p:player, e:enemy) -> Void
                 break;
             }
             */
-            doAction(e, p, Action.P_Punch);
+            //doAction(e, p, Action.P_Punch);
             println("       Player Current Health: \(p.currentHealth)");
             break;
         }
@@ -74,25 +74,51 @@ func encounter(p:player, e:enemy) -> Void
 
 func doAction(user:Entity, target:Entity, action:Action)
 {
+    println("Used Action: \(action.typeToStringE())");
+    println("Used Action: \(action.typeToStringJ())");
     switch(action)
     {
-    case Action.P_Punch:
-        var damage:Int = 5;
-        if(user.strength > target.strength)
-        {
-            damage += (user.strength - target.strength)/2;
-        }
-        target.currentHealth -= damage;
-        println("       Damage:\(damage)");
+    case Action.U_Examine:
+        break;
+    case Action.P_Uppercut:
+        break;
+    case Action.P_Charged_Strike:
+        break;
+    case Action.P_Meditation:
+        break;
+    case Action.P_Leg_Sweep:
+        break;
+    case Action.P_Turbo_Strike:
+        break;
+    case Action.P_Heart_Strike:
+        break;
+    case Action.P_Muscle_Training:
+        break;
+    case Action.P_Bide_Time:
+        break;
+    case Action.P_Sacrificial_Strike:
+        break;
+    case Action.P_Overpower:
         break;
     case Action.E_EnergyBall:
-        var damage:Int = 5;
-        if(user.magic > target.magic)
-        {
-            damage += (user.magic - target.magic)/2;
-        }
-        target.currentHealth -= damage;
-        println("       Damage:\(damage)");
+        break;
+    case Action.E_Icy_Wind:
+        break;
+    case Action.E_Barrier:
+        break;
+    case Action.E_Fireball:
+        break;
+    case Action.E_Sharpen_Mind:
+        break;
+    case Action.E_Curse:
+        break;
+    case Action.E_Life_Drain:
+        break;
+    case Action.E_Decay:
+        break;
+    case Action.E_Full_Heal:
+        break;
+    case Action.E_Instant_Death:
         break;
     default:
         break;
