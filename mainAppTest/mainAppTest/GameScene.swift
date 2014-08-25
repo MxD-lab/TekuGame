@@ -1,6 +1,6 @@
 //
 //  GameScene.swift
-//  UIExample
+//  mainAppTest
 //
 //  Created by Maxwell Perlman on 8/8/14.
 //  Copyright (c) 2014 Maxwell Perlman. All rights reserved.
@@ -71,24 +71,16 @@ class GameScene: SKScene
         enemyImage.zPosition = 1;
         self.addChild(enemyImage);
     }
+
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent)
     {
         /* Called when a touch begins */
-        for touch: AnyObject in touches
-        {
-            println("Touch at \(touch.position)");
-        }
-
-//        var vc = view.window?.rootViewController
-//        vc?.performSegueWithIdentifier("mainmap", sender: nil)
-
-//        var storyboard = UIStoryboard(name: "Main.storyboard", bundle: nil)
-//        var lcvc = storyboard.instantiateViewControllerWithIdentifier("MapViewController") as MapViewController
-//        lcvc.modalPresentationStyle = UIModalPresentationStyle.Custom
-//        view.window?.rootViewController.presentViewController(lcvc, animated: true, completion: nil)
-        
-
+//        var vc = self.view.window!.rootViewController
+//        vc.performSegueWithIdentifier("mainmap", sender: vc)
+        var userInfo = NSDictionary(object: true, forKey: "isGameOver")
+        NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
     }
+
     override func update(currentTime: CFTimeInterval)
     {
         /* Called before each frame is rendered */

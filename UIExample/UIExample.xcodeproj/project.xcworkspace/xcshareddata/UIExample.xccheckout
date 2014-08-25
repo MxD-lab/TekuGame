@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E616F4BF-6B7F-4C89-9ECB-042447A83A73</string>
+	<key>IDESourceControlProjectName</key>
+	<string>UIExample</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1B8AECA2DC33D79395A11AEFB4A810CA6067F7A1</key>
+		<string>https://github.com/stefafafan/tekugame.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>UIExample/UIExample.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1B8AECA2DC33D79395A11AEFB4A810CA6067F7A1</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/stefafafan/tekugame.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1B8AECA2DC33D79395A11AEFB4A810CA6067F7A1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1B8AECA2DC33D79395A11AEFB4A810CA6067F7A1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>tekugame</string>
+		</dict>
+	</array>
+</dict>
+</plist>
