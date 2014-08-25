@@ -281,56 +281,12 @@
                         <outlet property="speedLabel" destination="IIb-ml-KUM" id="Dr8-vw-IFe"/>
                         <outlet property="statusButton" destination="Ex8-bO-nfp" id="4jH-5G-D0k"/>
                         <outlet property="steplabel" destination="VZa-mL-EvR" id="djN-hb-Qa4"/>
-                        <segue destination="YPD-55-G00" kind="show" identifier="map_battle" id="86h-sg-JfF"/>
                         <segue destination="htj-91-gVU" kind="show" identifier="map_game" id="SU0-Gz-9g0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mP6-nz-8e7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1567" y="858"/>
-        </scene>
-        <!--Battle View Controller-->
-        <scene sceneID="1F3-9f-Pjh">
-            <objects>
-                <viewController id="YPD-55-G00" customClass="battleViewController" customModule="mainAppTest" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FXJ-Rs-mgb"/>
-                        <viewControllerLayoutGuide type="bottom" id="S8A-Z0-fA6"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hZN-uT-v6C">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="戦闘" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UN8-ai-1d3">
-                                <rect key="frame" x="267" y="62" width="34" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqT-BG-mPZ">
-                                <rect key="frame" x="0.0" y="198" width="568" height="30"/>
-                                <state key="normal" title="戦闘終了">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="battleEndPressed:" destination="YPD-55-G00" eventType="touchUpInside" id="3fS-dy-ETN"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
-                        <size key="portraitSize" width="320" height="568"/>
-                        <size key="landscapeSize" width="568" height="320"/>
-                    </simulatedScreenMetrics>
-                    <connections>
-                        <segue destination="kwz-uD-Hpi" kind="show" identifier="battle_map" id="SrI-uO-wjn"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tyZ-qm-giD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1022" y="1463"/>
+            <point key="canvasLocation" x="1581" y="858"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="zbf-jX-PLe">
@@ -356,7 +312,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3I-cU-2iT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1948" y="1463"/>
+            <point key="canvasLocation" x="1008" y="1453"/>
         </scene>
         <!--Status View Controller-->
         <scene sceneID="Jv5-5t-EHV">

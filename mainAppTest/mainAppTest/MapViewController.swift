@@ -80,7 +80,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func setButton() {
         var prefs = NSUserDefaults.standardUserDefaults()
         var currentuser = prefs.objectForKey("currentuser") as String
-        statusButton.setTitle("@\(currentuser)", forState: UIControlState.Normal)
+        playerID = currentuser
+        statusButton.setTitle("@\(playerID)", forState: UIControlState.Normal)
     }
     
     // Calls the given function every n seconds.
@@ -381,14 +382,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        if (segue.identifier == "map_status") {
-            var nextVC = segue.destinationViewController as statusViewController
-            nextVC.playerID = playerID
-        }
-        else if (segue.identifier == "map_battle") {
-            var nextVC = segue.destinationViewController as battleViewController
-            nextVC.playerID = playerID
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+//        if (segue.identifier == "map_status") {
+//            var nextVC = segue.destinationViewController as statusViewController
+//            nextVC.playerID = playerID
+//        }
+//        else if (segue.identifier == "map_battle") {
+//            var nextVC = segue.destinationViewController as battleViewController
+//            nextVC.playerID = playerID
+//        }
+//    }
 }

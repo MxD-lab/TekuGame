@@ -10,6 +10,15 @@
 		F8213C2619A6D1AB00C72548 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8213C2519A6D1AB00C72548 /* GameViewController.swift */; };
 		F8213C2819A6D27500C72548 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F8213C2719A6D27500C72548 /* GameScene.sks */; };
 		F8213C2A19A6D28500C72548 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8213C2919A6D28500C72548 /* GameScene.swift */; };
+		F825583119AB1D280035EBF6 /* EnemyValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = F825583019AB1D280035EBF6 /* EnemyValues.swift */; };
+		F825583519AB1D3F0035EBF6 /* PlayerValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = F825583319AB1D3F0035EBF6 /* PlayerValues.swift */; };
+		F825583619AB1D3F0035EBF6 /* Combat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F825583419AB1D3F0035EBF6 /* Combat.swift */; };
+		F825583819AB1D480035EBF6 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F825583719AB1D480035EBF6 /* Actions.swift */; };
+		F825583E19AB1D630035EBF6 /* EnemyTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F825583A19AB1D630035EBF6 /* EnemyTypes.swift */; };
+		F825583F19AB1D630035EBF6 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F825583B19AB1D630035EBF6 /* Entity.swift */; };
+		F825584019AB1D630035EBF6 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = F825583C19AB1D630035EBF6 /* Player.swift */; };
+		F825584119AB1D630035EBF6 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F825583D19AB1D630035EBF6 /* Enemy.swift */; };
+		F825584319AB20540035EBF6 /* DoAction.png in Resources */ = {isa = PBXBuildFile; fileRef = F825584219AB20540035EBF6 /* DoAction.png */; };
 		F88AE19B19A5C45700A9C227 /* enemy.png in Resources */ = {isa = PBXBuildFile; fileRef = F88AE19919A5C45700A9C227 /* enemy.png */; };
 		F88AE19C19A5C45700A9C227 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = F88AE19A19A5C45700A9C227 /* background.png */; };
 		F8956B0719A194A700ED670B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8956B0619A194A700ED670B /* AppDelegate.swift */; };
@@ -45,6 +54,15 @@
 		F8213C2519A6D1AB00C72548 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = ../GameViewController.swift; sourceTree = "<group>"; };
 		F8213C2719A6D27500C72548 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = ../GameScene.sks; sourceTree = "<group>"; };
 		F8213C2919A6D28500C72548 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = ../GameScene.swift; sourceTree = "<group>"; };
+		F825583019AB1D280035EBF6 /* EnemyValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyValues.swift; sourceTree = "<group>"; };
+		F825583319AB1D3F0035EBF6 /* PlayerValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerValues.swift; sourceTree = "<group>"; };
+		F825583419AB1D3F0035EBF6 /* Combat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combat.swift; sourceTree = "<group>"; };
+		F825583719AB1D480035EBF6 /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		F825583A19AB1D630035EBF6 /* EnemyTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyTypes.swift; sourceTree = "<group>"; };
+		F825583B19AB1D630035EBF6 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		F825583C19AB1D630035EBF6 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		F825583D19AB1D630035EBF6 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		F825584219AB20540035EBF6 /* DoAction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DoAction.png; sourceTree = "<group>"; };
 		F88AE19919A5C45700A9C227 /* enemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy.png; sourceTree = "<group>"; };
 		F88AE19A19A5C45700A9C227 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		F8956B0119A194A700ED670B /* mainAppTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mainAppTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +111,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F825583219AB1D2C0035EBF6 /* Combat and Trait Handling */ = {
+			isa = PBXGroup;
+			children = (
+				F825583319AB1D3F0035EBF6 /* PlayerValues.swift */,
+				F825583419AB1D3F0035EBF6 /* Combat.swift */,
+				F825583019AB1D280035EBF6 /* EnemyValues.swift */,
+			);
+			name = "Combat and Trait Handling";
+			sourceTree = "<group>";
+		};
+		F825583919AB1D4F0035EBF6 /* Classes and Enums */ = {
+			isa = PBXGroup;
+			children = (
+				F825583A19AB1D630035EBF6 /* EnemyTypes.swift */,
+				F825583B19AB1D630035EBF6 /* Entity.swift */,
+				F825583C19AB1D630035EBF6 /* Player.swift */,
+				F825583D19AB1D630035EBF6 /* Enemy.swift */,
+				F825583719AB1D480035EBF6 /* Actions.swift */,
+			);
+			name = "Classes and Enums";
+			sourceTree = "<group>";
+		};
 		F8956AF819A194A700ED670B = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +159,8 @@
 		F8956B0319A194A700ED670B /* mainAppTest */ = {
 			isa = PBXGroup;
 			children = (
+				F825583919AB1D4F0035EBF6 /* Classes and Enums */,
+				F825583219AB1D2C0035EBF6 /* Combat and Trait Handling */,
 				F8F4F0D019A5B6B3002D077D /* ViewControllers */,
 				F8956B0619A194A700ED670B /* AppDelegate.swift */,
 				F8213C2919A6D28500C72548 /* GameScene.swift */,
@@ -161,6 +203,7 @@
 		F8F4F0C319A5B2BA002D077D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F825584219AB20540035EBF6 /* DoAction.png */,
 				F88AE19919A5C45700A9C227 /* enemy.png */,
 				F88AE19A19A5C45700A9C227 /* background.png */,
 			);
@@ -261,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F825584319AB20540035EBF6 /* DoAction.png in Resources */,
 				F88AE19B19A5C45700A9C227 /* enemy.png in Resources */,
 				F8213C2819A6D27500C72548 /* GameScene.sks in Resources */,
 				F8956B0C19A194A700ED670B /* Main.storyboard in Resources */,
@@ -283,17 +327,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F825583819AB1D480035EBF6 /* Actions.swift in Sources */,
 				F8213C2619A6D1AB00C72548 /* GameViewController.swift in Sources */,
+				F825583519AB1D3F0035EBF6 /* PlayerValues.swift in Sources */,
 				F8D8A2DA19A2F7E800CC6A0B /* statusViewController.swift in Sources */,
 				F8D8A2D819A2EB1900CC6A0B /* AccountSelectionViewController.swift in Sources */,
 				F8956B0919A194A700ED670B /* AccountCreateViewController.swift in Sources */,
 				F8D8A2D619A2D7DE00CC6A0B /* Helpers.swift in Sources */,
+				F825583F19AB1D630035EBF6 /* Entity.swift in Sources */,
 				F8213C2A19A6D28500C72548 /* GameScene.swift in Sources */,
+				F825584119AB1D630035EBF6 /* Enemy.swift in Sources */,
 				F8956B2E19A1BC7500ED670B /* CharacterCreateViewController.swift in Sources */,
 				F8956B0719A194A700ED670B /* AppDelegate.swift in Sources */,
 				F8956B2419A1A07A00ED670B /* twitterSelectViewController.swift in Sources */,
 				F8956B2819A1B93000ED670B /* MapViewController.swift in Sources */,
+				F825583119AB1D280035EBF6 /* EnemyValues.swift in Sources */,
 				F8D0FD3119A432EC00D187EB /* battleViewController.swift in Sources */,
+				F825583E19AB1D630035EBF6 /* EnemyTypes.swift in Sources */,
+				F825584019AB1D630035EBF6 /* Player.swift in Sources */,
+				F825583619AB1D3F0035EBF6 /* Combat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

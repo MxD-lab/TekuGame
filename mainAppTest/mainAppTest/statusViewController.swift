@@ -22,10 +22,10 @@ class statusViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        if (segue.identifier == "status_map") {
-            var nextVC = segue.destinationViewController as MapViewController
-            nextVC.playerID = playerID
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+//        if (segue.identifier == "status_map") {
+//            var nextVC = segue.destinationViewController as MapViewController
+//            nextVC.playerID = playerID
+//        }
+//    }
 }
