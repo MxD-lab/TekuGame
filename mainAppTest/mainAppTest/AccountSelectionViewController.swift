@@ -48,6 +48,8 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
     
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         if (segue.identifier == "accselect_map" && accounts.count > 0) {
+            var prefs = NSUserDefaults.standardUserDefaults()
+            prefs.setObject(accounts[accountPickerView.selectedRowInComponent(0)] as String, forKey: "currentuser")
             var nextVC = segue.destinationViewController as MapViewController
             nextVC.playerID = accounts[accountPickerView.selectedRowInComponent(0)] as String
         }

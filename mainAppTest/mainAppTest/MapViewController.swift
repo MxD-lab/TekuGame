@@ -58,7 +58,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         stepCount = 0
         getHistoricalSteps()
         updateSteps()
-        statusButton.setTitle("@\(playerID)", forState: UIControlState.Normal)
+        setButton()
         initialMapSetup()
         beaconSetup()
         if (isConnectedToInternet()) {
@@ -75,6 +75,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         setInterval("updateStepLabel", seconds: 1)
         setInterval("postAndGet", seconds: 15)
         setInterval("checkEncounter", seconds: 1)
+    }
+    
+    func setButton() {
+        var prefs = NSUserDefaults.standardUserDefaults()
+        var currentuser = prefs.objectForKey("currentuser") as String
+        statusButton.setTitle("@\(currentuser)", forState: UIControlState.Normal)
     }
     
     // Calls the given function every n seconds.

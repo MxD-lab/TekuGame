@@ -42,6 +42,7 @@ class CharacterCreateViewController: UIViewController {
             }
             
             prefs.setObject(accounts, forKey: "useraccounts")
+            prefs.setObject(playerID, forKey: "currentuser")
             
             var nextVC = segue.destinationViewController as MapViewController
             nextVC.playerID = playerID

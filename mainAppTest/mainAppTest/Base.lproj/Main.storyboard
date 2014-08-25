@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
@@ -197,10 +196,10 @@
             </objects>
             <point key="canvasLocation" x="1581" y="71"/>
         </scene>
-        <!--Map View Controller-->
+        <!--map-->
         <scene sceneID="acK-dZ-xT3">
             <objects>
-                <viewController id="kwz-uD-Hpi" customClass="MapViewController" customModule="mainAppTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="map" title="map" id="kwz-uD-Hpi" customClass="MapViewController" customModule="mainAppTest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DwI-hT-RLV"/>
                         <viewControllerLayoutGuide type="bottom" id="FBo-np-MTM"/>
@@ -283,12 +282,12 @@
                         <outlet property="statusButton" destination="Ex8-bO-nfp" id="4jH-5G-D0k"/>
                         <outlet property="steplabel" destination="VZa-mL-EvR" id="djN-hb-Qa4"/>
                         <segue destination="YPD-55-G00" kind="show" identifier="map_battle" id="86h-sg-JfF"/>
-                        <segue destination="htj-91-gVU" kind="show" identifier="map_game" id="7py-Qo-Oai"/>
+                        <segue destination="htj-91-gVU" kind="show" identifier="map_game" id="SU0-Gz-9g0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mP6-nz-8e7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1581" y="858"/>
+            <point key="canvasLocation" x="1567" y="858"/>
         </scene>
         <!--Battle View Controller-->
         <scene sceneID="1F3-9f-Pjh">
@@ -357,7 +356,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3I-cU-2iT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1853" y="1453"/>
+            <point key="canvasLocation" x="1948" y="1463"/>
         </scene>
         <!--Status View Controller-->
         <scene sceneID="Jv5-5t-EHV">
