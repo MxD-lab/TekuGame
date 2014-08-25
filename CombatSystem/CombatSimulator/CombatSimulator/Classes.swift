@@ -112,7 +112,7 @@ enum Action:String, Printable
     case P_Turbo_Strike = "P_Turbo_Strike";
     case P_Heart_Strike = "P_Heart_Strike";
     case P_Muscle_Training = "P_Muscle_Training";
-    case P_Bide_Time = "P_Bide_Time";
+    case P_Stomp = "P_Stomp";
     case P_Sacrificial_Strike = "P_Sacrificial_Strike";
     case P_Overpower = "P_Overpower";
     /*Magic Actions*/
@@ -135,7 +135,7 @@ enum Action:String, Printable
         Action.P_Turbo_Strike,
         Action.P_Heart_Strike,
         Action.P_Muscle_Training,
-        Action.P_Bide_Time,
+        Action.P_Stomp,
         Action.P_Sacrificial_Strike,
         Action.P_Overpower,
         Action.E_EnergyBall,
@@ -178,8 +178,8 @@ enum Action:String, Printable
             return "Heart Strike";
         case Action.P_Muscle_Training:
             return "Muscle Training";
-        case Action.P_Bide_Time:
-            return "Bide Time";
+        case Action.P_Stomp:
+            return "Stomp";
         case Action.P_Sacrificial_Strike:
             return "Sacrificial Strike";
         case Action.P_Overpower:
@@ -229,8 +229,8 @@ enum Action:String, Printable
             return "ハートストライク";
         case Action.P_Muscle_Training:
             return "肉体トレーニング";
-        case Action.P_Bide_Time:
-            return "";
+        case Action.P_Stomp:
+            return "踏む";
         case Action.P_Sacrificial_Strike:
             return "犠牲攻撃";
         case Action.P_Overpower:

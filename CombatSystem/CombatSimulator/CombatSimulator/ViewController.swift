@@ -47,9 +47,10 @@ class ViewController: UIViewController
                 println("       Current Magic:      \(newE.currentMagic)");
                 println("       Current Speed:      \(newE.currentSpeed)");
                 
-                for(var j:Int = 0; j < 10; j += 1)
+                for(var j:Int = 0; j < 11; j += 1)
                 {
                     println("Iteration Number \(iteration)");
+                    println("Case \(j)");
                     var h:Double = 0.0;
                     var st:Double = 0.0;
                     var m:Double = 0.0;
@@ -140,6 +141,7 @@ class ViewController: UIViewController
                     println("       Current Strength:   \(newP.currentStrength)");
                     println("       Current Magic:      \(newP.currentMagic)");
                     println("       Current Speed:      \(newP.currentSpeed)");
+                    println(" ");
                     encounter(newP, newE);
                     iteration += 1;
                     newE.currentHealth = newE.health;
