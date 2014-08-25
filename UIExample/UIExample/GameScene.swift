@@ -11,9 +11,11 @@ import SpriteKit
 
 /*Picker Data*/
 var num:[String] = ["Utility","Physical","Magic"];
-var utility:[String] = ["Examine",];
-var physical:[String] = ["Punch", "Kick"];
-var magic:[String] = ["Energy Ball", "Fireball", "Lightning Strike", "Icy Wind", "Dark Ball"];
+var utility:[Action] = Action.allUtility
+var physical:[Action] = Action.allPhysical;
+var magic:[Action] = Action.allMagic;
+
+var allActions:[(String, [Action])] = [("Utility", utility), ("Physical",physical),("Magic", magic)];
 
 class GameScene: SKScene
 {
@@ -22,14 +24,16 @@ class GameScene: SKScene
     let typePicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let actionPicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let enemyImage:SKSpriteNode = SKSpriteNode(imageNamed: "enemy.png");
-    let doActionButton = UIButton.buttonWithType(UIButtonType.System) as UIButton;
-    
+    let actionButton:SKSpriteNode = SKSpriteNode(imageNamed: "DoAction");
     var frameCount:Int = 0;
+    
+    var p:player = player();
+    var e:enemy = enemy();
     
     override func didMoveToView(view: SKView)
     {
         /* Setup your scene here */
-        
+
         status.center = CGPointMake(284, 10);
         status.textAlignment = NSTextAlignment.Left;
         status.textColor = UIColor.blackColor();
@@ -52,15 +56,11 @@ class GameScene: SKScene
         actionPicker.delegate = self;
         actionPicker.reloadAllComponents();
         self.view.addSubview(actionPicker);
-
-        doActionButton.frame = CGRectMake(0,0,100,25);
-        doActionButton.center = CGPointMake(505, 120);
-        doActionButton.backgroundColor = UIColor.lightGrayColor();
-        doActionButton.layer.borderWidth = 1;
-        doActionButton.layer.cornerRadius = 5;
-        doActionButton.setTitle("Do Action", forState: UIControlState.Normal);
-        doActionButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal);
-        self.view.addSubview(doActionButton);
+        
+        actionButton.position = CGPointMake(CGRectGetMidX(self.frame) + 400, CGRectGetMidY(self.frame) + 80);
+        actionButton.size = CGSizeMake(actionButton.size.width * 2, actionButton.size.height * 2);
+        actionButton.zPosition = 3;
+        self.addChild(actionButton);
         
         background.anchorPoint = CGPoint(x: 0, y: 0);
         background.size = self.size;
@@ -76,7 +76,50 @@ class GameScene: SKScene
         /* Called when a touch begins */
         for touch: AnyObject in touches
         {
-            println("Touch at \(touch.position)");
+            if CGRectContainsPoint(actionButton.frame, touch.locationInNode(self))
+            {
+                var action:Action = allActions[typePicker.selectedRowInComponent(0)].1[actionPicker.selectedRowInComponent(0)]
+                //println(allActions[typePicker.selectedRowInComponent(0)].1[actionPicker.selectedRowInComponent(0)]);
+                println("   \(p.level)");
+                println("       Health:     \(p.health)");
+                println("       Strength:   \(p.strength)");
+                println("       Magic:      \(p.magic)");
+                println("       Speed:      \(p.speed)");
+                println("       Current Health:     \(p.currentHealth)");
+                println("       Current Strength:   \(p.currentStrength)");
+                println("       Current Magic:      \(p.currentMagic)");
+                println("       Current Speed:      \(p.currentSpeed)");
+                println("   \(e.type) : \(e.level)");
+                println("       Health:     \(e.health)");
+                println("       Strength:   \(e.strength)");
+                println("       Magic:      \(e.magic)");
+                println("       Speed:      \(e.speed)");
+                println("       Current Health:     \(e.currentHealth)");
+                println("       Current Strength:   \(e.currentStrength)");
+                println("       Current Magic:      \(e.currentMagic)");
+                println("       Current Speed:      \(e.currentSpeed)");
+                println(" ");
+                println("Player \(p) to use action \(action) on enemy \(e)");
+                doAction(p, e, action);
+                println("   \(p.level)");
+                println("       Health:     \(p.health)");
+                println("       Strength:   \(p.strength)");
+                println("       Magic:      \(p.magic)");
+                println("       Speed:      \(p.speed)");
+                println("       Current Health:     \(p.currentHealth)");
+                println("       Current Strength:   \(p.currentStrength)");
+                println("       Current Magic:      \(p.currentMagic)");
+                println("       Current Speed:      \(p.currentSpeed)");
+                println("   \(e.type) : \(e.level)");
+                println("       Health:     \(e.health)");
+                println("       Strength:   \(e.strength)");
+                println("       Magic:      \(e.magic)");
+                println("       Speed:      \(e.speed)");
+                println("       Current Health:     \(e.currentHealth)");
+                println("       Current Strength:   \(e.currentStrength)");
+                println("       Current Magic:      \(e.currentMagic)");
+                println("       Current Speed:      \(e.currentSpeed)");
+            }
         }
     }
     override func update(currentTime: CFTimeInterval)
@@ -128,11 +171,11 @@ extension GameScene: UIPickerViewDelegate
                 switch(typePicker.selectedRowInComponent(0))
                 {
                     case 0:
-                        return utility[row];
+                        return utility[row].description;
                     case 1:
-                        return physical[row];
+                        return physical[row].description;
                     case 2:
-                        return magic[row];
+                        return magic[row].description;
                     default:
                         return "";
                 }
