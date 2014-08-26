@@ -44,7 +44,7 @@ enum Types:String, Printable
     func typeToStringE() -> String
     {
         switch(self)
-            {
+        {
         case Types.Humanoid:
             return "Humanoid";
         case Types.Insect:

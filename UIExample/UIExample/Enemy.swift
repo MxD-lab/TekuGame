@@ -16,4 +16,9 @@ class enemy:Entity
         self.type = Types.empty;
         super.init();
     }
+    init(t:Types)
+    {
+        self.type = t;
+        super.init();
+    }
 }

@@ -22,6 +22,7 @@
 		A13AE90F19AB09A200704881 /* PlayerValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13AE90E19AB09A200704881 /* PlayerValues.swift */; };
 		A13AE91119AB1A5600704881 /* Combat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13AE91019AB1A5600704881 /* Combat.swift */; };
 		A15E740F199496D3003B83DA /* enemy.png in Resources */ = {isa = PBXBuildFile; fileRef = A15E740E199496D3003B83DA /* enemy.png */; };
+		A1643FE719AC127800A91A4E /* SelectAttack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1643FE619AC127800A91A4E /* SelectAttack.swift */; };
 		A1A6A6CD19AB005E00436C69 /* DoAction.png in Resources */ = {isa = PBXBuildFile; fileRef = A1A6A6CC19AB005E00436C69 /* DoAction.png */; };
 		A1A6A6D319AB05DC00436C69 /* EnemyTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A6A6D219AB05DC00436C69 /* EnemyTypes.swift */; };
 		A1A6A6D519AB05EB00436C69 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A6A6D419AB05EB00436C69 /* Actions.swift */; };
@@ -57,6 +58,7 @@
 		A13AE90E19AB09A200704881 /* PlayerValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerValues.swift; sourceTree = "<group>"; };
 		A13AE91019AB1A5600704881 /* Combat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combat.swift; sourceTree = "<group>"; };
 		A15E740E199496D3003B83DA /* enemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy.png; sourceTree = "<group>"; };
+		A1643FE619AC127800A91A4E /* SelectAttack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAttack.swift; sourceTree = "<group>"; };
 		A1A6A6CC19AB005E00436C69 /* DoAction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DoAction.png; sourceTree = "<group>"; };
 		A1A6A6D219AB05DC00436C69 /* EnemyTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyTypes.swift; sourceTree = "<group>"; };
 		A1A6A6D419AB05EB00436C69 /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				A13AE90C19AB094200704881 /* EnemyValues.swift */,
 				A13AE90E19AB09A200704881 /* PlayerValues.swift */,
 				A13AE91019AB1A5600704881 /* Combat.swift */,
+				A1643FE619AC127800A91A4E /* SelectAttack.swift */,
 			);
 			name = "Combat and Trait Handling";
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				A13AE90819AB08DA00704881 /* Entity.swift in Sources */,
 				A13AE90D19AB094200704881 /* EnemyValues.swift in Sources */,
 				A13AE90F19AB09A200704881 /* PlayerValues.swift in Sources */,
+				A1643FE719AC127800A91A4E /* SelectAttack.swift in Sources */,
 				A12592A91994752D000196D6 /* GameViewController.swift in Sources */,
 				A13AE90A19AB08F400704881 /* Enemy.swift in Sources */,
 				A12592A31994752D000196D6 /* AppDelegate.swift in Sources */,

@@ -10,6 +10,7 @@ import Foundation
 
 enum Action:String, Printable
 {
+    case empty = "empty"
     /*Utility Actions*/
     case U_Examine = "U_Examine";
     /*Physical Actions*/
