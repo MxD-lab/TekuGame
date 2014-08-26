@@ -11,7 +11,7 @@ import Foundation
 class player:Entity
 {
     var points:Int;
-    init()
+     init()
     {
         self.points = 0;
         super.init();

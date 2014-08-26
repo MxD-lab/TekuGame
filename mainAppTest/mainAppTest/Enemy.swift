@@ -11,9 +11,14 @@ import Foundation
 class enemy:Entity
 {
     var type:Types;
-    override init()
+     override init()
     {
         self.type = Types.empty;
+        super.init();
+    }
+    init(t:Types)
+    {
+        self.type = t;
         super.init();
     }
 }

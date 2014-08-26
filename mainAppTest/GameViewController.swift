@@ -75,8 +75,10 @@ class GameViewController: UIViewController {
             performSegueWithIdentifier("mainmap", sender: self)
         }
     }
-    
-    override func viewWillDisappear(animated: Bool) {
+
+    override func viewDidDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        let skView = self.view as SKView
+        skView.presentScene(nil)
     }
 }

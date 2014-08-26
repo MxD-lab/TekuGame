@@ -51,10 +51,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet var steplabel: UILabel!   // Label display number of counts of today's steps.
     var stepCount:Int! = 0                  // Number of steps.
     var prevSteps:Int! = 0                  // Number of steps since the start of the day until the application has launched.
+    var activitystring:String! = ""
+    var confidencenum:Float! = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         stepCount = 0
         getHistoricalSteps()
         updateSteps()
@@ -67,11 +68,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         else {
             netConnectionLabel.text = "インターネットの接続が切れています。"
         }
-        //clManager.requestAlwaysAuthorization() iOS 8.0
+//        clManager.requestAlwaysAuthorization() iOS 8.0
         clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         clManager.startUpdatingLocation()
         clManager.delegate = self
-        
         setInterval("updateStepLabel", seconds: 1)
         setInterval("postAndGet", seconds: 15)
         setInterval("checkEncounter", seconds: 1)
@@ -329,6 +329,30 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 self.stepCount = numberOfSteps*50 + self.prevSteps
             })
         }
+        
+        if (CMMotionActivityManager.isActivityAvailable()) {
+            var activityManager = CMMotionActivityManager()
+            var mainQueue:NSOperationQueue! = NSOperationQueue()
+            
+            activityManager.startActivityUpdatesToQueue(mainQueue, withHandler: { activity in
+                if (self.activityToString(activity) != "") {
+                    self.activitystring = self.activityToString(activity)
+                    self.confidencenum = Float(activity.confidence.toRaw())
+                }
+            })
+        }
+    }
+    
+    func activityToString(act:CMMotionActivity) -> String {
+        var actionName = ""
+        
+        if (act.unknown) { actionName += "Unknown " }
+        if (act.stationary) { actionName += "Stationary " }
+        if (act.walking) { actionName += "Walking " }
+        if (act.running) { actionName += "Running " }
+        if (act.automotive) { actionName += "Automotive " }
+        
+        return actionName
     }
     
     // Simply updates the label for step count.
@@ -381,15 +405,4 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             updateEncounterStep()
         }
     }
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-//        if (segue.identifier == "map_status") {
-//            var nextVC = segue.destinationViewController as statusViewController
-//            nextVC.playerID = playerID
-//        }
-//        else if (segue.identifier == "map_battle") {
-//            var nextVC = segue.destinationViewController as battleViewController
-//            nextVC.playerID = playerID
-//        }
-//    }
 }

@@ -33,7 +33,7 @@
 		F8956B2C19A1BB0200ED670B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8956B2B19A1BB0200ED670B /* CoreLocation.framework */; };
 		F8956B2E19A1BC7500ED670B /* CharacterCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8956B2D19A1BC7500ED670B /* CharacterCreateViewController.swift */; };
 		F8956B3019A1C23500ED670B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8956B2F19A1C23500ED670B /* CoreMotion.framework */; };
-		F8D0FD3119A432EC00D187EB /* battleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D0FD3019A432EC00D187EB /* battleViewController.swift */; };
+		F8A596D119AC2CAF00B0AA8F /* SelectAttack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A596D019AC2CAF00B0AA8F /* SelectAttack.swift */; };
 		F8D8A2D619A2D7DE00CC6A0B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D8A2D519A2D7DE00CC6A0B /* Helpers.swift */; };
 		F8D8A2D819A2EB1900CC6A0B /* AccountSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D8A2D719A2EB1900CC6A0B /* AccountSelectionViewController.swift */; };
 		F8D8A2DA19A2F7E800CC6A0B /* statusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D8A2D919A2F7E800CC6A0B /* statusViewController.swift */; };
@@ -81,7 +81,7 @@
 		F8956B2B19A1BB0200ED670B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F8956B2D19A1BC7500ED670B /* CharacterCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCreateViewController.swift; sourceTree = "<group>"; };
 		F8956B2F19A1C23500ED670B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		F8D0FD3019A432EC00D187EB /* battleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = battleViewController.swift; sourceTree = "<group>"; };
+		F8A596D019AC2CAF00B0AA8F /* SelectAttack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAttack.swift; sourceTree = "<group>"; };
 		F8D8A2D519A2D7DE00CC6A0B /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		F8D8A2D719A2EB1900CC6A0B /* AccountSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSelectionViewController.swift; sourceTree = "<group>"; };
 		F8D8A2D919A2F7E800CC6A0B /* statusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = statusViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				F825583319AB1D3F0035EBF6 /* PlayerValues.swift */,
+				F8A596D019AC2CAF00B0AA8F /* SelectAttack.swift */,
 				F825583419AB1D3F0035EBF6 /* Combat.swift */,
 				F825583019AB1D280035EBF6 /* EnemyValues.swift */,
 			);
@@ -214,7 +215,6 @@
 			isa = PBXGroup;
 			children = (
 				F8956B0819A194A700ED670B /* AccountCreateViewController.swift */,
-				F8D0FD3019A432EC00D187EB /* battleViewController.swift */,
 				F8D8A2D919A2F7E800CC6A0B /* statusViewController.swift */,
 				F8D8A2D719A2EB1900CC6A0B /* AccountSelectionViewController.swift */,
 				F8956B2D19A1BC7500ED670B /* CharacterCreateViewController.swift */,
@@ -340,9 +340,9 @@
 				F8956B2E19A1BC7500ED670B /* CharacterCreateViewController.swift in Sources */,
 				F8956B0719A194A700ED670B /* AppDelegate.swift in Sources */,
 				F8956B2419A1A07A00ED670B /* twitterSelectViewController.swift in Sources */,
+				F8A596D119AC2CAF00B0AA8F /* SelectAttack.swift in Sources */,
 				F8956B2819A1B93000ED670B /* MapViewController.swift in Sources */,
 				F825583119AB1D280035EBF6 /* EnemyValues.swift in Sources */,
-				F8D0FD3119A432EC00D187EB /* battleViewController.swift in Sources */,
 				F825583E19AB1D630035EBF6 /* EnemyTypes.swift in Sources */,
 				F825584019AB1D630035EBF6 /* Player.swift in Sources */,
 				F825583619AB1D3F0035EBF6 /* Combat.swift in Sources */,

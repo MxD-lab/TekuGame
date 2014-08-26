@@ -10,6 +10,7 @@ import Foundation
 
 enum Action:String, Printable
 {
+    case empty = "empty"
     /*Utility Actions*/
     case U_Examine = "U_Examine";
     /*Physical Actions*/
@@ -69,7 +70,7 @@ enum Action:String, Printable
         Action.P_Stomp,
         Action.P_Sacrificial_Strike,
         Action.P_Overpower
-        ];
+    ];
     static let allMagic = [
         Action.E_EnergyBall,
         Action.E_Icy_Wind,
@@ -81,14 +82,14 @@ enum Action:String, Printable
         Action.E_Decay,
         Action.E_Full_Heal,
         Action.E_Instant_Death
-        ];
+    ];
     
     static let actionsUtilityE:[String] = ["Examine"];
     static let actionPhysicalE:[String] = ["Uppercut", "Charged Strike", "Meditation", "Leg Sweep", "Turbo Strike", "Heart Strike", "Muscle Training", "Stomp", "Sacrificial Strike", "Ovepower"];
     static let actionsMagicE:[String] = ["Energy Ball", "Icy Wind", "Barrier", "Fireball", "Sharpen Mind", "Curse", "Life Drain", "Decay", "Full Heal", "Instant Death"];
     
     var description:String
-    {
+        {
         get
         {
             return self.toRaw();
@@ -145,7 +146,7 @@ enum Action:String, Printable
             return "";
         }
     }
-
+    
     
     func typeToStringJ() -> String
     {

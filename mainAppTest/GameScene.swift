@@ -17,6 +17,8 @@ var magic:[Action] = Action.allMagic;
 
 var allActions:[(String, [Action])] = [("Utility", utility), ("Physical",physical),("Magic", magic)];
 
+var turnPlayer:Bool = false;
+
 class GameScene: SKScene
 {
     let background = SKSpriteNode(imageNamed: "background.png");
@@ -25,15 +27,29 @@ class GameScene: SKScene
     let actionPicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let enemyImage:SKSpriteNode = SKSpriteNode(imageNamed: "enemy.png");
     let actionButton:SKSpriteNode = SKSpriteNode(imageNamed: "DoAction");
-    var frameCount:Int = 0;
     
     var p:player = player();
     var e:enemy = enemy();
+    var step:Int = 0;
     
     override func didMoveToView(view: SKView)
     {
-        /* Setup your scene here */
+        var userInfo = NSDictionary(object: false, forKey: "isGameOver")
+        NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
 
+        p.level = 1;
+        p = setStats(p, 0.25, 0.25, 0.25, 0.25);
+        e.level = 1;
+        e.type = Types.Humanoid;
+        e = setStats(e);
+        e.currentHealth = e.health;
+        e.currentStrength = e.strength;
+        e.currentMagic = e.magic;
+        e.currentSpeed = e.speed;
+        
+        turnPlayer = (p.speed > e.speed) ? true : false ;
+        
+        /* Setup your scene here */
         status.center = CGPointMake(284, 10);
         status.textAlignment = NSTextAlignment.Left;
         status.textColor = UIColor.blackColor();
@@ -76,61 +92,63 @@ class GameScene: SKScene
         /* Called when a touch begins */
         for touch: AnyObject in touches
         {
-            if CGRectContainsPoint(actionButton.frame, touch.locationInNode(self))
-            {
-                var action:Action = allActions[typePicker.selectedRowInComponent(0)].1[actionPicker.selectedRowInComponent(0)]
-                //println(allActions[typePicker.selectedRowInComponent(0)].1[actionPicker.selectedRowInComponent(0)]);
-                println("   \(p.level)");
-                println("       Health:     \(p.health)");
-                println("       Strength:   \(p.strength)");
-                println("       Magic:      \(p.magic)");
-                println("       Speed:      \(p.speed)");
-                println("       Current Health:     \(p.currentHealth)");
-                println("       Current Strength:   \(p.currentStrength)");
-                println("       Current Magic:      \(p.currentMagic)");
-                println("       Current Speed:      \(p.currentSpeed)");
-                println("   \(e.type) : \(e.level)");
-                println("       Health:     \(e.health)");
-                println("       Strength:   \(e.strength)");
-                println("       Magic:      \(e.magic)");
-                println("       Speed:      \(e.speed)");
-                println("       Current Health:     \(e.currentHealth)");
-                println("       Current Strength:   \(e.currentStrength)");
-                println("       Current Magic:      \(e.currentMagic)");
-                println("       Current Speed:      \(e.currentSpeed)");
-                println(" ");
-                println("Player \(p) to use action \(action) on enemy \(e)");
-                doAction(p, e, action);
-                println("   \(p.level)");
-                println("       Health:     \(p.health)");
-                println("       Strength:   \(p.strength)");
-                println("       Magic:      \(p.magic)");
-                println("       Speed:      \(p.speed)");
-                println("       Current Health:     \(p.currentHealth)");
-                println("       Current Strength:   \(p.currentStrength)");
-                println("       Current Magic:      \(p.currentMagic)");
-                println("       Current Speed:      \(p.currentSpeed)");
-                println("   \(e.type) : \(e.level)");
-                println("       Health:     \(e.health)");
-                println("       Strength:   \(e.strength)");
-                println("       Magic:      \(e.magic)");
-                println("       Speed:      \(e.speed)");
-                println("       Current Health:     \(e.currentHealth)");
-                println("       Current Strength:   \(e.currentStrength)");
-                println("       Current Magic:      \(e.currentMagic)");
-                println("       Current Speed:      \(e.currentSpeed)");
+            if (step >= 300) {
+                if CGRectContainsPoint(actionButton.frame, touch.locationInNode(self))
+                {
+                    var action:Action = allActions[typePicker.selectedRowInComponent(0)].1[actionPicker.selectedRowInComponent(0)]
+                    p.printAll();
+                    e.printAll();
+                    doAction(p, e, action);
+                    turnPlayer = !turnPlayer;
+                }
             }
-
-            // for now
-            var userInfo = NSDictionary(object: true, forKey: "isGameOver")
-            NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
+            
         }
     }
     override func update(currentTime: CFTimeInterval)
     {
-        /* Called before each frame is rendered */
-        status.text = "Testing: \(frameCount)";
-        frameCount += 1;
+        /* Called before each frame is rendered */ 
+
+        if (step < 300) {
+            step += 1;
+            status.text = "You encountered some enemy!";
+        }
+        else {
+            var somethingDead:Bool = false;
+        
+            if(p.currentHealth <= 0 && e.currentHealth <= 0)
+            {
+                status.text = "Both Died";
+                somethingDead = true;
+            }
+            else if(p.currentHealth <= 0 && e.currentHealth > 0)
+            {
+                status.text = "Player Died";
+                somethingDead = true;
+            }
+            else if(e.currentHealth <= 0 && p.currentHealth > 0)
+            {
+                status.text = "Enemy Died";
+                somethingDead = true;
+            }
+            else
+            {
+                status.text = (turnPlayer) ? "Player Turn" :"Enemy Turn";
+            }
+            
+            if(!turnPlayer && !somethingDead)
+            {
+                doAction(e, p, selectAttack(e));
+                turnPlayer = !turnPlayer;
+            }
+            else if (somethingDead) {
+                somethingDead = false
+                var userInfo = NSDictionary(object: true, forKey: "isGameOver")
+                NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
+            }
+        }
+
+        
     }
 }
 
@@ -175,11 +193,11 @@ extension GameScene: UIPickerViewDelegate
                 switch(typePicker.selectedRowInComponent(0))
                 {
                     case 0:
-                        return utility[row].description;
+                        return utility[row].typeToStringE();
                     case 1:
-                        return physical[row].description;
+                        return physical[row].typeToStringE();
                     case 2:
-                        return magic[row].description;
+                        return magic[row].typeToStringE();
                     default:
                         return "";
                 }

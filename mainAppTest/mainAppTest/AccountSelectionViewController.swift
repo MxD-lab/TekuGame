@@ -24,6 +24,8 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
             accounts = prefs.objectForKey("useraccounts") as NSMutableArray
         }
         
+        println("accounts: \(accounts)")
+        
         accountPickerView.delegate = self
         accountPickerView.reloadAllComponents()
     }

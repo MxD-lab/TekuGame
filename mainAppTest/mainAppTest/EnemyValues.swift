@@ -9,10 +9,10 @@
 import Foundation
 func setStats(e:enemy) -> enemy
 {
-    var newE:enemy = enemy();
+    var newE:enemy = enemy(t: e.type);
     var vals:(Int,Int,Int) = (0,0,0);
     switch(e.type)
-    {
+        {
     case Types.Humanoid:
         vals = setMedium(e);
         /*Health:   Linear - Medium*/

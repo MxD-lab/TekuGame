@@ -24,6 +24,10 @@ func setStats(p:player, h:Double, st:Double, m:Double, sp:Double) -> player
         newP.magic = Int(Double(newP.magic) + Double(newP.points) * m);
         newP.speed = Int(Double(newP.speed) + Double(newP.points) * sp);
         newP.points = 0;
+        newP.currentHealth = newP.health;
+        newP.currentStrength = newP.strength;
+        newP.currentMagic = newP.magic;
+        newP.currentSpeed = newP.speed;
         return newP;
     default:
         newP.health += newP.points/4;
@@ -31,6 +35,10 @@ func setStats(p:player, h:Double, st:Double, m:Double, sp:Double) -> player
         newP.magic += newP.points/4;
         newP.speed += newP.points/4;
         newP.points = 0;
+        newP.currentHealth = newP.health;
+        newP.currentStrength = newP.strength;
+        newP.currentMagic = newP.magic;
+        newP.currentSpeed = newP.speed;
         return newP;
     }
 }

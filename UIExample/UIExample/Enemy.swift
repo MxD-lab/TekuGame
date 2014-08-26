@@ -11,7 +11,7 @@ import Foundation
 class enemy:Entity
 {
     var type:Types;
-    init()
+     init()
     {
         self.type = Types.empty;
         super.init();

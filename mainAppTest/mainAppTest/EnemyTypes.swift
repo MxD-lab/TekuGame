@@ -34,7 +34,7 @@ enum Types:String, Printable
     ];
     
     var description:String
-    {
+        {
         get
         {
             return self.toRaw();
@@ -73,7 +73,7 @@ enum Types:String, Printable
     func typeToStringJ() -> String
     {
         switch(self)
-        {
+            {
         case Types.Humanoid:
             return "ヒューマノイド";
         case Types.Insect:

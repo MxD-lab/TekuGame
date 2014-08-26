@@ -10,13 +10,13 @@ import Foundation
 
 func doAction(user:Entity, target:Entity, action:Action)
 {
-    println();
-    println("Used Action: \(action.typeToStringE())");
-    println("Used Action: \(action.typeToStringJ())");
+    println("User: \(user)");
+    println("   Used Action: \(action.typeToStringE())");
+    println("   Used Action: \(action.typeToStringJ())");
     var damage:Int = 0;
     switch(action)
-    {
-    /*PLAYER ACTIONS*/
+        {
+        /*PLAYER ACTIONS*/
     case Action.U_Examine:
         break;
     case Action.P_Uppercut:
@@ -150,4 +150,6 @@ func doAction(user:Entity, target:Entity, action:Action)
     default:
         break;
     }
+    user.printAll();
+    target.printAll();
 }

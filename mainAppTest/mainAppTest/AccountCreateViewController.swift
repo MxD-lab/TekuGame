@@ -24,10 +24,12 @@ class AccountCreateViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-//    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-//        if (segue.identifier == "accreate_charcreate" && playerID != "") {
-//            var nextVC = segue.destinationViewController as CharacterCreateViewController
-//            nextVC.playerID = playerID
-//        }
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+        if (segue.identifier == "accreate_charcreate" && playerID != "") {
+             var prefs = NSUserDefaults.standardUserDefaults()
+            prefs.setObject(playerID, forKey: "currentuser")
+            var nextVC = segue.destinationViewController as CharacterCreateViewController
+            nextVC.playerID = playerID
+        }
+    }
 }
