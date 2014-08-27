@@ -41,6 +41,12 @@ class ViewController: UIViewController
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        p.health = 5;
+        p.strength = 4;
+        p.magic = 3;
+        p.speed = 2;
+        
         original.health = p.health;
         original.strength = p.strength;
         original.magic = p.magic;
@@ -53,7 +59,6 @@ class ViewController: UIViewController
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     func updateLabels() -> Void
     {
