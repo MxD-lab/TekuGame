@@ -38,7 +38,8 @@ class statusViewController: UIViewController {
         magicLabel.text = "\(magic)"
         speedLabel.text = "\(speed)"
         
-        healthProgressBar.progress = Float(stepCount % 100) / 100
+        healthProgressBar.progress = Float(stepCount % 10000) / 10000
+        speedProgressBar.progress = prefs.objectForKey("speedFloat") as Float
     }
     
     override func didReceiveMemoryWarning() {

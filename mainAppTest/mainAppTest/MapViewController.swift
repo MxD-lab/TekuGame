@@ -20,6 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var statusButton: UIButton!
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var altitudeLabel: UILabel!
+    @IBOutlet weak var activityLabel: UILabel!
     var clManager = CLLocationManager()
     var playerID:String!                    // Player's ID passed from the previous ViewController.
     var lat:NSNumber!                       // Player's GPS coordinates (latitude).
@@ -52,6 +53,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var confidencenum:Float! = 0
     
     var healthGoal:Int = 0
+    var speedFloat:Float = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +69,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         else {
             netConnectionLabel.text = "インターネットの接続が切れています。"
         }
+        
+        var prefs = NSUserDefaults.standardUserDefaults()
+        if (prefs.objectForKey("speedFloat") != nil) {
+            speedFloat = prefs.objectForKey("speedFloat") as Float
+        }
+        else {
+            speedFloat = 0
+            prefs.setObject(0, forKey: "speedFloat")
+        }
+        
 //        clManager.requestAlwaysAuthorization() iOS 8.0
         clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         clManager.startUpdatingLocation()
@@ -351,20 +363,38 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         if (stepCount >= healthGoal) {
             healthGoal += 10000
-            
-            var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
-            var health:Int = plStats[playerID]!["health"]!
-            var strength:Int = plStats[playerID]!["strength"]!
-            var magic:Int = plStats[playerID]!["magic"]!
-            var speed:Int = plStats[playerID]!["speed"]!
-            var assignpoints:Int = plStats[playerID]!["assignpoints"]!
-            plStats[playerID] = ["health":health+1, "strength":strength, "magic":magic, "speed":speed, "assignpoints":assignpoints]
             prefs.setObject(healthGoal, forKey: "healthGoal")
-            prefs.setObject(plStats, forKey: "playerStats")
-            
-            println(plStats[playerID])
-            println("Max Burning!! INF Lv 16")
+            updateLocalPlayerStats(1, strengthinc: 0, magicinc: 0, speedinc: 0)
         }
+    }
+    
+    func checkRunningGoal() {
+        if (activitystring.rangeOfString("Running") != nil && (confidencenum == Float(CMMotionActivityConfidence.High.toRaw()) || confidencenum == Float(CMMotionActivityConfidence.Medium.toRaw()))) {
+            speedFloat += 0.01
+        }
+        
+        if (speedFloat >= 1) {
+            speedFloat = 0
+            var prefs = NSUserDefaults.standardUserDefaults()
+            prefs.setObject(0, forKey: "speedFloat")
+            updateLocalPlayerStats(0, strengthinc: 0, magicinc: 0, speedinc: 1)
+        }
+    }
+    
+    func updateLocalPlayerStats(healthinc:Int, strengthinc:Int, magicinc:Int, speedinc:Int) {
+        
+        var prefs = NSUserDefaults.standardUserDefaults()
+        
+        var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
+        var health:Int = plStats[playerID]!["health"]!
+        var strength:Int = plStats[playerID]!["strength"]!
+        var magic:Int = plStats[playerID]!["magic"]!
+        var speed:Int = plStats[playerID]!["speed"]!
+        var assignpoints:Int = plStats[playerID]!["assignpoints"]!
+        plStats[playerID] = ["health":health+healthinc, "strength":strength+strengthinc, "magic":magic+magicinc, "speed":speed+speedinc, "assignpoints":assignpoints]
+        prefs.setObject(plStats, forKey: "playerStats")
+        
+        println(plStats[playerID])
     }
     
     func activityToString(act:CMMotionActivity) -> String {
@@ -384,7 +414,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         steplabel.text = "今日の歩数：\(stepCount) 歩"
         altitudeLabel.text = NSString(format: "%.2f m +/- %.2f", altitudeNum, vAcc)
         speedLabel.text = NSString(format: "%.2f m/s", speedNum)
+        if (confidencenum == Float(CMMotionActivityConfidence.High.toRaw()) || confidencenum == Float(CMMotionActivityConfidence.Medium.toRaw())) {
+            activityLabel.text = activitystring
+        }
+        else {
+            activityLabel.text = "Not sure."
+        }
         checkHealthGoal()
+        checkRunningGoal()
     }
     
     // Returns an NSDate object of the beginning of the day.
@@ -409,14 +446,25 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
         }
         if (encountStepCount == 0) {
+//            var prefs = NSUserDefaults.standardUserDefaults()
+//            if (prefs.objectForKey("encounterStep") != nil) {
+//                encountStepCount = prefs.objectForKey("encounterStep") as Int
+//                encountLabel.text = "Next encount: \(encountStepCount)"
+//                var appdel:AppDelegate = (UIApplication.sharedApplication().delegate) as AppDelegate
+//                appdel.encounterstep = encountStepCount
+//            }
+//            else {
+//                updateEncounterStep()
+//                prefs.setObject(encountStepCount, forKey: "encounterStep")
+//            }
             updateEncounterStep()
         }
     }
     
     func updateEncounterStep() {
+        
         var thousands = lroundf(Float(stepCount) / 1000.0) + 1
         encountStepCount = Int(thousands) * 1000 + Int(arc4random_uniform(200)) - 100
-        println("Encounter at \(encountStepCount)")
         encountLabel.text = "Next encount: \(encountStepCount)"
         var appdel:AppDelegate = (UIApplication.sharedApplication().delegate) as AppDelegate
         appdel.encounterstep = encountStepCount
@@ -440,6 +488,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         if (segue.identifier == "map_status") {
+            var prefs = NSUserDefaults.standardUserDefaults()
+            prefs.setObject(speedFloat, forKey: "speedFloat")
             var nextVC = segue.destinationViewController as statusViewController
             nextVC.stepCount = stepCount
         }
