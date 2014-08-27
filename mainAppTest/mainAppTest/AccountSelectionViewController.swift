@@ -23,9 +23,6 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
         if ((prefs.objectForKey("useraccounts")) != nil) {
             accounts = prefs.objectForKey("useraccounts") as NSMutableArray
         }
-        
-        println("accounts: \(accounts)")
-        
         accountPickerView.delegate = self
         accountPickerView.reloadAllComponents()
     }
@@ -55,6 +52,14 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
             var nextVC = segue.destinationViewController as MapViewController
             nextVC.playerID = accounts[accountPickerView.selectedRowInComponent(0)] as String
         }
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return true
+    }
+    
+    override func supportedInterfaceOrientations() -> Int {
+        return Int(UIInterfaceOrientationMask.Portrait.toRaw())
     }
 }
 

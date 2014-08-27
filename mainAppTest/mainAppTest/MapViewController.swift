@@ -16,7 +16,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var encountLabel: UILabel!
     
     // MapKit, CoreLocation
-//    @IBOutlet var distance: UILabel!        // Label that shows distance from iBeacon.
     @IBOutlet var mapView: MKMapView!       // iOS Map.
     @IBOutlet weak var statusButton: UIButton!
     @IBOutlet weak var speedLabel: UILabel!
@@ -40,8 +39,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var encountStepCount:Int! = 0
     
     // iBeacon
-//    @IBOutlet var nearbeacon: UIProgressView!                                       // Progress bar showing the number of people near the same beacon.
-//    @IBOutlet var nearplayer: UILabel!                                              // Label that shows number of people near beacon.
     let proximityUUID = NSUUID(UUIDString:"B9407F30-F5F8-466E-AFF9-25556B57FE6D")   // UUID of iBeacon.
     var region  = CLBeaconRegion()                                                  // Region defined for iBeacons.
     var manager = CLLocationManager()                                               // Location manager for iBeacons.
@@ -53,6 +50,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var prevSteps:Int! = 0                  // Number of steps since the start of the day until the application has launched.
     var activitystring:String! = ""
     var confidencenum:Float! = 0
+    
+    var healthGoal:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,15 +111,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         //カメラの設定をしてみる（少し手前に傾けた状態）
         var camera:MKMapCamera = self.mapView.camera;
-        //camera.altitude += 100
-        //camera.heading += 15
         camera.pitch += 60
         self.mapView.setCamera(camera, animated: true)
     }
     
     // Setup for beacon.
     func beaconSetup() {
-//        nearbeacon.transform = CGAffineTransformMakeScale( 1.0, 3.0 ); // 横方向に1倍、縦方向に3倍して表示する
         region = CLBeaconRegion(proximityUUID:proximityUUID,identifier:"EstimoteRegion")
         manager.delegate = self
         switch CLLocationManager.authorizationStatus() {
@@ -326,7 +322,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             var todate:NSDate! = NSDate()
             
             stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: {numberOfSteps, timestamp, error in
-                self.stepCount = numberOfSteps*50 + self.prevSteps
+                self.stepCount = numberOfSteps + self.prevSteps
             })
         }
         
@@ -340,6 +336,34 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     self.confidencenum = Float(activity.confidence.toRaw())
                 }
             })
+        }
+    }
+    
+    func checkHealthGoal() {
+        var prefs = NSUserDefaults.standardUserDefaults()
+        if (stepCount > 10000 && prefs.objectForKey("healthGoal") != nil) {
+            healthGoal = prefs.objectForKey("healthGoal") as Int
+        }
+        else {
+            healthGoal = 10000
+            prefs.setObject(healthGoal, forKey: "healthGoal")
+        }
+        
+        if (stepCount >= healthGoal) {
+            healthGoal += 10000
+            
+            var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
+            var health:Int = plStats[playerID]!["health"]!
+            var strength:Int = plStats[playerID]!["strength"]!
+            var magic:Int = plStats[playerID]!["magic"]!
+            var speed:Int = plStats[playerID]!["speed"]!
+            var assignpoints:Int = plStats[playerID]!["assignpoints"]!
+            plStats[playerID] = ["health":health+1, "strength":strength, "magic":magic, "speed":speed, "assignpoints":assignpoints]
+            prefs.setObject(healthGoal, forKey: "healthGoal")
+            prefs.setObject(plStats, forKey: "playerStats")
+            
+            println(plStats[playerID])
+            println("Max Burning!! INF Lv 16")
         }
     }
     
@@ -360,7 +384,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         steplabel.text = "今日の歩数：\(stepCount) 歩"
         altitudeLabel.text = NSString(format: "%.2f m +/- %.2f", altitudeNum, vAcc)
         speedLabel.text = NSString(format: "%.2f m/s", speedNum)
-        
+        checkHealthGoal()
     }
     
     // Returns an NSDate object of the beginning of the day.
@@ -403,6 +427,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if (state == UIApplicationState.Active) {
             performSegueWithIdentifier("map_game", sender: self)
             updateEncounterStep()
+        }
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return true
+    }
+    
+    override func supportedInterfaceOrientations() -> Int {
+        return Int(UIInterfaceOrientationMask.Portrait.toRaw())
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+        if (segue.identifier == "map_status") {
+            var nextVC = segue.destinationViewController as statusViewController
+            nextVC.stepCount = stepCount
         }
     }
 }

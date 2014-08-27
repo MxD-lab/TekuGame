@@ -58,5 +58,13 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
             nextVC.playerID = twitterAccounts[twitterPickerView.selectedRowInComponent(0)].username
         }
     }
+    
+    override func shouldAutorotate() -> Bool {
+        return true
+    }
+    
+    override func supportedInterfaceOrientations() -> Int {
+        return Int(UIInterfaceOrientationMask.Portrait.toRaw())
+    }
 }
 

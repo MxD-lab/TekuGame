@@ -21,6 +21,8 @@
 		F825584319AB20540035EBF6 /* DoAction.png in Resources */ = {isa = PBXBuildFile; fileRef = F825584219AB20540035EBF6 /* DoAction.png */; };
 		F88AE19B19A5C45700A9C227 /* enemy.png in Resources */ = {isa = PBXBuildFile; fileRef = F88AE19919A5C45700A9C227 /* enemy.png */; };
 		F88AE19C19A5C45700A9C227 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = F88AE19A19A5C45700A9C227 /* background.png */; };
+		F890D1F019AD672F0018AC95 /* CharacterCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F890D1EF19AD672F0018AC95 /* CharacterCreateViewController.swift */; };
+		F890D1F219AD77070018AC95 /* titleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F890D1F119AD77070018AC95 /* titleViewController.swift */; };
 		F8956B0719A194A700ED670B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8956B0619A194A700ED670B /* AppDelegate.swift */; };
 		F8956B0919A194A700ED670B /* AccountCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8956B0819A194A700ED670B /* AccountCreateViewController.swift */; };
 		F8956B0C19A194A700ED670B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8956B0A19A194A700ED670B /* Main.storyboard */; };
@@ -31,7 +33,6 @@
 		F8956B2819A1B93000ED670B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8956B2719A1B93000ED670B /* MapViewController.swift */; };
 		F8956B2A19A1BAFD00ED670B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8956B2919A1BAFD00ED670B /* MapKit.framework */; };
 		F8956B2C19A1BB0200ED670B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8956B2B19A1BB0200ED670B /* CoreLocation.framework */; };
-		F8956B2E19A1BC7500ED670B /* CharacterCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8956B2D19A1BC7500ED670B /* CharacterCreateViewController.swift */; };
 		F8956B3019A1C23500ED670B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8956B2F19A1C23500ED670B /* CoreMotion.framework */; };
 		F8A596D119AC2CAF00B0AA8F /* SelectAttack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A596D019AC2CAF00B0AA8F /* SelectAttack.swift */; };
 		F8D8A2D619A2D7DE00CC6A0B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D8A2D519A2D7DE00CC6A0B /* Helpers.swift */; };
@@ -65,6 +66,8 @@
 		F825584219AB20540035EBF6 /* DoAction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DoAction.png; sourceTree = "<group>"; };
 		F88AE19919A5C45700A9C227 /* enemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy.png; sourceTree = "<group>"; };
 		F88AE19A19A5C45700A9C227 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		F890D1EF19AD672F0018AC95 /* CharacterCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCreateViewController.swift; sourceTree = "<group>"; };
+		F890D1F119AD77070018AC95 /* titleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = titleViewController.swift; sourceTree = "<group>"; };
 		F8956B0119A194A700ED670B /* mainAppTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mainAppTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8956B0519A194A700ED670B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8956B0619A194A700ED670B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,7 +82,6 @@
 		F8956B2719A1B93000ED670B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F8956B2919A1BAFD00ED670B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F8956B2B19A1BB0200ED670B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		F8956B2D19A1BC7500ED670B /* CharacterCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCreateViewController.swift; sourceTree = "<group>"; };
 		F8956B2F19A1C23500ED670B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F8A596D019AC2CAF00B0AA8F /* SelectAttack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAttack.swift; sourceTree = "<group>"; };
 		F8D8A2D519A2D7DE00CC6A0B /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -216,8 +218,9 @@
 			children = (
 				F8956B0819A194A700ED670B /* AccountCreateViewController.swift */,
 				F8D8A2D919A2F7E800CC6A0B /* statusViewController.swift */,
+				F890D1F119AD77070018AC95 /* titleViewController.swift */,
+				F890D1EF19AD672F0018AC95 /* CharacterCreateViewController.swift */,
 				F8D8A2D719A2EB1900CC6A0B /* AccountSelectionViewController.swift */,
-				F8956B2D19A1BC7500ED670B /* CharacterCreateViewController.swift */,
 				F8956B2719A1B93000ED670B /* MapViewController.swift */,
 				F8956B2319A1A07A00ED670B /* twitterSelectViewController.swift */,
 			);
@@ -332,12 +335,13 @@
 				F825583519AB1D3F0035EBF6 /* PlayerValues.swift in Sources */,
 				F8D8A2DA19A2F7E800CC6A0B /* statusViewController.swift in Sources */,
 				F8D8A2D819A2EB1900CC6A0B /* AccountSelectionViewController.swift in Sources */,
+				F890D1F219AD77070018AC95 /* titleViewController.swift in Sources */,
 				F8956B0919A194A700ED670B /* AccountCreateViewController.swift in Sources */,
 				F8D8A2D619A2D7DE00CC6A0B /* Helpers.swift in Sources */,
 				F825583F19AB1D630035EBF6 /* Entity.swift in Sources */,
 				F8213C2A19A6D28500C72548 /* GameScene.swift in Sources */,
 				F825584119AB1D630035EBF6 /* Enemy.swift in Sources */,
-				F8956B2E19A1BC7500ED670B /* CharacterCreateViewController.swift in Sources */,
+				F890D1F019AD672F0018AC95 /* CharacterCreateViewController.swift in Sources */,
 				F8956B0719A194A700ED670B /* AppDelegate.swift in Sources */,
 				F8956B2419A1A07A00ED670B /* twitterSelectViewController.swift in Sources */,
 				F8A596D119AC2CAF00B0AA8F /* SelectAttack.swift in Sources */,
