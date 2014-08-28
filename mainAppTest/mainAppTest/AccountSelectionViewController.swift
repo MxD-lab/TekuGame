@@ -36,6 +36,15 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
         return accounts.count
     }
     
+    func pickerView(pickerView: UIPickerView!, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView! {
+        var label = UILabel(frame: CGRectMake(0, 0, pickerView.frame.size.width, 44))
+        label.font = UIFont(name: "Optima", size: 24)
+        label.textColor = UIColor.blackColor()
+        label.text = accounts[row] as String
+        label.textAlignment = NSTextAlignment.Center
+        return label
+    }
+    
     func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int {
         return 1
     }

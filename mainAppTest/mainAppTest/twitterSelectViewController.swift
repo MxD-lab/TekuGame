@@ -47,6 +47,15 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
         return 1
     }
     
+    func pickerView(pickerView: UIPickerView!, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView! {
+        var label = UILabel(frame: CGRectMake(0, 0, pickerView.frame.size.width, 44))
+        label.font = UIFont(name: "Optima", size: 24)
+        label.textColor = UIColor.blackColor()
+        label.text = twitterAccounts[row].username as String
+        label.textAlignment = NSTextAlignment.Center
+        return label
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
