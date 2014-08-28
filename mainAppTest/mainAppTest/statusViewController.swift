@@ -40,6 +40,9 @@ class statusViewController: UIViewController {
         
         healthProgressBar.progress = Float(stepCount % 10000) / 10000
         speedProgressBar.progress = prefs.objectForKey("speedFloat") as Float
+        
+        var magicSteps:Int = prefs.objectForKey("magicSteps") as Int
+        magicProgressBar.progress = Float(magicSteps % 1000) / 1000
     }
     
     override func didReceiveMemoryWarning() {

@@ -21,6 +21,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var altitudeLabel: UILabel!
     @IBOutlet weak var activityLabel: UILabel!
+    @IBOutlet weak var magicStepsLabel: UILabel!
     var clManager = CLLocationManager()
     var playerID:String!                    // Player's ID passed from the previous ViewController.
     var lat:NSNumber!                       // Player's GPS coordinates (latitude).
@@ -54,6 +55,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     var healthGoal:Int = 0
     var speedFloat:Float = 0
+    var magicHourInt:Int = 0
+    var currentHourInt:Int = 0
+    var prevMagicSteps:Int = 0
+    var magicSteps:Int = 0
+    var magicGoal:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,11 +85,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             prefs.setObject(0, forKey: "speedFloat")
         }
         
+        if (prefs.objectForKey("magicSteps") != nil) {
+            prevMagicSteps = prefs.objectForKey("magicSteps") as Int
+            magicSteps = prevMagicSteps
+        }
+        
 //        clManager.requestAlwaysAuthorization() iOS 8.0
         clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         clManager.startUpdatingLocation()
         clManager.delegate = self
         setInterval("updateStepLabel", seconds: 1)
+        setInterval("checkStatus", seconds: 2)
         setInterval("postAndGet", seconds: 15)
         setInterval("checkEncounter", seconds: 1)
     }
@@ -335,6 +347,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
             stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: {numberOfSteps, timestamp, error in
                 self.stepCount = numberOfSteps + self.prevSteps
+                self.magicSteps = self.prevMagicSteps
+                if (self.currentHourInt == 12) {
+                    self.magicSteps = self.prevMagicSteps + numberOfSteps
+                }
             })
         }
         
@@ -381,6 +397,49 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
+    func checkMagicHour() {
+        var prefs = NSUserDefaults.standardUserDefaults()
+        var currDate = NSDate()
+        var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        var dateComponents = gregorian.components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit, fromDate: currDate)
+        currentHourInt = dateComponents.hour
+        
+        if (prefs.objectForKey("magichour") != nil) {
+            var magichour = prefs.objectForKey("magichour") as [String:String]
+            if (magichour["date"]  == "\(dateComponents.month) / \(dateComponents.day)") {
+                var hour = magichour["hour"]!
+                magicHourInt = hour.toInt()!
+            }
+            else {
+                magichour["date"] = "\(dateComponents.month) / \(dateComponents.day)"
+                magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
+                var hour = magichour["hour"]!
+                magicHourInt = hour.toInt()!
+                prefs.setObject(magichour, forKey: "magichour")
+            }
+        }
+        else {
+            var magichour:[String:String] = [:]
+            magichour["date"] = "\(dateComponents.month) / \(dateComponents.day)"
+            magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
+            var hour = magichour["hour"]!
+            magicHourInt = hour.toInt()!
+            prefs.setObject(magichour, forKey: "magichour")
+        }
+        if (magicSteps > 1000 && prefs.objectForKey("magicGoal") != nil) {
+            magicGoal = prefs.objectForKey("magicGoal") as Int
+        }
+        else {
+            magicGoal = 1000
+            prefs.setObject(magicGoal, forKey: "magicGoal")
+        }
+        if (magicSteps >= magicGoal) {
+            magicGoal += 1000
+            prefs.setObject(magicGoal, forKey: "magicGoal")
+            updateLocalPlayerStats(0, strengthinc: 0, magicinc: 1, speedinc: 0)
+        }
+    }
+    
     func updateLocalPlayerStats(healthinc:Int, strengthinc:Int, magicinc:Int, speedinc:Int) {
         
         var prefs = NSUserDefaults.standardUserDefaults()
@@ -420,8 +479,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         else {
             activityLabel.text = "Not sure."
         }
+        magicStepsLabel.text = "Magic Steps: \(magicSteps) 歩"
+    }
+    
+    func checkStatus() {
         checkHealthGoal()
         checkRunningGoal()
+        checkMagicHour()
     }
     
     // Returns an NSDate object of the beginning of the day.
@@ -490,6 +554,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if (segue.identifier == "map_status") {
             var prefs = NSUserDefaults.standardUserDefaults()
             prefs.setObject(speedFloat, forKey: "speedFloat")
+            prefs.setObject(magicSteps, forKey: "magicSteps")
             var nextVC = segue.destinationViewController as statusViewController
             nextVC.stepCount = stepCount
         }
