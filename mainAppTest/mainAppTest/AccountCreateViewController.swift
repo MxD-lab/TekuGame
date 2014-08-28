@@ -16,7 +16,12 @@ class AccountCreateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        playerIDLabel.text = "ID: @\(playerID)"
+        if (playerID != "") {
+            playerIDLabel.text = "Logged in as @\(playerID)"
+        }
+        else {
+            playerIDLabel.text = "Not logged in."
+        }
     }
 
     override func didReceiveMemoryWarning() {
