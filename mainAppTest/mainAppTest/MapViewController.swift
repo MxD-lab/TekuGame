@@ -472,10 +472,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // Simply updates the label for step count.
     func updateStepLabel() {
-        steplabel.text = "今日の歩数：\(stepCount) 歩"
-        altitudeLabel.text = NSString(format: "%.2f m +/- %.2f", altitudeNum, vAcc)
+        steplabel.text = "Steps：\(stepCount) steps"
+        altitudeLabel.text = NSString(format: "Altitude: %.2f m +/- %.2f", altitudeNum, vAcc)
         if (speedNum > 0) {
-            speedLabel.text = NSString(format: "%.2f m/s", speedNum)
+            speedLabel.text = NSString(format: "Speed: %.2f m/s", speedNum)
             println(speedNum)
         }
         
@@ -486,7 +486,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         else {
             activityLabel.text = "Not sure."
         }
-        magicStepsLabel.text = "Magic Steps: \(magicSteps) 歩"
+        magicStepsLabel.text = "Magic Steps: \(magicSteps) steps"
     }
     
     func checkStatus() {
@@ -504,7 +504,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // CoreLocation updates.
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        var loc: AnyObject = locations[locations.count-1]
+        var loc: CLLocation = locations[locations.count-1] as CLLocation
         altitudeNum = Float(loc.altitude)
         vAcc = Float(loc.verticalAccuracy)
         speedNum = loc.speed
