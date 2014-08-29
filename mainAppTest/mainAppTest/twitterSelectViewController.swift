@@ -13,6 +13,8 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     var accountStore = ACAccountStore()
     var twitterAccounts = NSArray()
+    var facebookAccounts = NSArray()
+    var allAccounts:[(String,String)] = []
     
     @IBOutlet weak var twitterPickerView: UIPickerView!
     
@@ -30,17 +32,47 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
     func getAccounts() {
         var accountType:ACAccountType! = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
         var haveAccess:Bool = false
-        let handler: ACAccountStoreRequestAccessCompletionHandler = { granted, error in }
-        accountStore.requestAccessToAccountsWithType(accountType, options: nil, handler)
-        twitterAccounts = accountStore.accountsWithAccountType(accountType)
+        accountStore.requestAccessToAccountsWithType(accountType, options: nil, { granted, error in
+            if (granted) {
+                self.twitterAccounts = self.accountStore.accountsWithAccountType(accountType)
+            }
+            else {
+                println(error.description)
+            }
+        })
+        
+//        var accountStore2:ACAccountStore! = ACAccountStore()
+        var accountType2:ACAccountType! = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierFacebook)
+        var options = [ACFacebookAppIdKey: "343510302483842", ACFacebookAudienceKey: ACFacebookAudienceOnlyMe, ACFacebookPermissionsKey: []]
+        accountStore.requestAccessToAccountsWithType(accountType2, options: options, completion: { granted, error in
+            if (granted) {
+                self.facebookAccounts = self.accountStore.accountsWithAccountType(accountType2)
+            }
+            else {
+                println(error.description)
+            }
+        })
+        
+        
+        for acc in twitterAccounts {
+            var twacc:(String, String)! = (acc.username, "Twitter")
+            allAccounts += [twacc]
+        }
+        for acc in facebookAccounts {
+            var fbacc:(String, String)! = (acc.username, "Facebook")
+            allAccounts += [fbacc]
+        }
+
+//        println(allAccounts.count)
+        
     }
     
     func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
-        return twitterAccounts[row].username
+        return "\(allAccounts[row].0) (\(allAccounts[row].1))"
     }
     
     func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
-        return twitterAccounts.count
+        return allAccounts.count
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int {
@@ -51,7 +83,7 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
         var label = UILabel(frame: CGRectMake(0, 0, pickerView.frame.size.width, 44))
         label.font = UIFont(name: "Optima", size: 24)
         label.textColor = UIColor.blackColor()
-        label.text = twitterAccounts[row].username as String
+        label.text = "\(allAccounts[row].0) (\(allAccounts[row].1))"
         label.textAlignment = NSTextAlignment.Center
         return label
     }
@@ -64,7 +96,7 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         if (segue.identifier == "twselect_accreate") {
             var nextVC = segue.destinationViewController as AccountCreateViewController
-            nextVC.playerID = twitterAccounts[twitterPickerView.selectedRowInComponent(0)].username
+            nextVC.playerID = "\(allAccounts[twitterPickerView.selectedRowInComponent(0)].0) (\(allAccounts[twitterPickerView.selectedRowInComponent(0)].1))"
         }
     }
     

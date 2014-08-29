@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
@@ -31,7 +32,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="frR-iT-aVI" kind="show" id="0Xz-13-6QQ"/>
+                                    <action selector="continuePressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="FkN-sl-ukW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1s-Gn-qpP">
@@ -54,6 +55,10 @@
                         <size key="portraitSize" width="320" height="568"/>
                         <size key="landscapeSize" width="568" height="320"/>
                     </simulatedScreenMetrics>
+                    <connections>
+                        <segue destination="frR-iT-aVI" kind="show" identifier="title_acselect" id="kvk-Lg-HzE"/>
+                        <segue destination="kwz-uD-Hpi" kind="show" identifier="title_map" id="gqu-8j-EKE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
@@ -75,7 +80,7 @@
                                 <rect key="frame" x="16" y="203" width="288" height="162"/>
                                 <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                             </pickerView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Twitter Account Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31o-RH-SUY">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SNS Account Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31o-RH-SUY">
                                 <rect key="frame" x="0.0" y="102" width="320" height="59"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="23"/>
                                 <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -148,7 +153,7 @@
                                 <rect key="frame" x="0.0" y="347" width="320" height="41"/>
                                 <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <state key="normal" title="Login with Twitter">
+                                <state key="normal" title="Login with Facebook/Twitter">
                                     <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -156,6 +161,12 @@
                                     <segue destination="O2w-JZ-Qao" kind="show" identifier="accreate_twselect" id="S5C-ML-awY"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urG-Tx-Lf0">
+                                <rect key="frame" x="0.0" y="255" width="320" height="35"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="21"/>
+                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.71182316599999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -165,6 +176,7 @@
                         <size key="landscapeSize" width="568" height="320"/>
                     </simulatedScreenMetrics>
                     <connections>
+                        <outlet property="accountTypeLabel" destination="urG-Tx-Lf0" id="ISb-v3-Ac8"/>
                         <outlet property="createCharacterBtn" destination="7S6-Tt-0HC" id="ses-LN-gWH"/>
                         <outlet property="playerIDLabel" destination="O68-A1-4l4" id="oXN-QE-7L5"/>
                     </connections>
@@ -300,7 +312,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mP6-nz-8e7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1581" y="858"/>
+            <point key="canvasLocation" x="1581" y="873"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="zbf-jX-PLe">
@@ -366,7 +378,7 @@
                                 <color key="trackTintColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Go1-oY-aEk">
-                                <rect key="frame" x="0.0" y="462" width="320" height="43"/>
+                                <rect key="frame" x="0.0" y="439" width="320" height="43"/>
                                 <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="19"/>
                                 <state key="normal" title="Return">
@@ -431,6 +443,18 @@
                                 <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPq-iv-mJI">
+                                <rect key="frame" x="0.0" y="505" width="320" height="43"/>
+                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="19"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="vXZ-lx-hvc" kind="show" identifier="status_title" id="Hik-ON-fcD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.71182316599999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -732,7 +756,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="01y-4x-iNO"/>
+        <segue reference="gqu-8j-EKE"/>
         <segue reference="T9K-pp-C4g"/>
     </inferredMetricsTieBreakers>
 </document>

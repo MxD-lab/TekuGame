@@ -20,6 +20,25 @@ class titleViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func continuePressed(sender: AnyObject) {
+        checkLoginStatus()
+    }
+    
+    func checkLoginStatus() {
+        var prefs = NSUserDefaults.standardUserDefaults()
+        var loggedin = false
+        if (prefs.objectForKey("loggedIn") != nil) {
+            loggedin = prefs.objectForKey("loggedIn") as Bool
+        }
+        
+        if (loggedin) {
+            performSegueWithIdentifier("title_map", sender: self)
+        }
+        else {
+            performSegueWithIdentifier("title_acselect", sender: self)
+        }
+    }
+    
     override func shouldAutorotate() -> Bool {
         return true
     }

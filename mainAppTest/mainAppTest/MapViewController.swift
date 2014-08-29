@@ -99,6 +99,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             magicSteps = prevMagicSteps
         }
         
+        prefs.setObject(true, forKey: "loggedIn")
+        
 //        clManager.requestAlwaysAuthorization() iOS 8.0
         clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         clManager.startUpdatingLocation()
@@ -113,7 +115,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         var prefs = NSUserDefaults.standardUserDefaults()
         var currentuser = prefs.objectForKey("currentuser") as String
         playerID = currentuser
-        statusButton.setTitle("@\(playerID)", forState: UIControlState.Normal)
+        var idonly = playerID.componentsSeparatedByString("(")[0]
+        statusButton.setTitle("@\(idonly)", forState: UIControlState.Normal)
     }
     
     // Calls the given function every n seconds.
