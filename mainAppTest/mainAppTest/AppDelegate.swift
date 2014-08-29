@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var stepCount:Int! = 0
     var encounterstep:Int! = 0
     var notified:Bool! = false
+    var loop:NSTimer!
     
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
@@ -37,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         updateSteps()
         
         UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler(nil)
-        var loop = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("notifySteps"), userInfo: nil, repeats: true)
+        loop = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("notifySteps"), userInfo: nil, repeats: true)
         NSRunLoop.currentRunLoop().addTimer(loop, forMode: NSRunLoopCommonModes)
     }
     
@@ -47,6 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(application: UIApplication!) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        if (loop != nil) {
+            loop.invalidate()
+            loop = nil
+        }
     }
     
     func applicationWillTerminate(application: UIApplication!) {
@@ -92,6 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
         
         dispatch_async(lowQueue, { () -> Void in
+            println("\(self.stepCount) steps.")
             if (!self.notified && self.encounterstep != 0 && self.stepCount >= self.encounterstep) {
                 self.notified = true
                 var notification = UILocalNotification()

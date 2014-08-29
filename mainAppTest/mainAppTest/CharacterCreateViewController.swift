@@ -187,6 +187,14 @@ class CharacterCreateViewController: UIViewController
             var stats = ["health":p.health, "magic":p.magic, "speed":p.speed, "strength":p.strength, "assignpoints":p.assignPoints]
             plStats[playerID] = stats
             
+            prefs.removeObjectForKey("speedFloat")
+            prefs.removeObjectForKey("magichour")
+            prefs.removeObjectForKey("magicGoal")
+            prefs.removeObjectForKey("magicSteps")
+            prefs.removeObjectForKey("healthGoal")
+            prefs.removeObjectForKey("encounterStep")
+            prefs.removeObjectForKey("enemiesBeaten")
+            prefs.removeObjectForKey("enemiesGoal")
             prefs.setObject(plStats, forKey: "playerStats")
             prefs.setObject(accounts, forKey: "useraccounts")
             var nextVC = segue.destinationViewController as MapViewController

@@ -22,6 +22,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var altitudeLabel: UILabel!
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var magicStepsLabel: UILabel!
+    @IBOutlet weak var magicHourLabel: UILabel!
     @IBOutlet weak var beaconDistanceLabel: UILabel!
     @IBOutlet weak var beaconPlayerCountLabel: UILabel!
     var clManager = CLLocationManager()
@@ -62,6 +63,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var prevMagicSteps:Int = 0
     var magicSteps:Int = 0
     var magicGoal:Int = 0
+    var enemiesGoal:Int = 0
+    
+    var labelTimer:NSTimer!
+    var statusTimer:NSTimer!
+    var postGetTimer:NSTimer!
+    var encounterTimer:NSTimer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,10 +103,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         clManager.startUpdatingLocation()
         clManager.delegate = self
-        setInterval("updateStepLabel", seconds: 1)
-        setInterval("checkStatus", seconds: 2)
-        setInterval("postAndGet", seconds: 15)
-        setInterval("checkEncounter", seconds: 1)
+        labelTimer = setInterval("updateStepLabel", seconds: 1)
+        statusTimer = setInterval("checkStatus", seconds: 2)
+        postGetTimer = setInterval("postAndGet", seconds: 15)
+        encounterTimer = setInterval("checkEncounter", seconds: 1)
     }
     
     func setButton() {
@@ -110,8 +117,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     // Calls the given function every n seconds.
-    func setInterval(functionname:String, seconds:NSNumber) {
-        NSTimer.scheduledTimerWithTimeInterval(seconds, target: self, selector: Selector(functionname), userInfo: nil, repeats: true)
+    func setInterval(functionname:String, seconds:NSNumber) -> NSTimer {
+        return NSTimer.scheduledTimerWithTimeInterval(seconds, target: self, selector: Selector(functionname), userInfo: nil, repeats: true)
     }
     
     // Initial setup for map.
@@ -371,7 +378,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func checkHealthGoal() {
         var prefs = NSUserDefaults.standardUserDefaults()
-        if (stepCount > 10000 && prefs.objectForKey("healthGoal") != nil) {
+        if (stepCount >= 10000 && prefs.objectForKey("healthGoal") != nil) {
             healthGoal = prefs.objectForKey("healthGoal") as Int
         }
         else {
@@ -382,6 +389,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if (stepCount >= healthGoal) {
             healthGoal += 10000
             prefs.setObject(healthGoal, forKey: "healthGoal")
+            println("StepCount: \(stepCount), healthGoal: \(healthGoal)")
             updateLocalPlayerStats(1, strengthinc: 0, magicinc: 0, speedinc: 0)
         }
     }
@@ -428,6 +436,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             magicHourInt = hour.toInt()!
             prefs.setObject(magichour, forKey: "magichour")
         }
+        
+        magicHourLabel.text = "Magic Hour: \(magicHourInt):00"
+        
         if (magicSteps > 1000 && prefs.objectForKey("magicGoal") != nil) {
             magicGoal = prefs.objectForKey("magicGoal") as Int
         }
@@ -439,6 +450,31 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             magicGoal += 1000
             prefs.setObject(magicGoal, forKey: "magicGoal")
             updateLocalPlayerStats(0, strengthinc: 0, magicinc: 1, speedinc: 0)
+        }
+    }
+    
+    func checkEnemiesGoal() {
+        
+        var prefs = NSUserDefaults.standardUserDefaults()
+        var enemiesBeaten = 0
+        if (prefs.objectForKey("enemiesBeaten") == nil) {
+            prefs.setObject(enemiesBeaten, forKey: "enemiesBeaten")
+        }
+        else {
+            enemiesBeaten = prefs.objectForKey("enemiesBeaten") as Int
+        }
+        
+        if (enemiesBeaten >= 25 && prefs.objectForKey("enemiesGoal") != nil) {
+            enemiesGoal = prefs.objectForKey("enemiesGoal") as Int
+        }
+        else {
+            enemiesGoal = 25
+            prefs.setObject(enemiesGoal, forKey: "enemiesGoal")
+        }
+        
+        if (enemiesBeaten >= enemiesGoal) {
+            prefs.setObject(enemiesGoal+25, forKey: "enemiesGoal")
+            updateLocalPlayerStats(0, strengthinc: 3, magicinc: 0, speedinc: 0)
         }
     }
     
@@ -493,6 +529,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         checkHealthGoal()
         checkRunningGoal()
         checkMagicHour()
+        checkEnemiesGoal()
     }
     
     // Returns an NSDate object of the beginning of the day.
@@ -517,18 +554,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
         }
         if (encountStepCount == 0) {
-//            var prefs = NSUserDefaults.standardUserDefaults()
-//            if (prefs.objectForKey("encounterStep") != nil) {
-//                encountStepCount = prefs.objectForKey("encounterStep") as Int
-//                encountLabel.text = "Next encount: \(encountStepCount)"
-//                var appdel:AppDelegate = (UIApplication.sharedApplication().delegate) as AppDelegate
-//                appdel.encounterstep = encountStepCount
-//            }
-//            else {
-//                updateEncounterStep()
-//                prefs.setObject(encountStepCount, forKey: "encounterStep")
-//            }
-            updateEncounterStep()
+            var prefs = NSUserDefaults.standardUserDefaults()
+            if (prefs.objectForKey("encounterStep") != nil) {
+                encountStepCount = prefs.objectForKey("encounterStep") as Int
+                encountLabel.text = "Next encount: \(encountStepCount)"
+                var appdel:AppDelegate = (UIApplication.sharedApplication().delegate) as AppDelegate
+                appdel.encounterstep = encountStepCount
+            }
+            else {
+                updateEncounterStep()
+                prefs.setObject(encountStepCount, forKey: "encounterStep")
+            }
         }
     }
     
@@ -565,5 +601,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             var nextVC = segue.destinationViewController as statusViewController
             nextVC.stepCount = stepCount
         }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        labelTimer.invalidate()
+        statusTimer.invalidate()
+        postGetTimer.invalidate()
+        encounterTimer.invalidate()
+        labelTimer = nil
+        statusTimer = nil
+        postGetTimer = nil
+        encounterTimer = nil
     }
 }

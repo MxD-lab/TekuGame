@@ -12,12 +12,14 @@ class AccountCreateViewController: UIViewController {
     
     var playerID:String! = ""
     @IBOutlet weak var playerIDLabel : UILabel!
+    @IBOutlet weak var createCharacterBtn: UIButton!
                             
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         if (playerID != "") {
             playerIDLabel.text = "Logged in as @\(playerID)"
+            createCharacterBtn.hidden = false
         }
         else {
             playerIDLabel.text = "Not logged in."

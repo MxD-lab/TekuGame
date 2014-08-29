@@ -38,11 +38,28 @@ class statusViewController: UIViewController {
         magicLabel.text = "\(magic)"
         speedLabel.text = "\(speed)"
         
-        healthProgressBar.progress = Float(stepCount % 10000) / 10000
-        speedProgressBar.progress = prefs.objectForKey("speedFloat") as Float
         
-        var magicSteps:Int = prefs.objectForKey("magicSteps") as Int
+        var magicSteps:Int = 0
+        if (prefs.objectForKey("magicSteps") != nil) {
+            magicSteps = prefs.objectForKey("magicSteps") as Int
+        }
+        
+        var enemiesBeaten:Int = 0
+        if (prefs.objectForKey("enemiesBeaten") != nil) {
+            enemiesBeaten = prefs.objectForKey("enemiesBeaten") as Int
+        }
+        
+        var speedFloat:Float = 0
+        if (prefs.objectForKey("speedFloat") != nil) {
+            speedFloat = prefs.objectForKey("speedFloat") as Float
+        }
+        
+        healthProgressBar.progress = Float(stepCount % 10000) / 10000
+        speedProgressBar.progress = speedFloat
         magicProgressBar.progress = Float(magicSteps % 1000) / 1000
+        strengthProgressBar.progress = Float(enemiesBeaten % 25) / 25
+        
+        println("Enemies: \(enemiesBeaten), Bar: \(Float(enemiesBeaten % 25) / 25)")
     }
     
     override func didReceiveMemoryWarning() {

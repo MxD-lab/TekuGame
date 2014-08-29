@@ -26,7 +26,7 @@ extension SKNode {
 }
 
 class GameViewController: UIViewController {
-
+    var incremented = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,7 +71,19 @@ class GameViewController: UIViewController {
     func gameOver(notification: NSNotification) {
         var userInfo:NSDictionary = notification.userInfo!
         var gmover:Bool = userInfo.objectForKey("isGameOver") as Bool
-        if (gmover) {
+        if (gmover && !incremented) {
+            var enemiesbeaten = 0
+            var prefs = NSUserDefaults.standardUserDefaults()
+            prefs.removeObjectForKey("encounterStep")
+            if (prefs.objectForKey("enemiesBeaten") != nil) {
+                enemiesbeaten = prefs.objectForKey("enemiesBeaten") as Int
+                enemiesbeaten += 1
+                prefs.setObject(enemiesbeaten, forKey: "enemiesBeaten")
+            }
+            else {
+                prefs.setObject(1, forKey: "enemiesBeaten")
+            }
+            incremented = true
             performSegueWithIdentifier("mainmap", sender: self)
         }
     }
