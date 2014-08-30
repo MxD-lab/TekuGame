@@ -51,3 +51,6 @@ http://stackoverflow.com/a/19174810
   
 Notification from in game to view controller  
 http://stackoverflow.com/questions/21827783/how-to-reference-the-current-viewcontroller-from-a-sprite-kit-scene/21829209#21829209
+  
+Google Maps SDK for iOS  
+https://developers.google.com/maps/documentation/ios/
