@@ -48,6 +48,7 @@
 		F8956B2C19A1BB0200ED670B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8956B2B19A1BB0200ED670B /* CoreLocation.framework */; };
 		F8956B3019A1C23500ED670B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8956B2F19A1C23500ED670B /* CoreMotion.framework */; };
 		F8A596D119AC2CAF00B0AA8F /* SelectAttack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A596D019AC2CAF00B0AA8F /* SelectAttack.swift */; };
+		F8AC41E619B4148B00FD10C8 /* licenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AC41E519B4148B00FD10C8 /* licenseViewController.swift */; };
 		F8D8A2D619A2D7DE00CC6A0B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D8A2D519A2D7DE00CC6A0B /* Helpers.swift */; };
 		F8D8A2D819A2EB1900CC6A0B /* AccountSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D8A2D719A2EB1900CC6A0B /* AccountSelectionViewController.swift */; };
 		F8D8A2DA19A2F7E800CC6A0B /* statusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D8A2D919A2F7E800CC6A0B /* statusViewController.swift */; };
@@ -111,6 +112,7 @@
 		F8956B2B19A1BB0200ED670B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F8956B2F19A1C23500ED670B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F8A596D019AC2CAF00B0AA8F /* SelectAttack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAttack.swift; sourceTree = "<group>"; };
+		F8AC41E519B4148B00FD10C8 /* licenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = licenseViewController.swift; sourceTree = "<group>"; };
 		F8D8A2D519A2D7DE00CC6A0B /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		F8D8A2D719A2EB1900CC6A0B /* AccountSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSelectionViewController.swift; sourceTree = "<group>"; };
 		F8D8A2D919A2F7E800CC6A0B /* statusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = statusViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				F890D1F119AD77070018AC95 /* titleViewController.swift */,
 				F890D1EF19AD672F0018AC95 /* CharacterCreateViewController.swift */,
 				F8D8A2D719A2EB1900CC6A0B /* AccountSelectionViewController.swift */,
+				F8AC41E519B4148B00FD10C8 /* licenseViewController.swift */,
 				F8956B2719A1B93000ED670B /* MapViewController.swift */,
 				F8956B2319A1A07A00ED670B /* twitterSelectViewController.swift */,
 			);
@@ -403,6 +406,7 @@
 				F825583119AB1D280035EBF6 /* EnemyValues.swift in Sources */,
 				F825583E19AB1D630035EBF6 /* EnemyTypes.swift in Sources */,
 				F825584019AB1D630035EBF6 /* Player.swift in Sources */,
+				F8AC41E619B4148B00FD10C8 /* licenseViewController.swift in Sources */,
 				F825583619AB1D3F0035EBF6 /* Combat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
