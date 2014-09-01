@@ -385,7 +385,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: {numberOfSteps, timestamp, error in
                 self.stepCount = numberOfSteps + self.prevSteps
                 self.magicSteps = self.prevMagicSteps
-                if (self.currentHourInt == 12) {
+                if (self.currentHourInt == self.magicHourInt) {
                     self.magicSteps = self.prevMagicSteps + numberOfSteps
                 }
             })
