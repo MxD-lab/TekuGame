@@ -69,14 +69,12 @@ func encounter(p:player, e:enemy) -> Void
         if(p.currentHealth <= 0)
         {
             isDead = true;
-            println("       Moves Taken: \(movesDone) ");
-            println("       Player Died");
+            println("       Moves Taken: \(movesDone) Player Died");
         }
         if(e.currentHealth <= 0)
         {
             isDead = true;
-            println("       Moves Taken: \(movesDone) ");
-            println("       Enemy Died");
+            println("       Moves Taken: \(movesDone) Enemy Died");
         }
         turnPlayer = !turnPlayer;
     }
@@ -94,13 +92,9 @@ func doAction(user:Entity, target:Entity, action:Action)
         break;
     case Action.P_Uppercut:
         damage = user.currentStrength - (target.currentStrength/2);
-        damage = ((damage < 0) ? 0 : damage);
-        target.currentHealth -= damage;
         break;
     case Action.P_Charged_Strike:
         damage = (user.currentStrength - (target.currentStrength/2)) * 1.35;
-        damage = ((damage < 0) ? 0 : damage);
-        target.currentHealth -= damage;
         
         user.currentStrength -= user.strength * 0.1;
         user.currentStrength = ((user.currentStrength < 0) ? 0 : user.currentStrength);
@@ -111,20 +105,15 @@ func doAction(user:Entity, target:Entity, action:Action)
         break;
     case Action.P_Leg_Sweep:
         damage = (user.currentStrength - (target.currentStrength/2)) * 0.9;
-        damage = ((damage < 0) ? 0 : damage);
-        target.currentHealth -= damage;
         
         target.currentStrength -= target.strength * 0.1;
         target.currentStrength = ((target.currentStrength < 0) ? 0 : target.currentStrength);
         break;
     case Action.P_Turbo_Strike:
         damage = user.currentSpeed - (target.currentSpeed/2);
-        damage = ((damage < 0) ? 0 : damage);
-        target.currentHealth -= damage;
         break;
     case Action.P_Heart_Strike:
         damage = target.health * 0.1;
-        target.currentHealth -= damage;
         break;
     case Action.P_Muscle_Training:
         user.currentStrength += user.strength * 0.5;
@@ -135,35 +124,27 @@ func doAction(user:Entity, target:Entity, action:Action)
         damage = user.currentStrength - (target.currentStrength/2);
         damage = ((damage < 0) ? 0 : damage);
         damage += target.health / 6;
-        target.currentHealth -= damage;
         break;
     case Action.P_Sacrificial_Strike:
         damage = user.currentHealth - 1;
         user.currentHealth = 1;
         damage += (user.currentStrength - (target.currentStrength/2));
-        target.currentHealth -= damage;
         break;
     case Action.P_Overpower:
         if((user.currentHealth + user.currentStrength + user.currentSpeed) >= (target.currentHealth + target.currentStrength + target.currentSpeed))
         {
             damage = user.health + user.strength;
-            target.currentHealth -= damage;
         }
         else
         {
             damage = target.health + target.strength;
-            user.currentHealth -= damage;
         }
         break;
     case Action.E_EnergyBall:
         damage = user.currentMagic - (target.currentMagic/2);
-        damage = ((damage < 0) ? 0 : damage);
-        target.currentHealth -= damage;
         break;
     case Action.E_Icy_Wind:
         damage = (user.currentMagic - (target.currentMagic/2) * 0.9);
-        damage = ((damage < 0) ? 0 : damage);
-        target.currentHealth -= damage;
         
         target.currentMagic -= target.magic * 0.1;
         target.currentMagic = ((target.currentMagic < 0) ? 0 : target.currentMagic);
@@ -173,8 +154,6 @@ func doAction(user:Entity, target:Entity, action:Action)
         break;
     case Action.E_Fireball:
         damage = (user.currentMagic - (target.currentMagic/2)) * 1.35;
-        damage = ((damage < 0) ? 0 : damage);
-        target.currentHealth -= damage;
         
         user.currentMagic -= user.magic * 0.1;
         user.currentMagic = ((user.currentMagic < 0) ? 0 : user.currentMagic);
@@ -195,14 +174,10 @@ func doAction(user:Entity, target:Entity, action:Action)
     case Action.E_Life_Drain:
         damage = (user.currentMagic - (target.currentMagic/2));
         damage = ((damage < 0) ? 0 : damage);
-        target.currentHealth -= damage;
-        
         user.currentHealth += 0.75 * damage;
         break;
     case Action.E_Decay:
         damage = (user.currentMagic - (target.currentMagic/2)) * 0.7;
-        damage = ((damage < 0) ? 0 : damage);
-        target.currentHealth -= damage;
 
         target.currentStrength -= target.strength * 0.1;
         target.currentStrength = ((target.currentStrength < 0) ? 0 : target.currentStrength);
@@ -223,4 +198,7 @@ func doAction(user:Entity, target:Entity, action:Action)
     default:
         break;
     }
+    damage = ((damage < 0) ? 0 : damage);
+    println("       Damage Dealt: \(damage)");
+    target.currentHealth -= damage;
 }
