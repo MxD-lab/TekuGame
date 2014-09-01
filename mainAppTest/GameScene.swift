@@ -115,6 +115,7 @@ class GameScene: SKScene
         }
         else {
             var somethingDead:Bool = false;
+            var playerWin:Bool = false;
         
             if(p.currentHealth <= 0 && e.currentHealth <= 0)
             {
@@ -130,6 +131,7 @@ class GameScene: SKScene
             {
                 status.text = "Enemy Died";
                 somethingDead = true;
+                playerWin = true;
             }
             else
             {
@@ -143,7 +145,8 @@ class GameScene: SKScene
             }
             else if (somethingDead) {
                 somethingDead = false
-                var userInfo = NSDictionary(object: true, forKey: "isGameOver")
+                var userInfo = ["isGameOver":true, "playerWin":playerWin]
+//                var userInfo = NSDictionary(object: true, forKey: "isGameOver")
                 NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
             }
         }

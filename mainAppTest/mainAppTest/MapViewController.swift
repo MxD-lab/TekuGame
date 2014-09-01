@@ -16,7 +16,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var encountLabel: UILabel!
     
     // MapKit, CoreLocation
-    @IBOutlet var mapView: MKMapView!       // iOS Map.
     @IBOutlet weak var statusButton: UIButton!
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var altitudeLabel: UILabel!
@@ -33,8 +32,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var vAcc:Float! = 0
     var speedNum:Double! = 0
     var players:[NSDictionary] = []         // NSArray of NSDictionary, each element is a player entry. This comes from the server.
-    var allPins:NSMutableArray = []         // All of the pins set on the Map including preset pins and players.
-    var presetPins:NSMutableArray = []      // Array of only the preset pins.
+    var allPins:[GMSMarker] = []         // All of the pins set on the Map including preset pins and players.
+    var presetPins:[GMSMarker] = []      // Array of only the preset pins.
     var near_beacon:NSMutableArray = []     // Array of players with the same nearby beacon.
     
     // Internet Connection.
@@ -69,6 +68,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var statusTimer:NSTimer!
     var postGetTimer:NSTimer!
     var encounterTimer:NSTimer!
+    
+    // Google Maps things.
+    @IBOutlet var mainView:UIView!
+    var mapView_:GMSMapView!
+    var timer:NSTimer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,29 +130,53 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // Initial setup for map.
     func initialMapSetup() {
+        // Set to tokyo
+        positionMap(35.6896, long: 139.6917, zoom: 0)
         
-        var centerCoordinate : CLLocationCoordinate2D = CLLocationCoordinate2DMake(34.982397, 135.964603)
-        lat = 34.982397
-        long = 135.964603
+        // Wait until current location is found to zoom to that place.
+        timer = setInterval("gotoCurrentLocation", seconds: 1)
         
-        mapView.showsUserLocation = true
+        // Preset markers.
+        var marker_bkc = setMarker(34.982397, long: 135.964603, title: "BKC", text: "すてにゃん", color: UIColor.blueColor())
+        var marker_minamikusatsu = setMarker(35.003917, long: 135.947349, title: "南草津駅", text: "せやな", color: UIColor.blueColor())
         
-        let span = MKCoordinateSpanMake(0.003, 0.003) //小さい値であるほど近づく
-        //任意の場所を表示する場合、MKCoordinateRegionを使って表示する -> (中心位置、表示領域)
-        
-        var centerPosition = MKCoordinateRegionMake(centerCoordinate, span)
-        mapView.setRegion(centerPosition, animated:true)
-        
-        var fromCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(34.982397, 135.964603)
-        var toCoordinate   :CLLocationCoordinate2D = CLLocationCoordinate2DMake(35.003917, 135.947349)
-        
-        presetPins.addObject(createPin(fromCoordinate, title: "BKC", subtitle: "すてにゃん"))
-        presetPins.addObject(createPin(toCoordinate, title: "南草津駅", subtitle: "せやな"))
-        
-        //カメラの設定をしてみる（少し手前に傾けた状態）
-        var camera:MKMapCamera = self.mapView.camera;
-        camera.pitch += 60
-        self.mapView.setCamera(camera, animated: true)
+        presetPins.append(marker_bkc)
+        presetPins.append(marker_minamikusatsu)
+        allPins.append(marker_bkc)
+        allPins.append(marker_minamikusatsu)
+    }
+    
+    func positionMap(lat:CLLocationDegrees, long:CLLocationDegrees, zoom:Float) {
+        var camera:GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(lat, longitude: long, zoom: zoom)
+        mapView_ = GMSMapView(frame: mainView.bounds)
+        mapView_.camera = camera
+        mapView_.myLocationEnabled = true
+        mainView.addSubview(mapView_)
+    }
+    
+    func setMarker(lat:CLLocationDegrees, long:CLLocationDegrees, title:String, text:String, color:UIColor) -> GMSMarker {
+        var marker:GMSMarker = GMSMarker(position: CLLocationCoordinate2DMake(lat, long))
+        var tintedicon:UIImage = GMSMarker.markerImageWithColor(color)
+        marker.title = title
+        marker.snippet = text
+        marker.icon = tintedicon
+        marker.map = mapView_
+        return marker
+    }
+    
+    func gotoCurrentLocation() {
+        if (mapView_.myLocation != nil) {
+            moveCameraToTarget(mapView_.myLocation.coordinate, zoom: 15)
+            if (timer != nil) {
+                timer.invalidate()
+                timer = nil
+            }
+        }
+    }
+    
+    func moveCameraToTarget(target:CLLocationCoordinate2D, zoom:Float) {
+        var update:GMSCameraUpdate = GMSCameraUpdate.setTarget(target, zoom: zoom)
+        mapView_.animateWithCameraUpdate(update)
     }
     
     // Setup for beacon.
@@ -177,10 +205,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // Move to the user's current location.
     @IBAction func updateLocation(sender: AnyObject) {
-        var centerCoordinate : CLLocationCoordinate2D = CLLocationCoordinate2DMake(mapView.userLocation.coordinate.latitude, mapView.userLocation.coordinate.longitude)
-        let span = MKCoordinateSpanMake(0.003, 0.003)
-        var centerPosition = MKCoordinateRegionMake(centerCoordinate, span)
-        mapView.setRegion(centerPosition,animated:true)
+        gotoCurrentLocation()
     }
     
     override func didReceiveMemoryWarning() {
@@ -203,8 +228,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // Makes an HTTP POST request for the player's ID, beacon, and GPS coordinates.
     func post() {
         
-        lat = mapView.userLocation.coordinate.latitude
-        long = mapView.userLocation.coordinate.longitude
+        lat = mapView_.myLocation.coordinate.latitude
+        long = mapView_.myLocation.coordinate.longitude
         
         var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
         var str = "phone=\(playerID!)&beacon=\(beaconID!)&longitude=\(long!)&latitude=\(lat!)&submit=submit"
@@ -249,7 +274,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
             if (pid != playerID) {
                 var plCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(lati.doubleValue, lon.doubleValue)
-                createPin(plCoordinate, title: pid, subtitle: "Player")
+                var pl = setMarker(lati.doubleValue, long: lon.doubleValue, title: pid, text: "player", color: UIColor.redColor())
+                allPins.append(pl)
             }
             if (bid == beaconID) {
                 near_beacon.addObject(data)
@@ -261,23 +287,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // Resets the pins on the map.
     func resetPins() {
-        mapView.removeAnnotations(allPins)
-        allPins = []
-        for pin in presetPins {
-            self.mapView.addAnnotation(pin as MKAnnotation)
-            allPins.addObject(pin as MKAnnotation)
+        
+        for pin in allPins {
+            // If not a preset pin, then it is a player pin so delete it.
+            if (find(presetPins, pin) == nil) {
+                pin.map = nil
+            }
         }
-    }
-    
-    // Creates a pin at a coordinate with a certain title and subtitle.
-    func createPin(coordinate:CLLocationCoordinate2D, title:String, subtitle:String) -> MKAnnotation {
-        var annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
-        annotation.title = title
-        annotation.subtitle = subtitle
-        self.mapView.addAnnotation(annotation)
-        allPins.addObject(annotation)
-        return annotation
+        
+        var temparr:[GMSMarker] = []
+        
+        for pin in allPins {
+            if (pin.map != nil) {
+                temparr.append(pin)
+            }
+        }
+        allPins = temparr
     }
     
     func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {

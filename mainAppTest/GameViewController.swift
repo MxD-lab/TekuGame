@@ -71,7 +71,8 @@ class GameViewController: UIViewController {
     func gameOver(notification: NSNotification) {
         var userInfo:NSDictionary = notification.userInfo!
         var gmover:Bool = userInfo.objectForKey("isGameOver") as Bool
-        if (gmover && !incremented) {
+        var pwin:Bool = userInfo.objectForKey("playerWin") as Bool
+        if (gmover && pwin && !incremented) {
             var enemiesbeaten = 0
             var prefs = NSUserDefaults.standardUserDefaults()
             prefs.removeObjectForKey("encounterStep")

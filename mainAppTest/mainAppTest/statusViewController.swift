@@ -58,8 +58,6 @@ class statusViewController: UIViewController {
         speedProgressBar.progress = speedFloat
         magicProgressBar.progress = Float(magicSteps % 1000) / 1000
         strengthProgressBar.progress = Float(enemiesBeaten % 25) / 25
-        
-        println("Enemies: \(enemiesBeaten), Bar: \(Float(enemiesBeaten % 25) / 25)")
     }
     
     override func didReceiveMemoryWarning() {

@@ -197,9 +197,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vRS-fM-G7q">
-                                <rect key="frame" x="20" y="28" width="280" height="527"/>
-                            </mapView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y4B-HR-yVG">
+                                <rect key="frame" x="16" y="28" width="284" height="527"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RiL-MP-DSb">
                                 <rect key="frame" x="220" y="37" width="65" height="30"/>
                                 <state key="normal" title=" 現在地へ">
@@ -302,7 +303,7 @@
                         <outlet property="encountLabel" destination="uqp-1a-ogx" id="UxA-qg-6si"/>
                         <outlet property="magicHourLabel" destination="QRL-ff-gXv" id="FOJ-h1-JOd"/>
                         <outlet property="magicStepsLabel" destination="hZm-wd-Md2" id="6kr-MZ-9B3"/>
-                        <outlet property="mapView" destination="vRS-fM-G7q" id="HL0-Bo-CRt"/>
+                        <outlet property="mainView" destination="y4B-HR-yVG" id="x5z-Zm-n4E"/>
                         <outlet property="netConnectionLabel" destination="NdG-GS-BOu" id="OP7-Pl-m0E"/>
                         <outlet property="speedLabel" destination="IIb-ml-KUM" id="Dr8-vw-IFe"/>
                         <outlet property="statusButton" destination="Ex8-bO-nfp" id="4jH-5G-D0k"/>
