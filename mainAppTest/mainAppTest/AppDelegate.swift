@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         getHistoricalSteps()
         updateSteps()
         
-        UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler(nil)
+        UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler({})
         loop = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("notifySteps"), userInfo: nil, repeats: true)
         NSRunLoop.currentRunLoop().addTimer(loop, forMode: NSRunLoopCommonModes)
     }

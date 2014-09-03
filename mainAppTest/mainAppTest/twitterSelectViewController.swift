@@ -71,11 +71,11 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
         return "\(allAccounts[row].0) (\(allAccounts[row].1))"
     }
     
-    func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return allAccounts.count
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int {
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     
@@ -93,7 +93,7 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "twselect_accreate") {
             var nextVC = segue.destinationViewController as AccountCreateViewController
             nextVC.playerID = "\(allAccounts[twitterPickerView.selectedRowInComponent(0)].0) (\(allAccounts[twitterPickerView.selectedRowInComponent(0)].1))"

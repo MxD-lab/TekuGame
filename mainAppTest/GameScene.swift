@@ -19,7 +19,7 @@ var allActions:[(String, [Action])] = [("Utility", utility), ("Physical",physica
 
 var turnPlayer:Bool = false;
 
-class GameScene: SKScene
+class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
 {
     let background = SKSpriteNode(imageNamed: "background.png");
     let status:UILabel = UILabel(frame: CGRectMake( 0, 0, 548, 20));
@@ -36,7 +36,7 @@ class GameScene: SKScene
     {
         var userInfo = NSDictionary(object: false, forKey: "isGameOver")
         NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
-
+        
         p.level = 1;
         p = setStats(p, 0.25, 0.25, 0.25, 0.25);
         e.level = 1;
@@ -56,36 +56,36 @@ class GameScene: SKScene
         status.backgroundColor = UIColor.lightGrayColor();
         status.opaque = false;
         status.alpha = 0.75;
-        self.view.addSubview(status);
-        
+        view.addSubview(status)
+
         typePicker.transform = CGAffineTransformMakeScale(0.75 , 0.75);
         typePicker.frame = CGRectMake(0, 0, 75, 10);
         //typePicker.center = CGPointMake(37.5, X);
         typePicker.center = CGPointMake(60, 250);
         typePicker.delegate = self;
         typePicker.reloadAllComponents();
-        self.view.addSubview(typePicker);
+        view.addSubview(typePicker);
         
         actionPicker.transform = CGAffineTransformMakeScale(0.75 , 0.75);
         actionPicker.frame = CGRectMake(0, 0, 135, 10);
         actionPicker.center = CGPointMake(500, 250);
         actionPicker.delegate = self;
         actionPicker.reloadAllComponents();
-        self.view.addSubview(actionPicker);
+        view.addSubview(actionPicker);
         
         actionButton.position = CGPointMake(CGRectGetMidX(self.frame) + 400, CGRectGetMidY(self.frame) + 80);
         actionButton.size = CGSizeMake(actionButton.size.width * 2, actionButton.size.height * 2);
         actionButton.zPosition = 3;
-        self.addChild(actionButton);
+        addChild(actionButton);
         
         background.anchorPoint = CGPoint(x: 0, y: 0);
         background.size = self.size;
         background.zPosition = -2;
-        self.addChild(background);
-
+        addChild(background);
+        
         enemyImage.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 80);
         enemyImage.zPosition = 1;
-        self.addChild(enemyImage);
+        addChild(enemyImage);
     }
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent)
     {
@@ -107,8 +107,8 @@ class GameScene: SKScene
     }
     override func update(currentTime: CFTimeInterval)
     {
-        /* Called before each frame is rendered */ 
-
+        /* Called before each frame is rendered */
+        
         if (step < 300) {
             step += 1;
             status.text = "You encountered some enemy!";
@@ -116,7 +116,7 @@ class GameScene: SKScene
         else {
             var somethingDead:Bool = false;
             var playerWin:Bool = false;
-        
+            
             if(p.currentHealth <= 0 && e.currentHealth <= 0)
             {
                 status.text = "Both Died";
@@ -146,79 +146,72 @@ class GameScene: SKScene
             else if (somethingDead) {
                 somethingDead = false
                 var userInfo = ["isGameOver":true, "playerWin":playerWin]
-//                var userInfo = NSDictionary(object: true, forKey: "isGameOver")
+                //                var userInfo = NSDictionary(object: true, forKey: "isGameOver")
                 NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
             }
         }
-
         
     }
-}
-
-extension GameScene: UIPickerViewDataSource
-{
-    func numberOfComponentsInPickerView(colorPicker: UIPickerView!) -> Int
+    func numberOfComponentsInPickerView(colorPicker: UIPickerView) -> Int
     {
         return 1;
     }
     
-    func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
         switch(pickerView)
-        {
-            case typePicker:
-                return num.count;
-            case actionPicker:
-                switch(typePicker.selectedRowInComponent(0))
+            {
+        case typePicker:
+            return num.count;
+        case actionPicker:
+            switch(typePicker.selectedRowInComponent(0))
                 {
-                    case 0:
-                        return utility.count;
-                    case 1:
-                        return physical.count;
-                    default:
-                        return magic.count;
-                }
+            case 0:
+                return utility.count;
+            case 1:
+                return physical.count;
             default:
-                return 0;
-        }
-    }
-}
-
-extension GameScene: UIPickerViewDelegate
-{
-    func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String!
-    {
-        switch(pickerView)
-        {
-            case typePicker:
-                return num[row];
-            case actionPicker:
-                switch(typePicker.selectedRowInComponent(0))
-                {
-                    case 0:
-                        return utility[row].typeToStringE();
-                    case 1:
-                        return physical[row].typeToStringE();
-                    case 2:
-                        return magic[row].typeToStringE();
-                    default:
-                        return "";
-                }
-            default:
-                return "";
+                return magic.count;
+            }
+        default:
+            return 0;
         }
     }
     
-    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String!
     {
         switch(pickerView)
-        {
-            case typePicker:
-                actionPicker.reloadAllComponents();
-            case actionPicker:
-                break;
+            {
+        case typePicker:
+            return num[row];
+        case actionPicker:
+            switch(typePicker.selectedRowInComponent(0))
+                {
+            case 0:
+                return utility[row].typeToStringE();
+            case 1:
+                return physical[row].typeToStringE();
+            case 2:
+                return magic[row].typeToStringE();
             default:
-                break;
+                return "";
+            }
+        default:
+            return "";
         }
     }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        switch(pickerView)
+            {
+        case typePicker:
+            actionPicker.reloadAllComponents();
+        case actionPicker:
+            break;
+        default:
+            break;
+        }
+    }
+    
 }

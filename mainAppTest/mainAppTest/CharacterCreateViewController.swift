@@ -161,7 +161,7 @@ class CharacterCreateViewController: UIViewController
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "charcreate_map" && playerID != "") {
             
             var prefs = NSUserDefaults.standardUserDefaults()

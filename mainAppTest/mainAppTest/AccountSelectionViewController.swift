@@ -32,20 +32,20 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
         return accounts[row] as String
     }
     
-    func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
-        return accounts.count
-    }
-    
     func pickerView(pickerView: UIPickerView!, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView! {
         var label = UILabel(frame: CGRectMake(0, 0, pickerView.frame.size.width, 44))
         label.font = UIFont(name: "Optima", size: 24)
         label.textColor = UIColor.blackColor()
-        label.text = accounts[row] as String
+        label.text = accounts[row] as? String
         label.textAlignment = NSTextAlignment.Center
         return label
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int {
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return accounts.count
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     
@@ -54,7 +54,7 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "accselect_map" && accounts.count > 0) {
             var prefs = NSUserDefaults.standardUserDefaults()
             prefs.setObject(accounts[accountPickerView.selectedRowInComponent(0)] as String, forKey: "currentuser")

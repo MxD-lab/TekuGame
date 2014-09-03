@@ -73,7 +73,7 @@ class statusViewController: UIViewController {
         return Int(UIInterfaceOrientationMask.Portrait.toRaw())
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "status_title") {
             var prefs = NSUserDefaults.standardUserDefaults()
             prefs.setObject(false, forKey: "loggedIn")

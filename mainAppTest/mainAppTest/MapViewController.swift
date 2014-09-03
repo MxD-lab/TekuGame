@@ -383,7 +383,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             var todate:NSDate! = NSDate()
             
             stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: {numberOfSteps, timestamp, error in
-                self.stepCount = numberOfSteps + self.prevSteps
+                self.stepCount = numberOfSteps*50 + self.prevSteps
                 self.magicSteps = self.prevMagicSteps
                 if (self.currentHourInt == self.magicHourInt) {
                     self.magicSteps = self.prevMagicSteps + numberOfSteps
@@ -621,7 +621,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return Int(UIInterfaceOrientationMask.Portrait.toRaw())
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "map_status") {
             var prefs = NSUserDefaults.standardUserDefaults()
             prefs.setObject(speedFloat, forKey: "speedFloat")
