@@ -76,7 +76,7 @@ enum Action:String, Printable
     case TailSwing = "TailSwing";
     case Constrict = "Constrict";
     case BreathOfIce = "BreathOfIce";
-    case CrushUnderFood = "CrushUnderFood";
+    case CrushUnderFoot = "CrushUnderFoot";
     case BreathOfFire = "BreathOfFire";
     
     static let allValues = [
@@ -267,7 +267,7 @@ enum Action:String, Printable
             return "Constrict";
         case Action.BreathOfIce:
             return "Breath of Ice";
-        case Action.CrushUnderFood:
+        case Action.CrushUnderFoot:
             return "Crush Under Foot";
         case Action.BreathOfFire:
             return "Breath of Fire";
@@ -300,9 +300,9 @@ enum Action:String, Printable
         case Action.P_Stomp:
             return "踏む";
         case Action.P_Sacrificial_Strike:
-            return "犠牲攻撃";
+            return "命がけの一撃";
         case Action.P_Overpower:
-            return "制圧";
+            return "制圧する";
         case Action.E_EnergyBall:
             return "エネルギーボール";
         case Action.E_Icy_Wind:
@@ -312,7 +312,7 @@ enum Action:String, Printable
         case Action.E_Fireball:
             return "ファイヤーボール";
         case Action.E_Sharpen_Mind:
-            return "研ぎ澄ます";
+            return "心を研ぎ澄ます";
         case Action.E_Curse:
             return "呪う";
         case Action.E_Life_Drain:
@@ -323,91 +323,91 @@ enum Action:String, Printable
             return "フルヒール";
         case Action.E_Instant_Death:
             return "デス";
-        /**/
+        /*えねみーあたっくす*/
         case Action.Punch:
-            return "";
+            return "パンチ";
         case Action.RapidFire:
-            return "";
+            return "火矢速射";
         case Action.Cleave:
-            return "";
+            return "きりさく";
         case Action.RecklessStrike:
-            return "";
+            return "捨て身攻撃";
         case Action.EatDirt:
-            return "";
+            return "土を食べる";
         case Action.EightProngStab:
-            return "";
+            return "八方向蜘蛛殺法";
         case Action.HornSmash:
-            return "";
+            return "つのでつく";
         case Action.SprayAcid:
-            return "";
+            return "酸を吐く";
         case Action.AetherialFangs:
-            return "";
+            return "エーテルファング";
         case Action.Horrify:
-            return "";
+            return "おどろかす";
         case Action.Meditate:
-            return "";
+            return "めいそう";
         case Action.MindInvasion:
-            return "";
+            return "精神操作";
         case Action.AetherialDarts:
-            return "";
+            return "エーテルダーツ";
         case Action.Burrow:
-            return "";
+            return "あなをほる";
         case Action.FocusEnergy:
-            return "";
+            return "パワー集中";
         case Action.Rushdown:
-            return "";
+            return "突進";
         case Action.TriBite:
-            return "";
+            return "三連噛み付き";
         case Action.UnforseenAttack:
-            return "";
+            return "不意打ち";
         case Action.DefendCore:
-            return "";
+            return "身を守る";
         case Action.Enrage:
-            return "";
+            return "怒り";
         case Action.Crush:
-            return "";
+            return "クラッシュ";
         case Action.HeadBash:
-            return "";
+            return "頭突き";
         case Action.LimbSwing:
-            return "";
+            return "腕ちぎりスイング";
         case Action.GlancingWing:
-            return "";
+            return "翼スラッシュ";
         case Action.Club:
-            return "";
+            return "殴りつける";
         case Action.ScaldingConflagration:
-            return "";
+            return "激しい炎";
         case Action.SuffocatingCurrent:
-            return "";
+            return "水攻め";
         case Action.SlicingGale:
-            return "";
+            return "カマイタチ";
         case Action.CrushingGaea:
-            return "";
+            return "大地の拳";
         case Action.Drain:
-            return "";
+            return "エナジードレイン";
         case Action.Confuse:
-            return "";
+            return "混乱攻撃";
         case Action.Envelop:
-            return "";
+            return "スライムハグ";
         case Action.Blight:
-            return "";
+            return "腐食攻撃";
         case Action.Smite:
-            return "";
+            return "鉄槌";
         case Action.Engulf:
-            return "";
+            return "闇に飲み込む";
         case Action.TwilightStrike:
-            return "";
+            return "神々の黄昏";
         case Action.EradicatingLight:
-            return "";
+            return "断罪の滅殺光";
         case Action.TailSwing:
-            return "";
+            return "ドラゴンテールスイング";
         case Action.Constrict:
-            return "";
+            return "ドラゴンテールしめつけ";
         case Action.BreathOfIce:
-            return "";
-        case Action.CrushUnderFood:
-            return "";
+            return "凍てつく吐息";
+        case Action.CrushUnderFoot:
+            return "踏みつぶす";
         case Action.BreathOfFire:
-            return "";
+            return "焼け付く吐息";
         default:
             return "";
         }
