@@ -13,25 +13,159 @@ func selectAttack(e:enemy) -> Action
     switch(e.type)
     {
     case Types.Humanoid:
-        return Action.P_Uppercut;
+        switch(e.subType)
+            {
+            /*Archer*/
+        case 0:
+            break;
+            /*Samurai*/
+        case 1:
+            break;
+            /*Ninja*/
+        case 2:
+            break;
+        default:
+            break;
+        }
     case Types.Insect:
-        return Action.P_Uppercut;
+        switch(e.subType)
+            {
+            /*Wurm*/
+        case 0:
+            break;
+            /*Spider*/
+        case 1:
+            break;
+            /*Stag Beetle*/
+        case 2:
+            break;
+        default:
+            break;
+        }
     case Types.Alien:
-        return Action.E_EnergyBall;
+        switch(e.subType)
+            {
+            /*Oorn*/
+        case 0:
+            break;
+            /*Mi-go*/
+        case 1:
+            break;
+            /*Yugg*/
+        case 2:
+            break;
+        default:
+            break;
+        }
     case Types.Beast:
-        return Action.P_Uppercut;
+        switch(e.subType)
+            {
+            /*Minotaur*/
+        case 0:
+            break;
+            /*Cerberus*/
+        case 1:
+            break;
+            /*Griffin*/
+        case 2:
+            break;
+        default:
+            break;
+        }
     case Types.Construct:
-        return Action.P_Uppercut;
+        switch(e.subType)
+            {
+            /*Qlippoth Barrier*/
+        case 0:
+            break;
+            /*Qlippoth Shell*/
+        case 1:
+            break;
+            /*Qlippoth Husk*/
+        case 2:
+            break;
+        default:
+            break;
+        }
     case Types.Undead:
-        return Action.P_Uppercut;
+        switch(e.subType)
+            {
+            /*Zombie*/
+        case 0:
+            break;
+            /*Goat-Bat Hybrid*/
+        case 1:
+            break;
+            /*Ancent Soldier*/
+        case 2:
+            break;
+        default:
+            break;
+        }
     case Types.Elemental:
-        return Action.E_EnergyBall;
+        
+        switch(e.subType)
+            {
+            /*Fire Elemental*/
+        case 0:
+            break;
+            /*Water Elemental*/
+        case 1:
+            break;
+            /*Wind Elemental*/
+        case 2:
+            break;
+            /*Earth Elemental*/
+        case 3:
+            break;
+        default:
+            break;
+        }
     case Types.Slime:
-        return Action.E_EnergyBall;
+        switch(e.subType)
+            {
+            /*Shoggoth*/
+        case 0:
+            break;
+            /*Brain Slug*/
+        case 1:
+            break;
+            /*Ooze*/
+        case 2:
+            break;
+        default:
+            break;
+        }
     case Types.Demon:
-        return Action.E_EnergyBall;
+        switch(e.subType)
+            {
+            /*Djinn*/
+        case 0:
+            break;
+            /*Vampire*/
+        case 1:
+            break;
+            /*Angel of Death*/
+        case 2:
+            break;
+        default:
+            break;
+        }
     case Types.Dragon:
-        return (e.strength > e.magic) ? Action.P_Uppercut : Action.E_EnergyBall;
+        switch(e.subType)
+            {
+            /*Wyrm*/
+        case 0:
+            break;
+            /*Sea Serpent*/
+        case 1:
+            break;
+            /*Dragon*/
+        case 2:
+            break;
+        default:
+            break;
+        }
     default:
         println("DID EMPTY ATTACK!");
         return Action.empty;
