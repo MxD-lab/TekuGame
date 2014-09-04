@@ -26,9 +26,14 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
     
     var timer:NSTimer!
     
+    var battleStarted = false
+    var hostID:MCPeerID!
+    
     @IBOutlet weak var playerTextView: UITextView!
     @IBOutlet weak var readyTextView: UITextView!
+    @IBOutlet weak var battleTextView: UITextView!
     @IBOutlet weak var readySwitch: UISwitch!
+    @IBOutlet weak var readyLabel: UILabel!
     
     @IBAction func readyTouched(sender: AnyObject) {
         startAdvertising()
@@ -44,7 +49,7 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
         
         var error:NSError?
         var data = NSKeyedArchiver.archivedDataWithRootObject(mydict)
-        println("going to send")
+//        println("going to send")
         session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
         println("Error: \(error?.localizedDescription)")
         println("Peers: \(session.connectedPeers)")
@@ -83,25 +88,68 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
     }
     
     func updatePlayerList() {
-        playerTextView.text = "\(playerID)\n"
-        if (readySwitch.on) {
-            readyTextView.text = "○\n"
-        }
-        else {
-            readyTextView.text = "×\n"
-        }
-        
-        for pl in otherPeers {
-            if (otherPeersDict[pl] != nil) {
-                playerTextView.text = playerTextView.text + otherPeersDict[pl]!["display_name"]! + "\n"
-                if (otherPeersDict[pl]!["ready"]! == "true") {
-                    readyTextView.text = readyTextView.text + "○\n"
-                }
-                else {
-                    readyTextView.text = readyTextView.text + "×\n"
+        if (!battleStarted) {
+            var count = 0
+            playerTextView.text = "\(playerID)\n"
+            if (readySwitch.on) {
+                readyTextView.text = "○\n"
+                count++
+            }
+            else {
+                readyTextView.text = "×\n"
+            }
+            
+            for pl in otherPeers {
+                if (otherPeersDict[pl] != nil) {
+                    playerTextView.text = playerTextView.text + otherPeersDict[pl]!["display_name"]! + "\n"
+                    if (otherPeersDict[pl]!["ready"]! == "true") {
+                        readyTextView.text = readyTextView.text + "○\n"
+                        count++
+                    }
+                    else {
+                        readyTextView.text = readyTextView.text + "×\n"
+                    }
                 }
             }
+            if (count >= 3) {
+                initBattle()
+            }
         }
+    }
+    
+    func initBattle() {
+        
+        var mydict:[String:String] = ["battle":"true"]
+        var error:NSError?
+        var data = NSKeyedArchiver.archivedDataWithRootObject(mydict)
+        session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
+        
+        battleStarted = true
+        playerTextView.hidden = true
+        readyTextView.hidden = true
+        readySwitch.hidden = true
+        readyLabel.hidden = true
+        battleTextView.hidden = false
+        battleTextView.text = "You have encountered a monster!\n"
+        
+        var hostIDText:String! = "\(myPeerID.displayName)"
+        hostID = myPeerID
+        for id in otherPeers {
+            var IDText:String! = "\(id.displayName)"
+            if (IDText < hostIDText) {
+                hostIDText = IDText
+                hostID = id
+            }
+        }
+        
+        if (hostIDText == "\(myPeerID.displayName)") {
+            battleTextView.text = battleTextView.text + "I am the host.\n"
+        }
+        else {
+            var hostname:String! = otherPeersDict[hostID]!["display_name"]!
+            battleTextView.text = battleTextView.text + "\(hostname) is the host.\n"
+        }
+        
     }
     
     // Called when a browser failed to start browsing for peers. (required)
@@ -113,13 +161,13 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
     
     // Called when a new peer appears. (required)
     func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
-        println("found peer: \(peerID.displayName)")
+//        println("found peer: \(peerID.displayName)")
         nearbyServiceBrowser.invitePeer(peerID, toSession: session, withContext: "Welcome".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true), timeout: 10)
         var peer_name:AnyObject! = info["display_name"]
         var pname:String = peer_name as String
         var ready:AnyObject! = info["ready"]
         var rstr:String = ready as String
-        println("display_name: \(pname)")
+//        println("display_name: \(pname)")
         dispatch_async(dispatch_get_main_queue(), {
             if (find(self.otherPeers, peerID) == nil) {
                 self.otherPeers.append(peerID)
@@ -137,8 +185,14 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
             }
             index++
         }
+        
+        var pname = otherPeersDict[peerID]!["display_name"]!
+        if (battleStarted) {
+            battleTextView.text = battleTextView.text + "Lost connection with \(pname)\n"
+        }
+        
         otherPeers.removeAtIndex(index)
-        otherPeersDict.removeValueForKey(peerID)
+//        otherPeersDict.removeValueForKey(peerID)
     }
     
     // Called when advertisement fails. (required)
@@ -158,11 +212,17 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
         dispatch_async(dispatch_get_main_queue(), {
             var dict:[String:String]! = NSKeyedUnarchiver.unarchiveObjectWithData(data) as [String:String]!
             
-            var pname:String! = dict["display_name"] as String!
-            var ready:String! = dict["ready"] as String!
-            
-            println("received data: \(dict)")
-            self.otherPeersDict[peerID] = ["display_name" : pname, "ready" : ready]
+            if (dict["display_name"] != nil) {
+                var pname:String! = dict["display_name"] as String!
+                var ready:String! = dict["ready"] as String!
+                
+                self.otherPeersDict[peerID] = ["display_name" : pname, "ready" : ready]
+            }
+            else {
+                if (!self.battleStarted) {
+                    self.initBattle()
+                }
+            }
         })
     }
     
@@ -201,7 +261,6 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
         var discoveryInfo:NSDictionary = NSDictionary(objects: [playerID, ready], forKeys: ["display_name", "ready"])
         nearbyServiceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: discoveryInfo, serviceType: serviceType)
         nearbyServiceAdvertiser.delegate = self
-        nearbyServiceAdvertiser.stopAdvertisingPeer()
         nearbyServiceAdvertiser.startAdvertisingPeer()
     }
     
@@ -211,7 +270,10 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
     
     override func viewDidDisappear(animated: Bool) {
         playerTextView.text = ""
-        timer.invalidate()
+        if (timer != nil) {
+            timer.invalidate()
+        }
         timer = nil
     }
+    
 }

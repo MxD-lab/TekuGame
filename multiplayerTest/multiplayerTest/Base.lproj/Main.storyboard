@@ -82,6 +82,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U4q-w2-Rxj">
+                                <rect key="frame" x="16" y="59" width="288" height="368"/>
+                                <color key="backgroundColor" red="0.94435716711956519" green="0.94435716711956519" blue="0.94435716711956519" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -91,38 +97,16 @@
                         <size key="landscapeSize" width="568" height="320"/>
                     </simulatedScreenMetrics>
                     <connections>
+                        <outlet property="battleTextView" destination="U4q-w2-Rxj" id="ees-KR-8ZM"/>
                         <outlet property="playerTextView" destination="BE9-Rj-eDg" id="MwM-Wf-tvs"/>
+                        <outlet property="readyLabel" destination="99a-Ww-Vkm" id="oWf-eV-CpI"/>
                         <outlet property="readySwitch" destination="Sju-5i-FL7" id="auc-Ix-6Kd"/>
                         <outlet property="readyTextView" destination="NhB-ly-L3z" id="Z1c-qz-BrD"/>
-                        <segue destination="eSS-IS-Qs5" kind="show" id="cMB-Ig-G9A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JUx-uZ-QHO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="657" y="132"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="3ou-UW-glb">
-            <objects>
-                <viewController id="eSS-IS-Qs5" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="YkY-NY-3hk"/>
-                        <viewControllerLayoutGuide type="bottom" id="MxX-tZ-nEa"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pKR-et-V6i">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
-                        <size key="portraitSize" width="320" height="568"/>
-                        <size key="landscapeSize" width="568" height="320"/>
-                    </simulatedScreenMetrics>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FKN-KB-97a" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1098" y="132"/>
         </scene>
     </scenes>
 </document>
