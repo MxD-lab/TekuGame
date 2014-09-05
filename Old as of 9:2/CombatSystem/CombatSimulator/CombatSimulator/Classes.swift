@@ -32,10 +32,10 @@ enum Types:String, Printable
         Types.Slime,
         Types.Demon,
         Types.Dragon
-        ];
+    ];
     
     var description:String
-    {
+        {
         get
         {
             return self.toRaw();
@@ -45,31 +45,32 @@ enum Types:String, Printable
     func typeToStringE() -> String
     {
         switch(self)
-        {
-            case Types.Humanoid:
-                return "Humanoid";
-            case Types.Insect:
-                return "Insect";
-            case Types.Alien:
-                return "Alien";
-            case Types.Beast:
-                return "Beast";
-            case Types.Construct:
-                return "Construct";
-            case Types.Undead:
-                return "Undead";
-            case Types.Elemental:
-                return "Elemental";
-            case Types.Slime:
-                return "Slime";
-            case Types.Demon:
-                return "Demon";
-            case Types.Dragon:
-                return "Dragon";
-            default:
-                return "";
+            {
+        case Types.Humanoid:
+            return "Humanoid";
+        case Types.Insect:
+            return "Insect";
+        case Types.Alien:
+            return "Alien";
+        case Types.Beast:
+            return "Beast";
+        case Types.Construct:
+            return "Construct";
+        case Types.Undead:
+            return "Undead";
+        case Types.Elemental:
+            return "Elemental";
+        case Types.Slime:
+            return "Slime";
+        case Types.Demon:
+            return "Demon";
+        case Types.Dragon:
+            return "Dragon";
+        default:
+            return "";
         }
     }
+    
     func typeToStringJ() -> String
     {
         switch(self)
@@ -102,6 +103,7 @@ enum Types:String, Printable
 
 enum Action:String, Printable
 {
+    case empty = "empty"
     /*Utility Actions*/
     case U_Examine = "U_Examine";
     /*Physical Actions*/
@@ -126,6 +128,51 @@ enum Action:String, Printable
     case E_Decay = "E_Decay";
     case E_Full_Heal = "E_Full_Heal";
     case E_Instant_Death = "E_Instant_Death";
+    /*Enemy Attacks*/
+    case Punch = "Punch";
+    case RapidFire = "RapidFire";
+    case Cleave = "Cleave"
+    case RecklessStrike = "RecklessStrike";
+    case Bite = "Bite";
+    case EatDirt = "Eat Dirt";
+    case EightProngStab = "EightProngStab";
+    case HornSmash = "HornSmash";
+    case SprayAcid = "SprayAcid";
+    case AetherialFangs = "Aetherial Fangs"
+    case Horrify = "Horrify";
+    case Meditate = "Meditate";
+    case MindInvasion = "MindInvasion";
+    case AetherialDarts = "Aetherial Darts";
+    case Burrow = "Burrow";
+    case FocusEnergy = "FocusEnergy";
+    case Rushdown = "Rushdown";
+    case TriBite = "TriBite";
+    case UnforseenAttack = "UnforseenAttack";
+    case DefendCore = "DefendCore";
+    case Enrage = "Enrage";
+    case Crush = "Crush";
+    case HeadBash = "HeadBash";
+    case LimbSwing = "LimbSwing";
+    case GlancingWing = "GlancingWing"
+    case Club = "Club";
+    case ScaldingConflagration = "ScaldingConflagration";
+    case SuffocatingCurrent = "SuffocatingCurrent";
+    case SlicingGale = "SlicingGale";
+    case CrushingGaea = "CrushingGaea";
+    case Drain = "Drain";
+    case Confuse = "Confuse";
+    case Envelop = "Envelop";
+    case Blight = "Blight";
+    case Smite = "Smite";
+    case Engulf = "Engulf";
+    case TwilightStrike = "TwilightStrike";
+    case EradicatingLight = "EradicatingLight";
+    case TailSwing = "TailSwing";
+    case Constrict = "Constrict";
+    case BreathOfIce = "BreathOfIce";
+    case CrushUnderFoot = "CrushUnderFoot";
+    case BreathOfFire = "BreathOfFire";
+    
     static let allValues = [
         Action.U_Examine,
         Action.P_Uppercut,
@@ -148,10 +195,39 @@ enum Action:String, Printable
         Action.E_Decay,
         Action.E_Full_Heal,
         Action.E_Instant_Death
-        ];
-
+    ];
+    static let allUtility = [Action.U_Examine];
+    static let allPhysical = [
+        Action.P_Uppercut,
+        Action.P_Charged_Strike,
+        Action.P_Meditation,
+        Action.P_Leg_Sweep,
+        Action.P_Turbo_Strike,
+        Action.P_Heart_Strike,
+        Action.P_Muscle_Training,
+        Action.P_Stomp,
+        Action.P_Sacrificial_Strike,
+        Action.P_Overpower
+    ];
+    static let allMagic = [
+        Action.E_EnergyBall,
+        Action.E_Icy_Wind,
+        Action.E_Barrier,
+        Action.E_Fireball,
+        Action.E_Sharpen_Mind,
+        Action.E_Curse,
+        Action.E_Life_Drain,
+        Action.E_Decay,
+        Action.E_Full_Heal,
+        Action.E_Instant_Death
+    ];
+    
+    static let actionsUtilityE:[String] = ["Examine"];
+    static let actionPhysicalE:[String] = ["Uppercut", "Charged Strike", "Meditation", "Leg Sweep", "Turbo Strike", "Heart Strike", "Muscle Training", "Stomp", "Sacrificial Strike", "Ovepower"];
+    static let actionsMagicE:[String] = ["Energy Ball", "Icy Wind", "Barrier", "Fireball", "Sharpen Mind", "Curse", "Life Drain", "Decay", "Full Heal", "Instant Death"];
+    
     var description:String
-    {
+        {
         get
         {
             return self.toRaw();
@@ -161,7 +237,7 @@ enum Action:String, Printable
     func typeToStringE() -> String
     {
         switch(self)
-        {
+            {
         case Action.U_Examine:
             return "Examine";
         case Action.P_Uppercut:
@@ -204,15 +280,103 @@ enum Action:String, Printable
             return "Full Heal";
         case Action.E_Instant_Death:
             return "Instant Death";
+            /**/
+        case Action.Punch:
+            return "Punch";
+        case Action.RapidFire:
+            return "Rapid Fire";
+        case Action.Cleave:
+            return "Cleave";
+        case Action.RecklessStrike:
+            return "Reckless Strike";
+        case Action.Bite:
+            return "Bite";
+        case Action.EatDirt:
+            return "Eat Dirt";
+        case Action.EightProngStab:
+            return "Eight Pronged Stab";
+        case Action.HornSmash:
+            return "Horn Smash";
+        case Action.SprayAcid:
+            return "Spray Acid";
+        case Action.AetherialFangs:
+            return "Ætherial Fangs";
+        case Action.Horrify:
+            return "Horrify";
+        case Action.Meditate:
+            return "Meditate";
+        case Action.MindInvasion:
+            return "Mind Invasion";
+        case Action.AetherialDarts:
+            return "Ætherial Darts";
+        case Action.Burrow:
+            return "Burrow";
+        case Action.FocusEnergy:
+            return "Focus Energy";
+        case Action.Rushdown:
+            return "Rushdown";
+        case Action.TriBite:
+            return "Tri Bite";
+        case Action.UnforseenAttack:
+            return "Unforseen Attack";
+        case Action.DefendCore:
+            return "Defend Core";
+        case Action.Enrage:
+            return "Enrage";
+        case Action.Crush:
+            return "Crush";
+        case Action.HeadBash:
+            return "Head Bash";
+        case Action.LimbSwing:
+            return "Limb Swing";
+        case Action.GlancingWing:
+            return "Glancing Wing";
+        case Action.Club:
+            return "Club";
+        case Action.ScaldingConflagration:
+            return "Scalding Conflagration";
+        case Action.SuffocatingCurrent:
+            return "Suffocating Current";
+        case Action.SlicingGale:
+            return "Slicing Gale";
+        case Action.CrushingGaea:
+            return "Crushing Gaea";
+        case Action.Drain:
+            return "Drain";
+        case Action.Confuse:
+            return "Confuse";
+        case Action.Envelop:
+            return "Envelop";
+        case Action.Blight:
+            return "Blight";
+        case Action.Smite:
+            return "Smite";
+        case Action.Engulf:
+            return "Engulf";
+        case Action.TwilightStrike:
+            return "Twilight Strike";
+        case Action.EradicatingLight:
+            return "Eradicating Light";
+        case Action.TailSwing:
+            return "Tail Swing";
+        case Action.Constrict:
+            return "Constrict";
+        case Action.BreathOfIce:
+            return "Breath of Ice";
+        case Action.CrushUnderFoot:
+            return "Crush Under Foot";
+        case Action.BreathOfFire:
+            return "Breath of Fire";
         default:
             return "";
         }
     }
     
+    
     func typeToStringJ() -> String
     {
         switch(self)
-        {
+            {
         case Action.U_Examine:
             return "調べる";
         case Action.P_Uppercut:
@@ -232,9 +396,9 @@ enum Action:String, Printable
         case Action.P_Stomp:
             return "踏む";
         case Action.P_Sacrificial_Strike:
-            return "犠牲攻撃";
+            return "命がけの一撃";
         case Action.P_Overpower:
-            return "制圧";
+            return "制圧する";
         case Action.E_EnergyBall:
             return "エネルギーボール";
         case Action.E_Icy_Wind:
@@ -244,7 +408,7 @@ enum Action:String, Printable
         case Action.E_Fireball:
             return "ファイヤーボール";
         case Action.E_Sharpen_Mind:
-            return "研ぎ澄ます";
+            return "心を研ぎ澄ます";
         case Action.E_Curse:
             return "呪う";
         case Action.E_Life_Drain:
@@ -255,6 +419,93 @@ enum Action:String, Printable
             return "フルヒール";
         case Action.E_Instant_Death:
             return "デス";
+            /*えねみーあたっくす*/
+        case Action.Punch:
+            return "パンチ";
+        case Action.RapidFire:
+            return "火矢速射";
+        case Action.Cleave:
+            return "きりさく";
+        case Action.RecklessStrike:
+            return "捨て身攻撃";
+        case Action.Bite:
+            return "噛み付く";
+        case Action.EatDirt:
+            return "土を食べる";
+        case Action.EightProngStab:
+            return "八方向蜘蛛殺法";
+        case Action.HornSmash:
+            return "つのでつく";
+        case Action.SprayAcid:
+            return "酸を吐く";
+        case Action.AetherialFangs:
+            return "エーテルファング";
+        case Action.Horrify:
+            return "おどろかす";
+        case Action.Meditate:
+            return "めいそう";
+        case Action.MindInvasion:
+            return "精神操作";
+        case Action.AetherialDarts:
+            return "エーテルダーツ";
+        case Action.Burrow:
+            return "あなをほる";
+        case Action.FocusEnergy:
+            return "パワー集中";
+        case Action.Rushdown:
+            return "突進";
+        case Action.TriBite:
+            return "三連噛み付き";
+        case Action.UnforseenAttack:
+            return "不意打ち";
+        case Action.DefendCore:
+            return "身を守る";
+        case Action.Enrage:
+            return "怒り";
+        case Action.Crush:
+            return "クラッシュ";
+        case Action.HeadBash:
+            return "頭突き";
+        case Action.LimbSwing:
+            return "腕ちぎりスイング";
+        case Action.GlancingWing:
+            return "翼スラッシュ";
+        case Action.Club:
+            return "殴りつける";
+        case Action.ScaldingConflagration:
+            return "激しい炎";
+        case Action.SuffocatingCurrent:
+            return "水攻め";
+        case Action.SlicingGale:
+            return "カマイタチ";
+        case Action.CrushingGaea:
+            return "大地の拳";
+        case Action.Drain:
+            return "エナジードレイン";
+        case Action.Confuse:
+            return "混乱攻撃";
+        case Action.Envelop:
+            return "スライムハグ";
+        case Action.Blight:
+            return "腐食攻撃";
+        case Action.Smite:
+            return "鉄槌";
+        case Action.Engulf:
+            return "闇に飲み込む";
+        case Action.TwilightStrike:
+            return "神々の黄昏";
+        case Action.EradicatingLight:
+            return "断罪の滅殺光";
+        case Action.TailSwing:
+            return "ドラゴンテールスイング";
+        case Action.Constrict:
+            return "ドラゴンテールしめつけ";
+        case Action.BreathOfIce:
+            return "凍てつく吐息";
+        case Action.CrushUnderFoot:
+            return "踏みつぶす";
+        case Action.BreathOfFire:
+            return "焼け付く吐息";
         default:
             return "";
         }
@@ -272,6 +523,7 @@ class Entity
     var currentStrength:Int;
     var currentMagic:Int;
     var currentSpeed:Int;
+    
     init()
     {
         self.level = 1;
@@ -284,24 +536,59 @@ class Entity
         self.currentMagic = 1;
         self.currentSpeed = 1;
     }
-}
-
-class enemy:Entity
-{
-    var type:Types;
-    init()
+    
+    func printAll() -> Void
     {
-        self.type = Types.empty;
-        super.init();
+        println("\(self)");
+        println("   Level:     \(self.level)");
+        println("   Health:    \(self.health)");
+        println("   Strength:  \(self.strength)");
+        println("   Magic:     \(self.magic)");
+        println("   Speed:     \(self.speed)");
+        println("   Current Health:    \(self.currentHealth)");
+        println("   Current Strength:  \(self.currentStrength)");
+        println("   Current Magic:     \(self.currentMagic)");
+        println("   Current Speed:     \(self.currentSpeed)");
     }
 }
 
 class player:Entity
 {
     var points:Int;
-    init()
+    override init()
     {
         self.points = 0;
+        super.init();
+    }
+}
+
+
+class enemy:Entity
+{
+    var type:Types;
+    var subType:Int;
+    override init()
+    {
+        self.type = Types.empty;
+        self.subType = 0;
+        super.init();
+    }
+    init(t:Types)
+    {
+        self.type = t;
+        self.subType = 0;
+        super.init();
+    }
+    init(s:Int)
+    {
+        self.type = Types.empty;
+        self.subType = s;
+        super.init();
+    }
+    init(t:Types, s:Int)
+    {
+        self.type = t;
+        self.subType = s;
         super.init();
     }
 }

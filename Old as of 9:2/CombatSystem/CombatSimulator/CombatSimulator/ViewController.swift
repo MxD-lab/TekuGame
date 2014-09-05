@@ -49,7 +49,6 @@ class ViewController: UIViewController
                 
                 for(var j:Int = 0; j < 11; j += 1)
                 {
-                    println("Iteration Number \(iteration)");
                     println("Case \(j)");
                     var h:Double = 0.0;
                     var st:Double = 0.0;
@@ -125,26 +124,37 @@ class ViewController: UIViewController
                         sp = 1/4;
                         break;
                     }
-                    newP = setStats(p, h, st, m, sp);
-                    newP.level = p.level;
-                    newP.currentHealth = newP.health;
-                    newP.currentStrength = newP.strength;
-                    newP.currentMagic = newP.magic;
-                    newP.currentSpeed = newP.speed;
-                    println("   New Player:");
-                    println("       Level:     \(newP.level)");
-                    println("       Health:     \(newP.health)");
-                    println("       Strength:   \(newP.strength)");
-                    println("       Magic:      \(newP.magic)");
-                    println("       Speed:      \(newP.speed)");
-                    println("       Current Health:     \(newP.currentHealth)");
-                    println("       Current Strength:   \(newP.currentStrength)");
-                    println("       Current Magic:      \(newP.currentMagic)");
-                    println("       Current Speed:      \(newP.currentSpeed)");
-                    println(" ");
-                    encounter(newP, newE);
-                    iteration += 1;
-                    newE.currentHealth = newE.health;
+                    var k:Int = 0;
+                    k = (newE.type != Types.Elemental) ? 3 : 4;
+                    for(var l:Int = 0; l < k; l += 1)
+                    {
+                        println("Iteration Number \(iteration)");
+                        newE.subType = l;
+                        
+                        newP = setStats(p, h, st, m, sp);
+                        newP.level = p.level;
+                        newP.currentHealth = newP.health;
+                        newP.currentStrength = newP.strength;
+                        newP.currentMagic = newP.magic;
+                        newP.currentSpeed = newP.speed;
+                        println("   New Player:");
+                        println("       Level:     \(newP.level)");
+                        println("       Health:     \(newP.health)");
+                        println("       Strength:   \(newP.strength)");
+                        println("       Magic:      \(newP.magic)");
+                        println("       Speed:      \(newP.speed)");
+                        println("       Current Health:     \(newP.currentHealth)");
+                        println("       Current Strength:   \(newP.currentStrength)");
+                        println("       Current Magic:      \(newP.currentMagic)");
+                        println("       Current Speed:      \(newP.currentSpeed)");
+                        println(" ");
+                        encounter(newP, newE);
+                        iteration += 1;
+                        newE.currentHealth = newE.health;
+                        newE.currentStrength = newE.strength;
+                        newE.currentMagic = newE.magic;
+                        newE.currentSpeed = newE.speed;
+                    }
                 }
             }
         }

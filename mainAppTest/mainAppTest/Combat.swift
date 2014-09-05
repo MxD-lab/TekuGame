@@ -343,10 +343,9 @@ func doAction(user:Entity, target:Entity, action:Action)
         user.currentHealth += damage;
         break;
     case Action.Confuse:
-        var temp:[Int] = [target.currentHealth, target.currentStrength, target.currentMagic];
-        user.currentHealth = temp[1];
-        user.currentStrength = temp[2]
-        user.currentMagic = temp[0];
+        damage = user.currentStrength - (user.currentStrength/2);
+        damage = ((damage < 0) ? 0 : damage);
+        target.currentHealth -= damage;
         break;
     case Action.Envelop:
         damage = (user.currentStrength - (target.currentStrength/2) * 0.5);

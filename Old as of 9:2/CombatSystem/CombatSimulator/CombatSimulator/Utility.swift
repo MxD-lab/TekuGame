@@ -12,10 +12,10 @@ import Foundation
 
 func setStats(e:enemy) -> enemy
 {
-    var newE:enemy = enemy();
+    var newE:enemy = enemy(t: e.type);
     var vals:(Int,Int,Int) = (0,0,0);
     switch(e.type)
-    {
+        {
     case Types.Humanoid:
         vals = setMedium(e);
         /*Health:   Linear - Medium*/
@@ -168,21 +168,29 @@ func setStats(p:player, h:Double, st:Double, m:Double, sp:Double) -> player
     newP.magic = p.level;
     newP.speed = p.level;
     switch((h + st + m + sp))
-    {
-        case 1:
-            newP.health = Int(Double(newP.health) + Double(newP.points) * h);
-            newP.strength = Int(Double(newP.strength) + Double(newP.points) * st);
-            newP.magic = Int(Double(newP.magic) + Double(newP.points) * m);
-            newP.speed = Int(Double(newP.speed) + Double(newP.points) * sp);
-            newP.points = 0;
-            return newP;
-        default:
-            newP.health += newP.points/4;
-            newP.strength += newP.points/4;
-            newP.magic += newP.points/4;
-            newP.speed += newP.points/4;
-            newP.points = 0;
-            return newP;
+        {
+    case 1:
+        newP.health = Int(Double(newP.health) + Double(newP.points) * h);
+        newP.strength = Int(Double(newP.strength) + Double(newP.points) * st);
+        newP.magic = Int(Double(newP.magic) + Double(newP.points) * m);
+        newP.speed = Int(Double(newP.speed) + Double(newP.points) * sp);
+        newP.points = 0;
+        newP.currentHealth = newP.health;
+        newP.currentStrength = newP.strength;
+        newP.currentMagic = newP.magic;
+        newP.currentSpeed = newP.speed;
+        return newP;
+    default:
+        newP.health += newP.points/4;
+        newP.strength += newP.points/4;
+        newP.magic += newP.points/4;
+        newP.speed += newP.points/4;
+        newP.points = 0;
+        newP.currentHealth = newP.health;
+        newP.currentStrength = newP.strength;
+        newP.currentMagic = newP.magic;
+        newP.currentSpeed = newP.speed;
+        return newP;
     }
 }
 
@@ -210,7 +218,7 @@ func setLogarithmic(level:Int, offset:Int, min:Int, max:Int) -> Int
 {
     var val:Int = 0;
     var random:Int = Int(arc4random_uniform((max + 1 - min) as UInt32) + min);
-    val = Int(10 * log(level + 1)/log(10) - 0.0414 * level) + offset + random - level;
+    val = Int((Double(10 * log(Double(level) + 1))/log(10)) + (0.0414 * Double(level))) + offset + random - level;
     if(val <= 0){val = 1;}
     return val;
 }
