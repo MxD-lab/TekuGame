@@ -40,6 +40,7 @@ enum Action:String, Printable
     case RapidFire = "RapidFire";
     case Cleave = "Cleave"
     case RecklessStrike = "RecklessStrike";
+    case Bite = "Bite";
     case EatDirt = "Eat Dirt";
     case EightProngStab = "EightProngStab";
     case HornSmash = "HornSmash";
@@ -72,7 +73,7 @@ enum Action:String, Printable
     case Smite = "Smite";
     case Engulf = "Engulf";
     case TwilightStrike = "TwilightStrike";
-    case EradicatingLight = "";
+    case EradicatingLight = "EradicatingLight";
     case TailSwing = "TailSwing";
     case Constrict = "Constrict";
     case BreathOfIce = "BreathOfIce";
@@ -195,6 +196,8 @@ enum Action:String, Printable
             return "Cleave";
         case Action.RecklessStrike:
             return "Reckless Strike";
+        case Action.Bite:
+            return "Bite";
         case Action.EatDirt:
             return "Eat Dirt";
         case Action.EightProngStab:
@@ -332,6 +335,8 @@ enum Action:String, Printable
             return "きりさく";
         case Action.RecklessStrike:
             return "捨て身攻撃";
+        case Action.Bite:
+            return "噛み付く";
         case Action.EatDirt:
             return "土を食べる";
         case Action.EightProngStab:
