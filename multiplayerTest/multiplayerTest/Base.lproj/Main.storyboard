@@ -88,6 +88,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NeW-AA-6dl">
+                                <rect key="frame" x="16" y="435" width="231" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZM-Y6-UpD">
+                                <rect key="frame" x="258" y="434" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="attackTouched:" destination="IEf-FB-i7q" eventType="touchUpInside" id="VCU-oc-lBQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -97,6 +111,8 @@
                         <size key="landscapeSize" width="568" height="320"/>
                     </simulatedScreenMetrics>
                     <connections>
+                        <outlet property="attackButton" destination="lZM-Y6-UpD" id="Tay-bQ-lp7"/>
+                        <outlet property="attackTextField" destination="NeW-AA-6dl" id="Rqc-9k-r1e"/>
                         <outlet property="battleTextView" destination="U4q-w2-Rxj" id="ees-KR-8ZM"/>
                         <outlet property="playerTextView" destination="BE9-Rj-eDg" id="MwM-Wf-tvs"/>
                         <outlet property="readyLabel" destination="99a-Ww-Vkm" id="oWf-eV-CpI"/>

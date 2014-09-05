@@ -29,11 +29,16 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
     var battleStarted = false
     var hostID:MCPeerID!
     
+    var turn:String! = ""
+    var choseAttack:Bool! = false
+    
     @IBOutlet weak var playerTextView: UITextView!
     @IBOutlet weak var readyTextView: UITextView!
     @IBOutlet weak var battleTextView: UITextView!
     @IBOutlet weak var readySwitch: UISwitch!
     @IBOutlet weak var readyLabel: UILabel!
+    @IBOutlet weak var attackTextField: UITextField!
+    @IBOutlet weak var attackButton: UIButton!
     
     @IBAction func readyTouched(sender: AnyObject) {
         startAdvertising()
@@ -53,6 +58,17 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
         session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
         println("Error: \(error?.localizedDescription)")
         println("Peers: \(session.connectedPeers)")
+    }
+    
+    @IBAction func attackTouched(sender: AnyObject) {
+        var attack:String! = attackTextField.text
+        attackTextField.text = ""
+        choseAttack = true
+        attackTextField.enabled = false
+        attackButton.enabled = false
+        turn = ""
+        battleTextView.text = battleTextView.text + "You did a \(attack) to the enemy.\n"
+        sendData(["attack":attack])
     }
     
     override func viewDidLoad() {
@@ -111,7 +127,7 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
                     }
                 }
             }
-            if (count >= 3) {
+            if (count >= 2) {
                 initBattle()
             }
         }
@@ -119,10 +135,12 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
     
     func initBattle() {
         
-        var mydict:[String:String] = ["battle":"true"]
-        var error:NSError?
-        var data = NSKeyedArchiver.archivedDataWithRootObject(mydict)
-        session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
+        sendData(["battle":"true"])
+        
+//        var mydict:[String:String] = ["battle":"true"]
+//        var error:NSError?
+//        var data = NSKeyedArchiver.archivedDataWithRootObject(mydict)
+//        session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
         
         battleStarted = true
         playerTextView.hidden = true
@@ -131,7 +149,76 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
         readyLabel.hidden = true
         battleTextView.hidden = false
         battleTextView.text = "You have encountered a monster!\n"
+        attackTextField.hidden = false
+        attackButton.hidden = false
         
+        setHost()
+        
+//        battle()
+        setInterval("battle", seconds: 1)
+    }
+    
+    func sendData(dict:[String:String]) {
+        var mydict:[String:String] = dict
+        var error:NSError?
+        var data = NSKeyedArchiver.archivedDataWithRootObject(mydict)
+        session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
+    }
+    
+    func battle() {
+        battleTextView.scrollRangeToVisible(NSMakeRange(countElements(battleTextView.text), 0))
+        if (hostID == myPeerID) {
+            if (turn == "") {
+                var peercount:Int! = session.connectedPeers.count
+                var randomint:Int! = Int(arc4random_uniform(UInt32(peercount+2)))
+                
+                // Host
+                if (randomint == peercount) {
+                    turn = "host"
+                    battleTextView.text = battleTextView.text + "It is your turn.\n"
+                    attackTextField.enabled = true
+                    attackButton.enabled = true
+                }
+                // Enemy
+                else if (randomint == peercount + 1) {
+                    turn = "enemy"
+                    battleTextView.text = battleTextView.text + "It is the enemy's turn.\n"
+                    attackTextField.enabled = false
+                    attackButton.enabled = false
+                    
+                    enemyAttack()
+                }
+                // Other players
+                else {
+                    turn = session.connectedPeers[randomint].displayName
+                    var pname:String! = otherPeersDict[session.connectedPeers[randomint] as MCPeerID]!["display_name"]!
+                    battleTextView.text = battleTextView.text + "It is \(pname)'s turn.\n"
+                    attackTextField.enabled = false
+                    attackButton.enabled = false
+                }
+                sendData(["turn":turn])
+            }
+        }
+        else {
+            if (turn == myPeerID.displayName && !choseAttack) {
+                attackTextField.enabled = true
+                attackButton.enabled = true
+            }
+            else {
+                
+            }
+        }
+    }
+    
+    func enemyAttack() {
+        var attacks:[String] = ["Punch", "Kick", "Fire", "Thunder", "Blizzard"]
+        var randomint:Int! = Int(arc4random_uniform(UInt32(attacks.count)))
+        battleTextView.text = battleTextView.text + "Enemy used \(attacks[randomint])\n"
+        sendData(["enemy":attacks[randomint]])
+        turn = ""
+    }
+    
+    func setHost() {
         var hostIDText:String! = "\(myPeerID.displayName)"
         hostID = myPeerID
         for id in otherPeers {
@@ -149,7 +236,6 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
             var hostname:String! = otherPeersDict[hostID]!["display_name"]!
             battleTextView.text = battleTextView.text + "\(hostname) is the host.\n"
         }
-        
     }
     
     // Called when a browser failed to start browsing for peers. (required)
@@ -189,9 +275,18 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
         var pname = otherPeersDict[peerID]!["display_name"]!
         if (battleStarted) {
             battleTextView.text = battleTextView.text + "Lost connection with \(pname)\n"
+            if (peerID == hostID) {
+                otherPeers.removeAtIndex(index)
+                setHost()
+            }
+            else {
+                otherPeers.removeAtIndex(index)
+            }
+        }
+        else {
+            otherPeers.removeAtIndex(index)
         }
         
-        otherPeers.removeAtIndex(index)
 //        otherPeersDict.removeValueForKey(peerID)
     }
     
@@ -218,10 +313,35 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
                 
                 self.otherPeersDict[peerID] = ["display_name" : pname, "ready" : ready]
             }
-            else {
+            else if (dict["battle"] != nil) {
                 if (!self.battleStarted) {
                     self.initBattle()
                 }
+            }
+            else if (dict["turn"] != nil) {
+                self.turn = dict["turn"] as String!
+                if (self.turn == self.myPeerID.displayName) {
+                    self.battleTextView.text = self.battleTextView.text + "It is your turn.\n"
+                    self.choseAttack = false
+                }
+                else if (self.turn == "enemy") {
+                    self.battleTextView.text = self.battleTextView.text + "It is the enemy's turn.\n"
+                }
+                else {
+                    var pname = self.otherPeersDict[self.hostID]!["display_name"]!
+                    self.battleTextView.text = self.battleTextView.text + "It is \(pname)'s turn.\n"
+                }
+            }
+            else if (dict["attack"] != nil) {
+                self.turn = ""
+                var attack = dict["attack"] as String!
+                var pname = self.otherPeersDict[peerID]!["display_name"]!
+                self.battleTextView.text = self.battleTextView.text + "\(pname) used \(attack) to the enemy.\n"
+            }
+            else if (dict["enemy"] != nil) {
+                self.turn = ""
+                var enemyattack = dict["enemy"] as String!
+                self.battleTextView.text = self.battleTextView.text + "It is the enemy's turn.\nEnemy used \(enemyattack).\n"
             }
         })
     }
@@ -277,3 +397,5 @@ class listViewController: UIViewController, MCNearbyServiceBrowserDelegate, MCSe
     }
     
 }
+
+
