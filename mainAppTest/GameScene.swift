@@ -15,18 +15,18 @@ var utility:[Action] = Action.allUtility
 var physical:[Action] = Action.allPhysical;
 var magic:[Action] = Action.allMagic;
 
-var allActions:[(String, [Action])] = [("Utility", utility), ("Physical",physical),("Magic", magic)];
-
-let canDo:[Int] = [5,17,30,43,56,68,81,94,107,120];
-
-var turnPlayer:Bool = false;
-
-var prefs = NSUserDefaults.standardUserDefaults()
-
 class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
 {
+    var allActions:[(String, [Action])] = [("Utility", utility), ("Physical",physical),("Magic", magic)];
+    
+    let canDo:[Int] = [5,17,30,43,56,68,81,94,107,120];
+    
+    var turnPlayer:Bool = false;
+    
+    var prefs = NSUserDefaults.standardUserDefaults()
+    
     let background = SKSpriteNode(imageNamed: "background.png");
-    let status:UITextView = UITextView(frame: CGRectMake( 0, 0, 548, 50));
+    let status:UILabel = UILabel(frame: CGRectMake( 0, 0, 548, 20));
     let typePicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let actionPicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let enemyImage:SKSpriteNode = SKSpriteNode(imageNamed: "enemy.png");
@@ -43,6 +43,7 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         
         var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
         var currentuser = prefs.objectForKey("currentuser") as String
+        //p.level = plStats[currentuser]!["level"]!
         p.health = plStats[currentuser]!["health"]!
         p.strength = plStats[currentuser]!["strength"]!
         p.magic = plStats[currentuser]!["magic"]!
@@ -53,16 +54,21 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         p.currentMagic = p.magic;
         p.currentSpeed = p.speed;
         
-        e.level = 1;
-        e.type = Types.Humanoid;
-        e.subType = 0;
+        e.level = p.level;
+        e.type = Types.allValues[Int(arc4random_uniform(9))];
+        e.subType = (e.type == Types.Elemental) ? Int(arc4random_uniform(3)):Int(arc4random_uniform(2));
         e = setStats(e);
         e.currentHealth = e.health;
         e.currentStrength = e.strength;
         e.currentMagic = e.magic;
         e.currentSpeed = e.speed;
         
+        enemyImage.texture = getSprite(e);
+        
         turnPlayer = (p.speed > e.speed) ? true : false ;
+        
+        physical = Action.allPhysical;
+        magic = Action.allMagic;
         
         for(var i = 9; i >= 0; i -= 1)
         {
@@ -88,7 +94,6 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         status.backgroundColor = UIColor.lightGrayColor();
         status.opaque = false;
         status.alpha = 0.75;
-        status.editable = false;
         view.addSubview(status)
 
         typePicker.transform = CGAffineTransformMakeScale(0.75 , 0.75);
@@ -106,7 +111,7 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         actionPicker.reloadAllComponents();
         view.addSubview(actionPicker);
         
-        actionButton.position = CGPointMake(CGRectGetMidX(self.frame) + 400, CGRectGetMidY(self.frame) + 80);
+        actionButton.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 200);
         actionButton.size = CGSizeMake(actionButton.size.width * 2, actionButton.size.height * 2);
         actionButton.zPosition = 3;
         addChild(actionButton);
@@ -144,7 +149,7 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         
         if (step < 300) {
             step += 1;
-            status.text = "\nYou encountered a \(e.type.typeToStringE())";
+            status.text = "You encountered a \(e.type.typeToStringE())";
         }
         else {
             var somethingDead:Bool = false;
@@ -168,7 +173,7 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
             }
             else
             {
-                status.text = (turnPlayer) ? "\nPlayer Turn" :"\nEnemy Turn";
+                status.text = (turnPlayer) ? "Player Turn" :"Enemy Turn";
             }
             
             if(!turnPlayer && !somethingDead)

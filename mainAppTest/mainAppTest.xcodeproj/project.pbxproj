@@ -7,6 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1DEB59719BD6EDD00F7A21E /* AssetSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DEB59619BD6EDD00F7A21E /* AssetSelection.swift */; };
+		A1DEB5B819BD6F0700F7A21E /* Alien1.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB59919BD6F0600F7A21E /* Alien1.png */; };
+		A1DEB5B919BD6F0700F7A21E /* Alien3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB59A19BD6F0600F7A21E /* Alien3.png */; };
+		A1DEB5BA19BD6F0700F7A21E /* Beast1.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB59B19BD6F0600F7A21E /* Beast1.png */; };
+		A1DEB5BB19BD6F0700F7A21E /* Beast2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB59C19BD6F0600F7A21E /* Beast2.png */; };
+		A1DEB5BC19BD6F0700F7A21E /* Beast3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB59D19BD6F0600F7A21E /* Beast3.png */; };
+		A1DEB5BD19BD6F0700F7A21E /* Construct1.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB59E19BD6F0600F7A21E /* Construct1.png */; };
+		A1DEB5BE19BD6F0700F7A21E /* Construct2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB59F19BD6F0600F7A21E /* Construct2.png */; };
+		A1DEB5BF19BD6F0700F7A21E /* Construct3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5A019BD6F0600F7A21E /* Construct3.png */; };
+		A1DEB5C019BD6F0700F7A21E /* Demon1.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5A119BD6F0600F7A21E /* Demon1.png */; };
+		A1DEB5C119BD6F0700F7A21E /* Demon2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5A219BD6F0600F7A21E /* Demon2.png */; };
+		A1DEB5C219BD6F0700F7A21E /* Demon3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5A319BD6F0600F7A21E /* Demon3.png */; };
+		A1DEB5C319BD6F0700F7A21E /* Dragon1.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5A419BD6F0600F7A21E /* Dragon1.png */; };
+		A1DEB5C419BD6F0700F7A21E /* Dragon2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5A519BD6F0600F7A21E /* Dragon2.png */; };
+		A1DEB5C519BD6F0700F7A21E /* Dragon3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5A619BD6F0600F7A21E /* Dragon3.png */; };
+		A1DEB5C619BD6F0700F7A21E /* Elemental1.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5A719BD6F0600F7A21E /* Elemental1.png */; };
+		A1DEB5C719BD6F0700F7A21E /* Elemental2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5A819BD6F0600F7A21E /* Elemental2.png */; };
+		A1DEB5C819BD6F0700F7A21E /* Elemental3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5A919BD6F0600F7A21E /* Elemental3.png */; };
+		A1DEB5C919BD6F0700F7A21E /* Elemental4.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5AA19BD6F0600F7A21E /* Elemental4.png */; };
+		A1DEB5CA19BD6F0700F7A21E /* Humanoid1-2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5AB19BD6F0600F7A21E /* Humanoid1-2.png */; };
+		A1DEB5CB19BD6F0700F7A21E /* Humanoid1.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5AC19BD6F0600F7A21E /* Humanoid1.png */; };
+		A1DEB5CC19BD6F0700F7A21E /* Humanoid2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5AD19BD6F0600F7A21E /* Humanoid2.png */; };
+		A1DEB5CD19BD6F0700F7A21E /* Humanoid3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5AE19BD6F0600F7A21E /* Humanoid3.png */; };
+		A1DEB5CE19BD6F0700F7A21E /* Insect1.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5AF19BD6F0600F7A21E /* Insect1.png */; };
+		A1DEB5CF19BD6F0700F7A21E /* Insect2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5B019BD6F0600F7A21E /* Insect2.png */; };
+		A1DEB5D019BD6F0700F7A21E /* Insect3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5B119BD6F0600F7A21E /* Insect3.png */; };
+		A1DEB5D119BD6F0700F7A21E /* Slime1.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5B219BD6F0600F7A21E /* Slime1.png */; };
+		A1DEB5D219BD6F0700F7A21E /* Slime2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5B319BD6F0600F7A21E /* Slime2.png */; };
+		A1DEB5D319BD6F0700F7A21E /* Slime3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5B419BD6F0600F7A21E /* Slime3.png */; };
+		A1DEB5D419BD6F0700F7A21E /* Undead1.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5B519BD6F0600F7A21E /* Undead1.png */; };
+		A1DEB5D519BD6F0700F7A21E /* Undead2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5B619BD6F0600F7A21E /* Undead2.png */; };
+		A1DEB5D619BD6F0700F7A21E /* Undead3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5B719BD6F0600F7A21E /* Undead3.png */; };
 		F8213C2619A6D1AB00C72548 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8213C2519A6D1AB00C72548 /* GameViewController.swift */; };
 		F8213C2819A6D27500C72548 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F8213C2719A6D27500C72548 /* GameScene.sks */; };
 		F8213C2A19A6D28500C72548 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8213C2919A6D28500C72548 /* GameScene.swift */; };
@@ -66,6 +98,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A1DEB59619BD6EDD00F7A21E /* AssetSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetSelection.swift; sourceTree = "<group>"; };
+		A1DEB59919BD6F0600F7A21E /* Alien1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Alien1.png; path = "../Art Assets/Sprites/Version 1.0/Alien1.png"; sourceTree = "<group>"; };
+		A1DEB59A19BD6F0600F7A21E /* Alien3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Alien3.png; path = "../Art Assets/Sprites/Version 1.0/Alien3.png"; sourceTree = "<group>"; };
+		A1DEB59B19BD6F0600F7A21E /* Beast1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Beast1.png; path = "../Art Assets/Sprites/Version 1.0/Beast1.png"; sourceTree = "<group>"; };
+		A1DEB59C19BD6F0600F7A21E /* Beast2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Beast2.png; path = "../Art Assets/Sprites/Version 1.0/Beast2.png"; sourceTree = "<group>"; };
+		A1DEB59D19BD6F0600F7A21E /* Beast3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Beast3.png; path = "../Art Assets/Sprites/Version 1.0/Beast3.png"; sourceTree = "<group>"; };
+		A1DEB59E19BD6F0600F7A21E /* Construct1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Construct1.png; path = "../Art Assets/Sprites/Version 1.0/Construct1.png"; sourceTree = "<group>"; };
+		A1DEB59F19BD6F0600F7A21E /* Construct2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Construct2.png; path = "../Art Assets/Sprites/Version 1.0/Construct2.png"; sourceTree = "<group>"; };
+		A1DEB5A019BD6F0600F7A21E /* Construct3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Construct3.png; path = "../Art Assets/Sprites/Version 1.0/Construct3.png"; sourceTree = "<group>"; };
+		A1DEB5A119BD6F0600F7A21E /* Demon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Demon1.png; path = "../Art Assets/Sprites/Version 1.0/Demon1.png"; sourceTree = "<group>"; };
+		A1DEB5A219BD6F0600F7A21E /* Demon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Demon2.png; path = "../Art Assets/Sprites/Version 1.0/Demon2.png"; sourceTree = "<group>"; };
+		A1DEB5A319BD6F0600F7A21E /* Demon3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Demon3.png; path = "../Art Assets/Sprites/Version 1.0/Demon3.png"; sourceTree = "<group>"; };
+		A1DEB5A419BD6F0600F7A21E /* Dragon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Dragon1.png; path = "../Art Assets/Sprites/Version 1.0/Dragon1.png"; sourceTree = "<group>"; };
+		A1DEB5A519BD6F0600F7A21E /* Dragon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Dragon2.png; path = "../Art Assets/Sprites/Version 1.0/Dragon2.png"; sourceTree = "<group>"; };
+		A1DEB5A619BD6F0600F7A21E /* Dragon3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Dragon3.png; path = "../Art Assets/Sprites/Version 1.0/Dragon3.png"; sourceTree = "<group>"; };
+		A1DEB5A719BD6F0600F7A21E /* Elemental1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Elemental1.png; path = "../Art Assets/Sprites/Version 1.0/Elemental1.png"; sourceTree = "<group>"; };
+		A1DEB5A819BD6F0600F7A21E /* Elemental2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Elemental2.png; path = "../Art Assets/Sprites/Version 1.0/Elemental2.png"; sourceTree = "<group>"; };
+		A1DEB5A919BD6F0600F7A21E /* Elemental3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Elemental3.png; path = "../Art Assets/Sprites/Version 1.0/Elemental3.png"; sourceTree = "<group>"; };
+		A1DEB5AA19BD6F0600F7A21E /* Elemental4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Elemental4.png; path = "../Art Assets/Sprites/Version 1.0/Elemental4.png"; sourceTree = "<group>"; };
+		A1DEB5AB19BD6F0600F7A21E /* Humanoid1-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Humanoid1-2.png"; path = "../Art Assets/Sprites/Version 1.0/Humanoid1-2.png"; sourceTree = "<group>"; };
+		A1DEB5AC19BD6F0600F7A21E /* Humanoid1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Humanoid1.png; path = "../Art Assets/Sprites/Version 1.0/Humanoid1.png"; sourceTree = "<group>"; };
+		A1DEB5AD19BD6F0600F7A21E /* Humanoid2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Humanoid2.png; path = "../Art Assets/Sprites/Version 1.0/Humanoid2.png"; sourceTree = "<group>"; };
+		A1DEB5AE19BD6F0600F7A21E /* Humanoid3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Humanoid3.png; path = "../Art Assets/Sprites/Version 1.0/Humanoid3.png"; sourceTree = "<group>"; };
+		A1DEB5AF19BD6F0600F7A21E /* Insect1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Insect1.png; path = "../Art Assets/Sprites/Version 1.0/Insect1.png"; sourceTree = "<group>"; };
+		A1DEB5B019BD6F0600F7A21E /* Insect2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Insect2.png; path = "../Art Assets/Sprites/Version 1.0/Insect2.png"; sourceTree = "<group>"; };
+		A1DEB5B119BD6F0600F7A21E /* Insect3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Insect3.png; path = "../Art Assets/Sprites/Version 1.0/Insect3.png"; sourceTree = "<group>"; };
+		A1DEB5B219BD6F0600F7A21E /* Slime1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Slime1.png; path = "../Art Assets/Sprites/Version 1.0/Slime1.png"; sourceTree = "<group>"; };
+		A1DEB5B319BD6F0600F7A21E /* Slime2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Slime2.png; path = "../Art Assets/Sprites/Version 1.0/Slime2.png"; sourceTree = "<group>"; };
+		A1DEB5B419BD6F0600F7A21E /* Slime3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Slime3.png; path = "../Art Assets/Sprites/Version 1.0/Slime3.png"; sourceTree = "<group>"; };
+		A1DEB5B519BD6F0600F7A21E /* Undead1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Undead1.png; path = "../Art Assets/Sprites/Version 1.0/Undead1.png"; sourceTree = "<group>"; };
+		A1DEB5B619BD6F0600F7A21E /* Undead2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Undead2.png; path = "../Art Assets/Sprites/Version 1.0/Undead2.png"; sourceTree = "<group>"; };
+		A1DEB5B719BD6F0600F7A21E /* Undead3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Undead3.png; path = "../Art Assets/Sprites/Version 1.0/Undead3.png"; sourceTree = "<group>"; };
 		F8213C2519A6D1AB00C72548 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = ../GameViewController.swift; sourceTree = "<group>"; };
 		F8213C2719A6D27500C72548 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = ../GameScene.sks; sourceTree = "<group>"; };
 		F8213C2919A6D28500C72548 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = ../GameScene.swift; sourceTree = "<group>"; };
@@ -154,6 +218,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A1DEB59819BD6EF300F7A21E /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				A1DEB59919BD6F0600F7A21E /* Alien1.png */,
+				A1DEB59A19BD6F0600F7A21E /* Alien3.png */,
+				A1DEB59B19BD6F0600F7A21E /* Beast1.png */,
+				A1DEB59C19BD6F0600F7A21E /* Beast2.png */,
+				A1DEB59D19BD6F0600F7A21E /* Beast3.png */,
+				A1DEB59E19BD6F0600F7A21E /* Construct1.png */,
+				A1DEB59F19BD6F0600F7A21E /* Construct2.png */,
+				A1DEB5A019BD6F0600F7A21E /* Construct3.png */,
+				A1DEB5A119BD6F0600F7A21E /* Demon1.png */,
+				A1DEB5A219BD6F0600F7A21E /* Demon2.png */,
+				A1DEB5A319BD6F0600F7A21E /* Demon3.png */,
+				A1DEB5A419BD6F0600F7A21E /* Dragon1.png */,
+				A1DEB5A519BD6F0600F7A21E /* Dragon2.png */,
+				A1DEB5A619BD6F0600F7A21E /* Dragon3.png */,
+				A1DEB5A719BD6F0600F7A21E /* Elemental1.png */,
+				A1DEB5A819BD6F0600F7A21E /* Elemental2.png */,
+				A1DEB5A919BD6F0600F7A21E /* Elemental3.png */,
+				A1DEB5AA19BD6F0600F7A21E /* Elemental4.png */,
+				A1DEB5AB19BD6F0600F7A21E /* Humanoid1-2.png */,
+				A1DEB5AC19BD6F0600F7A21E /* Humanoid1.png */,
+				A1DEB5AD19BD6F0600F7A21E /* Humanoid2.png */,
+				A1DEB5AE19BD6F0600F7A21E /* Humanoid3.png */,
+				A1DEB5AF19BD6F0600F7A21E /* Insect1.png */,
+				A1DEB5B019BD6F0600F7A21E /* Insect2.png */,
+				A1DEB5B119BD6F0600F7A21E /* Insect3.png */,
+				A1DEB5B219BD6F0600F7A21E /* Slime1.png */,
+				A1DEB5B319BD6F0600F7A21E /* Slime2.png */,
+				A1DEB5B419BD6F0600F7A21E /* Slime3.png */,
+				A1DEB5B519BD6F0600F7A21E /* Undead1.png */,
+				A1DEB5B619BD6F0600F7A21E /* Undead2.png */,
+				A1DEB5B719BD6F0600F7A21E /* Undead3.png */,
+			);
+			name = Sprites;
+			sourceTree = "<group>";
+		};
 		F825583219AB1D2C0035EBF6 /* Combat and Trait Handling */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +263,7 @@
 				F8A596D019AC2CAF00B0AA8F /* SelectAttack.swift */,
 				F825583419AB1D3F0035EBF6 /* Combat.swift */,
 				F825583019AB1D280035EBF6 /* EnemyValues.swift */,
+				A1DEB59619BD6EDD00F7A21E /* AssetSelection.swift */,
 			);
 			name = "Combat and Trait Handling";
 			sourceTree = "<group>";
@@ -261,6 +364,7 @@
 		F8F4F0C319A5B2BA002D077D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A1DEB59819BD6EF300F7A21E /* Sprites */,
 				F825584219AB20540035EBF6 /* DoAction.png */,
 				F88AE19919A5C45700A9C227 /* enemy.png */,
 				F88AE19A19A5C45700A9C227 /* background.png */,
@@ -364,13 +468,44 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1DEB5BD19BD6F0700F7A21E /* Construct1.png in Resources */,
+				A1DEB5C019BD6F0700F7A21E /* Demon1.png in Resources */,
+				A1DEB5C119BD6F0700F7A21E /* Demon2.png in Resources */,
+				A1DEB5C819BD6F0700F7A21E /* Elemental3.png in Resources */,
+				A1DEB5CF19BD6F0700F7A21E /* Insect2.png in Resources */,
+				A1DEB5BB19BD6F0700F7A21E /* Beast2.png in Resources */,
 				F825584319AB20540035EBF6 /* DoAction.png in Resources */,
+				A1DEB5BF19BD6F0700F7A21E /* Construct3.png in Resources */,
+				A1DEB5CE19BD6F0700F7A21E /* Insect1.png in Resources */,
 				F88AE19B19A5C45700A9C227 /* enemy.png in Resources */,
+				A1DEB5BE19BD6F0700F7A21E /* Construct2.png in Resources */,
+				A1DEB5CA19BD6F0700F7A21E /* Humanoid1-2.png in Resources */,
 				F8213C2819A6D27500C72548 /* GameScene.sks in Resources */,
+				A1DEB5C619BD6F0700F7A21E /* Elemental1.png in Resources */,
+				A1DEB5CB19BD6F0700F7A21E /* Humanoid1.png in Resources */,
+				A1DEB5BA19BD6F0700F7A21E /* Beast1.png in Resources */,
 				F8956B0C19A194A700ED670B /* Main.storyboard in Resources */,
+				A1DEB5CC19BD6F0700F7A21E /* Humanoid2.png in Resources */,
 				F8956B0E19A194A700ED670B /* Images.xcassets in Resources */,
+				A1DEB5C919BD6F0700F7A21E /* Elemental4.png in Resources */,
+				A1DEB5D419BD6F0700F7A21E /* Undead1.png in Resources */,
+				A1DEB5C519BD6F0700F7A21E /* Dragon3.png in Resources */,
 				F88AE19C19A5C45700A9C227 /* background.png in Resources */,
+				A1DEB5B919BD6F0700F7A21E /* Alien3.png in Resources */,
+				A1DEB5D019BD6F0700F7A21E /* Insect3.png in Resources */,
+				A1DEB5CD19BD6F0700F7A21E /* Humanoid3.png in Resources */,
+				A1DEB5D219BD6F0700F7A21E /* Slime2.png in Resources */,
 				F837D7E919B3F85F00A18D31 /* GoogleMaps.bundle in Resources */,
+				A1DEB5C419BD6F0700F7A21E /* Dragon2.png in Resources */,
+				A1DEB5D319BD6F0700F7A21E /* Slime3.png in Resources */,
+				A1DEB5D119BD6F0700F7A21E /* Slime1.png in Resources */,
+				A1DEB5B819BD6F0700F7A21E /* Alien1.png in Resources */,
+				A1DEB5D619BD6F0700F7A21E /* Undead3.png in Resources */,
+				A1DEB5C319BD6F0700F7A21E /* Dragon1.png in Resources */,
+				A1DEB5BC19BD6F0700F7A21E /* Beast3.png in Resources */,
+				A1DEB5D519BD6F0700F7A21E /* Undead2.png in Resources */,
+				A1DEB5C719BD6F0700F7A21E /* Elemental2.png in Resources */,
+				A1DEB5C219BD6F0700F7A21E /* Demon3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +526,7 @@
 				F825583819AB1D480035EBF6 /* Actions.swift in Sources */,
 				F8213C2619A6D1AB00C72548 /* GameViewController.swift in Sources */,
 				F825583519AB1D3F0035EBF6 /* PlayerValues.swift in Sources */,
+				A1DEB59719BD6EDD00F7A21E /* AssetSelection.swift in Sources */,
 				F8D8A2DA19A2F7E800CC6A0B /* statusViewController.swift in Sources */,
 				F8D8A2D819A2EB1900CC6A0B /* AccountSelectionViewController.swift in Sources */,
 				F890D1F219AD77070018AC95 /* titleViewController.swift in Sources */,

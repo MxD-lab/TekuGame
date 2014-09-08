@@ -11,6 +11,7 @@ func setStats(e:enemy) -> enemy
 {
     var newE:enemy = enemy(t: e.type);
     var vals:(Int,Int,Int) = (0,0,0);
+    newE.subType = e.subType;
     switch(e.type)
         {
     case Types.Humanoid:
