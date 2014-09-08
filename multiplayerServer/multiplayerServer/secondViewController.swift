@@ -16,12 +16,13 @@ class secondViewController: UIViewController {
     var playerID:String!
     var timer:NSTimer!
     var pcount = 0
+    var allPlayers:NSMutableArray! = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         battleIDLabel.text = "Battle ID: \(battleID)"
-        timer = setInterval("get", seconds: 3)
+        timer = setInterval("get", seconds: 1)
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,9 +45,6 @@ class secondViewController: UIViewController {
             
             if (id == battleID) {
                 battleExists = true
-                var enemAttack = battle["lastEnemyAttack"] as String
-                var playAttack = battle["lastPlayerAttack"] as String
-                var turnID = battle["turnPlayerID"] as String
                 var status = battle["status"] as String
                 
                 battleTextView.text = "Battle Status: \(status)\n"
@@ -56,7 +54,7 @@ class secondViewController: UIViewController {
         
         let playersurl = "http://tekugame.mxd.media.ritsumei.ac.jp/json/playersinbattle.json"
         var jsObj2 = getJSON(playersurl)
-        var allPlayers:NSMutableArray! = NSMutableArray()
+        allPlayers = NSMutableArray()
         pcount = 0
         battleTextView.text = battleTextView.text + "Players:\n"
         for player in jsObj2 {
@@ -71,12 +69,13 @@ class secondViewController: UIViewController {
         battleTextView.text = battleTextView.text + "Player count: \(pcount)\n"
         
         if (!battleExists) {
-            postToBattles(battleID, enemAttack: "", playAttack: "", turn: "", status: "Open")
+            postToBattles(battleID, enemAttack: "", enemTarget: "", playAttack: "", turn: "", currentPlayer: "", status: "Open")
         }
         else {
             if (pcount == 2) {
                 if (allPlayers.containsObject(playerID)) {
-                    postToBattles(battleID, enemAttack: "", playAttack: "", turn: "", status: "In Battle")
+                    
+                    postToBattles(battleID, enemAttack: "", enemTarget: "", playAttack: "", turn: "", currentPlayer: "", status: "In Battle")
                     performSegueWithIdentifier("battle", sender: self)
                 }
                 else {
@@ -118,10 +117,10 @@ class secondViewController: UIViewController {
         NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&error)
     }
     
-    func postToBattles(battleID:String!, enemAttack:String!, playAttack:String!, turn:String!, status:String!) {
+    func postToBattles(battleID:String!, enemAttack:String!, enemTarget:String!, playAttack:String!, turn:String!, currentPlayer:String!, status:String!) {
         
         var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/battleForm/index.php"
-        var str = "ID=\(battleID)&lastEnemyAttack=\(enemAttack)&lastPlayerAttack=\(playAttack)&turnPlayerID=\(turn)&status=\(status)&submit=submit"
+        var str = "ID=\(battleID)&lastEnemyAttack=\(enemAttack)&lastPlayerAttack=\(playAttack)&turnPlayerID=\(turn)&status=\(status)&enemyTargetID=\(enemTarget)&currentPlayerID=\(currentPlayer)&submit=submit"
         post(urlstring, querystring: str)
     }
     
@@ -145,6 +144,10 @@ class secondViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "back") {
             postPlayersInBattle(playerID, bid: "-1")
+        }
+        else if (segue.identifier == "battle") {
+            var nextVC = segue.destinationViewController as battleViewController
+            nextVC.allPlayers = allPlayers
         }
     }
 }
