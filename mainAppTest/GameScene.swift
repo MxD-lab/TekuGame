@@ -17,12 +17,16 @@ var magic:[Action] = Action.allMagic;
 
 var allActions:[(String, [Action])] = [("Utility", utility), ("Physical",physical),("Magic", magic)];
 
+let canDo:[Int] = [5,17,30,43,56,68,81,94,107,120];
+
 var turnPlayer:Bool = false;
+
+var prefs = NSUserDefaults.standardUserDefaults()
 
 class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
 {
     let background = SKSpriteNode(imageNamed: "background.png");
-    let status:UILabel = UILabel(frame: CGRectMake( 0, 0, 548, 20));
+    let status:UITextView = UITextView(frame: CGRectMake( 0, 0, 548, 50));
     let typePicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let actionPicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let enemyImage:SKSpriteNode = SKSpriteNode(imageNamed: "enemy.png");
@@ -37,10 +41,21 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         var userInfo = NSDictionary(object: false, forKey: "isGameOver")
         NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
         
-        p.level = 1;
-        p = setStats(p, 0.25, 0.25, 0.25, 0.25);
+        var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
+        var currentuser = prefs.objectForKey("currentuser") as String
+        p.health = plStats[currentuser]!["health"]!
+        p.strength = plStats[currentuser]!["strength"]!
+        p.magic = plStats[currentuser]!["magic"]!
+        p.speed = plStats[currentuser]!["speed"]!
+        
+        p.currentHealth = p.health;
+        p.currentStrength = p.strength;
+        p.currentMagic = p.magic;
+        p.currentSpeed = p.speed;
+        
         e.level = 1;
         e.type = Types.Humanoid;
+        e.subType = 0;
         e = setStats(e);
         e.currentHealth = e.health;
         e.currentStrength = e.strength;
@@ -49,6 +64,23 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         
         turnPlayer = (p.speed > e.speed) ? true : false ;
         
+        for(var i = 9; i >= 0; i -= 1)
+        {
+            if(p.magic < canDo[i])
+            {
+                println("Removing: \(magic.last)");
+                magic.removeLast();
+            }
+            if(p.strength < canDo[i])
+            {
+                println("Removing: \(physical.last)");
+                physical.removeLast();
+            }
+        }
+        println("\(magic)");
+        println("\(physical)");
+        
+        
         /* Setup your scene here */
         status.center = CGPointMake(284, 10);
         status.textAlignment = NSTextAlignment.Left;
@@ -56,6 +88,7 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         status.backgroundColor = UIColor.lightGrayColor();
         status.opaque = false;
         status.alpha = 0.75;
+        status.editable = false;
         view.addSubview(status)
 
         typePicker.transform = CGAffineTransformMakeScale(0.75 , 0.75);
@@ -111,7 +144,7 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         
         if (step < 300) {
             step += 1;
-            status.text = "You encountered some enemy!";
+            status.text = "\nYou encountered a \(e.type.typeToStringE())";
         }
         else {
             var somethingDead:Bool = false;
@@ -135,7 +168,7 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
             }
             else
             {
-                status.text = (turnPlayer) ? "Player Turn" :"Enemy Turn";
+                status.text = (turnPlayer) ? "\nPlayer Turn" :"\nEnemy Turn";
             }
             
             if(!turnPlayer && !somethingDead)
@@ -146,7 +179,7 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
             else if (somethingDead) {
                 somethingDead = false
                 var userInfo = ["isGameOver":true, "playerWin":playerWin]
-                //                var userInfo = NSDictionary(object: true, forKey: "isGameOver")
+                //var userInfo = NSDictionary(object: true, forKey: "isGameOver")
                 NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
             }
         }

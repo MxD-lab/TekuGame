@@ -36,4 +36,20 @@ class enemy:Entity
         self.subType = s;
         super.init();
     }
+    override func printAll() -> Void
+    {
+        println("\(self)");
+        println("   Level:     \(self.level)");
+        println("   Type:      \(self.type.typeToStringE())");
+        println("   Type:      \(self.type.typeToStringJ())");
+        println("   SubType:   \(self.subType)");
+        println("   Health:    \(self.health)");
+        println("   Strength:  \(self.strength)");
+        println("   Magic:     \(self.magic)");
+        println("   Speed:     \(self.speed)");
+        println("   Current Health:    \(self.currentHealth)");
+        println("   Current Strength:  \(self.currentStrength)");
+        println("   Current Magic:     \(self.currentMagic)");
+        println("   Current Speed:     \(self.currentSpeed)");
+    }
 }
