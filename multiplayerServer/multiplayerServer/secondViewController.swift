@@ -72,7 +72,7 @@ class secondViewController: UIViewController {
             postToBattles(battleID, enemAttack: "", enemTarget: "", playAttack: "", turn: "", currentPlayer: "", status: "Open")
         }
         else {
-            if (pcount == 2) {
+            if (pcount == 3) {
                 if (allPlayers.containsObject(playerID)) {
                     
                     postToBattles(battleID, enemAttack: "", enemTarget: "", playAttack: "", turn: "", currentPlayer: "", status: "In Battle")

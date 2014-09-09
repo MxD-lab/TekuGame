@@ -10,9 +10,10 @@ import UIKit
 
 class battleViewController: UIViewController {
     
-    @IBOutlet weak var battleTextView:UITextView!
+    @IBOutlet weak var battleTextView: UITextView!
     @IBOutlet weak var attackTextField: UITextField!
     @IBOutlet weak var attackButton: UIButton!
+    @IBOutlet weak var playerLabelID: UILabel!
     var allPlayers:NSMutableArray!
     var otherPlayers:NSMutableArray!
     var hostID:String!
@@ -20,6 +21,7 @@ class battleViewController: UIViewController {
     var battleID:String!
     var turn:String! = ""
     var choseAttack:Bool! = false
+    var enemyAttacking:Bool! = false
     
     @IBAction func attackPressed(sender: AnyObject) {
         // 6. post attack, goto 1.
@@ -29,6 +31,10 @@ class battleViewController: UIViewController {
         battleTextView.text = battleTextView.text + "\(playerID) used \(attackTextField.text) on the enemy.\n"
         updateBattleStatusAndPost("", eTarget: "", pAttack: attackTextField.text, tur: "", cPlayer: playerID, stat: "same")
         attackTextField.text = ""
+        setTimeout("resetTurn", seconds: 3)
+    }
+    
+    func resetTurn() {
         turn = ""
     }
     
@@ -38,6 +44,7 @@ class battleViewController: UIViewController {
         var prefs = NSUserDefaults.standardUserDefaults()
         playerID = prefs.objectForKey("playerID") as String
         battleID = prefs.objectForKey("battleID") as String
+        playerLabelID.text = "ID: \(playerID)"
         setHost()
         otherPlayers = allPlayers
         otherPlayers.removeObject(playerID)
@@ -46,6 +53,10 @@ class battleViewController: UIViewController {
     
     func setInterval(functionname:String, seconds:NSNumber) -> NSTimer {
         return NSTimer.scheduledTimerWithTimeInterval(seconds, target: self, selector: Selector(functionname), userInfo: nil, repeats: true)
+    }
+    
+    func setTimeout(functionname:String, seconds:NSNumber) -> NSTimer {
+        return NSTimer.scheduledTimerWithTimeInterval(seconds, target: self, selector: Selector(functionname), userInfo: nil, repeats: false)
     }
     
     func updateBattleStatusAndPost(eAttack:String!, eTarget:String!, pAttack:String!, tur:String!, cPlayer:String!, stat:String!) {
@@ -93,7 +104,7 @@ class battleViewController: UIViewController {
             status = stat
         }
         
-        postToBattles(battleID, enemAttack: enemAttack, enemTarget: enemTarget, playAttack: playAttack, turn: turnID, currentPlayer: currentPlayer, status: status)
+        postToBattles(battleID, eAt: enemAttack, enemTarget: enemTarget, playAttack: playAttack, turn: turnID, currentPlayer: currentPlayer, status: status)
     }
     
     override func didReceiveMemoryWarning() {
@@ -113,48 +124,44 @@ class battleViewController: UIViewController {
                 hostID = pid
             }
         }
-        
-        battleTextView.text = battleTextView.text + "Host: \(hostID)\n"
     }
     
     func battle() {
+        battleTextView.scrollRangeToVisible(NSMakeRange(countElements(battleTextView.text), 0))
         // Host.
         if (playerID == hostID) {
-//            1. choose turn
-//            2. post turn (eattack = "", etarget = "", pattack = "", tur = turn, cplayer = "", stat = "same")
-//                a. if turn == enemy, goto 3.
-//                b. if turn == host, goto 5.
-//                c. else goto 7. // client turn
-//            3. enemy chooses attack/target
-//            4. post enemy attacks, goto 1.  (eattack = attack, etarget = target, pattack = "", tur = "", cplayer = "enemy", stat = "same")
-//            5. wait for player to choose attack
-//            6. post attack, goto 1.  (eattack = "", etarget = "", pattack = attack, tur = "", cplayer = player, stat = "same")
-//            7. get JSON
-//                a. if JSON includes playerAttack, print and goto 1.
-//                b. else, goto 7.
             if (turn == "") {
                 // 1. choose turn
                 var pcount:Int! = otherPlayers.count
                 var randomint:Int! = Int(arc4random_uniform(UInt32(pcount+2)))
+                if (randomint == pcount + 1) {
+                    turn = "enemy"
+                }
+                else if (randomint == pcount) {
+                    turn = playerID
+                }
+                else {
+                    turn = otherPlayers[randomint] as String
+                }
                 
                 // 2. post turn
                 updateBattleStatusAndPost("", eTarget: "", pAttack: "", tur: turn, cPlayer: "", stat: "same")
                 
                 // a. if turn == enemy, goto 3.
-                if (randomint == pcount + 1) {
+                if (turn == "enemy" && !enemyAttacking) {
                     // 3. enemy chooses attack/target
-                    turn = "enemy"
                     battleTextView.text = battleTextView.text + "It is the enemy's turn.\n"
                     attackTextField.enabled = false
                     attackButton.enabled = false
                     // Note: enemy attack & post will be done in enemyAttack()
-                    enemyAttack()
+                    enemyAttacking = true
+                    setTimeout("enemyAttack", seconds: 5)
+                    setTimeout("setEnemyAttacking", seconds: 10)
                 }
                 
                 // b. if turn == host, goto 5.
-                else if (randomint == pcount) {
+                else if (turn == playerID) {
                     // 5. wait for player to choose attack
-                    turn = playerID
                     battleTextView.text = battleTextView.text + "It is your turn.\n"
                     attackTextField.enabled = true
                     attackButton.enabled = true
@@ -163,7 +170,6 @@ class battleViewController: UIViewController {
                 
                 // c. else goto 7.
                 else {
-                    turn = allPlayers[randomint] as String
                     battleTextView.text = battleTextView.text + "It is \(turn)'s turn.\n"
                     attackTextField.enabled = false
                     attackButton.enabled = false
@@ -179,67 +185,8 @@ class battleViewController: UIViewController {
         
         // Client.
         else {
-//            1. get JSON
-//                a. if JSON turn == myID goto 2.
-//                b. if JSON turn == enemy goto 6.
-//                c. if JSON turn == other client goto 7.
-//                d. if JSON turn == "" goto 8.
-//            2. print "it is your turn", enable UI
-//            3. post (eattack = "", etarget = "", pattack = "", tur = myID, cplayer = myID, stat = "same")
-//            4. wait for player to choose attack, print attack
-//            5. post attack (eattack = "", etarget = "", pattack = attack, tur = "", cplayer = myID, stat = "same")
-//            6. print "it is the enemy's turn"
-//            7. print "it is \(turn)'s turn"
-//            8. if cplayer == enemy print "enemy used \(eattack) on \(etarget)" else print "\(cplayer) used \(attack) on enemy."
             checkBattle()
         }
-        
-        
-        
-//        if (playerID == hostID) {
-//            if (turn == "") {
-//                var pcount:Int! = otherPlayers.count
-//                var randomint:Int! = Int(arc4random_uniform(UInt32(pcount+2)))
-//                
-//                // Host
-//                if (randomint == pcount) {
-//                    turn = playerID
-//                    battleTextView.text = battleTextView.text + "It is your turn.\n"
-//                    attackTextField.enabled = true
-//                    attackButton.enabled = true
-//                }
-//                // Enemy
-//                else if (randomint == pcount + 1) {
-//                    turn = "enemy"
-//                    battleTextView.text = battleTextView.text + "It is the enemy's turn.\n"
-//                    attackTextField.enabled = false
-//                    attackButton.enabled = false
-//
-//                    enemyAttack()
-//                }
-//                // Other players
-//                else {
-//                    turn = allPlayers[randomint] as String
-//                    battleTextView.text = battleTextView.text + "It is \(turn)'s turn.\n"
-//                    attackTextField.enabled = false
-//                    attackButton.enabled = false
-//                }
-//                
-//                // post
-//                if (turn != "enemy") {
-//                    updateBattleStatusAndPost("same", eTarget: "same", pAttack: "same", tur: turn, cPlayer: "same", stat: "same")
-//                }
-//                
-//            }
-//            else {
-//                if (turn != playerID && turn != "enemy") {
-//                    checkBattle()
-//                }
-//            }
-//        }
-//        else {
-//            checkBattle()
-//        }
     }
     
     func checkAttackFromClient() {
@@ -302,14 +249,22 @@ class battleViewController: UIViewController {
         // a. if JSON turn == myID goto 2.
         if (turnID == playerID) {
             // 2. print "it is your turn", enable UI
-            battleTextView.text = battleTextView.text + "It is your turn.\n"
-            attackTextField.enabled = true
-            attackButton.enabled = true
-            // 3. post (eattack = "", etarget = "", pattack = "", tur = myID, cplayer = myID, stat = "same")
-            updateBattleStatusAndPost("", eTarget: "", pAttack: "", tur: playerID, cPlayer: playerID, stat: "same")
-            // 4. wait for player to choose attack, print attack
-            // 5. post attack (eattack = "", etarget = "", pattack = attack, tur = "", cplayer = myID, stat = "same")
-            // Done in @IBAction func attackPressed(sender: AnyObject)
+            var battletext = battleTextView.text as String
+            var arraylines = battletext.componentsSeparatedByString("\n")
+            var lastline = ""
+            if (arraylines.count >= 2) {
+                lastline = arraylines[arraylines.count-2]
+            }
+            if (lastline != "It is your turn.") {
+                battleTextView.text = battleTextView.text + "It is your turn.\n"
+                attackTextField.enabled = true
+                attackButton.enabled = true
+                // 3. post (eattack = "", etarget = "", pattack = "", tur = myID, cplayer = myID, stat = "same")
+                updateBattleStatusAndPost("", eTarget: "", pAttack: "", tur: playerID, cPlayer: playerID, stat: "same")
+                // 4. wait for player to choose attack, print attack
+                // 5. post attack (eattack = "", etarget = "", pattack = attack, tur = "", cplayer = myID, stat = "same")
+                // Done in @IBAction func attackPressed(sender: AnyObject)
+            }
         }
             
         // b. if JSON turn == enemy goto 6.
@@ -317,7 +272,10 @@ class battleViewController: UIViewController {
             // 6. print "it is the enemy's turn"
             var battletext = battleTextView.text as String
             var arraylines = battletext.componentsSeparatedByString("\n")
-            var lastline = arraylines[arraylines.count-2]
+            var lastline = ""
+            if (arraylines.count >= 2) {
+                lastline = arraylines[arraylines.count-2]
+            }
             if (lastline != "It is the enemy's turn.") {
                 battleTextView.text = battleTextView.text + "It is the enemy's turn.\n"
             }
@@ -330,7 +288,10 @@ class battleViewController: UIViewController {
             // 7. print "it is \(turn)'s turn"
             var battletext = battleTextView.text as String
             var arraylines = battletext.componentsSeparatedByString("\n")
-            var lastline = arraylines[arraylines.count-2]
+            var lastline = ""
+            if (arraylines.count >= 2) {
+                lastline = arraylines[arraylines.count-2]
+            }
             if (lastline != "It is \(turnID)'s turn.") {
                 battleTextView.text = battleTextView.text + "It is \(turnID)'s turn.\n"
             }
@@ -343,15 +304,18 @@ class battleViewController: UIViewController {
             // 8. if cplayer == enemy print "enemy used \(eattack) on \(etarget)" else print "\(cplayer) used \(attack) on enemy."
             var battletext = battleTextView.text as String
             var arraylines = battletext.componentsSeparatedByString("\n")
-            var lastline = arraylines[arraylines.count-2]
+            var lastline = ""
+            if (arraylines.count >= 2) {
+                lastline = arraylines[arraylines.count-2]
+            }
             if (currentPlayer == "enemy") {
                 if (lastline != "Enemy used \(enemAttack) on \(enemTarget).") {
                     battleTextView.text = battleTextView.text + "Enemy used \(enemAttack) on \(enemTarget).\n"
                 }
             }
-            else {
-                if (lastline != "\(currentPlayer) used \(playAttack) on enemy.") {
-                    battleTextView.text = battleTextView.text + "\(currentPlayer) used \(playAttack) on enemy.\n"
+            else if (currentPlayer != "") {
+                if (lastline != "\(currentPlayer) used \(playAttack) on the enemy.") {
+                    battleTextView.text = battleTextView.text + "\(currentPlayer) used \(playAttack) on the enemy.\n"
                 }
             }
             attackTextField.enabled = false
@@ -359,54 +323,28 @@ class battleViewController: UIViewController {
         }
     }
     
-//        if (currentPlayer != "") {
-//            if (currentPlayer == "enemy" && enemAttack != "" && enemTarget != "") {
-//                var battletext = battleTextView.text as String
-//                var arraylines = battletext.componentsSeparatedByString("\n")
-//                var lastline = arraylines[arraylines.count-2]
-//
-//                if (lastline != "Enemy used \(enemAttack) on \(enemTarget).") {
-//                    battleTextView.text = battleTextView.text + "Enemy used \(enemAttack) on \(enemTarget).\n"
-//                    turn = ""
-//                    attackTextField.enabled = false
-//                    attackButton.enabled = false
-//                }
-//            }
-//            else if (currentPlayer != "" && currentPlayer != "enemy" && playAttack != "") {
-//                var battletext = battleTextView.text as String
-//                var arraylines = battletext.componentsSeparatedByString("\n")
-//                var lastline = arraylines[arraylines.count-2]
-//                if (lastline != "\(currentPlayer) used \(playAttack) on the enemy.") {
-//                    battleTextView.text = battleTextView.text + "\(currentPlayer) used \(playAttack) on the enemy.\n"
-//                    turn = ""
-//                    attackTextField.enabled = false
-//                    attackButton.enabled = false
-//                }
-//            }
-//        }
-//        
-//        if (playerID == turnID) {
-//            var battletext = battleTextView.text as String
-//            var arraylines = battletext.componentsSeparatedByString("\n")
-//            var lastline = arraylines[arraylines.count-2]
-//            if (lastline != "It is your turn.") {
-//                battleTextView.text = battleTextView.text + "It is your turn.\n"
-//                attackTextField.enabled = true
-//                attackButton.enabled = true
-//            }
-//        }
-//    }
-//    
     func enemyAttack() {
         // 3. enemy chooses attack/target
-        var attacks:[String] = ["Punch", "Kick", "Fire", "Thunder", "Blizzard"]
+        var attacks:[String!] = ["Punch", "Kick", "Fire", "Thunder", "Blizzard"]
         var randomint:Int! = Int(arc4random_uniform(UInt32(attacks.count)))
-        var randomindex:Int! = Int(arc4random_uniform(UInt32(allPlayers.count)))
-        var target = allPlayers[randomindex] as String
-        battleTextView.text = battleTextView.text + "Enemy used \(attacks[randomint]) on \(target).\n"
+        var randomindex:Int! = Int(arc4random_uniform(UInt32(otherPlayers.count+1)))
+        var target = ""
+        if (randomindex == otherPlayers.count) {
+            target = playerID
+        }
+        else {
+            target = otherPlayers[randomindex] as String
+        }
+        var attack = attacks[randomint] as String
+        battleTextView.text = battleTextView.text + "Enemy used \(attack) on \(target).\n"
         // 4. post enemy attacks, goto 1.  (eattack = attack, etarget = target, pattack = "", tur = "", cplayer = "enemy", stat = "same")
-        updateBattleStatusAndPost(attacks[randomint], eTarget: target, pAttack: "", tur: "", cPlayer: "enemy", stat: "same")
+        updateBattleStatusAndPost(attack, eTarget: target, pAttack: "", tur: "", cPlayer: "enemy", stat: "same")
+//        turn = ""
+    }
+    
+    func setEnemyAttacking() {
         turn = ""
+        enemyAttacking = false
     }
     
     func getJSON(urlstring:String!) -> [NSDictionary] {
@@ -422,10 +360,10 @@ class battleViewController: UIViewController {
         post(urlstring, querystring: str)
     }
     
-    func postToBattles(battleID:String!, enemAttack:String!, enemTarget:String!, playAttack:String!, turn:String!, currentPlayer:String!, status:String!) {
+    func postToBattles(battleID:String!, eAt:String!, enemTarget:String!, playAttack:String!, turn:String!, currentPlayer:String!, status:String!) {
         
         var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/battleForm/index.php"
-        var str = "ID=\(battleID)&lastEnemyAttack=\(enemAttack)&lastPlayerAttack=\(playAttack)&turnPlayerID=\(turn)&status=\(status)&enemyTargetID=\(enemTarget)&currentPlayerID=\(currentPlayer)&submit=submit"
+        var str = "ID=\(battleID)&lastEnemyAttack=\(eAt)&lastPlayerAttack=\(playAttack)&turnPlayerID=\(turn)&status=\(status)&enemyTargetID=\(enemTarget)&currentPlayerID=\(currentPlayer)&submit=submit"
         post(urlstring, querystring: str)
     }
     
@@ -455,6 +393,24 @@ class battleViewController: UIViewController {
         var playerID = prefs.objectForKey("playerID") as String!
         var battleID = prefs.objectForKey("battleID") as String!
         postPlayersInBattle(playerID, bid: "-1")
-        postToBattles(battleID, enemAttack: "", enemTarget: "", playAttack: "", turn: "", currentPlayer: "", status: "Open")
+        
+        let playersurl = "http://tekugame.mxd.media.ritsumei.ac.jp/json/playersinbattle.json"
+        var jsObj2 = getJSON(playersurl)
+        allPlayers = NSMutableArray()
+        var pcount = 0
+        for player in jsObj2 {
+            var bid = player["battleID"] as String!
+            if (bid == battleID) {
+                pcount++
+                var pid = player["playerID"] as String
+                allPlayers.addObject(pid)
+            }
+        }
+        if (pcount == 0) {
+            postToBattles(battleID, eAt: "", enemTarget: "", playAttack: "", turn: "", currentPlayer: "", status: "Open")
+        }
+        else {
+            postToBattles(battleID, eAt: "", enemTarget: "", playAttack: "", turn: "", currentPlayer: "", status: "Battle Finished")
+        }
     }
 }
