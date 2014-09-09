@@ -25,13 +25,13 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
     
     var prefs = NSUserDefaults.standardUserDefaults()
     
-    let background = SKSpriteNode(imageNamed: "background.png");
+    let background:SKSpriteNode = SKSpriteNode(imageNamed: "background.png");
     let status:UILabel = UILabel(frame: CGRectMake( 0, 0, 548, 20));
     let typePicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let actionPicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let enemyImage:SKSpriteNode = SKSpriteNode(imageNamed: "enemy.png");
     let actionButton:SKSpriteNode = SKSpriteNode(imageNamed: "DoAction");
-    
+
     var p:player = player();
     var e:enemy = enemy();
     var step:Int = 0;
@@ -41,6 +41,7 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         var userInfo = NSDictionary(object: false, forKey: "isGameOver")
         NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
         
+        /*
         var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
         var currentuser = prefs.objectForKey("currentuser") as String
         //p.level = plStats[currentuser]!["level"]!
@@ -53,8 +54,9 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         p.currentStrength = p.strength;
         p.currentMagic = p.magic;
         p.currentSpeed = p.speed;
-        
+
         e.level = p.level;
+        */
         e.type = Types.allValues[Int(arc4random_uniform(9))];
         e.subType = (e.type == Types.Elemental) ? Int(arc4random_uniform(3)):Int(arc4random_uniform(2));
         e = setStats(e);
@@ -86,7 +88,6 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         println("\(magic)");
         println("\(physical)");
         
-        
         /* Setup your scene here */
         status.center = CGPointMake(284, 10);
         status.textAlignment = NSTextAlignment.Left;
@@ -102,19 +103,47 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         typePicker.center = CGPointMake(60, 250);
         typePicker.delegate = self;
         typePicker.reloadAllComponents();
-        view.addSubview(typePicker);
-        
+        //view.addSubview(typePicker);
         actionPicker.transform = CGAffineTransformMakeScale(0.75 , 0.75);
         actionPicker.frame = CGRectMake(0, 0, 135, 10);
         actionPicker.center = CGPointMake(500, 250);
         actionPicker.delegate = self;
         actionPicker.reloadAllComponents();
-        view.addSubview(actionPicker);
+        //view.addSubview(actionPicker);
         
         actionButton.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 200);
         actionButton.size = CGSizeMake(actionButton.size.width * 2, actionButton.size.height * 2);
         actionButton.zPosition = 3;
-        addChild(actionButton);
+        //addChild(actionButton);
+        
+        var item1:UIView = UIView(frame: CGRectMake(0, 0, 64, 64));
+        item1.setMenuActionWithBlock { () -> Void in
+            println("Physical");
+        }
+        var item1ImageView:UIImageView = UIImageView(frame: CGRectMake(0, 0, 64, 64));
+        item1ImageView.image = UIImage(named: "Physical.png");
+        item1.addSubview(item1ImageView);
+        
+        var item2:UIView = UIView(frame: CGRectMake(0, 0, 64, 64));
+        item2.setMenuActionWithBlock { () -> Void in
+            println("Magic");
+        }
+        var item2ImageView:UIImageView = UIImageView(frame: CGRectMake(0, 0, 64, 64));
+        item2ImageView.image = UIImage(named: "Magic.png");
+        item2.addSubview(item2ImageView);
+        
+        var item3:UIView = UIView(frame: CGRectMake(0, 0, 64, 64));
+        item3.setMenuActionWithBlock { () -> Void in
+            println("U_Examine");
+        }
+        var item3ImageView:UIImageView = UIImageView(frame: CGRectMake(0, 0, 64, 64));
+        item3ImageView.image = UIImage(named: "U_Examine.png");
+        item3.addSubview(item3ImageView);
+        
+        var sideMenu:HMSideMenu = HMSideMenu(items: [item1, item2, item3]);
+        sideMenu.menuPosition = HMSideMenuPositionLeft;
+        view.addSubview(sideMenu);
+        sideMenu.open();
         
         background.anchorPoint = CGPoint(x: 0, y: 0);
         background.size = self.size;
@@ -140,7 +169,6 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
                     turnPlayer = !turnPlayer;
                 }
             }
-            
         }
     }
     override func update(currentTime: CFTimeInterval)
@@ -252,4 +280,34 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         }
     }
     
+    func pickerView(pickerView: UIPickerView!, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView! {
+        var label = UILabel(frame: CGRectMake(0, 0, pickerView.frame.size.width, 44))
+        label.font = UIFont(name: "Optima-ExtraBlack", size: 24)
+        label.textColor = UIColor.blackColor()
+        label.backgroundColor = UIColor.whiteColor();
+        
+        switch(pickerView)
+            {
+        case typePicker:
+            label.text = num[row];
+        case actionPicker:
+            switch(typePicker.selectedRowInComponent(0))
+                {
+            case 0:
+                label.text = utility[row].typeToStringE();
+            case 1:
+                label.text = physical[row].typeToStringE();
+            case 2:
+                label.text = magic[row].typeToStringE();
+            default:
+                label.text = "";
+            }
+        default:
+            label.text = "";
+        }
+
+        
+        label.textAlignment = NSTextAlignment.Center
+        return label
+    }
 }
