@@ -45,7 +45,6 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         var userInfo = NSDictionary(object: false, forKey: "isGameOver")
         NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
         
-        /*
         var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
         var currentuser = prefs.objectForKey("currentuser") as String
         //p.level = plStats[currentuser]!["level"]!
@@ -60,7 +59,6 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         p.currentSpeed = p.speed;
 
         e.level = p.level;
-        */
         
         e.type = Types.allValues[Int(arc4random_uniform(9))];
         e.subType = (e.type == Types.Elemental) ? Int(arc4random_uniform(3)):Int(arc4random_uniform(2));
@@ -291,10 +289,10 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
     
     func setMenuButton32(name:String!, block:(() -> Void)!) -> UIView!
     {
-        var tempbutton:UIView = UIView(frame: CGRectMake(0, 0, 32, 32))
+        var tempbutton:UIView = UIView(frame: CGRectMake(0, 0, 48, 48))
         tempbutton.setMenuActionWithBlock(block)
         
-        var tempbuttonIcon:UIImageView = UIImageView(frame: CGRectMake(0, 0, 32, 32))
+        var tempbuttonIcon:UIImageView = UIImageView(frame: CGRectMake(0, 0, 48, 48))
         tempbuttonIcon.image = UIImage(named: name)
         tempbutton.addSubview(tempbuttonIcon)
         
