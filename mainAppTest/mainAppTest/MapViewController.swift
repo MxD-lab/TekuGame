@@ -217,7 +217,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func postAndGet() {
         if (isConnectedToInternet()) {
             netConnectionLabel.text = ""
-            post()
+//            post()
+            postPlayerLocation()
             get()
         }
         else {
@@ -225,34 +226,42 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    // Makes an HTTP POST request for the player's ID, beacon, and GPS coordinates.
-    func post() {
-        
+    func postPlayerLocation() {
         lat = mapView_.myLocation.coordinate.latitude
         long = mapView_.myLocation.coordinate.longitude
-        
         var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
         var str = "phone=\(playerID!)&beacon=\(beaconID!)&longitude=\(long!)&latitude=\(lat!)&submit=submit"
-        var url = NSURL.URLWithString(urlstring) // URL object from URL string.
-        var request = NSMutableURLRequest(URL: url) // Request.
-        request.HTTPMethod = "POST" // Could be POST or GET.
-        
-        // Post has HTTPBody.
-        var strData = str.dataUsingEncoding(NSUTF8StringEncoding)
-        request.HTTPBody = strData
-        request.setValue("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", forHTTPHeaderField: "Accept")
-        request.setValue("gzip,deflate,sdch", forHTTPHeaderField: "Accept-Encoding")
-        request.setValue("ja,en-US;q=0.8,en;q=0.6", forHTTPHeaderField: "Accept-Language")
-        request.setValue("tekugame.mxd.media.ritsumei.ac.jp", forHTTPHeaderField: "Host")
-        
-        // Values returned from server.
-        var response: NSURLResponse? = nil
-        var error: NSError? = nil
-        
-        // Reply from server.
-        let reply = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&error)
-        let results = NSString(data:reply!, encoding:NSUTF8StringEncoding) // Encoded results.
+        post(urlstring, str)
     }
+    
+    // Makes an HTTP POST request for the player's ID, beacon, and GPS coordinates.
+//    func post() {
+//        
+//        lat = mapView_.myLocation.coordinate.latitude
+//        long = mapView_.myLocation.coordinate.longitude
+//        
+//        var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
+//        var str = "phone=\(playerID!)&beacon=\(beaconID!)&longitude=\(long!)&latitude=\(lat!)&submit=submit"
+//        var url = NSURL.URLWithString(urlstring) // URL object from URL string.
+//        var request = NSMutableURLRequest(URL: url) // Request.
+//        request.HTTPMethod = "POST" // Could be POST or GET.
+//        
+//        // Post has HTTPBody.
+//        var strData = str.dataUsingEncoding(NSUTF8StringEncoding)
+//        request.HTTPBody = strData
+//        request.setValue("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", forHTTPHeaderField: "Accept")
+//        request.setValue("gzip,deflate,sdch", forHTTPHeaderField: "Accept-Encoding")
+//        request.setValue("ja,en-US;q=0.8,en;q=0.6", forHTTPHeaderField: "Accept-Language")
+//        request.setValue("tekugame.mxd.media.ritsumei.ac.jp", forHTTPHeaderField: "Host")
+//        
+//        // Values returned from server.
+//        var response: NSURLResponse? = nil
+//        var error: NSError? = nil
+//        
+//        // Reply from server.
+//        let reply = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&error)
+//        let results = NSString(data:reply!, encoding:NSUTF8StringEncoding) // Encoded results.
+//    }
     
     // Gets JSON data from the server and updates corresponding fields such as pins on the map and number of nearby players.
     func get() {

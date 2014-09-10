@@ -197,6 +197,9 @@ class CharacterCreateViewController: UIViewController
             prefs.removeObjectForKey("enemiesGoal")
             prefs.setObject(plStats, forKey: "playerStats")
             prefs.setObject(accounts, forKey: "useraccounts")
+            
+            postLog("Account created!! Hello world!")
+            
             var nextVC = segue.destinationViewController as MapViewController
             nextVC.playerID = playerID
         }
