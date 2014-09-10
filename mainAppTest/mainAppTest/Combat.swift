@@ -427,7 +427,6 @@ func doAction(user:Entity, target:Entity, action:Action)
     default:
         break;
     }
-    
-    user.printAll();
-    target.printAll();
+    //user.printAll();
+    //target.printAll();
 }

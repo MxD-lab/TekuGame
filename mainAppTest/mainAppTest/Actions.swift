@@ -417,4 +417,54 @@ enum Action:String, Printable
             return "";
         }
     }
+    func attackExplanationE() -> String
+    {
+        switch(self)
+            {
+        case Action.U_Examine:
+            return "Examine the enemy to find out how strong it is.";
+        case Action.P_Uppercut:
+            return "Deal physical damage to the enemy.";
+        case Action.P_Charged_Strike:
+            return "Deal slightly above average physical damage to the enemy at the cost of some of your strength.";
+        case Action.P_Meditation:
+            return "Meditate in order to increase your health and strength.";
+        case Action.P_Leg_Sweep:
+            return "Deal slightly below average physical damage to the enemy while causing their strength to lower.";
+        case Action.P_Turbo_Strike:
+            return "Deal damage to the enemy based on your speed rather than your strength";
+        case Action.P_Heart_Strike:
+            return "Deal damage equal to 10% of the enemy's health.";
+        case Action.P_Muscle_Training:
+            return "Sacrifice some of your health in order to increase your strength.";
+        case Action.P_Stomp:
+            return "Deal slightly above average physical damage to the enemy.";
+        case Action.P_Sacrificial_Strike:
+            return "Sacrifice all but one of your health and deal damage to the enemy equal to the health you lost.";
+        case Action.P_Overpower:
+            return "Compare yourself to your opponent based on all physical characteristics.";
+        case Action.E_EnergyBall:
+            return "Deal magic damage to the enemy";
+        case Action.E_Icy_Wind:
+            return "Deal slightly below average magic damage to the enemy while causing their magic power to lower.";
+        case Action.E_Barrier:
+            return "Place a protective barrier around yourself, increasing your health.";
+        case Action.E_Fireball:
+            return "Deal slightly above average magic damage to the enemy at the cost of some of your magic power.";
+        case Action.E_Sharpen_Mind:
+            return "Focus in order to increase your magic power.";
+        case Action.E_Curse:
+            return "Place a curse on the enemy, causing their health, strength, and magic power to lower slightly.";
+        case Action.E_Life_Drain:
+            return "Deal magic damage to the enemy, absorb some of the damage you dealt.";
+        case Action.E_Decay:
+            return "Deal below average damage to the opponent while causing their strength, magic, and speed to lover very slightly.";
+        case Action.E_Full_Heal:
+            return "Completely restore your health.";
+        case Action.E_Instant_Death:
+            return "Has a very low chance of instantly defeating the enemy.";
+        default:
+            return "ERROR: NON-PLAYER MOVE USED!";
+        }
+    }
 }

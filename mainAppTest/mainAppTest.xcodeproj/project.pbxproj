@@ -15,7 +15,7 @@
 		A1D183D219BED3BE00E03B28 /* E_Barrier.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183BB19BED3BE00E03B28 /* E_Barrier.png */; };
 		A1D183D319BED3BE00E03B28 /* E_Curse.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183BC19BED3BE00E03B28 /* E_Curse.png */; };
 		A1D183D419BED3BE00E03B28 /* E_Decay.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183BD19BED3BE00E03B28 /* E_Decay.png */; };
-		A1D183D519BED3BE00E03B28 /* E_EnergyBall.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183BE19BED3BE00E03B28 /* E_EnergyBall.png */; };
+		A1D183D519BED3BE00E03B28 /* E_Energy_Ball.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183BE19BED3BE00E03B28 /* E_Energy_Ball.png */; };
 		A1D183D619BED3BE00E03B28 /* E_Fireball.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183BF19BED3BE00E03B28 /* E_Fireball.png */; };
 		A1D183D719BED3BE00E03B28 /* E_Full_Heal.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C019BED3BE00E03B28 /* E_Full_Heal.png */; };
 		A1D183D819BED3BE00E03B28 /* E_Icy_Wind.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C119BED3BE00E03B28 /* E_Icy_Wind.png */; };
@@ -24,7 +24,7 @@
 		A1D183DB19BED3BE00E03B28 /* E_Sharpen_Mind.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C419BED3BE00E03B28 /* E_Sharpen_Mind.png */; };
 		A1D183DC19BED3BE00E03B28 /* Magic.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C519BED3BE00E03B28 /* Magic.png */; };
 		A1D183DD19BED3BE00E03B28 /* P_Charged_Strike.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C619BED3BE00E03B28 /* P_Charged_Strike.png */; };
-		A1D183DE19BED3BE00E03B28 /* P_Hearth_Strike.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C719BED3BE00E03B28 /* P_Hearth_Strike.png */; };
+		A1D183DE19BED3BE00E03B28 /* P_Heart_Strike.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C719BED3BE00E03B28 /* P_Heart_Strike.png */; };
 		A1D183DF19BED3BE00E03B28 /* P_Leg_Sweep.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C819BED3BE00E03B28 /* P_Leg_Sweep.png */; };
 		A1D183E019BED3BE00E03B28 /* P_Meditation.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C919BED3BE00E03B28 /* P_Meditation.png */; };
 		A1D183E119BED3BE00E03B28 /* P_Muscle_Training.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183CA19BED3BE00E03B28 /* P_Muscle_Training.png */; };
@@ -135,7 +135,7 @@
 		A1D183BB19BED3BE00E03B28 /* E_Barrier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Barrier.png; sourceTree = "<group>"; };
 		A1D183BC19BED3BE00E03B28 /* E_Curse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Curse.png; sourceTree = "<group>"; };
 		A1D183BD19BED3BE00E03B28 /* E_Decay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Decay.png; sourceTree = "<group>"; };
-		A1D183BE19BED3BE00E03B28 /* E_EnergyBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_EnergyBall.png; sourceTree = "<group>"; };
+		A1D183BE19BED3BE00E03B28 /* E_Energy_Ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Energy_Ball.png; sourceTree = "<group>"; };
 		A1D183BF19BED3BE00E03B28 /* E_Fireball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Fireball.png; sourceTree = "<group>"; };
 		A1D183C019BED3BE00E03B28 /* E_Full_Heal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Full_Heal.png; sourceTree = "<group>"; };
 		A1D183C119BED3BE00E03B28 /* E_Icy_Wind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Icy_Wind.png; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 		A1D183C419BED3BE00E03B28 /* E_Sharpen_Mind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Sharpen_Mind.png; sourceTree = "<group>"; };
 		A1D183C519BED3BE00E03B28 /* Magic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Magic.png; sourceTree = "<group>"; };
 		A1D183C619BED3BE00E03B28 /* P_Charged_Strike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Charged_Strike.png; sourceTree = "<group>"; };
-		A1D183C719BED3BE00E03B28 /* P_Hearth_Strike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Hearth_Strike.png; sourceTree = "<group>"; };
+		A1D183C719BED3BE00E03B28 /* P_Heart_Strike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Heart_Strike.png; sourceTree = "<group>"; };
 		A1D183C819BED3BE00E03B28 /* P_Leg_Sweep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Leg_Sweep.png; sourceTree = "<group>"; };
 		A1D183C919BED3BE00E03B28 /* P_Meditation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Meditation.png; sourceTree = "<group>"; };
 		A1D183CA19BED3BE00E03B28 /* P_Muscle_Training.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Muscle_Training.png; sourceTree = "<group>"; };
@@ -290,7 +290,7 @@
 				A1D183BB19BED3BE00E03B28 /* E_Barrier.png */,
 				A1D183BC19BED3BE00E03B28 /* E_Curse.png */,
 				A1D183BD19BED3BE00E03B28 /* E_Decay.png */,
-				A1D183BE19BED3BE00E03B28 /* E_EnergyBall.png */,
+				A1D183BE19BED3BE00E03B28 /* E_Energy_Ball.png */,
 				A1D183BF19BED3BE00E03B28 /* E_Fireball.png */,
 				A1D183C019BED3BE00E03B28 /* E_Full_Heal.png */,
 				A1D183C119BED3BE00E03B28 /* E_Icy_Wind.png */,
@@ -299,7 +299,7 @@
 				A1D183C419BED3BE00E03B28 /* E_Sharpen_Mind.png */,
 				A1D183C519BED3BE00E03B28 /* Magic.png */,
 				A1D183C619BED3BE00E03B28 /* P_Charged_Strike.png */,
-				A1D183C719BED3BE00E03B28 /* P_Hearth_Strike.png */,
+				A1D183C719BED3BE00E03B28 /* P_Heart_Strike.png */,
 				A1D183C819BED3BE00E03B28 /* P_Leg_Sweep.png */,
 				A1D183C919BED3BE00E03B28 /* P_Meditation.png */,
 				A1D183CA19BED3BE00E03B28 /* P_Muscle_Training.png */,
@@ -583,7 +583,7 @@
 				A1D183D419BED3BE00E03B28 /* E_Decay.png in Resources */,
 				A1D183D819BED3BE00E03B28 /* E_Icy_Wind.png in Resources */,
 				A1D183DB19BED3BE00E03B28 /* E_Sharpen_Mind.png in Resources */,
-				A1D183DE19BED3BE00E03B28 /* P_Hearth_Strike.png in Resources */,
+				A1D183DE19BED3BE00E03B28 /* P_Heart_Strike.png in Resources */,
 				A1D183E319BED3BE00E03B28 /* P_Sacrificial_Strike.png in Resources */,
 				F825584319AB20540035EBF6 /* DoAction.png in Resources */,
 				A1DEB5BF19BD6F0700F7A21E /* Construct3.png in Resources */,
@@ -608,7 +608,7 @@
 				A1DEB5CC19BD6F0700F7A21E /* Humanoid2.png in Resources */,
 				F8956B0E19A194A700ED670B /* Images.xcassets in Resources */,
 				A1DEB5C919BD6F0700F7A21E /* Elemental4.png in Resources */,
-				A1D183D519BED3BE00E03B28 /* E_EnergyBall.png in Resources */,
+				A1D183D519BED3BE00E03B28 /* E_Energy_Ball.png in Resources */,
 				A1DEB5D419BD6F0700F7A21E /* Undead1.png in Resources */,
 				A1D183DD19BED3BE00E03B28 /* P_Charged_Strike.png in Resources */,
 				A1DEB5C519BD6F0700F7A21E /* Dragon3.png in Resources */,

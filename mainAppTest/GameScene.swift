@@ -15,13 +15,20 @@ var utility:[Action] = Action.allUtility
 var physical:[Action] = Action.allPhysical;
 var magic:[Action] = Action.allMagic;
 
+var typeMenu:HMSideMenu = HMSideMenu();
+var physicalMenu:HMSideMenu = HMSideMenu();
+var magicMenu:HMSideMenu = HMSideMenu();
+
+var p:player = player();
+var e:enemy = enemy();
+
+var turnPlayer:Bool = false;
+
 class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
 {
     var allActions:[(String, [Action])] = [("Utility", utility), ("Physical",physical),("Magic", magic)];
     
     let canDo:[Int] = [5,17,30,43,56,68,81,94,107,120];
-    
-    var turnPlayer:Bool = false;
     
     var prefs = NSUserDefaults.standardUserDefaults()
     
@@ -30,15 +37,8 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
     let typePicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let actionPicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let enemyImage:SKSpriteNode = SKSpriteNode(imageNamed: "enemy.png");
-    let actionButton:SKSpriteNode = SKSpriteNode(imageNamed: "DoAction");
 
-    var p:player = player();
-    var e:enemy = enemy();
     var step:Int = 0;
-    
-    var typeMenu:HMSideMenu = HMSideMenu();
-    var physicalMenu:HMSideMenu = HMSideMenu();
-    var magicMenu:HMSideMenu = HMSideMenu();
     
     override func didMoveToView(view: SKView)
     {
@@ -61,6 +61,7 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
 
         e.level = p.level;
         */
+        
         e.type = Types.allValues[Int(arc4random_uniform(9))];
         e.subType = (e.type == Types.Elemental) ? Int(arc4random_uniform(3)):Int(arc4random_uniform(2));
         e = setStats(e);
@@ -89,9 +90,9 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
                 physical.removeLast();
             }
         }
-        physical.append(Action.P_Uppercut);
-        println("\(magic)");
-        println("\(physical)");
+        
+        println("Magic: \(magic)");
+        println("Physical: \(physical)");
         
         /* Setup your scene here */
         status.center = CGPointMake(284, 10);
@@ -103,92 +104,125 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         view.addSubview(status)
 
         typePicker.transform = CGAffineTransformMakeScale(0.75 , 0.75);
-//        typePicker.frame = CGRectMake(0, 0, 75, 10);
+        //typePicker.frame = CGRectMake(0, 0, 75, 10);
         //typePicker.center = CGPointMake(37.5, X);
         typePicker.center = CGPointMake(60, 250);
         typePicker.delegate = self;
         typePicker.reloadAllComponents();
         //view.addSubview(typePicker);
         actionPicker.transform = CGAffineTransformMakeScale(0.75 , 0.75);
-//        actionPicker.frame = CGRectMake(0, 0, 135, 10);
+        //actionPicker.frame = CGRectMake(0, 0, 135, 10);
         actionPicker.center = CGPointMake(500, 250);
         actionPicker.delegate = self;
         actionPicker.reloadAllComponents();
         //view.addSubview(actionPicker);
         
-        actionButton.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 200);
-        actionButton.size = CGSizeMake(actionButton.size.width * 2, actionButton.size.height * 2);
-        actionButton.zPosition = 3;
-        //addChild(actionButton);
+        var p_uppercut = setMenuButton32("P_Uppercut.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.P_Uppercut); turnPlayer = !turnPlayer;}}
+        var p_charged_strike = setMenuButton32("P_Charged_Strike.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.P_Charged_Strike); turnPlayer = !turnPlayer;}}
+        var p_meditation = setMenuButton32("P_Meditation.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.P_Meditation); turnPlayer = !turnPlayer;}}
+        var p_leg_sweep = setMenuButton32("P_Leg_Sweep.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.P_Leg_Sweep); turnPlayer = !turnPlayer;}}
+        var p_turbo_strike = setMenuButton32("P_Turbo_Strike.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.P_Turbo_Strike); turnPlayer = !turnPlayer;}}
+        var p_heart_strike = setMenuButton32("P_Heart_Strike.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.P_Heart_Strike); turnPlayer = !turnPlayer;}}
+        var p_muscle_training = setMenuButton32("P_Muscle_Training.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.P_Meditation); turnPlayer = !turnPlayer;}}
+        var p_stomp = setMenuButton32("P_Stomp.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.P_Stomp); turnPlayer = !turnPlayer;}}
+        var p_sacrificial_strike = setMenuButton32("P_Sacrificial_Strike.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.P_Sacrificial_Strike); turnPlayer = !turnPlayer;}}
+        var p_overpower = setMenuButton32("P_Overpower.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.P_Overpower); turnPlayer = !turnPlayer;}}
         
-        var physicalButton:UIView = UIView(frame: CGRectMake(0, 0, 64, 64));
-        physicalButton.setMenuActionWithBlock { () -> Void in
-            println("Physical");
-            var arr:[UIView] = [];
-            var newButton:UIView = UIView(frame: CGRectMake(0, 0, 64, 66));
-            
-            for p in physical
+        physicalMenu = HMSideMenu(items: [
+            p_uppercut,
+            p_charged_strike,
+            p_meditation,
+            p_leg_sweep,
+            p_turbo_strike,
+            p_heart_strike,
+            p_muscle_training,
+            p_stomp,
+            p_sacrificial_strike,
+            p_overpower
+            ]);
+        
+        physicalMenu.menuPosition = HMSideMenuPositionRight;
+        view.addSubview(physicalMenu);
+        
+        var e_energy_ball = setMenuButton32("E_Energy_Ball.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.E_EnergyBall); turnPlayer = !turnPlayer;}}
+        var e_icy_wind = setMenuButton32("E_Icy_Wind.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.E_Icy_Wind); turnPlayer = !turnPlayer;}}
+        var e_barrier = setMenuButton32("E_Barrier.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.E_Barrier); turnPlayer = !turnPlayer;}}
+        var e_fireball = setMenuButton32("E_Fireball.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.E_Fireball); turnPlayer = !turnPlayer;}}
+        var e_sharpen_mind = setMenuButton32("E_Sharpen_Mind.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.E_Sharpen_Mind); turnPlayer = !turnPlayer;}}
+        var e_curse = setMenuButton32("E_Curse.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.E_Curse); turnPlayer = !turnPlayer;}}
+        var e_life_drain = setMenuButton32("E_Life_Drain.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.E_Life_Drain); turnPlayer = !turnPlayer;}}
+        var e_decay = setMenuButton32("E_Decay.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.E_Decay); turnPlayer = !turnPlayer;}}
+        var e_full_heal = setMenuButton32("E_Full_Heal.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.E_Full_Heal); turnPlayer = !turnPlayer;}}
+        var e_instant_death = setMenuButton32("E_Instant_Death.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.E_Instant_Death); turnPlayer = !turnPlayer;}}
+        
+        magicMenu = HMSideMenu(items: [
+            e_energy_ball,
+            e_icy_wind,
+            e_barrier,
+            e_fireball,
+            e_sharpen_mind,
+            e_curse,
+            e_life_drain,
+            e_decay,
+            e_full_heal,
+            e_instant_death
+            ]);
+        
+        magicMenu.menuPosition = HMSideMenuPositionRight;
+        view.addSubview(magicMenu);
+        
+        var physicalButton = setMenuButton64("Physical.png") { () -> Void in
+            if(!physicalMenu.isOpen && !magicMenu.isOpen)
             {
-                var newButton:UIView = UIView(frame: CGRectMake(0, 0, 64, 66));
-                var newButtonIcon:UIImageView = UIImageView(frame: CGRectMake(0,0,64,66));
-                println("   \(p)");
-                newButton.setMenuActionWithBlock({ () -> Void in
-                    println(p.typeToStringE());
-                })
-                switch(p)
-                    {
-                case Action.P_Uppercut:
-                    newButtonIcon.image = UIImage(named: "P_Uppercut.png");
-                case Action.P_Charged_Strike:
-                    newButtonIcon.image = UIImage(named: "P_Charged_Strike.png");
-                case Action.P_Meditation:
-                    newButtonIcon.image = UIImage(named: "P_Meditation.png");
-                case Action.P_Leg_Sweep:
-                    newButtonIcon.image = UIImage(named: "P_Leg_Sweep.png");
-                case Action.P_Turbo_Strike:
-                    newButtonIcon.image = UIImage(named: "P_Turbo_Strike.png");
-                case Action.P_Heart_Strike:
-                    newButtonIcon.image = UIImage(named: "P_Heart_Strike.png");
-                case Action.P_Muscle_Training:
-                    newButtonIcon.image = UIImage(named: "P_Muscle_Training.png");
-                case Action.P_Stomp:
-                    newButtonIcon.image = UIImage(named: "P_Stomp.png");
-                case Action.P_Sacrificial_Strike:
-                    newButtonIcon.image = UIImage(named: "P_Sacrificial_Strike.png");
-                case Action.P_Overpower:
-                    newButtonIcon.image = UIImage(named: "P_Overpower.png");
-                default:
-                    newButtonIcon.image = UIImage(named: "Physical.png");
-                }
-                newButton.addSubview(newButtonIcon);
-                arr.append(newButton);
+                physicalMenu.open();
             }
-            self.physicalMenu = HMSideMenu(items: arr);
-            self.physicalMenu.menuPosition = HMSideMenuPositionRight;
-            view.addSubview(self.physicalMenu);
-            self.physicalMenu.open();
+            else if(!physicalMenu.isOpen && magicMenu.isOpen)
+            {
+                magicMenu.close();
+                physicalMenu.open();
+            }
         }
-        var physicalButtonIcon:UIImageView = UIImageView(frame: CGRectMake(0, 0, 64, 64));
-        physicalButtonIcon.image = UIImage(named: "Physical.png");
-        physicalButton.addSubview(physicalButtonIcon);
-        
-        var magicButton:UIView = UIView(frame: CGRectMake(0, 0, 64, 64));
-        magicButton.setMenuActionWithBlock { () -> Void in
-            println("Magic");
+        var magicButton = setMenuButton64("Magic.png") { () -> Void in
+            if(!physicalMenu.isOpen && !magicMenu.isOpen)
+            {
+                magicMenu.open();
+            }
+            else if(physicalMenu.isOpen && !magicMenu.isOpen)
+            {
+                physicalMenu.close();
+                magicMenu.open();
+            }
         }
-        var magicButtonIcon:UIImageView = UIImageView(frame: CGRectMake(0, 0, 64, 64));
-        magicButtonIcon.image = UIImage(named: "Magic.png");
-        magicButton.addSubview(magicButtonIcon);
         
-        var examineButton:UIView = UIView(frame: CGRectMake(0, 0, 64, 64));
-        examineButton.setMenuActionWithBlock { () -> Void in
-            println("U_Examine");
-        }
-        var examineButtonIcon:UIImageView = UIImageView(frame: CGRectMake(0, 0, 64, 64));
-        examineButtonIcon.image = UIImage(named: "U_Examine.png");
-        examineButton.addSubview(examineButtonIcon);
+        var examineButton = setMenuButton64("U_Examine.png") { () -> Void in
+            if(turnPlayer){doAction(p, e, Action.U_Examine); turnPlayer = !turnPlayer;}}
         
-        typeMenu = HMSideMenu(items: [physicalButton, magicButton, examineButton]);
+        typeMenu = HMSideMenu(items: [
+            physicalButton,
+            magicButton,
+            examineButton
+            ]);
+        
         typeMenu.menuPosition = HMSideMenuPositionLeft;
         view.addSubview(typeMenu);
         typeMenu.open();
@@ -202,26 +236,16 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         enemyImage.zPosition = 1;
         addChild(enemyImage);
     }
+    
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent)
-    {
-        /* Called when a touch begins */
+    {   /* Called when a touch begins */
         for touch: AnyObject in touches
         {
-            if (step >= 300) {
-                if CGRectContainsPoint(actionButton.frame, touch.locationInNode(self))
-                {
-                    var action:Action = allActions[typePicker.selectedRowInComponent(0)].1[actionPicker.selectedRowInComponent(0)]
-                    p.printAll();
-                    e.printAll();
-                    doAction(p, e, action);
-                    turnPlayer = !turnPlayer;
-                }
-            }
         }
     }
+    
     override func update(currentTime: CFTimeInterval)
-    {
-        /* Called before each frame is rendered */
+    {   /* Called before each frame is rendered */
         
         if (step < 300) {
             step += 1;
@@ -263,6 +287,29 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
                 NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
             }
         }
+    }
+    
+    func setMenuButton32(name:String!, block:(() -> Void)!) -> UIView!
+    {
+        var tempbutton:UIView = UIView(frame: CGRectMake(0, 0, 32, 32))
+        tempbutton.setMenuActionWithBlock(block)
+        
+        var tempbuttonIcon:UIImageView = UIImageView(frame: CGRectMake(0, 0, 32, 32))
+        tempbuttonIcon.image = UIImage(named: name)
+        tempbutton.addSubview(tempbuttonIcon)
+        
+        return tempbutton
+    }
+    func setMenuButton64(name:String!, block:(() -> Void)!) -> UIView!
+    {
+        var tempbutton:UIView = UIView(frame: CGRectMake(0, 0, 64, 64))
+        tempbutton.setMenuActionWithBlock(block)
+        
+        var tempbuttonIcon:UIImageView = UIImageView(frame: CGRectMake(0, 0, 64, 64))
+        tempbuttonIcon.image = UIImage(named: name)
+        tempbutton.addSubview(tempbuttonIcon)
+        
+        return tempbutton
     }
     
     func numberOfComponentsInPickerView(colorPicker: UIPickerView) -> Int
