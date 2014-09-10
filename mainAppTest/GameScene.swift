@@ -36,6 +36,10 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
     var e:enemy = enemy();
     var step:Int = 0;
     
+    var typeMenu:HMSideMenu = HMSideMenu();
+    var physicalMenu:HMSideMenu = HMSideMenu();
+    var magicMenu:HMSideMenu = HMSideMenu();
+    
     override func didMoveToView(view: SKView)
     {
         var userInfo = NSDictionary(object: false, forKey: "isGameOver")
@@ -85,6 +89,7 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
                 physical.removeLast();
             }
         }
+        physical.append(Action.P_Uppercut);
         println("\(magic)");
         println("\(physical)");
         
@@ -116,34 +121,77 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         actionButton.zPosition = 3;
         //addChild(actionButton);
         
-        var item1:UIView = UIView(frame: CGRectMake(0, 0, 64, 64));
-        item1.setMenuActionWithBlock { () -> Void in
+        var physicalButton:UIView = UIView(frame: CGRectMake(0, 0, 64, 64));
+        physicalButton.setMenuActionWithBlock { () -> Void in
             println("Physical");
+            var arr:[UIView] = [];
+            var newButton:UIView = UIView(frame: CGRectMake(0, 0, 64, 66));
+            
+            for p in physical
+            {
+                var newButton:UIView = UIView(frame: CGRectMake(0, 0, 64, 66));
+                var newButtonIcon:UIImageView = UIImageView(frame: CGRectMake(0,0,64,66));
+                println("   \(p)");
+                newButton.setMenuActionWithBlock({ () -> Void in
+                    println(p.typeToStringE());
+                })
+                switch(p)
+                    {
+                case Action.P_Uppercut:
+                    newButtonIcon.image = UIImage(named: "P_Uppercut.png");
+                case Action.P_Charged_Strike:
+                    newButtonIcon.image = UIImage(named: "P_Charged_Strike.png");
+                case Action.P_Meditation:
+                    newButtonIcon.image = UIImage(named: "P_Meditation.png");
+                case Action.P_Leg_Sweep:
+                    newButtonIcon.image = UIImage(named: "P_Leg_Sweep.png");
+                case Action.P_Turbo_Strike:
+                    newButtonIcon.image = UIImage(named: "P_Turbo_Strike.png");
+                case Action.P_Heart_Strike:
+                    newButtonIcon.image = UIImage(named: "P_Heart_Strike.png");
+                case Action.P_Muscle_Training:
+                    newButtonIcon.image = UIImage(named: "P_Muscle_Training.png");
+                case Action.P_Stomp:
+                    newButtonIcon.image = UIImage(named: "P_Stomp.png");
+                case Action.P_Sacrificial_Strike:
+                    newButtonIcon.image = UIImage(named: "P_Sacrificial_Strike.png");
+                case Action.P_Overpower:
+                    newButtonIcon.image = UIImage(named: "P_Overpower.png");
+                default:
+                    newButtonIcon.image = UIImage(named: "Physical.png");
+                }
+                newButton.addSubview(newButtonIcon);
+                arr.append(newButton);
+            }
+            self.physicalMenu = HMSideMenu(items: arr);
+            self.physicalMenu.menuPosition = HMSideMenuPositionRight;
+            view.addSubview(self.physicalMenu);
+            self.physicalMenu.open();
         }
-        var item1ImageView:UIImageView = UIImageView(frame: CGRectMake(0, 0, 64, 64));
-        item1ImageView.image = UIImage(named: "Physical.png");
-        item1.addSubview(item1ImageView);
+        var physicalButtonIcon:UIImageView = UIImageView(frame: CGRectMake(0, 0, 64, 64));
+        physicalButtonIcon.image = UIImage(named: "Physical.png");
+        physicalButton.addSubview(physicalButtonIcon);
         
-        var item2:UIView = UIView(frame: CGRectMake(0, 0, 64, 64));
-        item2.setMenuActionWithBlock { () -> Void in
+        var magicButton:UIView = UIView(frame: CGRectMake(0, 0, 64, 64));
+        magicButton.setMenuActionWithBlock { () -> Void in
             println("Magic");
         }
-        var item2ImageView:UIImageView = UIImageView(frame: CGRectMake(0, 0, 64, 64));
-        item2ImageView.image = UIImage(named: "Magic.png");
-        item2.addSubview(item2ImageView);
+        var magicButtonIcon:UIImageView = UIImageView(frame: CGRectMake(0, 0, 64, 64));
+        magicButtonIcon.image = UIImage(named: "Magic.png");
+        magicButton.addSubview(magicButtonIcon);
         
-        var item3:UIView = UIView(frame: CGRectMake(0, 0, 64, 64));
-        item3.setMenuActionWithBlock { () -> Void in
+        var examineButton:UIView = UIView(frame: CGRectMake(0, 0, 64, 64));
+        examineButton.setMenuActionWithBlock { () -> Void in
             println("U_Examine");
         }
-        var item3ImageView:UIImageView = UIImageView(frame: CGRectMake(0, 0, 64, 64));
-        item3ImageView.image = UIImage(named: "U_Examine.png");
-        item3.addSubview(item3ImageView);
+        var examineButtonIcon:UIImageView = UIImageView(frame: CGRectMake(0, 0, 64, 64));
+        examineButtonIcon.image = UIImage(named: "U_Examine.png");
+        examineButton.addSubview(examineButtonIcon);
         
-        var sideMenu:HMSideMenu = HMSideMenu(items: [item1, item2, item3]);
-        sideMenu.menuPosition = HMSideMenuPositionLeft;
-        view.addSubview(sideMenu);
-        sideMenu.open();
+        typeMenu = HMSideMenu(items: [physicalButton, magicButton, examineButton]);
+        typeMenu.menuPosition = HMSideMenuPositionLeft;
+        view.addSubview(typeMenu);
+        typeMenu.open();
         
         background.anchorPoint = CGPoint(x: 0, y: 0);
         background.size = self.size;
@@ -216,8 +264,8 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
                 NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
             }
         }
-        
     }
+    
     func numberOfComponentsInPickerView(colorPicker: UIPickerView) -> Int
     {
         return 1;
