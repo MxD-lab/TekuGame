@@ -27,6 +27,7 @@ extension SKNode {
 
 class GameViewController: UIViewController {
     var incremented = false
+    var segued = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -94,6 +95,10 @@ class GameViewController: UIViewController {
                 prefs.setObject(1, forKey: "enemiesBeaten")
             }
             incremented = true
+            performSegueWithIdentifier("mainmap", sender: self)
+        }
+        else if (gmover && !pwin && !segued) {
+            segued = true
             performSegueWithIdentifier("mainmap", sender: self)
         }
     }

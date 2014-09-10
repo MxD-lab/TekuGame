@@ -80,12 +80,12 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         {
             if(p.magic < canDo[i])
             {
-                println("Removing: \(magic.last)");
+                println("Removing: \(magic.last!)");
                 magic.removeLast();
             }
             if(p.strength < canDo[i])
             {
-                println("Removing: \(physical.last)");
+                println("Removing: \(physical.last!)");
                 physical.removeLast();
             }
         }
@@ -103,14 +103,14 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         view.addSubview(status)
 
         typePicker.transform = CGAffineTransformMakeScale(0.75 , 0.75);
-        typePicker.frame = CGRectMake(0, 0, 75, 10);
+//        typePicker.frame = CGRectMake(0, 0, 75, 10);
         //typePicker.center = CGPointMake(37.5, X);
         typePicker.center = CGPointMake(60, 250);
         typePicker.delegate = self;
         typePicker.reloadAllComponents();
         //view.addSubview(typePicker);
         actionPicker.transform = CGAffineTransformMakeScale(0.75 , 0.75);
-        actionPicker.frame = CGRectMake(0, 0, 135, 10);
+//        actionPicker.frame = CGRectMake(0, 0, 135, 10);
         actionPicker.center = CGPointMake(500, 250);
         actionPicker.delegate = self;
         actionPicker.reloadAllComponents();
@@ -260,7 +260,6 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
             else if (somethingDead) {
                 somethingDead = false
                 var userInfo = ["isGameOver":true, "playerWin":playerWin]
-                //var userInfo = NSDictionary(object: true, forKey: "isGameOver")
                 NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
             }
         }
