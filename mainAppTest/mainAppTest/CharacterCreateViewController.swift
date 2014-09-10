@@ -18,23 +18,6 @@ class CharacterCreateViewController: UIViewController
     @IBOutlet weak var SpeedLabel: UILabel!
     @IBOutlet weak var PointsLabel: UILabel!
     
-    class player
-    {
-        var health:Int;
-        var strength:Int;
-        var magic:Int;
-        var speed:Int;
-        var assignPoints:Int;
-        init()
-        {
-            self.health = 0;
-            self.strength = 0;
-            self.magic = 0;
-            self.speed = 0;
-            self.assignPoints = 5;
-        }
-    }
-    
     var p:player = player();
     var original:player = player();
     
@@ -43,10 +26,12 @@ class CharacterCreateViewController: UIViewController
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        p.health = 5;
-        p.strength = 4;
-        p.magic = 3;
-        p.speed = 2;
+        p.level = 1;
+        p.health = 0;
+        p.strength = 0;
+        p.magic = 0;
+        p.speed = 0;
+        p.points = 35;
         
         original.health = p.health;
         original.strength = p.strength;
@@ -67,7 +52,7 @@ class CharacterCreateViewController: UIViewController
         StrengthLabel.text = "\(p.strength)";
         MagicLabel.text = "\(p.magic)";
         SpeedLabel.text = "\(p.speed)";
-        PointsLabel.text = "Remaining Points: \(p.assignPoints)";
+        PointsLabel.text = "Remaining Points: \(p.points)";
     }
     
     @IBAction func Reset(sender: AnyObject)
@@ -76,7 +61,7 @@ class CharacterCreateViewController: UIViewController
         p.strength = original.strength;
         p.magic = original.magic;
         p.speed = original.speed;
-        p.assignPoints = original.assignPoints;
+        p.points = original.points;
         updateLabels();
     }
     
@@ -85,17 +70,17 @@ class CharacterCreateViewController: UIViewController
         if(p.health > original.health)
         {
             p.health -= 1;
-            p.assignPoints += 1;
+            p.points += 1;
             updateLabels();
         }
     }
     
     @IBAction func AddHealth(sender: AnyObject)
     {
-        if(p.assignPoints > 0)
+        if(p.points > 0)
         {
             p.health += 1;
-            p.assignPoints -= 1;
+            p.points -= 1;
             updateLabels();
         }
     }
@@ -105,17 +90,17 @@ class CharacterCreateViewController: UIViewController
         if(p.strength > original.strength)
         {
             p.strength -= 1;
-            p.assignPoints += 1;
+            p.points += 1;
             updateLabels();
         }
     }
     
     @IBAction func AddStrength(sender: AnyObject)
     {
-        if(p.assignPoints > 0)
+        if(p.points > 0)
         {
             p.strength += 1;
-            p.assignPoints -= 1;
+            p.points -= 1;
             updateLabels();
         }
     }
@@ -125,7 +110,7 @@ class CharacterCreateViewController: UIViewController
         if(p.magic > original.magic)
         {
             p.magic -= 1;
-            p.assignPoints += 1;
+            p.points += 1;
             updateLabels();
         }
     }
@@ -133,10 +118,10 @@ class CharacterCreateViewController: UIViewController
     
     @IBAction func AddMagic(sender: AnyObject)
     {
-        if(p.assignPoints > 0)
+        if(p.points > 0)
         {
             p.magic += 1;
-            p.assignPoints -= 1;
+            p.points -= 1;
             updateLabels();
         }
     }
@@ -146,17 +131,17 @@ class CharacterCreateViewController: UIViewController
         if(p.speed > original.speed)
         {
             p.speed -= 1;
-            p.assignPoints += 1;
+            p.points += 1;
             updateLabels();
         }
     }
     
     @IBAction func AddSpeed(sender: AnyObject)
     {
-        if(p.assignPoints > 0)
+        if(p.points > 0)
         {
             p.speed += 1;
-            p.assignPoints -= 1;
+            p.points -= 1;
             updateLabels();
         }
     }
@@ -184,7 +169,7 @@ class CharacterCreateViewController: UIViewController
             if (prefs.objectForKey("playerStats") != nil) {
                 plStats = prefs.objectForKey("playerStats") as [String:[String:Int]]
             }
-            var stats = ["health":p.health, "magic":p.magic, "speed":p.speed, "strength":p.strength, "assignpoints":p.assignPoints]
+            var stats = ["level": p.level, "health":p.health, "magic":p.magic, "speed":p.speed, "strength":p.strength, "assignpoints":p.points]
             plStats[playerID] = stats
             
             prefs.removeObjectForKey("speedFloat")

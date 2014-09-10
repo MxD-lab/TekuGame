@@ -49,7 +49,7 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
                 self.facebookAccounts = self.accountStore.accountsWithAccountType(accountType2)
             }
             else {
-                println(error.description)
+//                println(error.description!)
             }
         })
         

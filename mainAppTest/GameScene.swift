@@ -47,7 +47,7 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         
         var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
         var currentuser = prefs.objectForKey("currentuser") as String
-        //p.level = plStats[currentuser]!["level"]!
+        p.level = plStats[currentuser]!["level"]!
         p.health = plStats[currentuser]!["health"]!
         p.strength = plStats[currentuser]!["strength"]!
         p.magic = plStats[currentuser]!["magic"]!
