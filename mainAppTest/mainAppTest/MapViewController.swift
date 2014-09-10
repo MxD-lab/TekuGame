@@ -31,7 +31,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var altitudeNum:Float! = 0
     var vAcc:Float! = 0
     var speedNum:Double! = 0
-    var players:[NSDictionary] = []         // NSArray of NSDictionary, each element is a player entry. This comes from the server.
+//    var players:[NSDictionary] = []         // NSArray of NSDictionary, each element is a player entry. This comes from the server.
     var allPins:[GMSMarker] = []         // All of the pins set on the Map including preset pins and players.
     var presetPins:[GMSMarker] = []      // Array of only the preset pins.
     var near_beacon:NSMutableArray = []     // Array of players with the same nearby beacon.
@@ -83,7 +83,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         initialMapSetup()
         beaconSetup()
         if (isConnectedToInternet()) {
-            get()
+            getPlayerLocation()
         }
         else {
             netConnectionLabel.text = "インターネットの接続が切れています。"
@@ -219,7 +219,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             netConnectionLabel.text = ""
 //            post()
             postPlayerLocation()
-            get()
+            getPlayerLocation()
         }
         else {
             netConnectionLabel.text = "インターネットの接続が切れています。"
@@ -234,62 +234,33 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         post(urlstring, str)
     }
     
-    // Makes an HTTP POST request for the player's ID, beacon, and GPS coordinates.
-//    func post() {
-//        
-//        lat = mapView_.myLocation.coordinate.latitude
-//        long = mapView_.myLocation.coordinate.longitude
-//        
-//        var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
-//        var str = "phone=\(playerID!)&beacon=\(beaconID!)&longitude=\(long!)&latitude=\(lat!)&submit=submit"
-//        var url = NSURL.URLWithString(urlstring) // URL object from URL string.
-//        var request = NSMutableURLRequest(URL: url) // Request.
-//        request.HTTPMethod = "POST" // Could be POST or GET.
-//        
-//        // Post has HTTPBody.
-//        var strData = str.dataUsingEncoding(NSUTF8StringEncoding)
-//        request.HTTPBody = strData
-//        request.setValue("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", forHTTPHeaderField: "Accept")
-//        request.setValue("gzip,deflate,sdch", forHTTPHeaderField: "Accept-Encoding")
-//        request.setValue("ja,en-US;q=0.8,en;q=0.6", forHTTPHeaderField: "Accept-Language")
-//        request.setValue("tekugame.mxd.media.ritsumei.ac.jp", forHTTPHeaderField: "Host")
-//        
-//        // Values returned from server.
-//        var response: NSURLResponse? = nil
-//        var error: NSError? = nil
-//        
-//        // Reply from server.
-//        let reply = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&error)
-//        let results = NSString(data:reply!, encoding:NSUTF8StringEncoding) // Encoded results.
-//    }
+    
     
     // Gets JSON data from the server and updates corresponding fields such as pins on the map and number of nearby players.
-    func get() {
+    func getPlayerLocation() {
         let url = "http://tekugame.mxd.media.ritsumei.ac.jp/json/playerandlocation.json"
-        var jsonData = NSData(contentsOfURL: NSURL(string: url))
-        var error: NSError?
-        var jsObj = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: &error) as [NSDictionary]
+        var jsObj = getJSON(url)
         
-        players = jsObj
-        near_beacon = []
-        
-        resetPins()
-        
-        for data in players {
-            var pid = data["phoneid"] as String
-            var bid = data["beaconid"] as String
-            var lati = data["latitude"] as NSString
-            var lon = data["longitude"] as NSString
+        if (jsObj != nil) {
+            near_beacon = []
             
-            if (pid != playerID) {
-                var plCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(lati.doubleValue, lon.doubleValue)
-                var pl = setMarker(lati.doubleValue, long: lon.doubleValue, title: pid, text: "player", color: UIColor.redColor())
-                allPins.append(pl)
-            }
-            if (bid == beaconID) {
-                near_beacon.addObject(data)
-                beaconPlayerCountLabel.text = "\(near_beacon.count)"
-//                nearbeacon.progress = Float(near_beacon.count / 10)
+            resetPins()
+            
+            for data in jsObj! {
+                var pid = data["phoneid"] as String
+                var bid = data["beaconid"] as String
+                var lati = data["latitude"] as NSString
+                var lon = data["longitude"] as NSString
+                
+                if (pid != playerID) {
+                    var plCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(lati.doubleValue, lon.doubleValue)
+                    var pl = setMarker(lati.doubleValue, long: lon.doubleValue, title: pid, text: "player", color: UIColor.redColor())
+                    allPins.append(pl)
+                }
+                if (bid == beaconID) {
+                    near_beacon.addObject(data)
+                    beaconPlayerCountLabel.text = "\(near_beacon.count)"
+                }
             }
         }
     }

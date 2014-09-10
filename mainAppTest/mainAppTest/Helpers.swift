@@ -41,6 +41,13 @@ func post(urlstring:String!, querystring:String!) {
     NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&error)
 }
 
+func getJSON(urlstring:String!) -> [NSDictionary]? {
+    var jsonData = NSData(contentsOfURL: NSURL(string: urlstring))
+    var error: NSError?
+    var jsObj = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: &error) as [NSDictionary]?
+    return jsObj
+}
+
 // For testing.
 func returnTimeStampString() -> String! {
     var calendar = NSCalendar.currentCalendar()
