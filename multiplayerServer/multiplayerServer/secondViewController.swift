@@ -40,15 +40,17 @@ class secondViewController: UIViewController {
         var jsObj = getJSON(url)
         var battleExists:Bool = false
         
-        for battle in jsObj {
-            var id = battle["ID"] as String
-            
-            if (id == battleID) {
-                battleExists = true
-                var status = battle["status"] as String
+        if (jsObj != nil) {
+            for battle in jsObj! {
+                var id = battle["ID"] as String
                 
-                battleTextView.text = "Battle Status: \(status)\n"
-                
+                if (id == battleID) {
+                    battleExists = true
+                    var status = battle["status"] as String
+                    
+                    battleTextView.text = "Battle Status: \(status)\n"
+                    
+                }
             }
         }
         
@@ -57,22 +59,26 @@ class secondViewController: UIViewController {
         allPlayers = NSMutableArray()
         pcount = 0
         battleTextView.text = battleTextView.text + "Players:\n"
-        for player in jsObj2 {
-            var bid = player["battleID"] as String!
-            if (bid == battleID) {
-                pcount++
-                var pid = player["playerID"] as String
-                allPlayers.addObject(pid)
-                battleTextView.text = battleTextView.text + "    \(pid)\n"
+        
+        if (jsObj2 != nil) {
+            for player in jsObj2! {
+                var bid = player["battleID"] as String!
+                if (bid == battleID) {
+                    pcount++
+                    var pid = player["playerID"] as String
+                    allPlayers.addObject(pid)
+                    battleTextView.text = battleTextView.text + "    \(pid)\n"
+                }
             }
         }
+        
         battleTextView.text = battleTextView.text + "Player count: \(pcount)\n"
         
         if (!battleExists) {
             postToBattles(battleID, enemAttack: "", enemTarget: "", playAttack: "", turn: "", currentPlayer: "", status: "Open")
         }
         else {
-            if (pcount == 3) {
+            if (pcount == 2) {
                 if (allPlayers.containsObject(playerID)) {
                     
                     postToBattles(battleID, enemAttack: "", enemTarget: "", playAttack: "", turn: "", currentPlayer: "", status: "In Battle")
@@ -89,10 +95,11 @@ class secondViewController: UIViewController {
         
     }
     
-    func getJSON(urlstring:String!) -> [NSDictionary] {
+    func getJSON(urlstring:String!) -> [NSDictionary]? {
         var jsonData = NSData(contentsOfURL: NSURL(string: urlstring))
         var error: NSError?
-        var jsObj = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: &error) as [NSDictionary]
+        var jsObj = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: &error) as [NSDictionary]?
+        println(error?.localizedDescription)
         return jsObj
     }
     
