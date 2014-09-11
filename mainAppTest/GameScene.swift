@@ -64,7 +64,7 @@ class GameScene: SKScene
         p.currentStrength = p.strength;
         p.currentMagic = p.magic;
         p.currentSpeed = p.speed;
-
+        
         e.level = p.level;
         
         e.type = Types.allValues[Int(arc4random_uniform(9))];
@@ -78,6 +78,9 @@ class GameScene: SKScene
         enemyImage.texture = getSprite(e);
         
         turnPlayer = (p.speed > e.speed) ? true : false ;
+        
+        postLog("Fight Begin - Player: level: \(p.level), health: \(p.health), magic: \(p.magic), speed: \(p.speed), strength: \(p.strength), remaining points: \(p.points)");
+        postLog("Fight Begin - Enemy: health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)");
         
         /* Setup your scene here */
         status.center = CGPointMake(160, 25);
@@ -243,16 +246,19 @@ class GameScene: SKScene
                 if(p.currentHealth <= 0 && e.currentHealth <= 0)
                 {
                     status.text = "Both Died";
+                    postLog("Fight: Both Died");
                     somethingDead = true;
                 }
                 else if(p.currentHealth <= 0 && e.currentHealth > 0)
                 {
                     status.text = "Player Died";
+                    postLog("Fight: Player Died");
                     somethingDead = true;
                 }
                 else if(e.currentHealth <= 0 && p.currentHealth > 0)
                 {
                     status.text = "Enemy Died";
+                    postLog("Fight: Enemy Died");
                     somethingDead = true;
                     playerWin = true;
                 }
@@ -275,6 +281,7 @@ class GameScene: SKScene
                         self.status.text = "\(mess). Damage: \(dam).";
                     }
                     
+                    postLog("Fight: Enemy Attack: \(mess). Damage: \(dam)");
                     doUpdate = 150;
                     turnPlayer = !turnPlayer;
                 }
@@ -308,7 +315,7 @@ class GameScene: SKScene
             {
                 self.status.text = "\(mess). Damage: \(dam).";
             }
-            
+            postLog("Fight: Player Attack: \(mess). Damage: \(dam)");
             doUpdate = 150;
             turnPlayer = !turnPlayer;
         }

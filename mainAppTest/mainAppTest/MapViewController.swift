@@ -363,7 +363,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             var todate:NSDate! = NSDate()
             
             stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: {numberOfSteps, timestamp, error in
-                self.stepCount = numberOfSteps*50 + self.prevSteps
+                self.stepCount = numberOfSteps + self.prevSteps
                 self.magicSteps = self.prevMagicSteps
                 if (self.currentHourInt == self.magicHourInt) {
                     self.magicSteps = self.prevMagicSteps + numberOfSteps
