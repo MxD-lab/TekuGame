@@ -28,6 +28,7 @@ extension SKNode {
 class GameViewController: UIViewController {
     var incremented = false
     var segued = false
+    var pwin = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -72,7 +73,7 @@ class GameViewController: UIViewController {
     func gameOver(notification: NSNotification) {
         var userInfo:NSDictionary = notification.userInfo!
         var gmover:Bool = false
-        var pwin:Bool = false
+        pwin = false
 
         if (userInfo.objectForKey("isGameOver") != nil) {
             gmover = userInfo.objectForKey("isGameOver") as Bool
@@ -117,7 +118,8 @@ class GameViewController: UIViewController {
             prefs.setObject(plStats, forKey: "playerStats")
             
             incremented = true
-            performSegueWithIdentifier("mainmap", sender: self)
+//            performSegueWithIdentifier("mainmap", sender: self)
+            performSegueWithIdentifier("results", sender: self)
         }
         else if (gmover && !pwin && !segued) {
             segued = true
@@ -135,7 +137,15 @@ class GameViewController: UIViewController {
             plStats[currentuser]!["exp"]! = exp
             prefs.setObject(plStats, forKey: "playerStats")
 
-            performSegueWithIdentifier("mainmap", sender: self)
+//            performSegueWithIdentifier("mainmap", sender: self)
+            performSegueWithIdentifier("results", sender: self)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "results") {
+            var nextVC = segue.destinationViewController as resultsViewController
+            nextVC.playerwin = pwin
         }
     }
 

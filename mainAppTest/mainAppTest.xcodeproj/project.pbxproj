@@ -68,6 +68,8 @@
 		A1DEB5D519BD6F0700F7A21E /* Undead2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5B619BD6F0600F7A21E /* Undead2.png */; };
 		A1DEB5D619BD6F0700F7A21E /* Undead3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5B719BD6F0600F7A21E /* Undead3.png */; };
 		BC8787B419C032A80001C9DD /* usernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8787B319C032A80001C9DD /* usernameViewController.swift */; };
+		BC8A857919C14FE800335599 /* resultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A857819C14FE800335599 /* resultsViewController.swift */; };
+		BC8A857B19C1502D00335599 /* assignPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A857A19C1502D00335599 /* assignPointsViewController.swift */; };
 		F8213C2619A6D1AB00C72548 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8213C2519A6D1AB00C72548 /* GameViewController.swift */; };
 		F8213C2819A6D27500C72548 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F8213C2719A6D27500C72548 /* GameScene.sks */; };
 		F8213C2A19A6D28500C72548 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8213C2919A6D28500C72548 /* GameScene.swift */; };
@@ -189,6 +191,8 @@
 		A1DEB5B619BD6F0600F7A21E /* Undead2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Undead2.png; path = "../Art Assets/Sprites/Version 1.0/Undead2.png"; sourceTree = "<group>"; };
 		A1DEB5B719BD6F0600F7A21E /* Undead3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Undead3.png; path = "../Art Assets/Sprites/Version 1.0/Undead3.png"; sourceTree = "<group>"; };
 		BC8787B319C032A80001C9DD /* usernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = usernameViewController.swift; sourceTree = "<group>"; };
+		BC8A857819C14FE800335599 /* resultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resultsViewController.swift; sourceTree = "<group>"; };
+		BC8A857A19C1502D00335599 /* assignPointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignPointsViewController.swift; sourceTree = "<group>"; };
 		F8213C2519A6D1AB00C72548 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = ../GameViewController.swift; sourceTree = "<group>"; };
 		F8213C2719A6D27500C72548 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = ../GameScene.sks; sourceTree = "<group>"; };
 		F8213C2919A6D28500C72548 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = ../GameScene.swift; sourceTree = "<group>"; };
@@ -488,6 +492,8 @@
 				BC8787B319C032A80001C9DD /* usernameViewController.swift */,
 				F8956B2719A1B93000ED670B /* MapViewController.swift */,
 				F8D8A2D919A2F7E800CC6A0B /* statusViewController.swift */,
+				BC8A857819C14FE800335599 /* resultsViewController.swift */,
+				BC8A857A19C1502D00335599 /* assignPointsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -655,6 +661,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC8A857919C14FE800335599 /* resultsViewController.swift in Sources */,
 				F825583819AB1D480035EBF6 /* Actions.swift in Sources */,
 				F8213C2619A6D1AB00C72548 /* GameViewController.swift in Sources */,
 				F825583519AB1D3F0035EBF6 /* PlayerValues.swift in Sources */,
@@ -662,6 +669,7 @@
 				F8D8A2DA19A2F7E800CC6A0B /* statusViewController.swift in Sources */,
 				F8D8A2D819A2EB1900CC6A0B /* AccountSelectionViewController.swift in Sources */,
 				F890D1F219AD77070018AC95 /* titleViewController.swift in Sources */,
+				BC8A857B19C1502D00335599 /* assignPointsViewController.swift in Sources */,
 				F8956B0919A194A700ED670B /* AccountCreateViewController.swift in Sources */,
 				F8D8A2D619A2D7DE00CC6A0B /* Helpers.swift in Sources */,
 				F825583F19AB1D630035EBF6 /* Entity.swift in Sources */,
