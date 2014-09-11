@@ -1,0 +1,19 @@
+———————————————
+Version: 1.0 (April 2014)
+———————————————
+* Initial Release.
+* App Launch Reporting
+* User Authorization
+* Remote Logging
+* Crash Reporting
+* Update Notification
+
+———————————————
+Version: 1.0.1 (August 2014)
+———————————————
+* Bug fix
+
+———————————————
+Version: 1.0.2 (August 15 2014)
+———————————————
+* Duplicate symbol bug fixed
