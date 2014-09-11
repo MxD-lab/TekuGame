@@ -17,7 +17,12 @@ class resultsViewController: UIViewController {
     @IBOutlet weak var detailsLabel: UILabel!
     
     @IBAction func continuePressed(sender: AnyObject) {
-        performSegueWithIdentifier("results_map", sender: self)
+        if (leveledUp == true) {
+            performSegueWithIdentifier("results_assign", sender: self)
+        }
+        else {
+            performSegueWithIdentifier("results_map", sender: self)
+        }
     }
     
     override func viewDidLoad() {
@@ -40,9 +45,9 @@ class resultsViewController: UIViewController {
         if (playerwin == true) {
             playerWinLabel.text = "You win!"
             if (leveledUp == true) {
-                detailsLabel.text = "Level up! (\(level-1) → \(level))\n"
+                detailsLabel.text = "Level up! (\(level-1) → \(level))\n+20 assignment points!\n\n"
             }
-            detailsLabel.text = detailsLabel.text! + "+1 enemies beaten.\n" + "+1 EXP\n"
+            detailsLabel.text = detailsLabel.text! + "+1 enemies beaten.\n+1 EXP\n"
         }
         else {
             playerWinLabel.text = "You lose."

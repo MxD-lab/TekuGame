@@ -10,26 +10,39 @@ import UIKit
 
 class assignPointsViewController: UIViewController
 {
-    var playerID:String! = ""
-    
     @IBOutlet weak var HealthLabel: UILabel!
     @IBOutlet weak var StrengthLabel: UILabel!
     @IBOutlet weak var MagicLabel: UILabel!
     @IBOutlet weak var SpeedLabel: UILabel!
     @IBOutlet weak var PointsLabel: UILabel!
-    
-    var p:player = player();
+
     var original:player = player();
+    
+    var health = 0
+    var strength = 0
+    var magic = 0
+    var speed = 0
+    var assignpoints = 0
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        original.health = p.health;
-        original.strength = p.strength;
-        original.magic = p.magic;
-        original.speed = p.speed;
+        var prefs = NSUserDefaults.standardUserDefaults()
+        var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
+        var currentuser = prefs.objectForKey("currentuser") as String
+        health = plStats[currentuser]!["health"]!
+        strength = plStats[currentuser]!["strength"]!
+        magic = plStats[currentuser]!["magic"]!
+        speed = plStats[currentuser]!["speed"]!
+        assignpoints = plStats[currentuser]!["assignpoints"]!
+        
+        original.health = health
+        original.strength = strength
+        original.magic = magic
+        original.speed = speed
+        original.points = assignpoints
         updateLabels();
     }
     
@@ -41,69 +54,69 @@ class assignPointsViewController: UIViewController
     
     func updateLabels() -> Void
     {
-        HealthLabel.text = "\(p.health)";
-        StrengthLabel.text = "\(p.strength)";
-        MagicLabel.text = "\(p.magic)";
-        SpeedLabel.text = "\(p.speed)";
-        PointsLabel.text = "Remaining Points: \(p.points)";
+        HealthLabel.text = "\(health)";
+        StrengthLabel.text = "\(strength)";
+        MagicLabel.text = "\(magic)";
+        SpeedLabel.text = "\(speed)";
+        PointsLabel.text = "Remaining Points: \(assignpoints)";
     }
     
     @IBAction func Reset(sender: AnyObject)
     {
-        p.health = original.health;
-        p.strength = original.strength;
-        p.magic = original.magic;
-        p.speed = original.speed;
-        p.points = original.points;
+        health = original.health;
+        strength = original.strength;
+        magic = original.magic;
+        speed = original.speed;
+        assignpoints = original.points;
         updateLabels();
     }
     
     @IBAction func SubtractHealth(sender: AnyObject)
     {
-        if(p.health > original.health)
+        if(health > original.health)
         {
-            p.health -= 1;
-            p.points += 1;
+            health -= 1;
+            assignpoints += 1;
             updateLabels();
         }
     }
     
     @IBAction func AddHealth(sender: AnyObject)
     {
-        if(p.points > 0)
+        if(assignpoints > 0)
         {
-            p.health += 1;
-            p.points -= 1;
+            health += 1;
+            assignpoints -= 1;
             updateLabels();
         }
     }
     
     @IBAction func SubtractStrength(sender: AnyObject)
     {
-        if(p.strength > original.strength)
+        if(strength > original.strength)
         {
-            p.strength -= 1;
-            p.points += 1;
+            strength -= 1;
+            assignpoints += 1;
             updateLabels();
         }
     }
     
     @IBAction func AddStrength(sender: AnyObject)
     {
-        if(p.points > 0)
+        if(assignpoints > 0)
         {
-            p.strength += 1;
-            p.points -= 1;
+            strength += 1;
+            assignpoints -= 1;
             updateLabels();
         }
     }
     
     @IBAction func SubtractMagic(sender: AnyObject)
     {
-        if(p.magic > original.magic)
+        if(magic > original.magic)
         {
-            p.magic -= 1;
-            p.points += 1;
+            magic -= 1;
+            assignpoints += 1;
             updateLabels();
         }
     }
@@ -111,75 +124,48 @@ class assignPointsViewController: UIViewController
     
     @IBAction func AddMagic(sender: AnyObject)
     {
-        if(p.points > 0)
+        if(assignpoints > 0)
         {
-            p.magic += 1;
-            p.points -= 1;
+            magic += 1;
+            assignpoints -= 1;
             updateLabels();
         }
     }
     
     @IBAction func SubtractSpeed(sender: AnyObject)
     {
-        if(p.speed > original.speed)
+        if(speed > original.speed)
         {
-            p.speed -= 1;
-            p.points += 1;
+            speed -= 1;
+            assignpoints += 1;
             updateLabels();
         }
     }
     
     @IBAction func AddSpeed(sender: AnyObject)
     {
-        if(p.points > 0)
+        if(assignpoints > 0)
         {
-            p.speed += 1;
-            p.points -= 1;
+            speed += 1;
+            assignpoints -= 1;
             updateLabels();
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if (segue.identifier == "charcreate_map" && playerID != "") {
+        if (segue.identifier == "assign_map") {
             
             var prefs = NSUserDefaults.standardUserDefaults()
-            var accounts = NSMutableArray()
-            if ((prefs.objectForKey("useraccounts")) != nil) {
-                accounts = prefs.objectForKey("useraccounts") as NSMutableArray
-            }
-            var hasAccount = false
-            for account in accounts {
-                if (account as String == playerID) {
-                    hasAccount = true
-                }
-            }
+            var currentuser = prefs.objectForKey("currentuser") as String
             
-            if (!hasAccount) {
-                accounts.addObject(playerID)
-            }
-            
-            var plStats:[String:[String:Int]] = [:]
-            if (prefs.objectForKey("playerStats") != nil) {
-                plStats = prefs.objectForKey("playerStats") as [String:[String:Int]]
-            }
-            var stats = ["level": p.level, "health":p.health, "magic":p.magic, "speed":p.speed, "strength":p.strength, "assignpoints":p.points, "exp":p.exp]
-            plStats[playerID] = stats
-            
-            prefs.removeObjectForKey("speedFloat")
-            prefs.removeObjectForKey("magichour")
-            prefs.removeObjectForKey("magicGoal")
-            prefs.removeObjectForKey("magicSteps")
-            prefs.removeObjectForKey("healthGoal")
-            prefs.removeObjectForKey("encounterStep")
-            prefs.removeObjectForKey("enemiesBeaten")
-            prefs.removeObjectForKey("enemiesGoal")
+            var plStats = prefs.objectForKey("playerStats") as [String:[String:Int]]
+            plStats[currentuser]!["health"]! = health
+            plStats[currentuser]!["strength"]! = strength
+            plStats[currentuser]!["magic"]! = magic
+            plStats[currentuser]!["speed"]! = speed
+            plStats[currentuser]!["assignpoints"]! = assignpoints
+
             prefs.setObject(plStats, forKey: "playerStats")
-            prefs.setObject(accounts, forKey: "useraccounts")
-            
-            postLog("My health is \(p.health)")
-            
-            var nextVC = segue.destinationViewController as MapViewController
-            nextVC.playerID = playerID
         }
     }
     

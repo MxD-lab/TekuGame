@@ -429,7 +429,7 @@
                     <connections>
                         <outlet property="detailsLabel" destination="Iay-ks-KUX" id="XJL-K3-qzz"/>
                         <outlet property="playerWinLabel" destination="ADa-c0-Tco" id="QdC-kg-VeO"/>
-                        <segue destination="nrI-9u-5kC" kind="show" id="e2a-4i-Z5k"/>
+                        <segue destination="nrI-9u-5kC" kind="show" identifier="results_assign" id="e2a-4i-Z5k"/>
                         <segue destination="kwz-uD-Hpi" kind="show" identifier="results_map" id="Ecs-cJ-kjn"/>
                     </connections>
                 </viewController>
@@ -457,6 +457,9 @@
                                     <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="kwz-uD-Hpi" kind="show" identifier="assign_map" id="WwE-7J-HCh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NfX-zZ-4IN">
                                 <rect key="frame" x="19" y="518" width="100" height="30"/>
@@ -468,6 +471,7 @@
                                 </state>
                                 <connections>
                                     <action selector="Reset:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="V38-lv-RVt"/>
+                                    <action selector="Reset:" destination="nrI-9u-5kC" eventType="touchUpInside" id="sCl-0W-NgZ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Remaining Points:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHu-HU-N9E">
@@ -487,6 +491,7 @@
                                         </state>
                                         <connections>
                                             <action selector="AddHealth:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="bAs-L5-EQE"/>
+                                            <action selector="AddHealth:" destination="nrI-9u-5kC" eventType="touchUpInside" id="ynm-tJ-sks"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i28-ib-d9Z">
@@ -496,6 +501,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="SubtractHealth:" destination="nrI-9u-5kC" eventType="touchUpInside" id="tKd-g5-Oxg"/>
                                             <action selector="SubtractHealth:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="vfv-lK-CfH"/>
                                         </connections>
                                     </button>
@@ -524,6 +530,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="AddStrength:" destination="nrI-9u-5kC" eventType="touchUpInside" id="P0p-8c-Mp4"/>
                                             <action selector="AddStrength:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="fCg-wa-ovs"/>
                                         </connections>
                                     </button>
@@ -534,6 +541,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="SubtractStrength:" destination="nrI-9u-5kC" eventType="touchUpInside" id="h9u-DQ-epl"/>
                                             <action selector="SubtractStrength:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="stx-4P-HCP"/>
                                         </connections>
                                     </button>
@@ -568,6 +576,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="AddMagic:" destination="nrI-9u-5kC" eventType="touchUpInside" id="SK4-rv-Shr"/>
                                             <action selector="AddMagic:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="chd-Jz-dVK"/>
                                         </connections>
                                     </button>
@@ -578,6 +587,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="SubtractMagic:" destination="nrI-9u-5kC" eventType="touchUpInside" id="18j-p6-w9A"/>
                                             <action selector="SubtractMagic:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="rYs-b8-efo"/>
                                         </connections>
                                     </button>
@@ -606,6 +616,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="AddSpeed:" destination="nrI-9u-5kC" eventType="touchUpInside" id="ZeL-Fw-I6E"/>
                                             <action selector="AddSpeed:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="xqt-tE-xfg"/>
                                         </connections>
                                     </button>
@@ -617,6 +628,7 @@
                                         </state>
                                         <connections>
                                             <action selector="SubtractSpeed:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="bXo-gJ-2nX"/>
+                                            <action selector="SubtractSpeed:" destination="nrI-9u-5kC" eventType="touchUpInside" id="wDM-Xg-o6X"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -632,6 +644,13 @@
                         <color key="backgroundColor" red="1" green="0.71182316599999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="HealthLabel" destination="eP6-pY-Hwi" id="YQM-VS-cRM"/>
+                        <outlet property="MagicLabel" destination="EYp-Xy-o1h" id="7w8-7e-FzA"/>
+                        <outlet property="PointsLabel" destination="yHu-HU-N9E" id="evL-bC-SMa"/>
+                        <outlet property="SpeedLabel" destination="sVg-qj-8gl" id="Mfn-gw-vAJ"/>
+                        <outlet property="StrengthLabel" destination="ehk-8O-ScC" id="okT-lm-iZQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hOq-hc-b1S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1145,7 +1164,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Hik-ON-fcD"/>
-        <segue reference="L3k-GF-tu5"/>
+        <segue reference="WwE-7J-HCh"/>
         <segue reference="Ym7-ie-ty9"/>
     </inferredMetricsTieBreakers>
 </document>
