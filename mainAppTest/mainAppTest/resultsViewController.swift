@@ -44,12 +44,15 @@ class resultsViewController: UIViewController {
         
         if (playerwin == true) {
             playerWinLabel.text = "You win!"
+            postLog("I won.")
             if (leveledUp == true) {
+                postLog("I leveled up (\(level-1) → \(level))")
                 detailsLabel.text = "Level up! (\(level-1) → \(level))\n+20 assignment points!\n\n"
             }
             detailsLabel.text = detailsLabel.text! + "+1 enemies beaten.\n+1 EXP\n"
         }
         else {
+            postLog("I lost.")
             playerWinLabel.text = "You lose."
             detailsLabel.text = detailsLabel.text! + "-1 EXP\n"
         }

@@ -164,6 +164,8 @@ class assignPointsViewController: UIViewController
             plStats[currentuser]!["magic"]! = magic
             plStats[currentuser]!["speed"]! = speed
             plStats[currentuser]!["assignpoints"]! = assignpoints
+            
+            postLog("Finished assigning points. Health: \(health), Strength: \(strength), Magic: \(magic), Speed: \(speed), Remaining points: \(assignpoints)")
 
             prefs.setObject(plStats, forKey: "playerStats")
         }

@@ -399,6 +399,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             prefs.setObject(healthGoal, forKey: "healthGoal")
             println("StepCount: \(stepCount), healthGoal: \(healthGoal)")
             updateLocalPlayerStats(1, strengthinc: 0, magicinc: 0, speedinc: 0)
+            postLog("Walked \(stepCount) steps today, health incremented by 1.")
         }
     }
     
@@ -412,6 +413,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             var prefs = NSUserDefaults.standardUserDefaults()
             prefs.setObject(0, forKey: "speedFloat")
             updateLocalPlayerStats(0, strengthinc: 0, magicinc: 0, speedinc: 1)
+            postLog("Speed incremented by 1 from running.")
         }
     }
     
@@ -458,6 +460,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             magicGoal += 1000
             prefs.setObject(magicGoal, forKey: "magicGoal")
             updateLocalPlayerStats(0, strengthinc: 0, magicinc: 1, speedinc: 0)
+            postLog("Walked \(magicSteps) steps during magic hour (\(magicHourInt):00). Magic incremented by 1.")
         }
     }
     
@@ -483,6 +486,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if (enemiesBeaten >= enemiesGoal) {
             prefs.setObject(enemiesGoal+25, forKey: "enemiesGoal")
             updateLocalPlayerStats(0, strengthinc: 3, magicinc: 0, speedinc: 0)
+            postLog("Defeated \(enemiesBeaten) enemies. Strength incremented by 3.")
         }
     }
     
@@ -498,6 +502,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         var assignpoints:Int = plStats[playerID]!["assignpoints"]!
         plStats[playerID] = ["health":health+healthinc, "strength":strength+strengthinc, "magic":magic+magicinc, "speed":speed+speedinc, "assignpoints":assignpoints]
         prefs.setObject(plStats, forKey: "playerStats")
+        
+        postLog("My current stats after updating are Health: \(health), Strength: \(strength), Magic: \(magic), Speed: \(speed)")
         
         println(plStats[playerID])
     }
@@ -588,6 +594,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func encount() {
         var state = UIApplication.sharedApplication().applicationState
         if (state == UIApplicationState.Active) {
+            postLog("Encountered enemy at \(stepCount).")
             performSegueWithIdentifier("map_game", sender: self)
             updateEncounterStep()
         }

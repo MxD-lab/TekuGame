@@ -32,7 +32,6 @@ class CharacterCreateViewController: UIViewController
         p.magic = 5;
         p.speed = 5;
         p.points = 20;
-        p.exp = 9
         
         original.health = p.health;
         original.strength = p.strength;
@@ -184,7 +183,7 @@ class CharacterCreateViewController: UIViewController
             prefs.setObject(plStats, forKey: "playerStats")
             prefs.setObject(accounts, forKey: "useraccounts")
             
-            postLog("My health is \(p.health)")
+            postLog("Created character. Health: \(p.health), magic: \(p.magic), speed: \(p.speed), strength: \(p.strength), remaining points: \(p.points)")
             
             var nextVC = segue.destinationViewController as MapViewController
             nextVC.playerID = playerID
