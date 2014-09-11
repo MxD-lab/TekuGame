@@ -39,7 +39,7 @@ class GameScene: SKScene
     var prefs = NSUserDefaults.standardUserDefaults()
     
     let background:SKSpriteNode = SKSpriteNode(imageNamed: "background.png");
-    let status:UILabel = UILabel(frame: CGRectMake( 0, 0, 320, 20));
+    let status:UILabel = UILabel(frame: CGRectMake( 0, 0, 320, 50));
     let typePicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let actionPicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let enemyImage:SKSpriteNode = SKSpriteNode(imageNamed: "enemy.png");
@@ -79,13 +79,15 @@ class GameScene: SKScene
         turnPlayer = (p.speed > e.speed) ? true : false ;
         
         /* Setup your scene here */
-        status.center = CGPointMake(160, 10);
-        status.textAlignment = NSTextAlignment.Left;
+        status.center = CGPointMake(160, 25);
+        status.textAlignment = NSTextAlignment.Center;
         status.textColor = UIColor.blackColor();
         status.backgroundColor = UIColor.lightGrayColor();
         status.opaque = false;
         status.alpha = 0.75;
-        status.font = UIFont(name: "Optima-ExtraBlack", size: 10);
+        status.font = UIFont(name: "Optima-ExtraBlack", size: 15);
+        status.numberOfLines = 0;
+        status.lineBreakMode = NSLineBreakMode.ByWordWrapping;
         view.addSubview(status)
         
         var p_uppercut = setMenuButton32("P_Uppercut.png") { () -> Void in self.actionAndStatus(Action.P_Uppercut);}
@@ -218,14 +220,14 @@ class GameScene: SKScene
         }
         else
         {
-            if (step < 20)
+            if (step < 150)
             {
                 step += 1;
                 status.text = "You encountered a \(e.type.typeToStringE())";
             }
             else
             {
-                somethingDead = false
+                somethingDead = false;
                 var playerWin:Bool = false;
                 
                 if(p.currentHealth <= 0 && e.currentHealth <= 0)

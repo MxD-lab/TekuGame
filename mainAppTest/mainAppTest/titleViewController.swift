@@ -47,3 +47,4 @@ class titleViewController: UIViewController {
         return Int(UIInterfaceOrientationMask.Portrait.toRaw())
     }
 }
+ 
