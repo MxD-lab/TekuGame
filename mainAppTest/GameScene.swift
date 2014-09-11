@@ -123,9 +123,17 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         //view.addSubview(actionPicker);
         
         var p_uppercut = setMenuButton32("P_Uppercut.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.P_Uppercut); doUpdate = 50; turnPlayer = !turnPlayer;}}
+            if(turnPlayer){
+                var dict = doAction(p, e, Action.P_Uppercut);
+                var mess = dict["message"]!
+                var dam = dict["damage"]!
+                self.status.text = "\(mess). Damage: \(dam)"
+                doUpdate = 50;
+                turnPlayer = !turnPlayer;
+            }}
         var p_charged_strike = setMenuButton32("P_Charged_Strike.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.P_Charged_Strike); doUpdate = 50; turnPlayer = !turnPlayer;}}
+            if(turnPlayer){
+                doAction(p, e, Action.P_Charged_Strike); doUpdate = 50; turnPlayer = !turnPlayer;}}
         var p_meditation = setMenuButton32("P_Meditation.png") { () -> Void in
             if(turnPlayer){doAction(p, e, Action.P_Meditation); doUpdate = 50; turnPlayer = !turnPlayer;}}
         var p_leg_sweep = setMenuButton32("P_Leg_Sweep.png") { () -> Void in
