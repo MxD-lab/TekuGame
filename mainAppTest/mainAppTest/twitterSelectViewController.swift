@@ -18,14 +18,17 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     @IBOutlet weak var twitterPickerView: UIPickerView!
     
+    @IBAction func refreshPickerViewPressed(sender: AnyObject) {
+        getAccounts()
+        twitterPickerView.reloadAllComponents()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        while (twitterAccounts.count == 0) {
-            getAccounts()
-        }
-        twitterPickerView.delegate = self
+//        setTimeout("getAccounts", seconds: 2)
+        getAccounts()
         twitterPickerView.reloadAllComponents()
     }
     
@@ -42,28 +45,29 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
         })
         
 //        var accountStore2:ACAccountStore! = ACAccountStore()
-        var accountType2:ACAccountType! = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierFacebook)
-        var options = [ACFacebookAppIdKey: "343510302483842", ACFacebookAudienceKey: ACFacebookAudienceOnlyMe, ACFacebookPermissionsKey: []]
-        accountStore.requestAccessToAccountsWithType(accountType2, options: options, completion: { granted, error in
-            if (granted) {
-                self.facebookAccounts = self.accountStore.accountsWithAccountType(accountType2)
-            }
-            else {
-//                println(error.description!)
-            }
-        })
+//        var accountType2:ACAccountType! = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierFacebook)
+//        var options = [ACFacebookAppIdKey: "343510302483842", ACFacebookAudienceKey: ACFacebookAudienceOnlyMe, ACFacebookPermissionsKey: []]
+//        accountStore.requestAccessToAccountsWithType(accountType2, options: options, completion: { granted, error in
+//            if (granted) {
+//                self.facebookAccounts = self.accountStore.accountsWithAccountType(accountType2)
+//            }
+//            else {
+////                println(error.description!)
+//            }
+//        })
         
-        
+        allAccounts = []
         for acc in twitterAccounts {
             var twacc:(String, String)! = (acc.username, "Twitter")
             allAccounts += [twacc]
         }
-        for acc in facebookAccounts {
-            var fbacc:(String, String)! = (acc.username, "Facebook")
-            allAccounts += [fbacc]
-        }
+//        for acc in facebookAccounts {
+//            var fbacc:(String, String)! = (acc.username, "Facebook")
+//            allAccounts += [fbacc]
+//        }
 
 //        println(allAccounts.count)
+        twitterPickerView.delegate = self
         
     }
     
@@ -96,7 +100,12 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "twselect_accreate") {
             var nextVC = segue.destinationViewController as AccountCreateViewController
-            nextVC.playerID = "\(allAccounts[twitterPickerView.selectedRowInComponent(0)].0) (\(allAccounts[twitterPickerView.selectedRowInComponent(0)].1))"
+            if (allAccounts.count == 0) {
+                nextVC.playerID = ""
+            }
+            else {
+                nextVC.playerID = "\(allAccounts[twitterPickerView.selectedRowInComponent(0)].0) (\(allAccounts[twitterPickerView.selectedRowInComponent(0)].1))"
+            }
         }
     }
     

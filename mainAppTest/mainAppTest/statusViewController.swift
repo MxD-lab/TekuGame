@@ -17,10 +17,13 @@ class statusViewController: UIViewController {
     @IBOutlet weak var strengthProgressBar: UIProgressView!
     @IBOutlet weak var magicProgressBar: UIProgressView!
     @IBOutlet weak var speedProgressBar: UIProgressView!
+    @IBOutlet weak var expProgressBar: UIProgressView!
     @IBOutlet weak var healthLabel: UILabel!
     @IBOutlet weak var strengthLabel: UILabel!
     @IBOutlet weak var magicLabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
+    @IBOutlet weak var expLabel: UILabel!
+    @IBOutlet weak var nameLevelLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +35,16 @@ class statusViewController: UIViewController {
         var strength:Int = plStats[currentuser]!["strength"]!
         var magic:Int = plStats[currentuser]!["magic"]!
         var speed:Int = plStats[currentuser]!["speed"]!
+        var exp:Int = plStats[currentuser]!["exp"]!
+        var level:Int = plStats[currentuser]!["level"]!
         
         healthLabel.text = "\(health)"
         strengthLabel.text = "\(strength)"
         magicLabel.text = "\(magic)"
         speedLabel.text = "\(speed)"
-        
+        expLabel.text = "\(exp)"
+        var useridonly = currentuser.componentsSeparatedByString("(")[0]
+        nameLevelLabel.text = "@\(useridonly) Level \(level)"
         
         var magicSteps:Int = 0
         if (prefs.objectForKey("magicSteps") != nil) {
@@ -54,10 +61,13 @@ class statusViewController: UIViewController {
             speedFloat = prefs.objectForKey("speedFloat") as Float
         }
         
+        
         healthProgressBar.progress = Float(stepCount % 10000) / 10000
         speedProgressBar.progress = speedFloat
         magicProgressBar.progress = Float(magicSteps % 1000) / 1000
         strengthProgressBar.progress = Float(enemiesBeaten % 25) / 25
+        expProgressBar.progress = Float(Float(exp)/Float((level * 10)))
+        println("\(Float(exp)), \(Float(level)), \(exp/(level * 10)), \(Float(Float(exp)/Float((level * 10))))")
     }
     
     override func didReceiveMemoryWarning() {

@@ -27,11 +27,11 @@ class CharacterCreateViewController: UIViewController
         // Do any additional setup after loading the view, typically from a nib.
         
         p.level = 1;
-        p.health = 0;
-        p.strength = 0;
-        p.magic = 0;
-        p.speed = 0;
-        p.points = 35;
+        p.health = 5;
+        p.strength = 5;
+        p.magic = 5;
+        p.speed = 5;
+        p.points = 20;
         
         original.health = p.health;
         original.strength = p.strength;
@@ -169,7 +169,7 @@ class CharacterCreateViewController: UIViewController
             if (prefs.objectForKey("playerStats") != nil) {
                 plStats = prefs.objectForKey("playerStats") as [String:[String:Int]]
             }
-            var stats = ["level": p.level, "health":p.health, "magic":p.magic, "speed":p.speed, "strength":p.strength, "assignpoints":p.points]
+            var stats = ["level": p.level, "health":p.health, "magic":p.magic, "speed":p.speed, "strength":p.strength, "assignpoints":p.points, "exp":p.exp]
             plStats[playerID] = stats
             
             prefs.removeObjectForKey("speedFloat")

@@ -80,6 +80,7 @@ class GameViewController: UIViewController {
 
         if (userInfo.objectForKey("playerWin") != nil) {
             pwin = userInfo.objectForKey("playerWin") as Bool
+            println("Pwin: \(pwin)")
         }
 
         if (gmover && pwin && !incremented) {
@@ -94,11 +95,46 @@ class GameViewController: UIViewController {
             else {
                 prefs.setObject(1, forKey: "enemiesBeaten")
             }
+            
+            // Assign experience stuff when won.
+            var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
+            var currentuser = prefs.objectForKey("currentuser") as String
+            var exp:Int = plStats[currentuser]!["exp"]!
+            var level:Int = plStats[currentuser]!["level"]!
+            var assignpoints:Int = plStats[currentuser]!["assignpoints"]!
+            
+            exp += 1
+            if (exp == 10 * level) {
+                level += 1
+                exp = 0
+                assignpoints += 20
+            }
+            
+            plStats[currentuser]!["exp"]! = exp
+            plStats[currentuser]!["level"]! = level
+            plStats[currentuser]!["assignpoints"]! = assignpoints
+            
+            prefs.setObject(plStats, forKey: "playerStats")
+            
             incremented = true
             performSegueWithIdentifier("mainmap", sender: self)
         }
         else if (gmover && !pwin && !segued) {
             segued = true
+            
+            var prefs = NSUserDefaults.standardUserDefaults()
+            // Assign experience stuff when lost.
+            var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
+            var currentuser = prefs.objectForKey("currentuser") as String
+            var exp:Int = plStats[currentuser]!["exp"]!
+            
+            if (exp > 0) {
+               exp -= 1
+            }
+            
+            plStats[currentuser]!["exp"]! = exp
+            prefs.setObject(plStats, forKey: "playerStats")
+
             performSegueWithIdentifier("mainmap", sender: self)
         }
     }

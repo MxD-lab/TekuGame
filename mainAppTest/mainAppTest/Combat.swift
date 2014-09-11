@@ -8,7 +8,7 @@
 
 import Foundation
 
-func doAction(user:Entity, target:Entity, action:Action)
+func doAction(user:Entity, target:Entity, action:Action) -> [String:String]
 {
     println("User: \(user)");
     println("   Used Action: \(action.typeToStringE())");
@@ -23,7 +23,7 @@ func doAction(user:Entity, target:Entity, action:Action)
         damage = user.currentStrength - (target.currentStrength/2);
         damage = ((damage < 0) ? 0 : damage);
         target.currentHealth -= damage;
-        break;
+        return ["damage": "\(damage)", "message" : "\(action.typeToStringE())"];
     case Action.P_Charged_Strike:
         damage = (user.currentStrength - (target.currentStrength/2)) * 1.35;
         damage = ((damage < 0) ? 0 : damage);
@@ -181,8 +181,7 @@ func doAction(user:Entity, target:Entity, action:Action)
         target.currentHealth -= damage;
         break;
     case Action.EatDirt:
-        user.currentHealth += user.health * 0.1;
-        user.currentHealth = (user.currentHealth > user.health) ? user.health : 0;
+        user.currentHealth += user.health * 0.15;
         break;
     case Action.EightProngStab:
         var rand:Int = 0;
@@ -211,10 +210,10 @@ func doAction(user:Entity, target:Entity, action:Action)
         target.currentHealth -= damage;
         break;
     case Action.Horrify:
-        target.currentHealth *= 0.85;
-        target.currentStrength *= 0.85;
+        target.currentHealth = target.currentHealth * (85/100);
+        target.currentStrength = target.currentStrength * (85/100)
         target.currentStrength = ((target.currentStrength < 0) ? 0 : target.currentStrength);
-        target.currentMagic *= 0.85;
+        target.currentMagic = target.currentMagic * (85/100)
         target.currentMagic = ((target.currentMagic < 0) ? 0 : target.currentMagic);
         break;
     case Action.Meditate:
@@ -228,7 +227,7 @@ func doAction(user:Entity, target:Entity, action:Action)
         damage = ((damage < 0) ? 0 : damage);
         target.currentHealth -= damage;
         
-        user.currentMagic *= 0.5;
+        user.currentMagic = user.currentMagic/2;
         break;
     case Action.AetherialDarts:
         damage = user.currentMagic - (target.currentMagic/2);
@@ -239,7 +238,7 @@ func doAction(user:Entity, target:Entity, action:Action)
         user.currentHealth += user.health * 0.35;
         break;
     case Action.FocusEnergy:
-        user.currentHealth *= 0.85;
+        user.currentHealth = user.currentHealth * (85/100);
         user.currentHealth = ((user.currentHealth < 0) ? 0 : user.currentHealth);
         user.currentStrength *= 1.15;
         break;
@@ -248,7 +247,7 @@ func doAction(user:Entity, target:Entity, action:Action)
         damage = ((damage < 0) ? 0 : damage);
         target.currentHealth -= damage;
         
-        user.currentStrength *= 0.75;
+        user.currentStrength = user.currentStrength  * (75/100);
         user.currentStrength = ((user.currentStrength < 0) ? 0 : user.currentStrength);
         break;
     case Action.TriBite:
@@ -352,16 +351,16 @@ func doAction(user:Entity, target:Entity, action:Action)
         damage = ((damage < 0) ? 0 : damage);
         target.currentHealth -= damage;
         
-        target.currentStrength *= 0.75;
-        target.currentMagic *= 0.75;
+        target.currentStrength = target.currentStrength * (75/100);
+        target.currentMagic = target.currentMagic * (75/100);
         break;
     case Action.Blight:
         damage = (user.currentMagic - (target.currentMagic/2) * 0.8);
         damage = ((damage < 0) ? 0 : damage);
         target.currentHealth -= damage;
         
-        target.currentStrength *= 0.9;
-        target.currentMagic *= 0.9;
+        target.currentStrength = target.currentStrength * (90/100);
+        target.currentMagic = target.currentMagic * (90/100);
         break;
     case Action.Smite:
         damage = user.currentMagic - (target.currentMagic/2);
@@ -385,44 +384,44 @@ func doAction(user:Entity, target:Entity, action:Action)
         damage = ((damage < 0) ? 0 : damage);
         target.currentHealth -= damage;
         
-        user.currentHealth *= 0.8;
+        user.currentHealth = target.currentMagic * (80/100);
         break;
     case Action.TailSwing:
         damage = (user.currentStrength - (target.currentStrength/2)) * 0.8;
         damage = ((damage < 0) ? 0 : damage);
         target.currentHealth -= damage;
         
-        target.currentStrength *= 0.8;
+        target.currentStrength = target.currentMagic * (80/100);
         break;
     case Action.Constrict:
         damage = (user.currentStrength - (target.currentStrength/2)) * 0.8;
         damage = ((damage < 0) ? 0 : damage);
         target.currentHealth -= damage;
         
-        target.currentMagic *= 0.8;
+        target.currentMagic = target.currentMagic * (80/100);
         break;
     case Action.BreathOfIce:
         damage = (user.currentMagic - (target.currentMagic/2)) * 1.25;
         damage = ((damage < 0) ? 0 : damage);
         target.currentHealth -= damage;
         
-        user.currentMagic *= 0.75;
-        target.currentMagic *= 0.9
+        user.currentMagic = user.currentMagic * (75/100);
+        target.currentMagic = target.currentMagic * (90/100);
         break;
     case Action.CrushUnderFoot:
         damage = (user.currentStrength - (target.currentStrength/2)) * 0.9;
         damage = ((damage < 0) ? 0 : damage);
         target.currentHealth -= damage;
         
-        target.currentStrength *= 0.9;
+        target.currentStrength = target.currentStrength * (90/100);
         break;
     case Action.BreathOfFire:
         damage = (user.currentMagic - (target.currentMagic/2)) * 1.25;
         damage = ((damage < 0) ? 0 : damage);
         target.currentHealth -= damage;
         
-        user.currentMagic *= 0.75;
-        target.currentStrength *= 0.9
+        user.currentMagic = user.currentMagic * (90/100);
+        target.currentStrength = target.currentSpeed * (90/100);
         break;
     default:
         break;

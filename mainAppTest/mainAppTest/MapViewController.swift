@@ -17,13 +17,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // MapKit, CoreLocation
     @IBOutlet weak var statusButton: UIButton!
-    @IBOutlet weak var speedLabel: UILabel!
-    @IBOutlet weak var altitudeLabel: UILabel!
+//    @IBOutlet weak var speedLabel: UILabel!
+//    @IBOutlet weak var altitudeLabel: UILabel!
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var magicStepsLabel: UILabel!
     @IBOutlet weak var magicHourLabel: UILabel!
-    @IBOutlet weak var beaconDistanceLabel: UILabel!
-    @IBOutlet weak var beaconPlayerCountLabel: UILabel!
+//    @IBOutlet weak var beaconDistanceLabel: UILabel!
+//    @IBOutlet weak var beaconPlayerCountLabel: UILabel!
     var clManager = CLLocationManager()
     var playerID:String!                    // Player's ID passed from the previous ViewController.
     var lat:NSNumber!                       // Player's GPS coordinates (latitude).
@@ -259,7 +259,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 }
                 if (bid == beaconID) {
                     near_beacon.addObject(data)
-                    beaconPlayerCountLabel.text = "\(near_beacon.count)"
+//                    beaconPlayerCountLabel.text = "\(near_beacon.count)"
                 }
             }
         }
@@ -328,17 +328,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.beaconID = "\(beacon.major)\(beacon.minor)"
         
         if (beacon.proximity == CLProximity.Unknown) {
-            beaconDistanceLabel.text = "Unknown Proximity"
+//            beaconDistanceLabel.text = "Unknown Proximity"
             return
         }
         else if (beacon.proximity == CLProximity.Immediate) {
-            beaconDistanceLabel.text = "Immediate"
+//            beaconDistanceLabel.text = "Immediate"
         }
         else if (beacon.proximity == CLProximity.Near) {
-            beaconDistanceLabel.text = "Near"
+//            beaconDistanceLabel.text = "Near"
         }
         else if (beacon.proximity == CLProximity.Far) {
-            beaconDistanceLabel.text = "Far"
+//            beaconDistanceLabel.text = "Far"
         }
     }
     
@@ -517,9 +517,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // Simply updates the label for step count.
     func updateStepLabel() {
         steplabel.text = "Steps：\(stepCount) steps"
-        altitudeLabel.text = NSString(format: "Altitude: %.2f m +/- %.2f", altitudeNum, vAcc)
+//        altitudeLabel.text = NSString(format: "Altitude: %.2f m +/- %.2f", altitudeNum, vAcc)
         if (speedNum > 0) {
-            speedLabel.text = NSString(format: "Speed: %.2f m/s", speedNum)
+//            speedLabel.text = NSString(format: "Speed: %.2f m/s", speedNum)
             println(speedNum)
         }
         

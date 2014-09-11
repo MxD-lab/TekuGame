@@ -24,7 +24,6 @@ class titleViewController: UIViewController {
         checkLoginStatus()
     }
     
-    
     func checkLoginStatus() {
         var prefs = NSUserDefaults.standardUserDefaults()
         var loggedin = false

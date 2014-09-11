@@ -11,9 +11,11 @@ import Foundation
 class player:Entity
 {
     var points:Int;
+    var exp:Int;
     override init()
     {
         self.points = 0;
+        self.exp = 0;
         super.init();
     }
     
@@ -21,6 +23,7 @@ class player:Entity
     {
         println("\(self)");
         println("   Level:     \(self.level)");
+        println("   Experience:         \(self.exp)");
         println("   Points to Assign:  \(self.points)");
         println("   Health:    \(self.health)");
         println("   Strength:  \(self.strength)");

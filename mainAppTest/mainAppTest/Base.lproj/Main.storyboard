@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="htj-91-gVU">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -86,7 +86,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j95-Pb-b2q">
-                                <rect key="frame" x="16" y="203" width="288" height="162"/>
+                                <rect key="frame" x="16" y="170" width="288" height="162"/>
                                 <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                             </pickerView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SNS Account Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31o-RH-SUY">
@@ -105,6 +105,18 @@
                                 </state>
                                 <connections>
                                     <segue destination="nDv-Yp-x5l" kind="show" identifier="twselect_accreate" id="T9K-pp-C4g"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6u-yL-ZiS">
+                                <rect key="frame" x="0.0" y="360" width="320" height="43"/>
+                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="22"/>
+                                <state key="normal" title="Refresh">
+                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="refreshPickerViewPressed:" destination="O2w-JZ-Qao" eventType="touchUpInside" id="QiO-yf-trW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -218,7 +230,7 @@
                                 <rect key="frame" x="0.0" y="299" width="320" height="41"/>
                                 <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <state key="normal" title="Login with Facebook/Twitter">
+                                <state key="normal" title="Login with Twitter">
                                     <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -273,94 +285,80 @@
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y4B-HR-yVG">
                                 <rect key="frame" x="16" y="28" width="284" height="527"/>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Next encount: -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqp-1a-ogx">
+                                        <rect key="frame" x="-18" y="48" width="320" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RiL-MP-DSb">
-                                <rect key="frame" x="220" y="37" width="65" height="30"/>
-                                <state key="normal" title=" 現在地へ">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.54053194019999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="updateLocation:" destination="kwz-uD-Hpi" eventType="touchUpInside" id="QXk-vr-k2A"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NdG-GS-BOu">
                                 <rect key="frame" x="20" y="395" width="280" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.99677136479591832" green="0.097010645351108662" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Next encount: -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqp-1a-ogx">
-                                <rect key="frame" x="0.0" y="75" width="320" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v9Q-4N-LkZ">
-                                <rect key="frame" x="20" y="298" width="280" height="256"/>
+                                <rect key="frame" x="20" y="424" width="280" height="130"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Steps：- steps" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZa-mL-EvR">
-                                        <rect key="frame" x="-8" y="20" width="265" height="21"/>
-                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Speed: - m/s" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIb-ml-KUM">
-                                        <rect key="frame" x="-8" y="50" width="265" height="21"/>
-                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Altitude： - m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ObL-em-cAT">
-                                        <rect key="frame" x="-8" y="79" width="265" height="21"/>
+                                        <rect key="frame" x="-8" y="11" width="265" height="21"/>
                                         <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRf-3N-jE0">
-                                        <rect key="frame" x="-9" y="108" width="265" height="21"/>
+                                        <rect key="frame" x="-9" y="40" width="265" height="21"/>
                                         <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Magic Steps: - steps" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZm-wd-Md2">
-                                        <rect key="frame" x="-8" y="161" width="265" height="21"/>
-                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBn-oH-c7r">
-                                        <rect key="frame" x="-8" y="190" width="265" height="21"/>
-                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEf-ib-2Br">
-                                        <rect key="frame" x="-8" y="219" width="265" height="21"/>
+                                        <rect key="frame" x="-8" y="98" width="265" height="21"/>
                                         <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Magic Hour: -" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRL-ff-gXv">
-                                        <rect key="frame" x="-8" y="137" width="265" height="21"/>
+                                        <rect key="frame" x="-8" y="69" width="265" height="21"/>
                                         <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.95453789112016407" green="1" blue="0.93087769851933844" alpha="0.5" colorSpace="calibratedRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ex8-bO-nfp">
-                                <rect key="frame" x="26" y="37" width="146" height="30"/>
-                                <state key="normal" title="@playerid">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.54053194019999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="5kj-lA-l77" kind="show" identifier="map_status" id="6Ro-2r-JbP"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Acl-hv-wMj">
+                                <rect key="frame" x="16" y="28" width="284" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RiL-MP-DSb">
+                                        <rect key="frame" x="208" y="5" width="65" height="30"/>
+                                        <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title=" 現在地へ">
+                                            <color key="titleColor" red="0.98369738520000005" green="0.54053194019999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="updateLocation:" destination="kwz-uD-Hpi" eventType="touchUpInside" id="QXk-vr-k2A"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ex8-bO-nfp">
+                                        <rect key="frame" x="8" y="5" width="146" height="30"/>
+                                        <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="@playerid">
+                                            <color key="titleColor" red="0.98369738520000005" green="0.54053194019999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="5kj-lA-l77" kind="show" identifier="map_status" id="6Ro-2r-JbP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.71182316599999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -368,15 +366,11 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="activityLabel" destination="KRf-3N-jE0" id="6yz-WU-fu7"/>
-                        <outlet property="altitudeLabel" destination="ObL-em-cAT" id="M03-OP-lT9"/>
-                        <outlet property="beaconDistanceLabel" destination="yBn-oH-c7r" id="0X7-v2-SnR"/>
-                        <outlet property="beaconPlayerCountLabel" destination="mEf-ib-2Br" id="12C-LC-2I9"/>
                         <outlet property="encountLabel" destination="uqp-1a-ogx" id="UxA-qg-6si"/>
                         <outlet property="magicHourLabel" destination="QRL-ff-gXv" id="FOJ-h1-JOd"/>
                         <outlet property="magicStepsLabel" destination="hZm-wd-Md2" id="6kr-MZ-9B3"/>
                         <outlet property="mainView" destination="y4B-HR-yVG" id="x5z-Zm-n4E"/>
                         <outlet property="netConnectionLabel" destination="NdG-GS-BOu" id="OP7-Pl-m0E"/>
-                        <outlet property="speedLabel" destination="IIb-ml-KUM" id="Dr8-vw-IFe"/>
                         <outlet property="statusButton" destination="Ex8-bO-nfp" id="4jH-5G-D0k"/>
                         <outlet property="steplabel" destination="VZa-mL-EvR" id="djN-hb-Qa4"/>
                         <segue destination="htj-91-gVU" kind="show" identifier="map_game" id="SU0-Gz-9g0"/>
@@ -422,26 +416,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Bd5-ws-A05">
-                                <rect key="frame" x="85" y="176" width="150" height="2"/>
+                                <rect key="frame" x="85" y="154" width="150" height="2"/>
                                 <color key="backgroundColor" red="1" green="0.94635691809923528" blue="0.91524618628950949" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="1" green="0.93961456268819787" blue="0.66185436451198165" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <color key="progressTintColor" red="0.98369738520000005" green="0.54053194019063955" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="trackTintColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jPO-e8-IgD">
-                                <rect key="frame" x="85" y="253" width="150" height="2"/>
+                                <rect key="frame" x="85" y="212" width="150" height="2"/>
                                 <color key="tintColor" red="1" green="0.93961456268819787" blue="0.66185436451198165" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="progressTintColor" red="0.98369738520000005" green="0.54053194019999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="trackTintColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OI9-TI-8uq">
-                                <rect key="frame" x="85" y="334" width="150" height="2"/>
+                                <rect key="frame" x="85" y="276" width="150" height="2"/>
                                 <color key="tintColor" red="1" green="0.93961456268819787" blue="0.66185436451198165" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="progressTintColor" red="0.98369738520000005" green="0.54053194019999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="trackTintColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oM8-YL-eJe">
-                                <rect key="frame" x="85" y="410" width="150" height="2"/>
+                                <rect key="frame" x="85" y="339" width="150" height="2"/>
                                 <color key="tintColor" red="1" green="0.93961456268819787" blue="0.66185436451198165" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="progressTintColor" red="0.98369738520000005" green="0.54053194019999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="trackTintColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -459,56 +453,74 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Health" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZI-r3-1s3">
-                                <rect key="frame" x="85" y="130" width="50" height="21"/>
+                                <rect key="frame" x="85" y="108" width="50" height="21"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
+                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgw-Oo-Rch">
+                                <rect key="frame" x="80" y="79" width="161" height="21"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Strength" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbG-4X-GTM">
-                                <rect key="frame" x="85" y="213" width="66" height="21"/>
+                                <rect key="frame" x="85" y="172" width="66" height="21"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Magic" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPK-2S-pZI">
-                                <rect key="frame" x="85" y="297" width="47" height="21"/>
+                                <rect key="frame" x="85" y="239" width="47" height="21"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Speed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9t-ni-Bmb">
-                                <rect key="frame" x="85" y="369" width="50" height="21"/>
+                                <rect key="frame" x="85" y="298" width="50" height="21"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFJ-Qd-pNc">
-                                <rect key="frame" x="134" y="130" width="101" height="21"/>
+                                <rect key="frame" x="134" y="108" width="101" height="21"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqh-xW-awq">
-                                <rect key="frame" x="134" y="213" width="101" height="21"/>
+                                <rect key="frame" x="134" y="172" width="101" height="21"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="man-gX-huv">
-                                <rect key="frame" x="134" y="297" width="101" height="21"/>
+                                <rect key="frame" x="134" y="239" width="101" height="21"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WjO-Jy-0he">
-                                <rect key="frame" x="134" y="369" width="101" height="21"/>
+                                <rect key="frame" x="134" y="298" width="101" height="21"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hr7-4P-bhM">
-                                <rect key="frame" x="0.0" y="41" width="320" height="59"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="34"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0Kd-oc-6mf">
+                                <rect key="frame" x="85" y="404" width="150" height="2"/>
+                                <color key="tintColor" red="1" green="0.93961456269999999" blue="0.66185436450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="progressTintColor" red="0.98369738520000005" green="0.54053194019999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="trackTintColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Experience" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkI-ox-qVk">
+                                <rect key="frame" x="85" y="363" width="92" height="21"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
+                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPS-T5-Rsg">
+                                <rect key="frame" x="134" y="363" width="101" height="21"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                 <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -524,16 +536,25 @@
                                     <segue destination="vXZ-lx-hvc" kind="show" identifier="status_title" id="Hik-ON-fcD"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hr7-4P-bhM">
+                                <rect key="frame" x="0.0" y="28" width="320" height="59"/>
+                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="34"/>
+                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.71182316599999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="expLabel" destination="WPS-T5-Rsg" id="B6A-YE-0BC"/>
+                        <outlet property="expProgressBar" destination="0Kd-oc-6mf" id="ND1-HF-WRm"/>
                         <outlet property="healthLabel" destination="RFJ-Qd-pNc" id="1qe-Hz-jAx"/>
                         <outlet property="healthProgressBar" destination="Bd5-ws-A05" id="uYQ-sv-Gaz"/>
                         <outlet property="magicLabel" destination="man-gX-huv" id="kqL-FL-dwF"/>
                         <outlet property="magicProgressBar" destination="OI9-TI-8uq" id="nsb-LZ-3uS"/>
+                        <outlet property="nameLevelLabel" destination="lgw-Oo-Rch" id="B9u-WA-Pmh"/>
                         <outlet property="speedLabel" destination="WjO-Jy-0he" id="rhB-7a-Wmg"/>
                         <outlet property="speedProgressBar" destination="oM8-YL-eJe" id="Oy2-Rm-hdD"/>
                         <outlet property="strengthLabel" destination="iqh-xW-awq" id="q96-Gn-8K9"/>
@@ -865,8 +886,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="HjJ-Hv-ibE"/>
-        <segue reference="9cB-Yh-hre"/>
-        <segue reference="L3k-GF-tu5"/>
+        <segue reference="01y-4x-iNO"/>
+        <segue reference="Hik-ON-fcD"/>
+        <segue reference="fkF-W3-xbb"/>
     </inferredMetricsTieBreakers>
 </document>
