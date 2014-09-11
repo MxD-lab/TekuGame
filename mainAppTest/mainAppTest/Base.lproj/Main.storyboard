@@ -428,6 +428,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="detailsLabel" destination="Iay-ks-KUX" id="XJL-K3-qzz"/>
                         <outlet property="playerWinLabel" destination="ADa-c0-Tco" id="QdC-kg-VeO"/>
                         <segue destination="nrI-9u-5kC" kind="show" id="e2a-4i-Z5k"/>
                         <segue destination="kwz-uD-Hpi" kind="show" identifier="results_map" id="Ecs-cJ-kjn"/>

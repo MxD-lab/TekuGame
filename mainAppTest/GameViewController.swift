@@ -29,6 +29,7 @@ class GameViewController: UIViewController {
     var incremented = false
     var segued = false
     var pwin = false
+    var leveledUp = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -109,6 +110,7 @@ class GameViewController: UIViewController {
                 level += 1
                 exp = 0
                 assignpoints += 20
+                leveledUp = true
             }
             
             plStats[currentuser]!["exp"]! = exp
@@ -146,6 +148,7 @@ class GameViewController: UIViewController {
         if (segue.identifier == "results") {
             var nextVC = segue.destinationViewController as resultsViewController
             nextVC.playerwin = pwin
+            nextVC.leveledUp = leveledUp
         }
     }
 
