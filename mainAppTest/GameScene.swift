@@ -43,6 +43,7 @@ class GameScene: SKScene
     let typePicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let actionPicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let enemyImage:SKSpriteNode = SKSpriteNode(imageNamed: "enemy.png");
+    let playerStatus:UILabel = UILabel(frame: CGRectMake(0,0,320, 50));
 
     var step:Int = 0;
     
@@ -89,6 +90,15 @@ class GameScene: SKScene
         status.numberOfLines = 0;
         status.lineBreakMode = NSLineBreakMode.ByWordWrapping;
         view.addSubview(status)
+        
+        playerStatus.center = CGPointMake(160,518);
+        playerStatus.textAlignment = NSTextAlignment.Center;
+        playerStatus.backgroundColor = UIColor.lightGrayColor();
+        playerStatus.opaque = false;
+        playerStatus.alpha = 0.75;
+        playerStatus.font = UIFont(name: "Optima-ExtraBlack", size: 15);
+        playerStatus.numberOfLines = 2;
+        view.addSubview(playerStatus);
         
         var p_uppercut = setMenuButton32("P_Uppercut.png") { () -> Void in self.actionAndStatus(Action.P_Uppercut);}
         var p_charged_strike = setMenuButton32("P_Charged_Strike.png") { () -> Void in self.actionAndStatus(Action.P_Charged_Strike);}
@@ -200,8 +210,6 @@ class GameScene: SKScene
         enemyImage.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 80);
         enemyImage.zPosition = 1;
         addChild(enemyImage);
-        
-        
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent)
@@ -213,6 +221,8 @@ class GameScene: SKScene
     
     override func update(currentTime: CFTimeInterval)
     {   /* Called before each frame is rendered */
+        
+        playerStatus.text = "Health: \(p.currentHealth)/\(p.health)     Speed:\(p.currentSpeed)/\(p.speed)\nStrength: \(p.currentStrength)/\(p.strength)     Magic:\(p.currentMagic)/\(p.magic)";
         
         if(doUpdate > 0)
         {

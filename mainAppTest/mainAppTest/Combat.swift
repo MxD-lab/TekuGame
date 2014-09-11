@@ -216,9 +216,9 @@ func doAction(user:Entity, target:Entity, action:Action) -> [String:String]
     case Action.Horrify:
         damage = target.currentHealth * (15/100);
         target.currentHealth -= damage;
-        target.currentStrength = target.currentStrength * (85/100)
+        target.currentStrength = (target.currentStrength * 85) / 100;
         target.currentStrength = ((target.currentStrength < 0) ? 0 : target.currentStrength);
-        target.currentMagic = target.currentMagic * (85/100)
+        target.currentMagic = (target.currentMagic * 85) / 100;
         target.currentMagic = ((target.currentMagic < 0) ? 0 : target.currentMagic);
         return ["damage": "\(damage)", "message" : "Used: \(action.typeToStringE()): your health, strength, and magic decreased"];
     case Action.Meditate:
@@ -342,7 +342,7 @@ func doAction(user:Entity, target:Entity, action:Action) -> [String:String]
         target.currentHealth -= damage;
         return ["damage": "\(damage)", "message" : "Used: \(action.typeToStringE())"];
     case Action.Drain:
-        damage = (user.currentMagic - (target.currentMagic/2)) * 0.25;
+        damage = (user.currentMagic - (target.currentMagic/2)) * 0.5;
         damage = ((damage < 0) ? 1 : damage);
         target.currentHealth -= damage;
         
