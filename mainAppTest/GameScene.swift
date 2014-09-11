@@ -30,7 +30,7 @@ var somethingDead:Bool = false;
 
 var doUpdate:Int = 0;
 
-class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
+class GameScene: SKScene
 {
     var allActions:[(String, [Action])] = [("Utility", utility), ("Physical",physical),("Magic", magic)];
     
@@ -77,27 +77,6 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         enemyImage.texture = getSprite(e);
         
         turnPlayer = (p.speed > e.speed) ? true : false ;
-        /*
-        physical = Action.allPhysical;
-        magic = Action.allMagic;
-        
-        for(var i = 9; i >= 0; i -= 1)
-        {
-            if(p.magic < canDo[i])
-            {
-                println("Removing: \(magic.last!)");
-                magic.removeLast();
-            }
-            if(p.strength < canDo[i])
-            {
-                println("Removing: \(physical.last!)");
-                physical.removeLast();
-            }
-        }
-        println("Magic: \(magic)");
-        println("Physical: \(physical)");
-        
-        */
         
         /* Setup your scene here */
         status.center = CGPointMake(160, 10);
@@ -106,50 +85,19 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         status.backgroundColor = UIColor.lightGrayColor();
         status.opaque = false;
         status.alpha = 0.75;
+        status.font = UIFont(name: "Optima-ExtraBlack", size: 10);
         view.addSubview(status)
-
-        typePicker.transform = CGAffineTransformMakeScale(0.75 , 0.75);
-        //typePicker.frame = CGRectMake(0, 0, 75, 10);
-        //typePicker.center = CGPointMake(37.5, X);
-        typePicker.center = CGPointMake(60, 250);
-        typePicker.delegate = self;
-        typePicker.reloadAllComponents();
-        //view.addSubview(typePicker);
-        actionPicker.transform = CGAffineTransformMakeScale(0.75 , 0.75);
-        //actionPicker.frame = CGRectMake(0, 0, 135, 10);
-        actionPicker.center = CGPointMake(500, 250);
-        actionPicker.delegate = self;
-        actionPicker.reloadAllComponents();
-        //view.addSubview(actionPicker);
         
-        var p_uppercut = setMenuButton32("P_Uppercut.png") { () -> Void in
-            if(turnPlayer){
-                var dict = doAction(p, e, Action.P_Uppercut);
-                var mess = dict["message"]!
-                var dam = dict["damage"]!
-                self.status.text = "\(mess). Damage: \(dam)"
-                doUpdate = 50;
-                turnPlayer = !turnPlayer;
-            }}
-        var p_charged_strike = setMenuButton32("P_Charged_Strike.png") { () -> Void in
-            if(turnPlayer){
-                doAction(p, e, Action.P_Charged_Strike); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var p_meditation = setMenuButton32("P_Meditation.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.P_Meditation); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var p_leg_sweep = setMenuButton32("P_Leg_Sweep.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.P_Leg_Sweep); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var p_turbo_strike = setMenuButton32("P_Turbo_Strike.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.P_Turbo_Strike); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var p_heart_strike = setMenuButton32("P_Heart_Strike.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.P_Heart_Strike); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var p_muscle_training = setMenuButton32("P_Muscle_Training.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.P_Meditation); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var p_stomp = setMenuButton32("P_Stomp.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.P_Stomp); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var p_sacrificial_strike = setMenuButton32("P_Sacrificial_Strike.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.P_Sacrificial_Strike); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var p_overpower = setMenuButton32("P_Overpower.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.P_Overpower); doUpdate = 50; turnPlayer = !turnPlayer;}}
+        var p_uppercut = setMenuButton32("P_Uppercut.png") { () -> Void in self.actionAndStatus(Action.P_Uppercut);}
+        var p_charged_strike = setMenuButton32("P_Charged_Strike.png") { () -> Void in self.actionAndStatus(Action.P_Charged_Strike);}
+        var p_meditation = setMenuButton32("P_Meditation.png") { () -> Void in self.actionAndStatus(Action.P_Meditation);}
+        var p_leg_sweep = setMenuButton32("P_Leg_Sweep.png") { () -> Void in self.actionAndStatus(Action.P_Leg_Sweep);}
+        var p_turbo_strike = setMenuButton32("P_Turbo_Strike.png") { () -> Void in self.actionAndStatus(Action.P_Turbo_Strike);}
+        var p_heart_strike = setMenuButton32("P_Heart_Strike.png") { () -> Void in self.actionAndStatus(Action.P_Heart_Strike);}
+        var p_muscle_training = setMenuButton32("P_Muscle_Training.png") { () -> Void in self.actionAndStatus(Action.P_Muscle_Training);}
+        var p_stomp = setMenuButton32("P_Stomp.png") { () -> Void in self.actionAndStatus(Action.P_Stomp);}
+        var p_sacrificial_strike = setMenuButton32("P_Sacrificial_Strike.png") { () -> Void in self.actionAndStatus(Action.P_Sacrificial_Strike);}
+        var p_overpower = setMenuButton32("P_Overpower.png") { () -> Void in self.actionAndStatus(Action.P_Overpower);}
         
         physicalArr = [
             p_uppercut,
@@ -164,26 +112,16 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
             p_overpower
         ];
         
-        var e_energy_ball = setMenuButton32("E_Energy_Ball.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.E_EnergyBall); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var e_icy_wind = setMenuButton32("E_Icy_Wind.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.E_Icy_Wind); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var e_barrier = setMenuButton32("E_Barrier.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.E_Barrier); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var e_fireball = setMenuButton32("E_Fireball.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.E_Fireball); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var e_sharpen_mind = setMenuButton32("E_Sharpen_Mind.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.E_Sharpen_Mind); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var e_curse = setMenuButton32("E_Curse.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.E_Curse); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var e_life_drain = setMenuButton32("E_Life_Drain.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.E_Life_Drain); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var e_decay = setMenuButton32("E_Decay.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.E_Decay); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var e_full_heal = setMenuButton32("E_Full_Heal.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.E_Full_Heal); doUpdate = 50; turnPlayer = !turnPlayer;}}
-        var e_instant_death = setMenuButton32("E_Instant_Death.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.E_Instant_Death); doUpdate = 50; turnPlayer = !turnPlayer;}}
+        var e_energy_ball = setMenuButton32("E_Energy_Ball.png") { () -> Void in self.actionAndStatus(Action.E_EnergyBall);}
+        var e_icy_wind = setMenuButton32("E_Icy_Wind.png") { () -> Void in self.actionAndStatus(Action.E_Icy_Wind);}
+        var e_barrier = setMenuButton32("E_Barrier.png") { () -> Void in self.actionAndStatus(Action.E_Barrier);}
+        var e_fireball = setMenuButton32("E_Fireball.png") { () -> Void in self.actionAndStatus(Action.E_Fireball);}
+        var e_sharpen_mind = setMenuButton32("E_Sharpen_Mind.png") { () -> Void in self.actionAndStatus(Action.E_Sharpen_Mind);}
+        var e_curse = setMenuButton32("E_Curse.png") { () -> Void in self.actionAndStatus(Action.E_Curse);}
+        var e_life_drain = setMenuButton32("E_Life_Drain.png") { () -> Void in self.actionAndStatus(Action.E_Life_Drain);}
+        var e_decay = setMenuButton32("E_Decay.png") { () -> Void in self.actionAndStatus(Action.E_Decay);}
+        var e_full_heal = setMenuButton32("E_Full_Heal.png") { () -> Void in self.actionAndStatus(Action.E_Full_Heal);}
+        var e_instant_death = setMenuButton32("E_Instant_Death.png") { () -> Void in self.actionAndStatus(Action.E_Instant_Death);}
         
         magicArr = [
             e_energy_ball,
@@ -240,8 +178,7 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
             }
         }
         
-        var examineButton = setMenuButton64("U_Examine.png") { () -> Void in
-            if(turnPlayer){doAction(p, e, Action.U_Examine); doUpdate = 50; turnPlayer = !turnPlayer;}}
+        var examineButton = setMenuButton64("U_Examine.png") { () -> Void in self.actionAndStatus(Action.U_Examine);}
         
         typeMenu = HMSideMenu(items: [
             physicalButton,
@@ -295,19 +232,16 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
                 {
                     status.text = "Both Died";
                     somethingDead = true;
-//                    setTimeout("setSomethingDead", seconds: 2)
                 }
                 else if(p.currentHealth <= 0 && e.currentHealth > 0)
                 {
                     status.text = "Player Died";
                     somethingDead = true;
-                    //                    setTimeout("setSomethingDead", seconds: 2)
                 }
                 else if(e.currentHealth <= 0 && p.currentHealth > 0)
                 {
                     status.text = "Enemy Died";
                     somethingDead = true;
-                    //                    setTimeout("setSomethingDead", seconds: 2)
                     playerWin = true;
                 }
                 else
@@ -317,9 +251,20 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
                 
                 if(!turnPlayer && !somethingDead)
                 {
-                    doAction(e, p, selectAttack(e));
+                    var dict = doAction(e, p, selectAttack(e));
+                    var mess = dict["message"]!
+                    var dam = dict["damage"]!
+                    if(dam == "0")
+                    {
+                        self.status.text = "\(mess)."
+                    }
+                    else
+                    {
+                        self.status.text = "\(mess). Damage: \(dam).";
+                    }
+                    
+                    doUpdate = 150;
                     turnPlayer = !turnPlayer;
-                    setTimeout("changeTurn", seconds: 1)
                 }
                 else if (somethingDead) {
                     somethingDead = false
@@ -327,17 +272,34 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
                     NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
                 }
                 
-                doUpdate = 50;
+                doUpdate = 150;
             }
         }
     }
     
-    func changeTurn() {
-        
-    }
-    
     func setSomethingDead() {
         somethingDead = true;
+    }
+    
+    func actionAndStatus(a:Action)
+    {
+        if(turnPlayer)
+        {
+            var dict = doAction(p, e, a);
+            var mess = dict["message"]!
+            var dam = dict["damage"]!
+            if(dam == "0")
+            {
+                self.status.text = "\(mess)."
+            }
+            else
+            {
+                self.status.text = "\(mess). Damage: \(dam).";
+            }
+            
+            doUpdate = 150;
+            turnPlayer = !turnPlayer;
+        }
     }
     
     func setMenuButton32(name:String!, block:(() -> Void)!) -> UIView!
@@ -361,102 +323,5 @@ class GameScene: SKScene, UIPickerViewDataSource, UIPickerViewDelegate
         tempbutton.addSubview(tempbuttonIcon)
         
         return tempbutton
-    }
-    
-    func setTimeout(functionname:String, seconds:NSNumber) -> NSTimer {
-        return NSTimer.scheduledTimerWithTimeInterval(seconds, target: self, selector: Selector(functionname), userInfo: nil, repeats: false)
-    }
-    
-    func numberOfComponentsInPickerView(colorPicker: UIPickerView) -> Int
-    {
-        return 1;
-    }
-    
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
-    {
-        switch(pickerView)
-            {
-        case typePicker:
-            return num.count;
-        case actionPicker:
-            switch(typePicker.selectedRowInComponent(0))
-                {
-            case 0:
-                return utility.count;
-            case 1:
-                return physical.count;
-            default:
-                return magic.count;
-            }
-        default:
-            return 0;
-        }
-    }
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String!
-    {
-        switch(pickerView)
-            {
-        case typePicker:
-            return num[row];
-        case actionPicker:
-            switch(typePicker.selectedRowInComponent(0))
-                {
-            case 0:
-                return utility[row].typeToStringE();
-            case 1:
-                return physical[row].typeToStringE();
-            case 2:
-                return magic[row].typeToStringE();
-            default:
-                return "";
-            }
-        default:
-            return "";
-        }
-    }
-    
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
-    {
-        switch(pickerView)
-            {
-        case typePicker:
-            actionPicker.reloadAllComponents();
-        case actionPicker:
-            break;
-        default:
-            break;
-        }
-    }
-    
-    func pickerView(pickerView: UIPickerView!, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView! {
-        var label = UILabel(frame: CGRectMake(0, 0, pickerView.frame.size.width, 44))
-        label.font = UIFont(name: "Optima-ExtraBlack", size: 24)
-        label.textColor = UIColor.blackColor()
-        label.backgroundColor = UIColor.whiteColor();
-        
-        switch(pickerView)
-            {
-        case typePicker:
-            label.text = num[row];
-        case actionPicker:
-            switch(typePicker.selectedRowInComponent(0))
-                {
-            case 0:
-                label.text = utility[row].typeToStringE();
-            case 1:
-                label.text = physical[row].typeToStringE();
-            case 2:
-                label.text = magic[row].typeToStringE();
-            default:
-                label.text = "";
-            }
-        default:
-            label.text = "";
-        }
-
-        
-        label.textAlignment = NSTextAlignment.Center
-        return label
     }
 }

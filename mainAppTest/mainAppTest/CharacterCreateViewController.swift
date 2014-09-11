@@ -27,7 +27,7 @@ class CharacterCreateViewController: UIViewController
         // Do any additional setup after loading the view, typically from a nib.
         
         p.level = 1;
-        p.health = 5;
+        p.health = 10;
         p.strength = 5;
         p.magic = 5;
         p.speed = 5;
