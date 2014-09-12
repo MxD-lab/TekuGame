@@ -434,17 +434,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         var prefs = NSUserDefaults.standardUserDefaults()
         var currDate = NSDate()
         var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-        var dateComponents = gregorian.components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit, fromDate: currDate)
+        var dateComponents = gregorian.components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.YearCalendarUnit, fromDate: currDate)
         currentHourInt = dateComponents.hour
         
         if (prefs.objectForKey("magichour") != nil) {
             var magichour = prefs.objectForKey("magichour") as [String:String]
-            if (magichour["date"]  == "\(dateComponents.month) / \(dateComponents.day)") {
+            if (magichour["date"]  == "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)") {
                 var hour = magichour["hour"]!
                 magicHourInt = hour.toInt()!
             }
             else {
-                magichour["date"] = "\(dateComponents.month) / \(dateComponents.day)"
+                magichour["date"] = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
                 magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
                 var hour = magichour["hour"]!
                 magicHourInt = hour.toInt()!
@@ -453,7 +453,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         else {
             var magichour:[String:String] = [:]
-            magichour["date"] = "\(dateComponents.month) / \(dateComponents.day)"
+            magichour["date"] = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
             magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
             var hour = magichour["hour"]!
             magicHourInt = hour.toInt()!
@@ -577,22 +577,30 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func checkEncounter() {
-        if (encountStepCount < stepCount) {
-            if (encountStepCount != 0) {
-                encount()
-            }
+        var prefs = NSUserDefaults.standardUserDefaults()
+        var currDate = NSDate()
+        var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        var dateComponents = gregorian.components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.YearCalendarUnit, fromDate: currDate)
+        
+        var datestring = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
+        var encounterDict = ["date":datestring, "step":0]
+        
+        if (prefs.objectForKey("encounterStep") != nil) {
+            encounterDict = prefs.objectForKey("encounterStep") as [String:AnyObject]
         }
-        if (encountStepCount == 0) {
-            var prefs = NSUserDefaults.standardUserDefaults()
-            if (prefs.objectForKey("encounterStep") != nil) {
-                encountStepCount = prefs.objectForKey("encounterStep") as Int
-                encountLabel.text = "Next encount: \(encountStepCount)"
-                var appdel:AppDelegate = (UIApplication.sharedApplication().delegate) as AppDelegate
-                appdel.encounterstep = encountStepCount
-            }
-            else {
-                updateEncounterStep()
-                prefs.setObject(encountStepCount, forKey: "encounterStep")
+        
+        var encounterDictString = encounterDict["date"]! as String
+        encountStepCount = encounterDict["step"]! as Int
+        encountLabel.text = "Next encount: \(encountStepCount)"
+        
+        if (encounterDictString != datestring || encountStepCount == 0) {
+            updateEncounterStep()
+            encounterDict = ["date":datestring, "step":encountStepCount]
+            prefs.setObject(encounterDict, forKey: "encounterStep")
+        }
+        else {
+            if (encountStepCount < stepCount) {
+                encount()
             }
         }
     }
@@ -601,7 +609,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         var thousands = lroundf(Float(stepCount) / 1000.0) + 1
         encountStepCount = Int(thousands) * 1000 + Int(arc4random_uniform(200)) - 100
-        encountLabel.text = "Next encount: \(encountStepCount)"
         var appdel:AppDelegate = (UIApplication.sharedApplication().delegate) as AppDelegate
         appdel.encounterstep = encountStepCount
     }
