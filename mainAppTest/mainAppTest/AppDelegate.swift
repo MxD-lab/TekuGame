@@ -25,11 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var magicsteps:Int! = -1
     var magicHourInt:Int! = -1
     var currentHourInt:Int! = -1
+    var magicGoal:Int = 0
+    
     
     // Speed
     var activitystring:String! = ""
     var confidencenum:Float! = 0
     var speedFloat:Float = 0
+    
+    // Health
+    var healthGoal:Int = 0
     
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
@@ -55,10 +60,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         currentHourInt = dateComponents.hour
         
         
+//        if (prefs.objectForKey("magicSteps") != nil) {
+//            prevmagicsteps = prefs.objectForKey("magicSteps") as Int
+//            var magic = prefs.objectForKey("magichour") as [String:String]
+//            magicHourInt = magic["hour"]!.toInt()!
+//        }
+        
+        if (prefs.objectForKey("speedFloat") != nil) {
+            speedFloat = prefs.objectForKey("speedFloat") as Float
+        }
+        else {
+            speedFloat = 0
+            prefs.setObject(0, forKey: "speedFloat")
+        }
+        
         if (prefs.objectForKey("magicSteps") != nil) {
             prevmagicsteps = prefs.objectForKey("magicSteps") as Int
-            var magic = prefs.objectForKey("magichour") as [String:String]
-            magicHourInt = magic["hour"]!.toInt()!
+            magicsteps = prevmagicsteps
         }
         
         notified = false
@@ -85,10 +103,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (statusloop != nil) {
             statusloop.invalidate()
             statusloop = nil
-        }
-        if (magicHourInt != -1) {
-            var prefs = NSUserDefaults.standardUserDefaults()
-            prefs.setObject(magicsteps, forKey: "magicSteps")
         }
     }
     
@@ -153,6 +167,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func checkStatus() {
         checkRunningGoal()
+        checkHealthGoal()
+        checkMagicHour()
+    }
+    
+    func checkHealthGoal() {
+        var prefs = NSUserDefaults.standardUserDefaults()
+        if (stepCount >= 5000 && prefs.objectForKey("healthGoal") != nil) {
+            healthGoal = prefs.objectForKey("healthGoal") as Int
+        }
+        else {
+            healthGoal = 5000
+            prefs.setObject(healthGoal, forKey: "healthGoal")
+        }
+        
+        if (stepCount >= healthGoal) {
+            healthGoal += 5000
+            prefs.setObject(healthGoal, forKey: "healthGoal")
+            println("StepCount: \(stepCount), healthGoal: \(healthGoal)")
+            postLog("Walked \(stepCount) steps today, health incremented by 1.")
+            updateLocalPlayerStats(1, strengthinc: 0, magicinc: 0, speedinc: 0)
+            var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+            dispatch_async(lowQueue, { () -> Void in
+                var notification = UILocalNotification()
+                notification.fireDate = NSDate()
+                notification.alertBody = "+1 Health from walking \(self.stepCount) steps!"
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            })
+//            notifyMessage("+1 Health from walking \(self.stepCount) steps!")
+        }
     }
     
     func checkRunningGoal() {
@@ -166,12 +209,79 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             prefs.setObject(0, forKey: "speedFloat")
             postLog("Speed incremented by 1 from running.")
             updateLocalPlayerStats(0, strengthinc: 0, magicinc: 0, speedinc: 1)
-            var notification = UILocalNotification()
-            notification.fireDate = NSDate()
-            notification.alertBody = "+1 Speed from running!"
-            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+            dispatch_async(lowQueue, { () -> Void in
+                var notification = UILocalNotification()
+                notification.fireDate = NSDate()
+                notification.alertBody = "+1 Speed from running!"
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            })
+//            notifyMessage("+1 Speed from running!")
         }
     }
+    
+    func checkMagicHour() {
+        var prefs = NSUserDefaults.standardUserDefaults()
+        var currDate = NSDate()
+        var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        var dateComponents = gregorian.components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.YearCalendarUnit, fromDate: currDate)
+        currentHourInt = dateComponents.hour
+        
+        if (prefs.objectForKey("magichour") != nil) {
+            var magichour = prefs.objectForKey("magichour") as [String:String]
+            if (magichour["date"]  == "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)") {
+                var hour = magichour["hour"]!
+                magicHourInt = hour.toInt()!
+            }
+            else {
+                magichour["date"] = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
+                magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
+                var hour = magichour["hour"]!
+                magicHourInt = hour.toInt()!
+                prefs.setObject(magichour, forKey: "magichour")
+            }
+        }
+        else {
+            var magichour:[String:String] = [:]
+            magichour["date"] = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
+            magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
+            var hour = magichour["hour"]!
+            magicHourInt = hour.toInt()!
+            prefs.setObject(magichour, forKey: "magichour")
+        }
+        
+        if (magicsteps > 1000 && prefs.objectForKey("magicGoal") != nil) {
+            magicGoal = prefs.objectForKey("magicGoal") as Int
+        }
+        else {
+            magicGoal = 1000
+            prefs.setObject(magicGoal, forKey: "magicGoal")
+        }
+        if (magicsteps >= magicGoal) {
+            magicGoal += 1000
+            prefs.setObject(magicGoal, forKey: "magicGoal")
+            postLog("Walked \(magicsteps) steps during magic hour (\(magicHourInt):00). Magic incremented by 1.")
+            updateLocalPlayerStats(0, strengthinc: 0, magicinc: 1, speedinc: 0)
+            var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+            dispatch_async(lowQueue, { () -> Void in
+                var notification = UILocalNotification()
+                notification.fireDate = NSDate()
+                notification.alertBody = "+1 Magic from walking \(self.magicsteps) steps during magic hour!"
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            })
+//            notifyMessage("+1 Magic from walking \(self.magicsteps) steps during magic hour!")
+        }
+    }
+    
+//    func notifyMessage(message:String) {
+//        var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+//        dispatch_async(lowQueue, { () -> Void in
+//            var notification = UILocalNotification()
+//            notification.fireDate = NSDate()
+//            notification.alertBody = message
+//            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//        })
+//    }
     
     func activityToString(act:CMMotionActivity) -> String {
         var actionName = ""
@@ -221,6 +331,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 notification.fireDate = NSDate()
                 notification.alertBody = "You've encountered a monster."
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//                self.notifyMessage("You've encountered a monster.")
             }
         })
     }
