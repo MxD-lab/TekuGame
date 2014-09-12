@@ -14,10 +14,14 @@ class AccountCreateViewController: UIViewController {
     @IBOutlet weak var playerIDLabel : UILabel!
     @IBOutlet weak var createCharacterBtn: UIButton!
     @IBOutlet weak var accountTypeLabel: UILabel!
+    @IBOutlet weak var tekugameAccountBtn: UIButton!
                             
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        tekugameAccountBtn.hidden = isConnectedToInternet() ? false : true
+        
         if (playerID != "") {
             var idonly = playerID.componentsSeparatedByString("(")[0]
             var acctype = playerID.componentsSeparatedByString("(")[1]

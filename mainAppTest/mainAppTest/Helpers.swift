@@ -61,10 +61,12 @@ func addZero(num:Int!) -> String! {
 }
 
 func postLog(message:String!) {
-    var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/playtestForm/"
-    var timestamp = returnTimeStampString()
-    var prefs = NSUserDefaults.standardUserDefaults()
-    var currentuser = prefs.objectForKey("currentuser") as String!
-    var query = "playerID=\(currentuser)&time=\(timestamp)&message=\(message)&submit=submit"
-    post(urlstring, query)
+    if (isConnectedToInternet()) {
+        var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/playtestForm/"
+        var timestamp = returnTimeStampString()
+        var prefs = NSUserDefaults.standardUserDefaults()
+        var currentuser = prefs.objectForKey("currentuser") as String!
+        var query = "playerID=\(currentuser)&time=\(timestamp)&message=\(message)&submit=submit"
+        post(urlstring, query)
+    }
 }
