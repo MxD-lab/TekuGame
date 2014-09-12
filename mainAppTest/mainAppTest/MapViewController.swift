@@ -411,8 +411,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             healthGoal += 5000
             prefs.setObject(healthGoal, forKey: "healthGoal")
             println("StepCount: \(stepCount), healthGoal: \(healthGoal)")
-            updateLocalPlayerStats(1, strengthinc: 0, magicinc: 0, speedinc: 0)
             postLog("Walked \(stepCount) steps today, health incremented by 1.")
+            updateLocalPlayerStats(1, strengthinc: 0, magicinc: 0, speedinc: 0)
         }
     }
     
@@ -425,8 +425,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             speedFloat = 0
             var prefs = NSUserDefaults.standardUserDefaults()
             prefs.setObject(0, forKey: "speedFloat")
-            updateLocalPlayerStats(0, strengthinc: 0, magicinc: 0, speedinc: 1)
             postLog("Speed incremented by 1 from running.")
+            updateLocalPlayerStats(0, strengthinc: 0, magicinc: 0, speedinc: 1)
         }
     }
     
@@ -472,8 +472,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if (magicSteps >= magicGoal) {
             magicGoal += 1000
             prefs.setObject(magicGoal, forKey: "magicGoal")
-            updateLocalPlayerStats(0, strengthinc: 0, magicinc: 1, speedinc: 0)
             postLog("Walked \(magicSteps) steps during magic hour (\(magicHourInt):00). Magic incremented by 1.")
+            updateLocalPlayerStats(0, strengthinc: 0, magicinc: 1, speedinc: 0)
         }
     }
     
@@ -498,8 +498,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         if (enemiesBeaten >= enemiesGoal) {
             prefs.setObject(enemiesGoal+3, forKey: "enemiesGoal")
-            updateLocalPlayerStats(0, strengthinc: 1, magicinc: 0, speedinc: 0)
             postLog("Defeated \(enemiesBeaten) enemies. Strength incremented by 1.")
+            updateLocalPlayerStats(0, strengthinc: 1, magicinc: 0, speedinc: 0)
         }
     }
     

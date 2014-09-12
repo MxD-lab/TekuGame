@@ -164,8 +164,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             speedFloat = 0
             var prefs = NSUserDefaults.standardUserDefaults()
             prefs.setObject(0, forKey: "speedFloat")
-            updateLocalPlayerStats(0, strengthinc: 0, magicinc: 0, speedinc: 1)
             postLog("Speed incremented by 1 from running.")
+            updateLocalPlayerStats(0, strengthinc: 0, magicinc: 0, speedinc: 1)
+            var notification = UILocalNotification()
+            notification.fireDate = NSDate()
+            notification.alertBody = "+1 Speed from running!"
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
         }
     }
     
