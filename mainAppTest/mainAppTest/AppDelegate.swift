@@ -128,7 +128,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var prefs = NSUserDefaults.standardUserDefaults()
         
         dispatch_async(lowQueue, { () -> Void in
-//            println("\(self.stepCount) steps.")
             if (self.magicHourInt != -1) {
                 prefs.setObject(self.magicsteps, forKey: "magicSteps")
             }
@@ -137,8 +136,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 var notification = UILocalNotification()
                 notification.fireDate = NSDate()
                 notification.alertBody = "You've encountered a monster."
-//                println("\(self.stepCount) steps.")
-//                println("\(self.encounterstep) is the encounter step.")
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
             }
         })
