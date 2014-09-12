@@ -459,7 +459,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             magicHourInt = hour.toInt()!
             prefs.setObject(magichour, forKey: "magichour")
         }
-        
+        magicHourInt = 15
         magicHourLabel.text = "Magic Hour: \(magicHourInt):00"
         
         if (magicSteps > 1000 && prefs.objectForKey("magicGoal") != nil) {

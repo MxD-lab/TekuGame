@@ -50,7 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if (prefs.objectForKey("magicSteps") != nil) {
             prevmagicsteps = prefs.objectForKey("magicSteps") as Int
-            magicHourInt = prefs.objectForKey("magichour") as Int
+            var magic = prefs.objectForKey("magichour") as [String:String]
+            magicHourInt = magic["hour"]!.toInt()!
         }
         
         notified = false
