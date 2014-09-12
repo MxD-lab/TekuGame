@@ -18,11 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var encounterstep:Int! = 0
     var notified:Bool! = false
     var loop:NSTimer!
+    var statusloop:NSTimer!
     
+    // Magic
     var prevmagicsteps:Int! = -1
     var magicsteps:Int! = -1
     var magicHourInt:Int! = -1
     var currentHourInt:Int! = -1
+    
+    // Speed
+    var activitystring:String! = ""
+    var confidencenum:Float! = 0
+    var speedFloat:Float = 0
     
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
@@ -60,7 +67,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler({})
         loop = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("notifySteps"), userInfo: nil, repeats: true)
+        statusloop = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("checkStatus"), userInfo: nil, repeats: true)
         NSRunLoop.currentRunLoop().addTimer(loop, forMode: NSRunLoopCommonModes)
+        NSRunLoop.currentRunLoop().addTimer(statusloop, forMode: NSRunLoopCommonModes)
     }
     
     func applicationWillEnterForeground(application: UIApplication!) {
@@ -72,6 +81,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (loop != nil) {
             loop.invalidate()
             loop = nil
+        }
+        if (statusloop != nil) {
+            statusloop.invalidate()
+            statusloop = nil
         }
         if (magicHourInt != -1) {
             var prefs = NSUserDefaults.standardUserDefaults()
@@ -120,6 +133,73 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 })
             })
         }
+        
+        if (CMMotionActivityManager.isActivityAvailable()) {
+            var activityManager = CMMotionActivityManager()
+            var mainQueue:NSOperationQueue! = NSOperationQueue()
+            
+            var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+            
+            dispatch_async(lowQueue, { () -> Void in
+                activityManager.startActivityUpdatesToQueue(mainQueue, withHandler: { activity in
+                    if (self.activityToString(activity) != "") {
+                        self.activitystring = self.activityToString(activity)
+                        self.confidencenum = Float(activity.confidence.toRaw())
+                    }
+                })
+            })
+        }
+    }
+    
+    func checkStatus() {
+        checkRunningGoal()
+    }
+    
+    func checkRunningGoal() {
+        if (activitystring.rangeOfString("Running") != nil && (confidencenum == Float(CMMotionActivityConfidence.High.toRaw()) || confidencenum == Float(CMMotionActivityConfidence.Medium.toRaw()))) {
+            speedFloat += 0.01
+        }
+        
+        if (speedFloat >= 1) {
+            speedFloat = 0
+            var prefs = NSUserDefaults.standardUserDefaults()
+            prefs.setObject(0, forKey: "speedFloat")
+            updateLocalPlayerStats(0, strengthinc: 0, magicinc: 0, speedinc: 1)
+            postLog("Speed incremented by 1 from running.")
+        }
+    }
+    
+    func activityToString(act:CMMotionActivity) -> String {
+        var actionName = ""
+        
+        if (act.unknown) { actionName += "Unknown " }
+        if (act.stationary) { actionName += "Stationary " }
+        if (act.walking) { actionName += "Walking " }
+        if (act.running) { actionName += "Running " }
+        if (act.automotive) { actionName += "Automotive " }
+        
+        return actionName
+    }
+    
+    func updateLocalPlayerStats(healthinc:Int, strengthinc:Int, magicinc:Int, speedinc:Int) {
+        
+        var prefs = NSUserDefaults.standardUserDefaults()
+        
+        var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
+        var playerID = prefs.objectForKey("currentuser") as String
+        var health:Int = plStats[playerID]!["health"]!
+        var strength:Int = plStats[playerID]!["strength"]!
+        var magic:Int = plStats[playerID]!["magic"]!
+        var speed:Int = plStats[playerID]!["speed"]!
+        var assignpoints:Int = plStats[playerID]!["assignpoints"]!
+        plStats[playerID]!["health"]! = health+healthinc
+        plStats[playerID]!["strength"]! = strength+strengthinc
+        plStats[playerID]!["magic"]! = magic+magicinc
+        plStats[playerID]!["speed"]! = speed+speedinc
+        
+        prefs.setObject(plStats, forKey: "playerStats")
+        
+        postLog("My current stats after updating are Health: \(health), Strength: \(strength), Magic: \(magic), Speed: \(speed)")
     }
     
     func notifySteps() {
