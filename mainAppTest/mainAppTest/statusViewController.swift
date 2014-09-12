@@ -62,10 +62,10 @@ class statusViewController: UIViewController {
         }
         
         
-        healthProgressBar.progress = Float(stepCount % 10000) / 10000
+        healthProgressBar.progress = Float(stepCount % 5000) / 5000
         speedProgressBar.progress = speedFloat
         magicProgressBar.progress = Float(magicSteps % 1000) / 1000
-        strengthProgressBar.progress = Float(enemiesBeaten % 25) / 25
+        strengthProgressBar.progress = Float(enemiesBeaten % 3) / 3
         expProgressBar.progress = Float(Float(exp)/Float((level * 10)))
 //        println("\(Float(exp)), \(Float(level)), \(exp/(level * 10)), \(Float(Float(exp)/Float((level * 10))))")
     }

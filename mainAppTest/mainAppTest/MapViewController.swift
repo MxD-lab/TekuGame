@@ -399,16 +399,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func checkHealthGoal() {
         var prefs = NSUserDefaults.standardUserDefaults()
-        if (stepCount >= 10000 && prefs.objectForKey("healthGoal") != nil) {
+        if (stepCount >= 5000 && prefs.objectForKey("healthGoal") != nil) {
             healthGoal = prefs.objectForKey("healthGoal") as Int
         }
         else {
-            healthGoal = 10000
+            healthGoal = 5000
             prefs.setObject(healthGoal, forKey: "healthGoal")
         }
         
         if (stepCount >= healthGoal) {
-            healthGoal += 10000
+            healthGoal += 5000
             prefs.setObject(healthGoal, forKey: "healthGoal")
             println("StepCount: \(stepCount), healthGoal: \(healthGoal)")
             updateLocalPlayerStats(1, strengthinc: 0, magicinc: 0, speedinc: 0)
@@ -488,18 +488,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             enemiesBeaten = prefs.objectForKey("enemiesBeaten") as Int
         }
         
-        if (enemiesBeaten >= 25 && prefs.objectForKey("enemiesGoal") != nil) {
+        if (enemiesBeaten >= 3 && prefs.objectForKey("enemiesGoal") != nil) {
             enemiesGoal = prefs.objectForKey("enemiesGoal") as Int
         }
         else {
-            enemiesGoal = 25
+            enemiesGoal = 3
             prefs.setObject(enemiesGoal, forKey: "enemiesGoal")
         }
         
         if (enemiesBeaten >= enemiesGoal) {
-            prefs.setObject(enemiesGoal+25, forKey: "enemiesGoal")
-            updateLocalPlayerStats(0, strengthinc: 3, magicinc: 0, speedinc: 0)
-            postLog("Defeated \(enemiesBeaten) enemies. Strength incremented by 3.")
+            prefs.setObject(enemiesGoal+3, forKey: "enemiesGoal")
+            updateLocalPlayerStats(0, strengthinc: 1, magicinc: 0, speedinc: 0)
+            postLog("Defeated \(enemiesBeaten) enemies. Strength incremented by 1.")
         }
     }
     
