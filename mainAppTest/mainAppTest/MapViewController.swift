@@ -130,20 +130,33 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // Initial setup for map.
     func initialMapSetup() {
-        // Set to tokyo
-        positionMap(35.6896, long: 139.6917, zoom: 0)
+        var prefs = NSUserDefaults.standardUserDefaults()
         
-        // Wait until current location is found to zoom to that place.
-        timer = setInterval("gotoCurrentLocation", seconds: 1)
+        var initlat:CLLocationDegrees = 35.6896
+        var initlong:CLLocationDegrees = 139.6917
+        var initzoom:Float = 0
+        
+        if (prefs.objectForKey("camera") != nil) {
+            var cam = prefs.objectForKey("camera") as [String:Double]
+            initlat = cam["lat"]!
+            initlong = cam["long"]!
+            initzoom = Float(cam["zoom"]!)
+            positionMap(initlat, long: initlong, zoom: initzoom)
+        }
+        else {
+            positionMap(initlat, long: initlong, zoom: initzoom)
+            // Wait until current location is found to zoom to that place.
+            timer = setInterval("gotoCurrentLocation", seconds: 1)
+        }
         
         // Preset markers.
-        var marker_bkc = setMarker(34.982397, long: 135.964603, title: "BKC", text: "すてにゃん", color: UIColor.blueColor())
-        var marker_minamikusatsu = setMarker(35.003917, long: 135.947349, title: "南草津駅", text: "せやな", color: UIColor.blueColor())
-        
-        presetPins.append(marker_bkc)
-        presetPins.append(marker_minamikusatsu)
-        allPins.append(marker_bkc)
-        allPins.append(marker_minamikusatsu)
+//        var marker_bkc = setMarker(34.982397, long: 135.964603, title: "BKC", text: "すてにゃん", color: UIColor.blueColor())
+//        var marker_minamikusatsu = setMarker(35.003917, long: 135.947349, title: "南草津駅", text: "せやな", color: UIColor.blueColor())
+//        
+//        presetPins.append(marker_bkc)
+//        presetPins.append(marker_minamikusatsu)
+//        allPins.append(marker_bkc)
+//        allPins.append(marker_minamikusatsu)
     }
     
     func positionMap(lat:CLLocationDegrees, long:CLLocationDegrees, zoom:Float) {
@@ -500,12 +513,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         var magic:Int = plStats[playerID]!["magic"]!
         var speed:Int = plStats[playerID]!["speed"]!
         var assignpoints:Int = plStats[playerID]!["assignpoints"]!
-        plStats[playerID] = ["health":health+healthinc, "strength":strength+strengthinc, "magic":magic+magicinc, "speed":speed+speedinc, "assignpoints":assignpoints]
+        plStats[playerID]!["health"]! = health+healthinc
+        plStats[playerID]!["strength"]! = strength+strengthinc
+        plStats[playerID]!["magic"]! = magic+magicinc
+        plStats[playerID]!["speed"]! = speed+speedinc
+
         prefs.setObject(plStats, forKey: "playerStats")
         
         postLog("My current stats after updating are Health: \(health), Strength: \(strength), Magic: \(magic), Speed: \(speed)")
-        
-        println(plStats[playerID])
     }
     
     func activityToString(act:CMMotionActivity) -> String {
@@ -616,6 +631,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             var nextVC = segue.destinationViewController as statusViewController
             nextVC.stepCount = stepCount
         }
+        var prefs = NSUserDefaults.standardUserDefaults()
+        var cam:[String:Double] = ["lat":mapView_.camera.target.latitude, "long":mapView_.camera.target.longitude, "zoom":Double(mapView_.camera.zoom)]
+        prefs.setObject(cam, forKey: "camera")
     }
     
     override func viewDidDisappear(animated: Bool) {
