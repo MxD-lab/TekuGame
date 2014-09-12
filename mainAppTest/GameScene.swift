@@ -80,7 +80,7 @@ class GameScene: SKScene
         turnPlayer = (p.speed > e.speed) ? true : false ;
         
         postLog("Fight Begin - Player: level: \(p.level), health: \(p.health), magic: \(p.magic), speed: \(p.speed), strength: \(p.strength), remaining points: \(p.points)");
-        postLog("Fight Begin - Enemy: health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)");
+        postLog("Fight Begin - Enemy: type: \(e.type), subtype: \(e.subType), health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)");
         
         /* Setup your scene here */
         status.center = CGPointMake(160, 25);
@@ -264,7 +264,7 @@ class GameScene: SKScene
                 }
                 else
                 {
-                    status.text = (turnPlayer) ? "Player Turn" :"Enemy Turn";
+                    status.text = (turnPlayer) ? "Player Turn" : "Enemy Turn";
                 }
                 
                 if(!turnPlayer && !somethingDead)
