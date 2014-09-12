@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -70,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="71"/>
+            <point key="canvasLocation" x="85" y="-493"/>
         </scene>
         <!--Twitter Select View Controller-->
         <scene sceneID="W26-d4-eIk">
@@ -128,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LpE-wX-xzf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1474" y="-645"/>
+            <point key="canvasLocation" x="1064" y="-1203"/>
         </scene>
         <!--Username View Controller-->
         <scene sceneID="BOK-N0-F5H">
@@ -187,7 +188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ff7-Fq-EgR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1838" y="-645"/>
+            <point key="canvasLocation" x="388" y="-1203"/>
         </scene>
         <!--Account Create View Controller-->
         <scene sceneID="tKe-sP-9nI">
@@ -269,7 +270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r4K-XG-Ys0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1041" y="71"/>
+            <point key="canvasLocation" x="637" y="-493"/>
         </scene>
         <!--map-->
         <scene sceneID="acK-dZ-xT3">
@@ -376,7 +377,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mP6-nz-8e7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1581" y="873"/>
+            <point key="canvasLocation" x="903" y="221"/>
         </scene>
         <!--Results View Controller-->
         <scene sceneID="nyx-N8-sEO">
@@ -434,7 +435,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wg5-pA-deK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1647" y="1586"/>
+            <point key="canvasLocation" x="903" y="924"/>
         </scene>
         <!--Assign Points View Controller-->
         <scene sceneID="1R8-PL-ZK1">
@@ -653,7 +654,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hOq-hc-b1S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2049" y="1586"/>
+            <point key="canvasLocation" x="1369" y="924"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="zbf-jX-PLe">
@@ -671,13 +672,12 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <segue destination="kwz-uD-Hpi" kind="show" identifier="mainmap" id="L3k-GF-tu5"/>
                         <segue destination="OzI-QZ-kvy" kind="show" identifier="results" id="GRa-RX-JSW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3I-cU-2iT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1157" y="1586"/>
+            <point key="canvasLocation" x="435" y="924"/>
         </scene>
         <!--Status View Controller-->
         <scene sceneID="Jv5-5t-EHV">
@@ -839,7 +839,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bIR-fu-Jf1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2022" y="144"/>
+            <point key="canvasLocation" x="1528" y="221"/>
         </scene>
         <!--Account Selection View Controller-->
         <scene sceneID="YYj-vG-sjg">
@@ -898,7 +898,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pGi-9f-fYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="858"/>
+            <point key="canvasLocation" x="203" y="221"/>
         </scene>
         <!--License View Controller-->
         <scene sceneID="AzS-NJ-MXs">
@@ -947,7 +947,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ob2-B2-nuh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="158" y="775"/>
+            <point key="canvasLocation" x="-367" y="221"/>
         </scene>
         <!--Character Create View Controller-->
         <scene sceneID="xNc-fL-d1Q">
@@ -1158,12 +1158,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAN-RU-qtE" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1581" y="71"/>
+            <point key="canvasLocation" x="1163" y="-493"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Hik-ON-fcD"/>
+        <segue reference="T9K-pp-C4g"/>
         <segue reference="WwE-7J-HCh"/>
-        <segue reference="Ym7-ie-ty9"/>
+        <segue reference="Hik-ON-fcD"/>
     </inferredMetricsTieBreakers>
 </document>
