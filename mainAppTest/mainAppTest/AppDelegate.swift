@@ -19,6 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var notified:Bool! = false
     var loop:NSTimer!
     
+    var prevmagicsteps:Int! = -1
+    var magicsteps:Int! = -1
+    var magicHourInt:Int! = -1
+    var currentHourInt:Int! = -1
+    
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
         GMSServices.provideAPIKey("AIzaSyDFOvhUM0waJCJjdypGwPd7gNu4C42XwGg")
@@ -35,6 +40,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+        var prefs = NSUserDefaults.standardUserDefaults()
+        
+        var currDate = NSDate()
+        var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        var dateComponents = gregorian.components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.YearCalendarUnit, fromDate: currDate)
+        currentHourInt = dateComponents.hour
+        
+        
+        if (prefs.objectForKey("magicSteps") != nil) {
+            prevmagicsteps = prefs.objectForKey("magicSteps") as Int
+            magicHourInt = prefs.objectForKey("magichour") as Int
+        }
+        
         notified = false
         getHistoricalSteps()
         updateSteps()
@@ -53,6 +71,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (loop != nil) {
             loop.invalidate()
             loop = nil
+        }
+        if (magicHourInt != -1) {
+            var prefs = NSUserDefaults.standardUserDefaults()
+            prefs.setObject(magicsteps, forKey: "magicSteps")
         }
     }
     
@@ -79,6 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Starts counting the number of steps.
     func updateSteps() {
+        
         if(CMStepCounter.isStepCountingAvailable()){
             var stepCounter = CMStepCounter()
             var mainQueue:NSOperationQueue! = NSOperationQueue()
@@ -89,6 +112,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dispatch_async(lowQueue, { () -> Void in
                 stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: {numberOfSteps, timestamp, error in
                     self.stepCount = numberOfSteps + self.prevSteps
+                    self.magicsteps = self.prevmagicsteps
+                    if (self.currentHourInt == self.magicHourInt) {
+                        self.magicsteps = self.prevmagicsteps + numberOfSteps
+                    }
                 })
             })
         }
@@ -97,16 +124,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func notifySteps() {
         
         var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+        var prefs = NSUserDefaults.standardUserDefaults()
         
         dispatch_async(lowQueue, { () -> Void in
-            println("\(self.stepCount) steps.")
+//            println("\(self.stepCount) steps.")
+            if (self.magicHourInt != -1) {
+                prefs.setObject(self.magicsteps, forKey: "magicSteps")
+            }
             if (!self.notified && self.encounterstep != 0 && self.stepCount >= self.encounterstep) {
                 self.notified = true
                 var notification = UILocalNotification()
                 notification.fireDate = NSDate()
                 notification.alertBody = "You've encountered a monster."
-                println("\(self.stepCount) steps.")
-                println("\(self.encounterstep) is the encounter step.")
+//                println("\(self.stepCount) steps.")
+//                println("\(self.encounterstep) is the encounter step.")
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
             }
         })

@@ -552,6 +552,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             activityLabel.text = "Not sure."
         }
         magicStepsLabel.text = "Magic Steps: \(magicSteps) steps"
+        var prefs = NSUserDefaults.standardUserDefaults()
+        prefs.setObject(speedFloat, forKey: "speedFloat")
+        prefs.setObject(magicSteps, forKey: "magicSteps")
     }
     
     func checkStatus() {
@@ -632,9 +635,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "map_status") {
-            var prefs = NSUserDefaults.standardUserDefaults()
-            prefs.setObject(speedFloat, forKey: "speedFloat")
-            prefs.setObject(magicSteps, forKey: "magicSteps")
             var nextVC = segue.destinationViewController as statusViewController
             nextVC.stepCount = stepCount
         }
