@@ -128,6 +128,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // Starts counting the number of steps.
+    // Change to:
+    // func updateSteps(inout stepCount:Int, inout prevSteps:Int, inout magicsteps:Int, inout prevmagicsteps:Int, currentHourInt:Int, magicHourInt:Int, inout activitystring:String, inout confidencenum:Float) {
+    // and move to Helpers.swift so that it could be used by both AppDelegate and MapViewController, maybe?
+    // activityToString() will need to be in Helpers.swift as well.
     func updateSteps() {
         
         if(CMStepCounter.isStepCountingAvailable()){
