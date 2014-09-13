@@ -4,6 +4,7 @@ Ongoing project between WPI and Ritsumeikan students.
 
 ###Members (Ordered alphabetically by last name)
 * [Stefan Alexander](http://github.com/stefafafan) - Lead Programmer and Designer
+* Alex Clemens - Artist
 * Kohno Hitomi - Artist
 * [Maxwell Perlman](http://github.com/MaxwellP) - Lead Designer and Programmer
 * [Asuka Wakao](http://github.com/AsukaWakao) - Programmer
