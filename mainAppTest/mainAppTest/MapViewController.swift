@@ -74,6 +74,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var mapView_:GMSMapView!
     var timer:NSTimer!
     var mapShown:Bool! = false
+    @IBOutlet weak var currentLocationBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +117,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         labelTimer = setInterval("updateStepLabel", seconds: 1)
         statusTimer = setInterval("checkStatus", seconds: 2)
-        postGetTimer = setInterval("postAndGet", seconds: 15)
+        postGetTimer = setInterval("postAndGet", seconds: 30)
         encounterTimer = setInterval("checkEncounter", seconds: 1)
     }
     
@@ -169,6 +170,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView_ = GMSMapView(frame: mainView.bounds)
         mapView_.camera = camera
         mapView_.myLocationEnabled = true
+        mapView_.buildingsEnabled = false
+        mapView_.indoorEnabled = false
+        
         mainView.addSubview(mapView_)
     }
     
@@ -218,6 +222,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
         case .Restricted, .Denied:
             println("Restricted")
+            currentLocationBtn.hidden = true
+            currentLocationBtn.enabled = false
         }
     }
     
@@ -240,13 +246,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func postPlayerLocation() {
-        lat = mapView_.myLocation.coordinate.latitude
-        long = mapView_.myLocation.coordinate.longitude
-        var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
-        var str = "phone=\(playerID!)&beacon=\(beaconID!)&longitude=\(long!)&latitude=\(lat!)&submit=submit"
-        post(urlstring, str)
+        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Authorized || CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse) {
+            lat = mapView_.myLocation.coordinate.latitude
+            long = mapView_.myLocation.coordinate.longitude
+            var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
+            var str = "phone=\(playerID!)&beacon=\(beaconID!)&longitude=\(long!)&latitude=\(lat!)&submit=submit"
+            post(urlstring, str)
+        }
     }
-    
     
     
     // Gets JSON data from the server and updates corresponding fields such as pins on the map and number of nearby players.

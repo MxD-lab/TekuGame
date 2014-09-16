@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -365,6 +364,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="activityLabel" destination="KRf-3N-jE0" id="6yz-WU-fu7"/>
+                        <outlet property="currentLocationBtn" destination="RiL-MP-DSb" id="xUf-z4-5s7"/>
                         <outlet property="encountLabel" destination="uqp-1a-ogx" id="UxA-qg-6si"/>
                         <outlet property="magicHourLabel" destination="QRL-ff-gXv" id="FOJ-h1-JOd"/>
                         <outlet property="magicStepsLabel" destination="hZm-wd-Md2" id="6kr-MZ-9B3"/>
