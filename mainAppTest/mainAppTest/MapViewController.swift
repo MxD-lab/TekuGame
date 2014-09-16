@@ -90,6 +90,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         else {
             netConnectionLabel.text = "No Internet"
+            currentLocationBtn.hidden = true
+            currentLocationBtn.enabled = false
         }
         
         var prefs = NSUserDefaults.standardUserDefaults()
