@@ -558,7 +558,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             activityLabel.text = activitystring
         }
         else {
-            activityLabel.text = "Not sure."
+            activityLabel.text = ""
         }
         magicStepsLabel.text = "Magic Steps: \(magicSteps) steps"
         var prefs = NSUserDefaults.standardUserDefaults()
