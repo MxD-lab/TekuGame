@@ -446,9 +446,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             else {
                 magichour["date"] = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
                 magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
+                magicSteps = 0
                 var hour = magichour["hour"]!
                 magicHourInt = hour.toInt()!
                 prefs.setObject(magichour, forKey: "magichour")
+                prefs.setObject(magicSteps, forKey: "magicSteps")
             }
         }
         else {
