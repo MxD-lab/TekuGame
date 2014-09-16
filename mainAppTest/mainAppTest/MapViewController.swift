@@ -73,6 +73,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet var mainView:UIView!
     var mapView_:GMSMapView!
     var timer:NSTimer!
+    var mapShown:Bool! = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,13 +81,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         getHistoricalSteps()
         updateSteps()
         setButton()
-        initialMapSetup()
         beaconSetup()
         if (isConnectedToInternet()) {
+            initialMapSetup()
             getPlayerLocation()
+            mapShown = true
         }
         else {
-            netConnectionLabel.text = "インターネットの接続が切れています。"
+            netConnectionLabel.text = "No Internet"
         }
         
         var prefs = NSUserDefaults.standardUserDefaults()
@@ -106,9 +108,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         prefs.setObject(true, forKey: "loggedIn")
         
 //        clManager.requestAlwaysAuthorization() iOS 8.0
-        clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        clManager.startUpdatingLocation()
-        clManager.delegate = self
+//        if (isConnectedToInternet()) {
+//            clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+//            clManager.startUpdatingLocation()
+//            clManager.delegate = self
+//        }
+        
         labelTimer = setInterval("updateStepLabel", seconds: 1)
         statusTimer = setInterval("checkStatus", seconds: 2)
         postGetTimer = setInterval("postAndGet", seconds: 15)
@@ -229,13 +234,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // Simply posts and gets.
     func postAndGet() {
         if (isConnectedToInternet()) {
-            netConnectionLabel.text = ""
-//            post()
             postPlayerLocation()
             getPlayerLocation()
-        }
-        else {
-            netConnectionLabel.text = "インターネットの接続が切れています。"
         }
     }
     
@@ -557,6 +557,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         var prefs = NSUserDefaults.standardUserDefaults()
         prefs.setObject(speedFloat, forKey: "speedFloat")
         prefs.setObject(magicSteps, forKey: "magicSteps")
+        
+        netConnectionLabel.text = (isConnectedToInternet()) ? "" : "No Internet"
+        if (isConnectedToInternet() && mapShown == false) {
+            mapShown = true
+            initialMapSetup()
+            getPlayerLocation()
+        }
+        else if ((!isConnectedToInternet()) && mapShown == true) {
+            mapShown = false
+            mapView_.removeFromSuperview()
+        }
     }
     
     func checkStatus() {
@@ -574,12 +585,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     // CoreLocation updates.
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        var loc: CLLocation = locations[locations.count-1] as CLLocation
-        altitudeNum = Float(loc.altitude)
-        vAcc = Float(loc.verticalAccuracy)
-        speedNum = loc.speed
-    }
+//    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+//        var loc: CLLocation = locations[locations.count-1] as CLLocation
+//        altitudeNum = Float(loc.altitude)
+//        vAcc = Float(loc.verticalAccuracy)
+//        speedNum = loc.speed
+//    }
     
     func checkEncounter() {
         var prefs = NSUserDefaults.standardUserDefaults()
@@ -640,9 +651,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             var nextVC = segue.destinationViewController as statusViewController
             nextVC.stepCount = stepCount
         }
-        var prefs = NSUserDefaults.standardUserDefaults()
-        var cam:[String:Double] = ["lat":mapView_.camera.target.latitude, "long":mapView_.camera.target.longitude, "zoom":Double(mapView_.camera.zoom)]
-        prefs.setObject(cam, forKey: "camera")
+        
+        if (mapShown == true) {
+            var prefs = NSUserDefaults.standardUserDefaults()
+            var cam:[String:Double] = ["lat":mapView_.camera.target.latitude, "long":mapView_.camera.target.longitude, "zoom":Double(mapView_.camera.zoom)]
+            prefs.setObject(cam, forKey: "camera")
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {
