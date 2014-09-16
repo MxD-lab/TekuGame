@@ -564,17 +564,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         var prefs = NSUserDefaults.standardUserDefaults()
         prefs.setObject(speedFloat, forKey: "speedFloat")
         prefs.setObject(magicSteps, forKey: "magicSteps")
-        
-        netConnectionLabel.text = (isConnectedToInternet()) ? "" : "No Internet"
-        if (isConnectedToInternet() && mapShown == false) {
-            mapShown = true
-            initialMapSetup()
-            getPlayerLocation()
-        }
-        else if ((!isConnectedToInternet()) && mapShown == true) {
-            mapShown = false
-            mapView_.removeFromSuperview()
-        }
+
     }
     
     func checkStatus() {
