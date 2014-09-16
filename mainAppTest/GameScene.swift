@@ -267,6 +267,11 @@ class GameScene: SKScene
                     status.text = (turnPlayer) ? "Player Turn" : "Enemy Turn";
                 }
                 
+                if(turnPlayer && !typeMenu.isOpen)
+                {
+                    typeMenu.open();
+                }
+                
                 if(!turnPlayer && !somethingDead)
                 {
                     var dict = doAction(e, p, selectAttack(e));
@@ -305,6 +310,16 @@ class GameScene: SKScene
         if(turnPlayer)
         {
             var dict = doAction(p, e, a);
+            turnPlayer = !turnPlayer;
+            typeMenu.close();
+            if(physicalMenu.isOpen)
+            {
+                physicalMenu.close();
+            }
+            if(magicMenu.isOpen)
+            {
+                magicMenu.close();
+            }
             var mess = dict["message"]!
             var dam = dict["damage"]!
             if(dam == "0")
@@ -317,7 +332,6 @@ class GameScene: SKScene
             }
             postLog("Fight: Player Attack: \(mess). Damage: \(dam)");
             doUpdate = 150;
-            turnPlayer = !turnPlayer;
         }
     }
     
