@@ -51,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication!) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
         var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
         var prefs = NSUserDefaults.standardUserDefaults()
         
@@ -89,6 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(application: UIApplication!) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
         if (loop != nil) {
             loop.invalidate()
             loop = nil
@@ -97,6 +99,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             statusloop.invalidate()
             statusloop = nil
         }
+        
+        var prefs = NSUserDefaults.standardUserDefaults()
+        prefs.setObject(healthGoal, forKey: "healthGoal")
     }
     
     func applicationWillTerminate(application: UIApplication!) {
@@ -170,20 +175,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func checkHealthGoal() {
         var prefs = NSUserDefaults.standardUserDefaults()
-        if (stepCount >= 5000 && prefs.objectForKey("healthGoal") != nil) {
-            healthGoal = prefs.objectForKey("healthGoal") as Int
-        }
-        else {
+        if (prefs.objectForKey("healthGoal") == nil) {
             healthGoal = 5000
-            prefs.setObject(healthGoal, forKey: "healthGoal")
         }
         
         if (stepCount >= healthGoal) {
             healthGoal += 5000
-            prefs.setObject(healthGoal, forKey: "healthGoal")
-            println("StepCount: \(stepCount), healthGoal: \(healthGoal)")
+
             postLog("Walked \(stepCount) steps today, health incremented by 1.")
             updateLocalPlayerStats(1, strengthinc: 0, magicinc: 0, speedinc: 0)
+            
             var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
             dispatch_async(lowQueue, { () -> Void in
                 var notification = UILocalNotification()
@@ -191,7 +192,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 notification.alertBody = "+1 Health from walking \(self.stepCount) steps!"
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
             })
-//            notifyMessage("+1 Health from walking \(self.stepCount) steps!")
         }
     }
     
@@ -201,6 +201,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         if (speedFloat >= 1) {
+            println("SpeedFloat: \(speedFloat)")
             speedFloat = 0
             var prefs = NSUserDefaults.standardUserDefaults()
             prefs.setObject(0, forKey: "speedFloat")
@@ -213,7 +214,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 notification.alertBody = "+1 Speed from running!"
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
             })
-//            notifyMessage("+1 Speed from running!")
         }
     }
     
@@ -255,6 +255,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             prefs.setObject(magicGoal, forKey: "magicGoal")
         }
         if (magicsteps >= magicGoal) {
+            
+            println("Magic Goal: \(magicGoal)")
+            
             magicGoal += 1000
             prefs.setObject(magicGoal, forKey: "magicGoal")
             postLog("Walked \(magicsteps) steps during magic hour (\(magicHourInt):00). Magic incremented by 1.")
@@ -266,19 +269,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 notification.alertBody = "+1 Magic from walking \(self.magicsteps) steps during magic hour!"
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
             })
-//            notifyMessage("+1 Magic from walking \(self.magicsteps) steps during magic hour!")
         }
     }
-    
-//    func notifyMessage(message:String) {
-//        var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-//        dispatch_async(lowQueue, { () -> Void in
-//            var notification = UILocalNotification()
-//            notification.fireDate = NSDate()
-//            notification.alertBody = message
-//            UIApplication.sharedApplication().scheduleLocalNotification(notification)
-//        })
-//    }
     
     func activityToString(act:CMMotionActivity) -> String {
         var actionName = ""
@@ -328,7 +320,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 notification.fireDate = NSDate()
                 notification.alertBody = "You've encountered a monster."
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
-//                self.notifyMessage("You've encountered a monster.")
             }
         })
     }
