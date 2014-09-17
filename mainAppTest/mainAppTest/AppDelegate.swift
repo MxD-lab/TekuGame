@@ -59,13 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var dateComponents = gregorian.components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.YearCalendarUnit, fromDate: currDate)
         currentHourInt = dateComponents.hour
         
-        
-//        if (prefs.objectForKey("magicSteps") != nil) {
-//            prevmagicsteps = prefs.objectForKey("magicSteps") as Int
-//            var magic = prefs.objectForKey("magichour") as [String:String]
-//            magicHourInt = magic["hour"]!.toInt()!
-//        }
-        
         if (prefs.objectForKey("speedFloat") != nil) {
             speedFloat = prefs.objectForKey("speedFloat") as Float
         }
