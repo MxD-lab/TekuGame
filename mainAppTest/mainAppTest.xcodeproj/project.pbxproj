@@ -85,6 +85,7 @@
 		BC81B21819CA8116003BDF8C /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B21719CA8116003BDF8C /* title.png */; };
 		BC81B21A19CA8412003BDF8C /* Generic_Gray_Button.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B21919CA8412003BDF8C /* Generic_Gray_Button.png */; };
 		BC81B21C19CA9DF5003BDF8C /* Text_Button.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B21B19CA9DF5003BDF8C /* Text_Button.png */; };
+		BC81B21E19CAC3D9003BDF8C /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B21D19CAC3D9003BDF8C /* black.png */; };
 		BC8787B419C032A80001C9DD /* usernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8787B319C032A80001C9DD /* usernameViewController.swift */; };
 		BC8A857919C14FE800335599 /* resultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A857819C14FE800335599 /* resultsViewController.swift */; };
 		BC8A857B19C1502D00335599 /* assignPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A857A19C1502D00335599 /* assignPointsViewController.swift */; };
@@ -233,6 +234,7 @@
 		BC81B21719CA8116003BDF8C /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		BC81B21919CA8412003BDF8C /* Generic_Gray_Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Generic_Gray_Button.png; sourceTree = "<group>"; };
 		BC81B21B19CA9DF5003BDF8C /* Text_Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Text_Button.png; sourceTree = "<group>"; };
+		BC81B21D19CAC3D9003BDF8C /* black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black.png; sourceTree = "<group>"; };
 		BC8787B319C032A80001C9DD /* usernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = usernameViewController.swift; sourceTree = "<group>"; };
 		BC8A857819C14FE800335599 /* resultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resultsViewController.swift; sourceTree = "<group>"; };
 		BC8A857A19C1502D00335599 /* assignPointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignPointsViewController.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 				BC81B1F419CA7DF8003BDF8C /* GenericButton_Down.png */,
 				BC81B1F519CA7DF8003BDF8C /* GenericButton_Up.png */,
 				BC81B1F619CA7DF8003BDF8C /* GenericButtonUpSelected.png */,
+				BC81B21D19CAC3D9003BDF8C /* black.png */,
 				BC81B1F719CA7DF8003BDF8C /* GenericButtonUpUnselected.png */,
 				BC81B21119CA7F8D003BDF8C /* ButtonBlock.png */,
 				BC81B21219CA7F8D003BDF8C /* ContinueButton_Down.png */,
@@ -701,6 +704,7 @@
 				F825584319AB20540035EBF6 /* DoAction.png in Resources */,
 				BC81B20A19CA7DF8003BDF8C /* MagicButton_Loss.png in Resources */,
 				BC81B20219CA7DF8003BDF8C /* DownArrow.png in Resources */,
+				BC81B21E19CAC3D9003BDF8C /* black.png in Resources */,
 				BC81B20319CA7DF8003BDF8C /* GenericButton_Down.png in Resources */,
 				A1DEB5BF19BD6F0700F7A21E /* Construct3.png in Resources */,
 				A1DEB5CE19BD6F0700F7A21E /* Insect1.png in Resources */,

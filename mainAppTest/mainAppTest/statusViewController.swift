@@ -31,12 +31,15 @@ class statusViewController: UIViewController {
         var prefs = NSUserDefaults.standardUserDefaults()
         var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
         var currentuser = prefs.objectForKey("currentuser") as String
-        var health:Int = plStats[currentuser]!["health"]!
-        var strength:Int = plStats[currentuser]!["strength"]!
-        var magic:Int = plStats[currentuser]!["magic"]!
-        var speed:Int = plStats[currentuser]!["speed"]!
-        var exp:Int = plStats[currentuser]!["exp"]!
-        var level:Int = plStats[currentuser]!["level"]!
+        
+        var player = plStats[currentuser]!
+        
+        var health:Int = player["health"]!
+        var strength:Int = player["strength"]!
+        var magic:Int = player["magic"]!
+        var speed:Int = player["speed"]!
+        var exp:Int = player["exp"]!
+        var level:Int = player["level"]!
         
         healthLabel.text = "\(health)"
         strengthLabel.text = "\(strength)"

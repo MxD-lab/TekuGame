@@ -132,7 +132,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         if (versiondouble >= 8.0) {
             clManager.requestWhenInUseAuthorization()
-            println("requestWhenInUseAuthorization")
         }
         
         labelTimer = setInterval("updateStepLabel", seconds: 1)

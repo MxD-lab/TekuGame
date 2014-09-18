@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -163,14 +162,14 @@
                                     <action selector="donePressed:" destination="eTT-sb-G39" eventType="touchUpInside" id="5IU-ta-JnM"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mainAppTest Username Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39g-er-C2t">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Errant Username Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39g-er-C2t">
                                 <rect key="frame" x="0.0" y="131" width="320" height="59"/>
                                 <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="23"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BUq-L6-tRK">
                                 <rect key="frame" x="63" y="269" width="195" height="30"/>
-                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="startEditing:" destination="eTT-sb-G39" eventType="editingDidBegin" id="zq9-Xb-DnB"/>
@@ -469,6 +468,18 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ButtonBlock.png" translatesAutoresizingMaskIntoConstraints="NO" id="LEc-Ho-xHg">
                                 <rect key="frame" x="-1" y="-32" width="320" height="632"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black.png" translatesAutoresizingMaskIntoConstraints="NO" id="a8J-CT-Hxp">
+                                <rect key="frame" x="0.0" y="124" width="320" height="1"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black.png" translatesAutoresizingMaskIntoConstraints="NO" id="JMR-Eh-dPU">
+                                <rect key="frame" x="0.0" y="245" width="320" height="1"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black.png" translatesAutoresizingMaskIntoConstraints="NO" id="Huo-YG-29y">
+                                <rect key="frame" x="0.0" y="359" width="320" height="1"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black.png" translatesAutoresizingMaskIntoConstraints="NO" id="Mho-O2-zzr">
+                                <rect key="frame" x="0.0" y="474" width="320" height="1"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="oyg-n0-cqs">
                                 <rect key="frame" x="22" y="512" width="95" height="42"/>
                             </imageView>
@@ -501,7 +512,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zRd-Ad-w4b">
-                                <rect key="frame" x="19" y="63" width="285" height="65"/>
+                                <rect key="frame" x="20" y="53" width="285" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wz-B7-eeQ">
                                         <rect key="frame" x="212" y="5" width="73" height="55"/>
@@ -538,7 +549,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yFr-21-nFb">
-                                <rect key="frame" x="19" y="179" width="285" height="65"/>
+                                <rect key="frame" x="19" y="175" width="285" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfk-dg-PDa">
                                         <rect key="frame" x="211" y="3" width="73" height="55"/>
@@ -568,53 +579,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Strength" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oac-oX-uKO">
                                 <rect key="frame" x="91" y="136" width="137" height="35"/>
                                 <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sYE-ZB-6nS">
-                                <rect key="frame" x="19" y="295" width="285" height="65"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MagicLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYp-Xy-o1h">
-                                        <rect key="frame" x="74" y="10" width="137" height="45"/>
-                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZf-Ek-wRs">
-                                        <rect key="frame" x="212" y="5" width="73" height="55"/>
-                                        <state key="normal" title="+" image="MagicButton_Gain.png">
-                                            <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="AddMagic:" destination="nrI-9u-5kC" eventType="touchUpInside" id="SK4-rv-Shr"/>
-                                            <action selector="AddMagic:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="chd-Jz-dVK"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGb-vx-Tju">
-                                        <rect key="frame" x="1" y="5" width="73" height="55"/>
-                                        <state key="normal" title="-" image="MagicButton_Loss.png">
-                                            <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="SubtractMagic:" destination="nrI-9u-5kC" eventType="touchUpInside" id="18j-p6-w9A"/>
-                                            <action selector="SubtractMagic:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="rYs-b8-efo"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Magic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOu-T1-ml6">
                                 <rect key="frame" x="91" y="252" width="137" height="35"/>
                                 <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mhG-pG-Q0X">
-                                <rect key="frame" x="19" y="411" width="285" height="65"/>
+                                <rect key="frame" x="19" y="404" width="285" height="65"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SpeedLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVg-qj-8gl">
                                         <rect key="frame" x="74" y="10" width="137" height="45"/>
@@ -644,7 +621,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Speed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eI-xr-xHT">
                                 <rect key="frame" x="91" y="368" width="137" height="35"/>
@@ -654,6 +630,38 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vhe-c2-P0F">
                                 <rect key="frame" x="204" y="512" width="95" height="42"/>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sYE-ZB-6nS">
+                                <rect key="frame" x="19" y="289" width="285" height="65"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MagicLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYp-Xy-o1h">
+                                        <rect key="frame" x="74" y="10" width="137" height="45"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZf-Ek-wRs">
+                                        <rect key="frame" x="212" y="5" width="73" height="55"/>
+                                        <state key="normal" title="+" image="MagicButton_Gain.png">
+                                            <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="AddMagic:" destination="nrI-9u-5kC" eventType="touchUpInside" id="SK4-rv-Shr"/>
+                                            <action selector="AddMagic:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="chd-Jz-dVK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGb-vx-Tju">
+                                        <rect key="frame" x="1" y="5" width="73" height="55"/>
+                                        <state key="normal" title="-" image="MagicButton_Loss.png">
+                                            <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SubtractMagic:" destination="nrI-9u-5kC" eventType="touchUpInside" id="18j-p6-w9A"/>
+                                            <action selector="SubtractMagic:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="rYs-b8-efo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -979,7 +987,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ButtonBlock.png" translatesAutoresizingMaskIntoConstraints="NO" id="OSB-Kt-7gY">
-                                <rect key="frame" x="0.0" y="-32" width="320" height="632"/>
+                                <rect key="frame" x="0.0" y="-38" width="320" height="632"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="yB6-uf-tIn">
                                 <rect key="frame" x="200" y="514" width="104" height="33"/>
@@ -1012,7 +1020,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g2I-Op-nvV">
-                                <rect key="frame" x="20" y="63" width="285" height="65"/>
+                                <rect key="frame" x="20" y="53" width="285" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQ0-4o-PHO">
                                         <rect key="frame" x="212" y="5" width="73" height="56"/>
@@ -1047,18 +1055,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSz-fG-zpk">
-                                <rect key="frame" x="20" y="179" width="285" height="65"/>
+                                <rect key="frame" x="20" y="175" width="285" height="65"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbn-y3-u0f">
-                                        <rect key="frame" x="211" y="5" width="73" height="55"/>
-                                        <state key="normal" title="+" image="StrengthButton_Gain.png">
-                                            <color key="titleColor" red="1" green="0.71182316599999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="AddStrength:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="jYz-AR-4jR"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbN-m7-OcW">
                                         <rect key="frame" x="2" y="5" width="73" height="55"/>
                                         <state key="normal" title="-" image="StrengthButton_Loss.png">
@@ -1074,6 +1072,16 @@
                                         <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbn-y3-u0f">
+                                        <rect key="frame" x="212" y="5" width="73" height="55"/>
+                                        <state key="normal" title="+" image="StrengthButton_Gain.png">
+                                            <color key="titleColor" red="1" green="0.71182316599999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="AddStrength:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="jYz-AR-4jR"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Strength" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VF4-uD-z4Z">
@@ -1082,7 +1090,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x56-sf-qZb">
-                                <rect key="frame" x="20" y="295" width="285" height="65"/>
+                                <rect key="frame" x="20" y="289" width="285" height="65"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MagicLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfw-Mc-WTy">
                                         <rect key="frame" x="74" y="10" width="137" height="45"/>
@@ -1117,7 +1125,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W8J-be-4jf">
-                                <rect key="frame" x="20" y="411" width="285" height="65"/>
+                                <rect key="frame" x="20" y="404" width="285" height="65"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SpeedLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDK-rK-PeW">
                                         <rect key="frame" x="74" y="10" width="137" height="45"/>
@@ -1165,6 +1173,18 @@
                                     <action selector="Reset:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="AiA-fz-c9p"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black.png" translatesAutoresizingMaskIntoConstraints="NO" id="2yW-Fh-mfu">
+                                <rect key="frame" x="0.0" y="124" width="320" height="1"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black.png" translatesAutoresizingMaskIntoConstraints="NO" id="UUp-Qw-bwu">
+                                <rect key="frame" x="0.0" y="245" width="320" height="1"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ml7-1O-G7o">
+                                <rect key="frame" x="0.0" y="359" width="320" height="1"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black.png" translatesAutoresizingMaskIntoConstraints="NO" id="k1k-h2-jWf">
+                                <rect key="frame" x="0.0" y="474" width="320" height="1"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -1180,7 +1200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAN-RU-qtE" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1406" y="-493"/>
+            <point key="canvasLocation" x="1414" y="-493"/>
         </scene>
     </scenes>
     <resources>
@@ -1196,11 +1216,12 @@
         <image name="StrengthButton_Gain.png" width="200" height="150"/>
         <image name="StrengthButton_Loss.png" width="200" height="150"/>
         <image name="Text_Button.png" width="412" height="98"/>
+        <image name="black.png" width="1" height="1"/>
         <image name="title.png" width="800" height="450"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Rl4-W2-sjU"/>
-        <segue reference="fkF-W3-xbb"/>
+        <segue reference="WwE-7J-HCh"/>
+        <segue reference="9cB-Yh-hre"/>
         <segue reference="HjJ-Hv-ibE"/>
     </inferredMetricsTieBreakers>
 </document>
