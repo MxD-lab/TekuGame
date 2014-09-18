@@ -877,6 +877,7 @@
 				PROVISIONING_PROFILE = "3da7012d-6f7d-49f3-9915-c77f8417fbea";
 				SWIFT_OBJC_BRIDGING_HEADER = "mainAppTest-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -899,6 +900,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3da7012d-6f7d-49f3-9915-c77f8417fbea";
 				SWIFT_OBJC_BRIDGING_HEADER = "mainAppTest-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

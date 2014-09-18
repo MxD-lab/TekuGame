@@ -110,6 +110,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         prefs.setObject(true, forKey: "loggedIn")
         
+        let index = advance(UIDevice.currentDevice().systemVersion.startIndex, 1)
+        let numb = UIDevice.currentDevice().systemVersion[index]
+        
+        if(String(numb).toInt() >= 8) {
+            clManager.requestAlwaysAuthorization()
+        }
+        
 //        clManager.requestAlwaysAuthorization() iOS 8.0
 //        if (isConnectedToInternet()) {
 //            clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation

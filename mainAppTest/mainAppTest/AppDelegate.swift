@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var speedFloat:Float = 0
     
     // Health
-    var healthGoal:Int = 0
+    var healthGoal:Int = 5000
     
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
@@ -71,6 +71,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (prefs.objectForKey("magicSteps") != nil) {
             prevmagicsteps = prefs.objectForKey("magicSteps") as Int
             magicsteps = prevmagicsteps
+        }
+        
+        if (prefs.objectForKey("healthGoal") != nil) {
+            healthGoal = prefs.objectForKey("healthGoal") as Int
         }
         
         notified = false
@@ -198,6 +202,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func checkRunningGoal() {
         if (activitystring.rangeOfString("Running") != nil && (confidencenum == Float(CMMotionActivityConfidence.High.toRaw()) || confidencenum == Float(CMMotionActivityConfidence.Medium.toRaw()))) {
             speedFloat += 0.01
+            println("Speed Float: \(speedFloat)")
         }
         
         if (speedFloat >= 1) {
