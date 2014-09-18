@@ -82,6 +82,7 @@
 		BC81B21419CA7F8D003BDF8C /* ButtonBlock.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B21119CA7F8D003BDF8C /* ButtonBlock.png */; };
 		BC81B21519CA7F8D003BDF8C /* ContinueButton_Down.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B21219CA7F8D003BDF8C /* ContinueButton_Down.png */; };
 		BC81B21619CA7F8D003BDF8C /* ContinueButton_Up.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B21319CA7F8D003BDF8C /* ContinueButton_Up.png */; };
+		BC81B21819CA8116003BDF8C /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B21719CA8116003BDF8C /* title.png */; };
 		BC8787B419C032A80001C9DD /* usernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8787B319C032A80001C9DD /* usernameViewController.swift */; };
 		BC8A857919C14FE800335599 /* resultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A857819C14FE800335599 /* resultsViewController.swift */; };
 		BC8A857B19C1502D00335599 /* assignPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A857A19C1502D00335599 /* assignPointsViewController.swift */; };
@@ -227,6 +228,7 @@
 		BC81B21119CA7F8D003BDF8C /* ButtonBlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonBlock.png; sourceTree = "<group>"; };
 		BC81B21219CA7F8D003BDF8C /* ContinueButton_Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContinueButton_Down.png; sourceTree = "<group>"; };
 		BC81B21319CA7F8D003BDF8C /* ContinueButton_Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContinueButton_Up.png; sourceTree = "<group>"; };
+		BC81B21719CA8116003BDF8C /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		BC8787B319C032A80001C9DD /* usernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = usernameViewController.swift; sourceTree = "<group>"; };
 		BC8A857819C14FE800335599 /* resultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resultsViewController.swift; sourceTree = "<group>"; };
 		BC8A857A19C1502D00335599 /* assignPointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignPointsViewController.swift; sourceTree = "<group>"; };
@@ -546,6 +548,7 @@
 				BC81B21119CA7F8D003BDF8C /* ButtonBlock.png */,
 				BC81B21219CA7F8D003BDF8C /* ContinueButton_Down.png */,
 				BC81B21319CA7F8D003BDF8C /* ContinueButton_Up.png */,
+				BC81B21719CA8116003BDF8C /* title.png */,
 				BC81B1F819CA7DF8003BDF8C /* HealthButton_Gain.png */,
 				BC81B1F919CA7DF8003BDF8C /* HealthButton_Loss.png */,
 				BC81B1FA19CA7DF8003BDF8C /* MagicButton_Gain.png */,
@@ -674,6 +677,7 @@
 				A1DEB5C019BD6F0700F7A21E /* Demon1.png in Resources */,
 				BC81B20419CA7DF8003BDF8C /* GenericButton_Up.png in Resources */,
 				A1DEB5C119BD6F0700F7A21E /* Demon2.png in Resources */,
+				BC81B21819CA8116003BDF8C /* title.png in Resources */,
 				BC8A858719C178B100335599 /* ACKNOWLEDGEMENTS.txt in Resources */,
 				A1DEB5C819BD6F0700F7A21E /* Elemental3.png in Resources */,
 				A1D183DC19BED3BE00E03B28 /* Magic.png in Resources */,
