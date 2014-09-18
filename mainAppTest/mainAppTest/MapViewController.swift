@@ -109,20 +109,31 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         
         prefs.setObject(true, forKey: "loggedIn")
+//        
+//        let index = advance(UIDevice.currentDevice().systemVersion.startIndex, 1)
+//        let numb = UIDevice.currentDevice().systemVersion[index]
         
-        let index = advance(UIDevice.currentDevice().systemVersion.startIndex, 1)
-        let numb = UIDevice.currentDevice().systemVersion[index]
         
-        if(String(numb).toInt() >= 8) {
-            clManager.requestAlwaysAuthorization()
+//        if(String(numb).toInt() >= 8) {
+//            clManager.requestAlwaysAuthorization()
+//            println("requestAlwaysAuthorization")
+//        }
+//        if ()
+        
+        // clManager.requestAlwaysAuthorization() iOS 8.0
+        if (isConnectedToInternet()) {
+            clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+            clManager.startUpdatingLocation()
+            clManager.delegate = self
         }
         
-//        clManager.requestAlwaysAuthorization() iOS 8.0
-//        if (isConnectedToInternet()) {
-//            clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-//            clManager.startUpdatingLocation()
-//            clManager.delegate = self
-//        }
+        var versionstr:NSString = UIDevice.currentDevice().systemVersion
+        var versiondouble = versionstr.doubleValue
+        
+        if (versiondouble >= 8.0) {
+            clManager.requestWhenInUseAuthorization()
+            println("requestWhenInUseAuthorization")
+        }
         
         labelTimer = setInterval("updateStepLabel", seconds: 1)
         statusTimer = setInterval("checkStatus", seconds: 2)
@@ -591,12 +602,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     // CoreLocation updates.
-//    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-//        var loc: CLLocation = locations[locations.count-1] as CLLocation
-//        altitudeNum = Float(loc.altitude)
-//        vAcc = Float(loc.verticalAccuracy)
-//        speedNum = loc.speed
-//    }
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        var loc: CLLocation = locations[locations.count-1] as CLLocation
+        altitudeNum = Float(loc.altitude)
+        vAcc = Float(loc.verticalAccuracy)
+        speedNum = loc.speed
+    }
     
     func checkEncounter() {
         var prefs = NSUserDefaults.standardUserDefaults()
