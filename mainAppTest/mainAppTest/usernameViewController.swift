@@ -16,7 +16,7 @@ class usernameViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBAction func startEditing(sender: AnyObject) {
-        usernameTextField.backgroundColor = UIColor(red: 0.962212, green: 1, blue: 0.924849, alpha: 1)
+        usernameTextField.backgroundColor = UIColor.whiteColor()
         errorLabel.text = ""
     }
     

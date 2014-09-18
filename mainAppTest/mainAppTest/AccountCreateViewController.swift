@@ -15,12 +15,15 @@ class AccountCreateViewController: UIViewController {
     @IBOutlet weak var createCharacterBtn: UIButton!
     @IBOutlet weak var accountTypeLabel: UILabel!
     @IBOutlet weak var tekugameAccountBtn: UIButton!
+    @IBOutlet weak var makeBtn: UIImageView!
+    @IBOutlet weak var createBtn: UIImageView!
                             
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         tekugameAccountBtn.hidden = isConnectedToInternet() ? false : true
+        makeBtn.hidden = tekugameAccountBtn.hidden ? true : false
         
         if (playerID != "") {
             var idonly = playerID.componentsSeparatedByString("(")[0]
@@ -29,6 +32,7 @@ class AccountCreateViewController: UIViewController {
             playerIDLabel.text = "Logged in as @\(idonly)"
             accountTypeLabel.text = "Account Type: \(acctype)"
             createCharacterBtn.hidden = false
+            createBtn.hidden = false
         }
         else {
             playerIDLabel.text = "Not logged in."

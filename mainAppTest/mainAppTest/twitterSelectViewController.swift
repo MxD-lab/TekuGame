@@ -85,7 +85,7 @@ class twitterSelectViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     func pickerView(pickerView: UIPickerView!, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView! {
         var label = UILabel(frame: CGRectMake(0, 0, pickerView.frame.size.width, 44))
-        label.font = UIFont(name: "Optima", size: 24)
+        label.font = UIFont(name: "Papyrus", size: 18)
         label.textColor = UIColor.blackColor()
         label.text = "\(allAccounts[row].0) (\(allAccounts[row].1))"
         label.textAlignment = NSTextAlignment.Center

@@ -20,6 +20,20 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ButtonBlock.png" translatesAutoresizingMaskIntoConstraints="NO" id="58e-UQ-Vjh">
                                 <rect key="frame" x="0.0" y="-22" width="320" height="632"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="XNF-dw-Hm9">
+                                <rect key="frame" x="231" y="524" width="73" height="36"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tjq-8B-OH2">
+                                <rect key="frame" x="238" y="537" width="66" height="17"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="14"/>
+                                <state key="normal" title="License">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Dfa-qk-mNl" kind="show" id="4xc-JI-yd8"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l9M-ZE-Yfo">
                                 <rect key="frame" x="33" y="351" width="255" height="50"/>
                                 <state key="normal" title="Continue" image="ContinueButton_Up.png">
@@ -28,21 +42,6 @@
                                 </state>
                                 <connections>
                                     <action selector="continuePressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="FkN-sl-ukW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tjq-8B-OH2">
-                                <rect key="frame" x="238" y="537" width="66" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="66" id="DVN-qu-THV"/>
-                                    <constraint firstAttribute="height" constant="17" id="azM-Md-iRA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="12"/>
-                                <state key="normal" title="License">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Dfa-qk-mNl" kind="show" id="4xc-JI-yd8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1s-Gn-qpP">
@@ -60,10 +59,6 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="tjq-8B-OH2" secondAttribute="centerY" constant="-261.5" id="cLs-wc-VHj"/>
-                            <constraint firstAttribute="centerX" secondItem="tjq-8B-OH2" secondAttribute="centerX" constant="-111" id="wi7-cE-qYS"/>
-                        </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -91,46 +86,36 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ButtonBlock.png" translatesAutoresizingMaskIntoConstraints="NO" id="lZP-pt-BGd">
                                 <rect key="frame" x="0.0" y="-38" width="320" height="632"/>
                             </imageView>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j95-Pb-b2q">
-                                <rect key="frame" x="16" y="170" width="288" height="162"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="288" id="BRE-Dr-Dti"/>
-                                </constraints>
-                            </pickerView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SNS Account Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31o-RH-SUY">
-                                <rect key="frame" x="0.0" y="102" width="320" height="59"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="RBj-YU-qcX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="23"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="55q-ba-q9o">
-                                <rect key="frame" x="0.0" y="420" width="320" height="43"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="Nbf-Fv-kTm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="22"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wep-Qx-cSJ">
+                                <rect key="frame" x="7" y="345" width="307" height="67"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wis-Fq-0lt">
+                                <rect key="frame" x="7" y="420" width="307" height="67"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="55q-ba-q9o">
+                                <rect key="frame" x="0.0" y="433" width="320" height="43"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="22"/>
                                 <state key="normal" title="Done">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="nDv-Yp-x5l" kind="show" identifier="twselect_accreate" id="T9K-pp-C4g"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6u-yL-ZiS">
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j95-Pb-b2q">
+                                <rect key="frame" x="16" y="170" width="288" height="162"/>
+                            </pickerView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SNS Account Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31o-RH-SUY">
+                                <rect key="frame" x="0.0" y="102" width="320" height="59"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="28"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6u-yL-ZiS">
                                 <rect key="frame" x="0.0" y="360" width="320" height="43"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="Wh4-bl-SyP"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="22"/>
                                 <state key="normal" title="Refresh">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -139,16 +124,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="j95-Pb-b2q" secondAttribute="centerX" id="1rG-wM-dGX"/>
-                            <constraint firstAttribute="centerX" secondItem="31o-RH-SUY" secondAttribute="centerX" id="6dt-wN-QiO"/>
-                            <constraint firstAttribute="centerY" secondItem="31o-RH-SUY" secondAttribute="centerY" constant="152.5" id="Qf5-49-Ubm"/>
-                            <constraint firstAttribute="centerY" secondItem="w6u-yL-ZiS" secondAttribute="centerY" constant="-97.5" id="XuM-t9-vQ1"/>
-                            <constraint firstAttribute="centerY" secondItem="55q-ba-q9o" secondAttribute="centerY" constant="-157.5" id="Zys-4r-OlJ"/>
-                            <constraint firstAttribute="centerX" secondItem="w6u-yL-ZiS" secondAttribute="centerX" id="hqY-W0-FF7"/>
-                            <constraint firstAttribute="centerY" secondItem="j95-Pb-b2q" secondAttribute="centerY" constant="33" id="myx-Jr-cbH"/>
-                            <constraint firstAttribute="centerX" secondItem="55q-ba-q9o" secondAttribute="centerX" id="yrQ-ZW-UsI"/>
-                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -174,42 +149,33 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ButtonBlock.png" translatesAutoresizingMaskIntoConstraints="NO" id="yoX-uh-TYf">
                                 <rect key="frame" x="0.0" y="-32" width="320" height="632"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tekugame Username Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39g-er-C2t">
-                                <rect key="frame" x="0.0" y="131" width="320" height="59"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="y4e-SL-IcC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="21"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BUq-L6-tRK">
-                                <rect key="frame" x="63" y="269" width="195" height="30"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="195" id="szU-Qg-hnT"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="startEditing:" destination="eTT-sb-G39" eventType="editingDidBegin" id="zq9-Xb-DnB"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rot-us-Wp0">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="yrk-IY-osr">
+                                <rect key="frame" x="7" y="406" width="307" height="67"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rot-us-Wp0">
                                 <rect key="frame" x="0.0" y="421" width="320" height="43"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="use-c8-eFC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="22"/>
                                 <state key="normal" title="Done">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="donePressed:" destination="eTT-sb-G39" eventType="touchUpInside" id="5IU-ta-JnM"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mainAppTest Username Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39g-er-C2t">
+                                <rect key="frame" x="0.0" y="131" width="320" height="59"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="23"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BUq-L6-tRK">
+                                <rect key="frame" x="63" y="269" width="195" height="30"/>
+                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="startEditing:" destination="eTT-sb-G39" eventType="editingDidBegin" id="zq9-Xb-DnB"/>
+                                </connections>
+                            </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJb-s7-7gZ">
                                 <rect key="frame" x="0.0" y="301" width="320" height="37"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="15"/>
@@ -218,14 +184,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="39g-er-C2t" secondAttribute="centerY" constant="123.5" id="G2d-DA-InU"/>
-                            <constraint firstAttribute="centerX" secondItem="BUq-L6-tRK" secondAttribute="centerX" id="Ue0-sD-oTc"/>
-                            <constraint firstAttribute="centerY" secondItem="BUq-L6-tRK" secondAttribute="centerY" id="d2g-bS-lCV"/>
-                            <constraint firstAttribute="centerY" secondItem="rot-us-Wp0" secondAttribute="centerY" constant="-158.5" id="lM3-pB-UvH"/>
-                            <constraint firstAttribute="centerX" secondItem="rot-us-Wp0" secondAttribute="centerX" id="mlb-fh-x8L"/>
-                            <constraint firstAttribute="centerX" secondItem="39g-er-C2t" secondAttribute="centerX" id="pZA-Jz-OBG"/>
-                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -236,7 +194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ff7-Fq-EgR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="388" y="-1355"/>
+            <point key="canvasLocation" x="403" y="-1355"/>
         </scene>
         <!--Account Create View Controller-->
         <scene sceneID="tKe-sP-9nI">
@@ -253,48 +211,41 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ButtonBlock.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jpt-7T-9Qb">
                                 <rect key="frame" x="0.0" y="-32" width="320" height="632"/>
                             </imageView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7S6-Tt-0HC">
-                                <rect key="frame" x="0.0" y="468" width="320" height="41"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="aF0-fd-Yal"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="w2o-RS-oLB">
+                                <rect key="frame" x="7" y="364" width="307" height="67"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="4gA-Cq-ePd">
+                                <rect key="frame" x="6" y="284" width="307" height="67"/>
+                            </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="LPM-Ie-k3p">
+                                <rect key="frame" x="6" y="473" width="307" height="67"/>
+                            </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7S6-Tt-0HC">
+                                <rect key="frame" x="0.0" y="473" width="320" height="75"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                 <state key="normal" title="Create Character">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="dhd-tE-9Gu" kind="show" identifier="accreate_charcreate" id="y6p-d5-aWE"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Not logged in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O68-A1-4l4">
-                                <rect key="frame" x="0.0" y="219" width="320" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="zgL-oy-QA8"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="21"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Not logged in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O68-A1-4l4">
+                                <rect key="frame" x="0.0" y="179" width="320" height="75"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="21"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Create Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHL-Tn-g16">
-                                <rect key="frame" x="0.0" y="130" width="320" height="59"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="xgA-69-MhM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="28"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Create Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHL-Tn-g16">
+                                <rect key="frame" x="0.0" y="108" width="320" height="76"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="28"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLS-Rq-S2x">
-                                <rect key="frame" x="0.0" y="299" width="320" height="41"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="FfG-76-Xkm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLS-Rq-S2x">
+                                <rect key="frame" x="0.0" y="286" width="320" height="65"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                 <state key="normal" title="Login with Twitter">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -302,20 +253,15 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urG-Tx-Lf0">
-                                <rect key="frame" x="0.0" y="255" width="320" height="35"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="21"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="243" width="320" height="35"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="21"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qmO-Am-Z4x">
-                                <rect key="frame" x="0.0" y="359" width="320" height="41"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="QAE-MB-h3h"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qmO-Am-Z4x">
+                                <rect key="frame" x="0.0" y="359" width="320" height="77"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                 <state key="normal" title="Make a Tekugame Account">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -324,24 +270,14 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="7S6-Tt-0HC" secondAttribute="centerY" constant="-204.5" id="3Ny-4e-kla"/>
-                            <constraint firstAttribute="centerY" secondItem="rHL-Tn-g16" secondAttribute="centerY" constant="124.5" id="ArO-6g-fhz"/>
-                            <constraint firstAttribute="centerX" secondItem="O68-A1-4l4" secondAttribute="centerX" id="BZ6-ZJ-X03"/>
-                            <constraint firstAttribute="centerY" secondItem="qmO-Am-Z4x" secondAttribute="centerY" constant="-95.5" id="DjJ-3Z-Ptf"/>
-                            <constraint firstAttribute="centerY" secondItem="wLS-Rq-S2x" secondAttribute="centerY" constant="-35.5" id="GgO-XV-6Ro"/>
-                            <constraint firstAttribute="centerX" secondItem="7S6-Tt-0HC" secondAttribute="centerX" id="Ia6-8u-eTu"/>
-                            <constraint firstAttribute="centerX" secondItem="wLS-Rq-S2x" secondAttribute="centerX" id="Yis-IF-Qfs"/>
-                            <constraint firstAttribute="centerY" secondItem="O68-A1-4l4" secondAttribute="centerY" constant="47.5" id="fsK-Hd-huL"/>
-                            <constraint firstAttribute="centerX" secondItem="rHL-Tn-g16" secondAttribute="centerX" id="r06-zo-8O0"/>
-                            <constraint firstAttribute="centerX" secondItem="qmO-Am-Z4x" secondAttribute="centerX" id="uGh-eY-F2X"/>
-                        </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="accountTypeLabel" destination="urG-Tx-Lf0" id="ISb-v3-Ac8"/>
+                        <outlet property="createBtn" destination="LPM-Ie-k3p" id="R5j-gG-eUi"/>
                         <outlet property="createCharacterBtn" destination="7S6-Tt-0HC" id="ses-LN-gWH"/>
+                        <outlet property="makeBtn" destination="w2o-RS-oLB" id="qMZ-Tn-Kqu"/>
                         <outlet property="playerIDLabel" destination="O68-A1-4l4" id="oXN-QE-7L5"/>
                         <outlet property="tekugameAccountBtn" destination="qmO-Am-Z4x" id="h8F-xe-eeJ"/>
                     </connections>
@@ -362,18 +298,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y4B-HR-yVG">
-                                <rect key="frame" x="16" y="28" width="284" height="527"/>
-                                <color key="backgroundColor" red="1" green="0.71182316599999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="284" id="Joo-gB-ahF"/>
-                                </constraints>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y4B-HR-yVG">
+                                <rect key="frame" x="18" y="28" width="284" height="527"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NdG-GS-BOu">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NdG-GS-BOu">
                                 <rect key="frame" x="20" y="240" width="280" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="Fm4-bV-oku"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -384,84 +314,55 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v9Q-4N-LkZ">
-                                <rect key="frame" x="20" y="424" width="280" height="130"/>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v9Q-4N-LkZ">
+                                <rect key="frame" x="18" y="424" width="284" height="130"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Steps：- steps" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZa-mL-EvR">
-                                        <rect key="frame" x="-8" y="11" width="265" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="265" id="IdS-MH-cX8"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Steps：- steps" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZa-mL-EvR">
+                                        <rect key="frame" x="-4" y="11" width="265" height="21"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRf-3N-jE0">
-                                        <rect key="frame" x="-9" y="40" width="265" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="265" id="P7h-Td-2Gi"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRf-3N-jE0">
+                                        <rect key="frame" x="-5" y="40" width="265" height="21"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Magic Steps: - steps" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZm-wd-Md2">
-                                        <rect key="frame" x="-8" y="98" width="265" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="265" id="J26-6t-QAK"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Magic Steps: - steps" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZm-wd-Md2">
+                                        <rect key="frame" x="-4" y="98" width="265" height="21"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Magic Hour: -" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRL-ff-gXv">
-                                        <rect key="frame" x="-8" y="69" width="265" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="265" id="L3g-Yr-5jd"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Magic Hour: -" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRL-ff-gXv">
+                                        <rect key="frame" x="-4" y="69" width="265" height="21"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.95453789112016407" green="1" blue="0.93087769851933844" alpha="0.5" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="hZm-wd-Md2" secondAttribute="centerX" constant="15.5" id="LNx-vd-w2p"/>
-                                    <constraint firstAttribute="centerX" secondItem="VZa-mL-EvR" secondAttribute="centerX" constant="15.5" id="VAM-YT-nOJ"/>
-                                    <constraint firstAttribute="centerX" secondItem="KRf-3N-jE0" secondAttribute="centerX" constant="16.5" id="WgH-QZ-iKV"/>
-                                    <constraint firstAttribute="width" constant="280" id="b62-sm-7ro"/>
-                                    <constraint firstAttribute="centerX" secondItem="QRL-ff-gXv" secondAttribute="centerX" constant="15.5" id="bpO-7V-6uu"/>
-                                    <constraint firstAttribute="centerY" secondItem="QRL-ff-gXv" secondAttribute="centerY" constant="-14.5" id="enZ-FC-J9f"/>
-                                    <constraint firstAttribute="centerY" secondItem="KRf-3N-jE0" secondAttribute="centerY" constant="14.5" id="ezI-rq-7Nv"/>
-                                    <constraint firstAttribute="centerY" secondItem="hZm-wd-Md2" secondAttribute="centerY" constant="-43.5" id="gfS-Ih-DXO"/>
-                                    <constraint firstAttribute="centerY" secondItem="VZa-mL-EvR" secondAttribute="centerY" constant="43.5" id="w8O-mV-R1X"/>
-                                </constraints>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Acl-hv-wMj">
-                                <rect key="frame" x="16" y="28" width="284" height="40"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Acl-hv-wMj">
+                                <rect key="frame" x="18" y="28" width="284" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RiL-MP-DSb">
-                                        <rect key="frame" x="208" y="5" width="65" height="30"/>
-                                        <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="65" id="uwQ-da-E75"/>
-                                        </constraints>
-                                        <state key="normal" title=" 現在地へ">
-                                            <color key="titleColor" red="0.98369738520000005" green="0.54053194019999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RiL-MP-DSb">
+                                        <rect key="frame" x="206" y="8" width="70" height="30"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="15"/>
+                                        <state key="normal" title="Find me">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="updateLocation:" destination="kwz-uD-Hpi" eventType="touchUpInside" id="QXk-vr-k2A"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ex8-bO-nfp">
-                                        <rect key="frame" x="8" y="5" width="146" height="30"/>
-                                        <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="146" id="2vA-Mf-ORL"/>
-                                        </constraints>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ex8-bO-nfp">
+                                        <rect key="frame" x="8" y="8" width="140" height="30"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="15"/>
                                         <state key="normal" title="@playerid">
-                                            <color key="titleColor" red="0.98369738520000005" green="0.54053194019999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -469,27 +370,10 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="centerY" secondItem="RiL-MP-DSb" secondAttribute="centerY" id="Nu0-gt-VkK"/>
-                                    <constraint firstAttribute="centerX" secondItem="RiL-MP-DSb" secondAttribute="centerX" constant="-98.5" id="ODr-EO-4Ta"/>
-                                    <constraint firstAttribute="width" constant="284" id="ceg-jJ-5NR"/>
-                                    <constraint firstAttribute="centerY" secondItem="Ex8-bO-nfp" secondAttribute="centerY" id="mYe-H7-8VB"/>
-                                    <constraint firstAttribute="centerX" secondItem="Ex8-bO-nfp" secondAttribute="centerX" constant="61" id="vdb-Vk-bxO"/>
-                                </constraints>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="Acl-hv-wMj" secondAttribute="centerX" id="3bn-dZ-pFv"/>
-                            <constraint firstAttribute="centerY" secondItem="Acl-hv-wMj" secondAttribute="centerY" constant="236" id="EJl-ei-lSG"/>
-                            <constraint firstAttribute="centerX" secondItem="NdG-GS-BOu" secondAttribute="centerX" id="HXG-8h-HfK"/>
-                            <constraint firstAttribute="centerY" secondItem="v9Q-4N-LkZ" secondAttribute="centerY" constant="-205" id="RI2-Iz-DXZ"/>
-                            <constraint firstAttribute="centerX" secondItem="v9Q-4N-LkZ" secondAttribute="centerX" id="Xeb-bv-Tbw"/>
-                            <constraint firstAttribute="centerY" secondItem="NdG-GS-BOu" secondAttribute="centerY" constant="33.5" id="gCb-Br-fwk"/>
-                            <constraint firstAttribute="centerX" secondItem="y4B-HR-yVG" secondAttribute="centerX" id="qrc-AT-BsG"/>
-                            <constraint firstAttribute="centerY" secondItem="y4B-HR-yVG" secondAttribute="centerY" constant="-7.5" id="tNl-55-VgV"/>
-                        </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -525,60 +409,37 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ButtonBlock.png" translatesAutoresizingMaskIntoConstraints="NO" id="OW1-yN-tN6">
                                 <rect key="frame" x="0.0" y="-35" width="320" height="632"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mec-9b-HUb">
-                                <rect key="frame" x="0.0" y="440" width="320" height="43"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="PHw-n0-gj6"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="19"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dzi-bG-O3H">
+                                <rect key="frame" x="7" y="420" width="307" height="67"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mec-9b-HUb">
+                                <rect key="frame" x="0.0" y="425" width="320" height="58"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="19"/>
                                 <state key="normal" title="Continue">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="continuePressed:" destination="OzI-QZ-kvy" eventType="touchUpInside" id="3VC-8g-1V3"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHO-dl-6XS">
-                                <rect key="frame" x="0.0" y="39" width="320" height="59"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="h9B-Dc-GpF"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="34"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHO-dl-6XS">
+                                <rect key="frame" x="0.0" y="28" width="320" height="106"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="34"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You win!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADa-c0-Tco">
-                                <rect key="frame" x="0.0" y="145" width="320" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="hkP-qh-nBt"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="28"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You win!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADa-c0-Tco">
+                                <rect key="frame" x="0.0" y="122" width="320" height="78"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="28"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Details..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iay-ks-KUX">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Details..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iay-ks-KUX">
                                 <rect key="frame" x="0.0" y="208" width="320" height="177"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="6Ya-S7-yYZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="20"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="DHO-dl-6XS" secondAttribute="centerY" constant="215.5" id="5J0-Qc-pf0"/>
-                            <constraint firstAttribute="centerY" secondItem="Iay-ks-KUX" secondAttribute="centerY" constant="-12.5" id="Pzb-cE-dzx"/>
-                            <constraint firstAttribute="centerX" secondItem="ADa-c0-Tco" secondAttribute="centerX" id="ZT8-0W-fCE"/>
-                            <constraint firstAttribute="centerX" secondItem="Iay-ks-KUX" secondAttribute="centerX" id="fLx-Of-7NJ"/>
-                            <constraint firstAttribute="centerX" secondItem="Mec-9b-HUb" secondAttribute="centerX" id="g2I-bM-S3m"/>
-                            <constraint firstAttribute="centerY" secondItem="ADa-c0-Tco" secondAttribute="centerY" constant="121.5" id="oTW-Eu-HYc"/>
-                            <constraint firstAttribute="centerX" secondItem="DHO-dl-6XS" secondAttribute="centerX" id="uWp-za-nuB"/>
-                            <constraint firstAttribute="centerY" secondItem="Mec-9b-HUb" secondAttribute="centerY" constant="-177.5" id="y5X-6o-lJV"/>
-                        </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -591,7 +452,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wg5-pA-deK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="634" y="1149"/>
+            <point key="canvasLocation" x="630" y="1143"/>
         </scene>
         <!--Assign Points View Controller-->
         <scene sceneID="1R8-PL-ZK1">
@@ -608,30 +469,25 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ButtonBlock.png" translatesAutoresizingMaskIntoConstraints="NO" id="LEc-Ho-xHg">
                                 <rect key="frame" x="-1" y="-32" width="320" height="632"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LrA-MH-yKw">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="oyg-n0-cqs">
+                                <rect key="frame" x="22" y="512" width="95" height="42"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LrA-MH-yKw">
                                 <rect key="frame" x="204" y="518" width="100" height="30"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="8D7-JZ-NgY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="19"/>
                                 <state key="normal" title="Confirm">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="kwz-uD-Hpi" kind="show" identifier="assign_map" id="WwE-7J-HCh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NfX-zZ-4IN">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NfX-zZ-4IN">
                                 <rect key="frame" x="19" y="518" width="100" height="30"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="zkk-TG-7K3"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="19"/>
                                 <state key="normal" title="Reset">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -639,24 +495,17 @@
                                     <action selector="Reset:" destination="nrI-9u-5kC" eventType="touchUpInside" id="sCl-0W-NgZ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Remaining Points:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHu-HU-N9E">
-                                <rect key="frame" x="19" y="484" width="285" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="285" id="XRV-Rd-2YG"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Remaining Points:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHu-HU-N9E">
+                                <rect key="frame" x="19" y="481" width="285" height="36"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zRd-Ad-w4b">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zRd-Ad-w4b">
                                 <rect key="frame" x="19" y="63" width="285" height="65"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wz-B7-eeQ">
-                                        <rect key="frame" x="219" y="18" width="46" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="q1A-zY-VFo"/>
-                                        </constraints>
-                                        <state key="normal" title="+">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wz-B7-eeQ">
+                                        <rect key="frame" x="212" y="5" width="73" height="55"/>
+                                        <state key="normal" title="+" image="HealthButton_Gain.png">
                                             <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -665,12 +514,9 @@
                                             <action selector="AddHealth:" destination="nrI-9u-5kC" eventType="touchUpInside" id="ynm-tJ-sks"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i28-ib-d9Z">
-                                        <rect key="frame" x="20" y="18" width="46" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="mZ7-DA-YOH"/>
-                                        </constraints>
-                                        <state key="normal" title="-">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i28-ib-d9Z">
+                                        <rect key="frame" x="1" y="5" width="73" height="55"/>
+                                        <state key="normal" title="-" image="HealthButton_Loss.png">
                                             <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -679,45 +525,24 @@
                                             <action selector="SubtractHealth:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="vfv-lK-CfH"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="HealthLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eP6-pY-Hwi">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="HealthLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eP6-pY-Hwi">
                                         <rect key="frame" x="74" y="10" width="137" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="137" id="ZX8-5g-FX0"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                        <color key="textColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="i28-ib-d9Z" secondAttribute="centerX" constant="99.5" id="Q71-rH-G7u"/>
-                                    <constraint firstAttribute="centerY" secondItem="eP6-pY-Hwi" secondAttribute="centerY" id="R7d-1j-BL4"/>
-                                    <constraint firstAttribute="centerX" secondItem="9Wz-B7-eeQ" secondAttribute="centerX" constant="-99.5" id="Y68-t3-PoQ"/>
-                                    <constraint firstAttribute="centerY" secondItem="9Wz-B7-eeQ" secondAttribute="centerY" id="bhA-SC-hDU"/>
-                                    <constraint firstAttribute="width" constant="285" id="dKN-Xg-deI"/>
-                                    <constraint firstAttribute="centerX" secondItem="eP6-pY-Hwi" secondAttribute="centerX" id="kzK-5Q-29h"/>
-                                    <constraint firstAttribute="centerY" secondItem="i28-ib-d9Z" secondAttribute="centerY" id="lLx-u2-8Uk"/>
-                                </constraints>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Health" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIN-il-PtW">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Health" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIN-il-PtW">
                                 <rect key="frame" x="91" y="20" width="137" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="137" id="gDb-lz-RM4"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yFr-21-nFb">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yFr-21-nFb">
                                 <rect key="frame" x="19" y="179" width="285" height="65"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfk-dg-PDa">
-                                        <rect key="frame" x="219" y="18" width="46" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="rrG-oi-gau"/>
-                                        </constraints>
-                                        <state key="normal" title="+">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfk-dg-PDa">
+                                        <rect key="frame" x="211" y="3" width="73" height="55"/>
+                                        <state key="normal" title="+" image="StrengthButton_Gain.png">
                                             <color key="titleColor" red="1" green="0.71182316599999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -726,12 +551,9 @@
                                             <action selector="AddStrength:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="fCg-wa-ovs"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5g-Nv-6JF">
-                                        <rect key="frame" x="20" y="18" width="46" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="CjD-hN-hj3"/>
-                                        </constraints>
-                                        <state key="normal" title="-">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5g-Nv-6JF">
+                                        <rect key="frame" x="2" y="5" width="73" height="55"/>
+                                        <state key="normal" title="-" image="StrengthButton_Loss.png">
                                             <color key="titleColor" red="1" green="0.71182316599999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -740,54 +562,30 @@
                                             <action selector="SubtractStrength:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="stx-4P-HCP"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="StrengthLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehk-8O-ScC">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="StrengthLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehk-8O-ScC">
                                         <rect key="frame" x="74" y="10" width="137" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="137" id="GRd-rP-ytb"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                        <color key="textColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="centerY" secondItem="qfk-dg-PDa" secondAttribute="centerY" id="2kn-7f-rHj"/>
-                                    <constraint firstAttribute="centerX" secondItem="ehk-8O-ScC" secondAttribute="centerX" id="8aQ-sT-x2m"/>
-                                    <constraint firstAttribute="centerY" secondItem="p5g-Nv-6JF" secondAttribute="centerY" id="OkO-7V-dl5"/>
-                                    <constraint firstAttribute="centerX" secondItem="qfk-dg-PDa" secondAttribute="centerX" constant="-99.5" id="Q5T-Ly-SEL"/>
-                                    <constraint firstAttribute="width" constant="285" id="bca-MT-2Gb"/>
-                                    <constraint firstAttribute="centerY" secondItem="ehk-8O-ScC" secondAttribute="centerY" id="n69-mB-nQQ"/>
-                                    <constraint firstAttribute="centerX" secondItem="p5g-Nv-6JF" secondAttribute="centerX" constant="99.5" id="pAH-Af-nHb"/>
-                                </constraints>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Strength" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oac-oX-uKO">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Strength" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oac-oX-uKO">
                                 <rect key="frame" x="91" y="136" width="137" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="137" id="Yfw-Mp-50s"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sYE-ZB-6nS">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sYE-ZB-6nS">
                                 <rect key="frame" x="19" y="295" width="285" height="65"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="MagicLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYp-Xy-o1h">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MagicLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYp-Xy-o1h">
                                         <rect key="frame" x="74" y="10" width="137" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="137" id="89X-jw-djx"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                        <color key="textColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZf-Ek-wRs">
-                                        <rect key="frame" x="219" y="18" width="46" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="Wuy-ev-0YH"/>
-                                        </constraints>
-                                        <state key="normal" title="+">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZf-Ek-wRs">
+                                        <rect key="frame" x="212" y="5" width="73" height="55"/>
+                                        <state key="normal" title="+" image="MagicButton_Gain.png">
                                             <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -796,12 +594,9 @@
                                             <action selector="AddMagic:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="chd-Jz-dVK"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGb-vx-Tju">
-                                        <rect key="frame" x="20" y="18" width="46" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="F5d-63-rMw"/>
-                                        </constraints>
-                                        <state key="normal" title="-">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGb-vx-Tju">
+                                        <rect key="frame" x="1" y="5" width="73" height="55"/>
+                                        <state key="normal" title="-" image="MagicButton_Loss.png">
                                             <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -811,44 +606,24 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="EYp-Xy-o1h" secondAttribute="centerX" id="1Ee-Y1-kTa"/>
-                                    <constraint firstAttribute="centerY" secondItem="jGb-vx-Tju" secondAttribute="centerY" id="7bS-mx-hmc"/>
-                                    <constraint firstAttribute="width" constant="285" id="7pa-e1-CmY"/>
-                                    <constraint firstAttribute="centerY" secondItem="EYp-Xy-o1h" secondAttribute="centerY" id="CIw-7t-vER"/>
-                                    <constraint firstAttribute="centerX" secondItem="jGb-vx-Tju" secondAttribute="centerX" constant="99.5" id="MT4-dW-V6t"/>
-                                    <constraint firstAttribute="centerY" secondItem="UZf-Ek-wRs" secondAttribute="centerY" id="XoK-c2-hmn"/>
-                                    <constraint firstAttribute="centerX" secondItem="UZf-Ek-wRs" secondAttribute="centerX" constant="-99.5" id="YKs-Eh-6yH"/>
-                                </constraints>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Magic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOu-T1-ml6">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Magic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOu-T1-ml6">
                                 <rect key="frame" x="91" y="252" width="137" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="137" id="pJ9-UW-dBW"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mhG-pG-Q0X">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mhG-pG-Q0X">
                                 <rect key="frame" x="19" y="411" width="285" height="65"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SpeedLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVg-qj-8gl">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SpeedLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVg-qj-8gl">
                                         <rect key="frame" x="74" y="10" width="137" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="137" id="Yti-xn-DJT"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                        <color key="textColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9W-Pr-QXp">
-                                        <rect key="frame" x="219" y="18" width="46" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="3NT-an-ig5"/>
-                                        </constraints>
-                                        <state key="normal" title="+">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9W-Pr-QXp">
+                                        <rect key="frame" x="211" y="2" width="73" height="55"/>
+                                        <state key="normal" title="+" image="SpeedButton_Gain.png">
                                             <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -857,12 +632,9 @@
                                             <action selector="AddSpeed:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="xqt-tE-xfg"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qb-o9-FVy">
-                                        <rect key="frame" x="20" y="18" width="46" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="vIb-yx-2bE"/>
-                                        </constraints>
-                                        <state key="normal" title="-">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qb-o9-FVy">
+                                        <rect key="frame" x="2" y="4" width="73" height="55"/>
+                                        <state key="normal" title="-" image="SpeedButton_Loss.png">
                                             <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -872,57 +644,18 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="sVg-qj-8gl" secondAttribute="centerX" id="4cy-8u-voD"/>
-                                    <constraint firstAttribute="centerY" secondItem="4qb-o9-FVy" secondAttribute="centerY" id="Egz-IH-OpO"/>
-                                    <constraint firstAttribute="centerY" secondItem="O9W-Pr-QXp" secondAttribute="centerY" id="Qgx-aV-HLJ"/>
-                                    <constraint firstAttribute="centerX" secondItem="O9W-Pr-QXp" secondAttribute="centerX" constant="-99.5" id="V7L-tN-r3h"/>
-                                    <constraint firstAttribute="width" constant="285" id="VdA-wl-d75"/>
-                                    <constraint firstAttribute="centerY" secondItem="sVg-qj-8gl" secondAttribute="centerY" id="fk3-KG-0T0"/>
-                                    <constraint firstAttribute="centerX" secondItem="4qb-o9-FVy" secondAttribute="centerX" constant="99.5" id="mBk-IA-Tiv"/>
-                                </constraints>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Speed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eI-xr-xHT">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Speed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eI-xr-xHT">
                                 <rect key="frame" x="91" y="368" width="137" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="137" id="1aQ-qF-KqZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vhe-c2-P0F">
+                                <rect key="frame" x="204" y="512" width="95" height="42"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="iOu-T1-ml6" secondAttribute="centerX" id="2hu-Py-0xe"/>
-                            <constraint firstAttribute="centerX" secondItem="3eI-xr-xHT" secondAttribute="centerX" id="7RU-e0-3o5"/>
-                            <constraint firstAttribute="centerX" secondItem="LrA-MH-yKw" secondAttribute="centerX" constant="-94" id="8Aa-Jv-uJy"/>
-                            <constraint firstAttribute="centerX" secondItem="oac-oX-uKO" secondAttribute="centerX" id="8Dz-S6-V0X"/>
-                            <constraint firstAttribute="centerY" secondItem="zRd-Ad-w4b" secondAttribute="centerY" constant="188.5" id="EaD-3B-mzy"/>
-                            <constraint firstAttribute="centerY" secondItem="yFr-21-nFb" secondAttribute="centerY" constant="72.5" id="JFk-5f-HeO"/>
-                            <constraint firstAttribute="centerX" secondItem="NfX-zZ-4IN" secondAttribute="centerX" constant="91" id="M41-4W-09b"/>
-                            <constraint firstAttribute="centerY" secondItem="NfX-zZ-4IN" secondAttribute="centerY" constant="-249" id="MTT-43-JA2"/>
-                            <constraint firstAttribute="centerX" secondItem="sYE-ZB-6nS" secondAttribute="centerX" id="PVN-fK-MCF"/>
-                            <constraint firstAttribute="centerY" secondItem="oac-oX-uKO" secondAttribute="centerY" constant="130.5" id="SN4-GX-pEb"/>
-                            <constraint firstAttribute="centerY" secondItem="yHu-HU-N9E" secondAttribute="centerY" constant="-210.5" id="U7C-0n-gzs"/>
-                            <constraint firstAttribute="centerX" secondItem="oac-oX-uKO" secondAttribute="centerX" id="VFJ-hS-c7T"/>
-                            <constraint firstAttribute="centerY" secondItem="FIN-il-PtW" secondAttribute="centerY" constant="246.5" id="Wfo-0C-8it"/>
-                            <constraint firstAttribute="centerX" secondItem="3eI-xr-xHT" secondAttribute="centerX" id="X1H-I2-hVN"/>
-                            <constraint firstAttribute="centerY" secondItem="mhG-pG-Q0X" secondAttribute="centerY" constant="-159.5" id="Xa8-Lj-5uJ"/>
-                            <constraint firstAttribute="centerY" secondItem="iOu-T1-ml6" secondAttribute="centerY" constant="14.5" id="Zeo-g1-xTD"/>
-                            <constraint firstAttribute="centerX" secondItem="FIN-il-PtW" secondAttribute="centerX" id="c1a-hB-BmQ"/>
-                            <constraint firstAttribute="centerX" secondItem="iOu-T1-ml6" secondAttribute="centerX" id="cJy-0X-udb"/>
-                            <constraint firstAttribute="centerX" secondItem="yHu-HU-N9E" secondAttribute="centerX" id="e0K-6c-i1C"/>
-                            <constraint firstAttribute="centerX" secondItem="yFr-21-nFb" secondAttribute="centerX" id="fCk-uO-qDk"/>
-                            <constraint firstAttribute="centerY" secondItem="3eI-xr-xHT" secondAttribute="centerY" constant="-101.5" id="gz9-QT-ZhB"/>
-                            <constraint firstAttribute="centerX" secondItem="zRd-Ad-w4b" secondAttribute="centerX" id="h7N-vd-na9"/>
-                            <constraint firstAttribute="centerX" secondItem="mhG-pG-Q0X" secondAttribute="centerX" id="le0-zN-pOn"/>
-                            <constraint firstAttribute="centerY" secondItem="LrA-MH-yKw" secondAttribute="centerY" constant="-249" id="nh2-lP-Zha"/>
-                            <constraint firstAttribute="centerX" secondItem="FIN-il-PtW" secondAttribute="centerX" id="rn8-kC-mrj"/>
-                            <constraint firstAttribute="centerX" secondItem="yHu-HU-N9E" secondAttribute="centerX" constant="-1.5" id="sb2-6f-YWr"/>
-                            <constraint firstAttribute="centerY" secondItem="sYE-ZB-6nS" secondAttribute="centerY" constant="-43.5" id="xa9-gY-PES"/>
-                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -935,7 +668,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hOq-hc-b1S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1446" y="1149"/>
+            <point key="canvasLocation" x="1451" y="1149"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="zbf-jX-PLe">
@@ -975,37 +708,42 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ButtonBlock.png" translatesAutoresizingMaskIntoConstraints="NO" id="kal-mh-dFs">
                                 <rect key="frame" x="0.0" y="-32" width="320" height="632"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="IDV-ap-84E">
+                                <rect key="frame" x="7" y="418" width="307" height="67"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="RAM-Rg-t7e">
+                                <rect key="frame" x="7" y="492" width="307" height="67"/>
+                            </imageView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Bd5-ws-A05">
                                 <rect key="frame" x="85" y="154" width="150" height="2"/>
                                 <color key="backgroundColor" red="1" green="0.94635691809923528" blue="0.91524618628950949" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="1" green="0.93961456268819787" blue="0.66185436451198165" alpha="0.0" colorSpace="calibratedRGB"/>
-                                <color key="progressTintColor" red="0.98369738520000005" green="0.54053194019063955" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="trackTintColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="progressTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="trackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </progressView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jPO-e8-IgD">
                                 <rect key="frame" x="85" y="212" width="150" height="2"/>
                                 <color key="tintColor" red="1" green="0.93961456268819787" blue="0.66185436451198165" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="progressTintColor" red="0.98369738520000005" green="0.54053194019999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="trackTintColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="progressTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="trackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </progressView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OI9-TI-8uq">
                                 <rect key="frame" x="85" y="276" width="150" height="2"/>
                                 <color key="tintColor" red="1" green="0.93961456268819787" blue="0.66185436451198165" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="progressTintColor" red="0.98369738520000005" green="0.54053194019999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="trackTintColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="progressTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="trackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </progressView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oM8-YL-eJe">
                                 <rect key="frame" x="85" y="339" width="150" height="2"/>
                                 <color key="tintColor" red="1" green="0.93961456268819787" blue="0.66185436451198165" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="progressTintColor" red="0.98369738520000005" green="0.54053194019999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="trackTintColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="progressTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="trackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </progressView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Go1-oY-aEk">
-                                <rect key="frame" x="0.0" y="439" width="320" height="43"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="19"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Go1-oY-aEk">
+                                <rect key="frame" x="0.0" y="437" width="320" height="43"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="19"/>
                                 <state key="normal" title="Return">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1013,104 +751,84 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Health" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZI-r3-1s3">
-                                <rect key="frame" x="85" y="108" width="50" height="21"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="85" y="95" width="74" height="50"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgw-Oo-Rch">
-                                <rect key="frame" x="16" y="79" width="288" height="21"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="16" y="63" width="288" height="35"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Strength" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbG-4X-GTM">
-                                <rect key="frame" x="85" y="172" width="66" height="21"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="85" y="159" width="81" height="48"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Magic" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPK-2S-pZI">
-                                <rect key="frame" x="85" y="239" width="47" height="21"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="85" y="220" width="66" height="50"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Speed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9t-ni-Bmb">
-                                <rect key="frame" x="85" y="298" width="50" height="21"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="85" y="285" width="74" height="50"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFJ-Qd-pNc">
-                                <rect key="frame" x="134" y="108" width="101" height="21"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="159" y="95" width="76" height="50"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqh-xW-awq">
-                                <rect key="frame" x="134" y="172" width="101" height="21"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="164" y="157" width="71" height="50"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="man-gX-huv">
-                                <rect key="frame" x="134" y="239" width="101" height="21"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="134" y="220" width="101" height="50"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WjO-Jy-0he">
-                                <rect key="frame" x="134" y="298" width="101" height="21"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="149" y="285" width="86" height="50"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0Kd-oc-6mf">
                                 <rect key="frame" x="85" y="404" width="150" height="2"/>
                                 <color key="tintColor" red="1" green="0.93961456269999999" blue="0.66185436450000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="progressTintColor" red="0.98369738520000005" green="0.54053194019999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="trackTintColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="progressTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="trackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Experience" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkI-ox-qVk">
-                                <rect key="frame" x="85" y="363" width="92" height="21"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="85" y="350" width="92" height="48"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPS-T5-Rsg">
-                                <rect key="frame" x="134" y="363" width="101" height="21"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="175" y="349" width="60" height="50"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hr7-4P-bhM">
-                                <rect key="frame" x="0.0" y="28" width="320" height="59"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="34"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPq-iv-mJI">
-                                <rect key="frame" x="0.0" y="505" width="320" height="43"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="19"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPq-iv-mJI">
+                                <rect key="frame" x="0.0" y="499" width="320" height="63"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="19"/>
                                 <state key="normal" title="Logout">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="vXZ-lx-hvc" kind="show" identifier="status_title" id="Hik-ON-fcD"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hr7-4P-bhM">
+                                <rect key="frame" x="0.0" y="20" width="320" height="59"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="31"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="sPq-iv-mJI" secondAttribute="centerX" id="5Oa-0H-2VH"/>
-                            <constraint firstAttribute="centerX" secondItem="Go1-oY-aEk" secondAttribute="centerX" id="7md-z4-Xlw"/>
-                            <constraint firstAttribute="centerX" secondItem="Go1-oY-aEk" secondAttribute="centerX" id="HaM-yx-T6a"/>
-                            <constraint firstAttribute="centerX" secondItem="sPq-iv-mJI" secondAttribute="centerX" id="SAZ-cD-og2"/>
-                            <constraint firstAttribute="centerX" secondItem="Go1-oY-aEk" secondAttribute="centerX" id="yX8-r8-Ckc"/>
-                        </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -1147,46 +865,36 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ButtonBlock.png" translatesAutoresizingMaskIntoConstraints="NO" id="7fZ-9V-JGA">
                                 <rect key="frame" x="0.0" y="-32" width="320" height="632"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Choose Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bw2-mt-ZiU">
-                                <rect key="frame" x="0.0" y="133" width="320" height="59"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="oaR-Yc-Wme"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="28"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEp-Fq-Udq">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="fEL-1a-S8J">
+                                <rect key="frame" x="15" y="420" width="137" height="67"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="64e-S7-mh4">
+                                <rect key="frame" x="167" y="420" width="137" height="67"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEp-Fq-Udq">
                                 <rect key="frame" x="172" y="441" width="132" height="30"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="132" id="4B8-K5-wV9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="15"/>
                                 <state key="normal" title="Start Game">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="kwz-uD-Hpi" kind="show" identifier="accselect_map" id="taW-nz-cbX"/>
                                 </connections>
                             </button>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjD-ED-sfh">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bw2-mt-ZiU">
+                                <rect key="frame" x="0.0" y="133" width="320" height="59"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="28"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sjD-ED-sfh">
                                 <rect key="frame" x="16" y="235" width="288" height="162"/>
-                                <color key="backgroundColor" red="0.96221243133446444" green="1" blue="0.92484874896452807" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="288" id="yUo-Fs-7KP"/>
-                                </constraints>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jpk-oE-DTU">
-                                <rect key="frame" x="16" y="441" width="132" height="30"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="132" id="5sZ-np-eOv"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="15"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jpk-oE-DTU">
+                                <rect key="frame" x="16" y="441" width="138" height="29"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="15"/>
                                 <state key="normal" title="New Character">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1195,16 +903,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="sjD-ED-sfh" secondAttribute="centerY" constant="-32" id="5vg-RJ-Cjz"/>
-                            <constraint firstAttribute="centerX" secondItem="sjD-ED-sfh" secondAttribute="centerX" id="Ffh-cz-AJV"/>
-                            <constraint firstAttribute="centerY" secondItem="Jpk-oE-DTU" secondAttribute="centerY" constant="-172" id="H45-0F-MEn"/>
-                            <constraint firstAttribute="centerY" secondItem="GEp-Fq-Udq" secondAttribute="centerY" constant="-172" id="KAg-Cl-YXo"/>
-                            <constraint firstAttribute="centerY" secondItem="Bw2-mt-ZiU" secondAttribute="centerY" constant="121.5" id="Nxb-JQ-hlw"/>
-                            <constraint firstAttribute="centerX" secondItem="Bw2-mt-ZiU" secondAttribute="centerX" id="hyr-WB-rzm"/>
-                            <constraint firstAttribute="centerX" secondItem="Jpk-oE-DTU" secondAttribute="centerX" constant="78" id="oWt-Xp-kry"/>
-                            <constraint firstAttribute="centerX" secondItem="GEp-Fq-Udq" secondAttribute="centerX" constant="-78" id="vVP-bY-E7g"/>
-                        </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -1214,7 +912,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pGi-9f-fYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="284" y="314"/>
+            <point key="canvasLocation" x="283" y="314"/>
         </scene>
         <!--License View Controller-->
         <scene sceneID="AzS-NJ-MXs">
@@ -1231,49 +929,33 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ButtonBlock.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vw3-hA-Zgr">
                                 <rect key="frame" x="0.0" y="-32" width="320" height="632"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="License" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P26-Hs-W1g">
-                                <rect key="frame" x="0.0" y="55" width="320" height="59"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="pdU-rb-WBu"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="28"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qlg-rV-Pcl">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="D7p-ZV-NgJ">
+                                <rect key="frame" x="7" y="468" width="307" height="67"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qlg-rV-Pcl">
                                 <rect key="frame" x="0.0" y="483" width="320" height="45"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="Ash-iI-0h7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="21"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="21"/>
                                 <state key="normal" title="Return">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="vXZ-lx-hvc" kind="show" id="HjJ-Hv-ibE"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LX7-JY-VaI">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="License" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P26-Hs-W1g">
+                                <rect key="frame" x="0.0" y="55" width="320" height="59"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="28"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LX7-JY-VaI">
                                 <rect key="frame" x="28" y="122" width="264" height="328"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="264" id="fdI-a3-2MH"/>
-                                </constraints>
+                                <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="qlg-rV-Pcl" secondAttribute="centerX" id="8BL-oN-p78"/>
-                            <constraint firstAttribute="centerX" secondItem="P26-Hs-W1g" secondAttribute="centerX" id="9YF-Ew-4kU"/>
-                            <constraint firstAttribute="centerX" secondItem="LX7-JY-VaI" secondAttribute="centerX" id="KuC-Mv-ZpA"/>
-                            <constraint firstAttribute="centerY" secondItem="P26-Hs-W1g" secondAttribute="centerY" constant="199.5" id="WRg-xc-EMo"/>
-                            <constraint firstAttribute="centerY" secondItem="LX7-JY-VaI" secondAttribute="centerY" constant="-2" id="f2L-8a-C4x"/>
-                            <constraint firstAttribute="centerY" secondItem="qlg-rV-Pcl" secondAttribute="centerY" constant="-221.5" id="hKT-aw-fKT"/>
-                        </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
@@ -1282,7 +964,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ob2-B2-nuh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-504" y="314"/>
+            <point key="canvasLocation" x="-508" y="314"/>
         </scene>
         <!--Character Create View Controller-->
         <scene sceneID="xNc-fL-d1Q">
@@ -1299,10 +981,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ButtonBlock.png" translatesAutoresizingMaskIntoConstraints="NO" id="OSB-Kt-7gY">
                                 <rect key="frame" x="0.0" y="-32" width="320" height="632"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="yB6-uf-tIn">
+                                <rect key="frame" x="200" y="514" width="104" height="33"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVa-yU-FNe">
                                 <rect key="frame" x="205" y="518" width="100" height="30"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="19"/>
                                 <state key="normal" title="Confirm">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1313,8 +997,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bp7-8z-D5B">
                                 <rect key="frame" x="20" y="518" width="100" height="30"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="19"/>
                                 <state key="normal" title="Reset">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1324,20 +1007,15 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Remaining Points:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQF-OM-yFd">
-                                <rect key="frame" x="20" y="484" width="285" height="21"/>
-                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="20" y="480" width="285" height="33"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g2I-Op-nvV">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g2I-Op-nvV">
                                 <rect key="frame" x="20" y="63" width="285" height="65"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQ0-4o-PHO">
-                                        <rect key="frame" x="218" y="5" width="55" height="55"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="55" id="IGa-XC-BrH"/>
-                                            <constraint firstAttribute="width" constant="55" id="ViK-9l-AwR"/>
-                                        </constraints>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQ0-4o-PHO">
+                                        <rect key="frame" x="212" y="5" width="73" height="56"/>
                                         <state key="normal" title="+" image="HealthButton_Gain.png">
                                             <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1346,9 +1024,9 @@
                                             <action selector="AddHealth:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="Dwu-D3-7St"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OwD-YK-1Nz">
-                                        <rect key="frame" x="20" y="18" width="46" height="30"/>
-                                        <state key="normal" title="-">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OwD-YK-1Nz">
+                                        <rect key="frame" x="1" y="5" width="73" height="55"/>
+                                        <state key="normal" title="-" image="HealthButton_Loss.png">
                                             <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1357,29 +1035,23 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="HealthLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9r-aY-wQl">
-                                        <rect key="frame" x="74" y="10" width="137" height="45"/>
-                                        <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
+                                        <rect key="frame" x="74" y="10" width="137" height="47"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="KQ0-4o-PHO" secondAttribute="centerX" constant="-103" id="SoR-jT-8Nz"/>
-                                    <constraint firstAttribute="centerY" secondItem="KQ0-4o-PHO" secondAttribute="centerY" id="cuw-o1-Unv"/>
-                                </constraints>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Health" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQo-pf-suQ">
                                 <rect key="frame" x="92" y="20" width="137" height="35"/>
-                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSz-fG-zpk">
                                 <rect key="frame" x="20" y="179" width="285" height="65"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbn-y3-u0f">
-                                        <rect key="frame" x="219" y="18" width="46" height="30"/>
-                                        <state key="normal" title="+">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbn-y3-u0f">
+                                        <rect key="frame" x="211" y="5" width="73" height="55"/>
+                                        <state key="normal" title="+" image="StrengthButton_Gain.png">
                                             <color key="titleColor" red="1" green="0.71182316599999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1387,9 +1059,9 @@
                                             <action selector="AddStrength:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="jYz-AR-4jR"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbN-m7-OcW">
-                                        <rect key="frame" x="20" y="18" width="46" height="30"/>
-                                        <state key="normal" title="-">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbN-m7-OcW">
+                                        <rect key="frame" x="2" y="5" width="73" height="55"/>
+                                        <state key="normal" title="-" image="StrengthButton_Loss.png">
                                             <color key="titleColor" red="1" green="0.71182316599999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1399,16 +1071,14 @@
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="StrengthLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9V-ZE-GrF">
                                         <rect key="frame" x="74" y="10" width="137" height="45"/>
-                                        <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Strength" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VF4-uD-z4Z">
                                 <rect key="frame" x="92" y="136" width="137" height="35"/>
-                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x56-sf-qZb">
@@ -1416,12 +1086,12 @@
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MagicLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfw-Mc-WTy">
                                         <rect key="frame" x="74" y="10" width="137" height="45"/>
-                                        <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qpR-2s-DDb">
-                                        <rect key="frame" x="219" y="18" width="46" height="30"/>
-                                        <state key="normal" title="+">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qpR-2s-DDb">
+                                        <rect key="frame" x="212" y="3" width="73" height="55"/>
+                                        <state key="normal" title="+" image="MagicButton_Gain.png">
                                             <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1429,9 +1099,9 @@
                                             <action selector="AddMagic:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="LMn-35-Cq5"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKk-9f-Ar4">
-                                        <rect key="frame" x="20" y="18" width="46" height="30"/>
-                                        <state key="normal" title="-">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKk-9f-Ar4">
+                                        <rect key="frame" x="1" y="5" width="73" height="55"/>
+                                        <state key="normal" title="-" image="MagicButton_Loss.png">
                                             <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1440,12 +1110,10 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Magic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u45-3o-xcs">
                                 <rect key="frame" x="92" y="252" width="137" height="35"/>
-                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W8J-be-4jf">
@@ -1453,12 +1121,12 @@
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SpeedLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDK-rK-PeW">
                                         <rect key="frame" x="74" y="10" width="137" height="45"/>
-                                        <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1g-sr-zJO">
-                                        <rect key="frame" x="219" y="18" width="46" height="30"/>
-                                        <state key="normal" title="+">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1g-sr-zJO">
+                                        <rect key="frame" x="212" y="1" width="73" height="55"/>
+                                        <state key="normal" title="+" image="SpeedButton_Gain.png">
                                             <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1466,9 +1134,9 @@
                                             <action selector="AddSpeed:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="HEu-pe-FM6"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0j-Ny-mXw">
-                                        <rect key="frame" x="20" y="18" width="46" height="30"/>
-                                        <state key="normal" title="-">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0j-Ny-mXw">
+                                        <rect key="frame" x="5" y="2" width="73" height="55"/>
+                                        <state key="normal" title="-" image="SpeedButton_Loss.png">
                                             <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1477,14 +1145,26 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Speed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVZ-m9-Rcf">
                                 <rect key="frame" x="92" y="368" width="137" height="35"/>
-                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
-                                <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="aRW-tg-Fir">
+                                <rect key="frame" x="17" y="515" width="104" height="33"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6qU-eP-iDU">
+                                <rect key="frame" x="20" y="517" width="100" height="30"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="19"/>
+                                <state key="normal" title="Reset">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="Reset:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="AiA-fz-c9p"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -1507,12 +1187,20 @@
         <image name="ButtonBlock.png" width="381" height="453"/>
         <image name="ContinueButton_Up.png" width="412" height="98"/>
         <image name="HealthButton_Gain.png" width="200" height="150"/>
+        <image name="HealthButton_Loss.png" width="200" height="150"/>
+        <image name="MagicButton_Gain.png" width="200" height="150"/>
+        <image name="MagicButton_Loss.png" width="200" height="150"/>
         <image name="NewGameButton_Up.png" width="412" height="98"/>
+        <image name="SpeedButton_Gain.png" width="200" height="150"/>
+        <image name="SpeedButton_Loss.png" width="200" height="150"/>
+        <image name="StrengthButton_Gain.png" width="200" height="150"/>
+        <image name="StrengthButton_Loss.png" width="200" height="150"/>
+        <image name="Text_Button.png" width="412" height="98"/>
         <image name="title.png" width="800" height="450"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gqu-8j-EKE"/>
-        <segue reference="HjJ-Hv-ibE"/>
+        <segue reference="Rl4-W2-sjU"/>
         <segue reference="fkF-W3-xbb"/>
+        <segue reference="HjJ-Hv-ibE"/>
     </inferredMetricsTieBreakers>
 </document>

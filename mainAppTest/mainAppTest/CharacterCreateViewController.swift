@@ -37,6 +37,7 @@ class CharacterCreateViewController: UIViewController
         original.strength = p.strength;
         original.magic = p.magic;
         original.speed = p.speed;
+        original.points = p.points;
         updateLabels();
     }
 

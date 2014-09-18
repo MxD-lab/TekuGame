@@ -84,6 +84,7 @@
 		BC81B21619CA7F8D003BDF8C /* ContinueButton_Up.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B21319CA7F8D003BDF8C /* ContinueButton_Up.png */; };
 		BC81B21819CA8116003BDF8C /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B21719CA8116003BDF8C /* title.png */; };
 		BC81B21A19CA8412003BDF8C /* Generic_Gray_Button.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B21919CA8412003BDF8C /* Generic_Gray_Button.png */; };
+		BC81B21C19CA9DF5003BDF8C /* Text_Button.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B21B19CA9DF5003BDF8C /* Text_Button.png */; };
 		BC8787B419C032A80001C9DD /* usernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8787B319C032A80001C9DD /* usernameViewController.swift */; };
 		BC8A857919C14FE800335599 /* resultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A857819C14FE800335599 /* resultsViewController.swift */; };
 		BC8A857B19C1502D00335599 /* assignPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A857A19C1502D00335599 /* assignPointsViewController.swift */; };
@@ -231,6 +232,7 @@
 		BC81B21319CA7F8D003BDF8C /* ContinueButton_Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContinueButton_Up.png; sourceTree = "<group>"; };
 		BC81B21719CA8116003BDF8C /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		BC81B21919CA8412003BDF8C /* Generic_Gray_Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Generic_Gray_Button.png; sourceTree = "<group>"; };
+		BC81B21B19CA9DF5003BDF8C /* Text_Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Text_Button.png; sourceTree = "<group>"; };
 		BC8787B319C032A80001C9DD /* usernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = usernameViewController.swift; sourceTree = "<group>"; };
 		BC8A857819C14FE800335599 /* resultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resultsViewController.swift; sourceTree = "<group>"; };
 		BC8A857A19C1502D00335599 /* assignPointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignPointsViewController.swift; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 				BC81B1FB19CA7DF8003BDF8C /* MagicButton_Loss.png */,
 				BC81B1FC19CA7DF8003BDF8C /* NewGameButton_Down.png */,
 				BC81B1FD19CA7DF8003BDF8C /* NewGameButton_Up.png */,
+				BC81B21B19CA9DF5003BDF8C /* Text_Button.png */,
 				BC81B1FE19CA7DF8003BDF8C /* SpeedButton_Gain.png */,
 				BC81B1FF19CA7DF8003BDF8C /* SpeedButton_Loss.png */,
 				BC81B20019CA7DF8003BDF8C /* StrengthButton_Gain.png */,
@@ -720,6 +723,7 @@
 				F8956B0C19A194A700ED670B /* Main.storyboard in Resources */,
 				A1D183D919BED3BE00E03B28 /* E_Instant_Death.png in Resources */,
 				A1DEB5CC19BD6F0700F7A21E /* Humanoid2.png in Resources */,
+				BC81B21C19CA9DF5003BDF8C /* Text_Button.png in Resources */,
 				F8956B0E19A194A700ED670B /* Images.xcassets in Resources */,
 				A1DEB5C919BD6F0700F7A21E /* Elemental4.png in Resources */,
 				BC8A858D19C178B100335599 /* Info.plist in Resources */,
@@ -877,10 +881,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_NAME = Errant;
 				PROVISIONING_PROFILE = "8f295cb0-a965-40d0-96f6-2f7a860a558e";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -916,9 +921,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_NAME = Errant;
 				PROVISIONING_PROFILE = "8f295cb0-a965-40d0-96f6-2f7a860a558e";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -941,7 +947,7 @@
 				INFOPLIST_FILE = mainAppTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = mainAppTest;
 				PROVISIONING_PROFILE = "3da7012d-6f7d-49f3-9915-c77f8417fbea";
 				SWIFT_OBJC_BRIDGING_HEADER = "mainAppTest-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -965,7 +971,7 @@
 				INFOPLIST_FILE = mainAppTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = mainAppTest;
 				PROVISIONING_PROFILE = "3da7012d-6f7d-49f3-9915-c77f8417fbea";
 				SWIFT_OBJC_BRIDGING_HEADER = "mainAppTest-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -986,7 +992,7 @@
 				);
 				INFOPLIST_FILE = mainAppTestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = mainAppTestTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Debug;
@@ -1001,7 +1007,7 @@
 				);
 				INFOPLIST_FILE = mainAppTestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = mainAppTestTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
