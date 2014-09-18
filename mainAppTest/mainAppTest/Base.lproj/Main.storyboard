@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -16,36 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tekugame" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FnD-2m-t66">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tekugame" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FnD-2m-t66">
                                 <rect key="frame" x="0.0" y="112" width="320" height="86"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="abL-AJ-hZ6"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="50"/>
                                 <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l9M-ZE-Yfo">
-                                <rect key="frame" x="0.0" y="357" width="320" height="45"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="CGQ-Q9-548"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="21"/>
-                                <state key="normal" title="Continue">
-                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="continuePressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="FkN-sl-ukW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tjq-8B-OH2">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tjq-8B-OH2">
                                 <rect key="frame" x="0.0" y="463" width="320" height="45"/>
                                 <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="7A3-Ao-1FV"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="21"/>
                                 <state key="normal" title="License">
                                     <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -55,14 +35,13 @@
                                     <segue destination="Dfa-qk-mNl" kind="show" id="4xc-JI-yd8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1s-Gn-qpP">
-                                <rect key="frame" x="0.0" y="299" width="320" height="45"/>
-                                <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1s-Gn-qpP">
+                                <rect key="frame" x="33" y="284" width="255" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="U7A-PE-0Bw"/>
+                                    <constraint firstAttribute="height" constant="50" id="PKK-NU-Ect"/>
+                                    <constraint firstAttribute="width" constant="255" id="u5z-L2-6XU"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="21"/>
-                                <state key="normal" title="New Game">
+                                <state key="normal" title="New Game" image="NewGameButton_Up.png">
                                     <color key="titleColor" red="0.98369738520408168" green="0.56231677926931267" blue="0.090265806830612069" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -70,17 +49,27 @@
                                     <segue destination="nDv-Yp-x5l" kind="show" id="fkF-W3-xbb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l9M-ZE-Yfo">
+                                <rect key="frame" x="33" y="351" width="255" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4Zi-KJ-Ptc"/>
+                                    <constraint firstAttribute="width" constant="255" id="dkw-J0-uCa"/>
+                                </constraints>
+                                <state key="normal" title="Continue" image="ContinueButton_Up.png">
+                                    <color key="titleColor" red="0.98369738520000005" green="0.56231677930000001" blue="0.090265806830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="continuePressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="FkN-sl-ukW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.71182316595602457" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="D1s-Gn-qpP" secondAttribute="centerY" constant="-37.5" id="1zp-U7-AyH"/>
-                            <constraint firstAttribute="centerY" secondItem="FnD-2m-t66" secondAttribute="centerY" constant="129" id="BM1-HR-W15"/>
-                            <constraint firstAttribute="centerX" secondItem="l9M-ZE-Yfo" secondAttribute="centerX" id="CEp-th-zo0"/>
-                            <constraint firstAttribute="centerX" secondItem="tjq-8B-OH2" secondAttribute="centerX" id="FcK-Qa-t3P"/>
-                            <constraint firstAttribute="centerY" secondItem="tjq-8B-OH2" secondAttribute="centerY" constant="-201.5" id="Hkf-bc-u0V"/>
-                            <constraint firstAttribute="centerX" secondItem="FnD-2m-t66" secondAttribute="centerX" id="PJQ-Dx-haQ"/>
-                            <constraint firstAttribute="centerY" secondItem="l9M-ZE-Yfo" secondAttribute="centerY" constant="-95.5" id="hNv-rt-kAs"/>
-                            <constraint firstAttribute="centerX" secondItem="D1s-Gn-qpP" secondAttribute="centerX" id="jDb-ta-qaw"/>
+                            <constraint firstAttribute="centerX" secondItem="D1s-Gn-qpP" secondAttribute="centerX" id="1OL-ZS-ejW"/>
+                            <constraint firstAttribute="centerY" secondItem="D1s-Gn-qpP" secondAttribute="centerY" constant="-24.5" id="CoP-dT-txH"/>
+                            <constraint firstAttribute="centerY" secondItem="l9M-ZE-Yfo" secondAttribute="centerY" constant="-92" id="ECR-47-QsX"/>
+                            <constraint firstAttribute="centerX" secondItem="l9M-ZE-Yfo" secondAttribute="centerX" id="F5F-bP-Kn3"/>
                         </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -1000,7 +989,7 @@
                                 <color key="progressTintColor" red="0.98369738520000005" green="0.54053194019999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="trackTintColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Go1-oY-aEk">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Go1-oY-aEk">
                                 <rect key="frame" x="0.0" y="439" width="320" height="43"/>
                                 <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="19"/>
@@ -1090,7 +1079,7 @@
                                 <color key="textColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPq-iv-mJI">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPq-iv-mJI">
                                 <rect key="frame" x="0.0" y="505" width="320" height="43"/>
                                 <color key="backgroundColor" red="0.9622124313" green="1" blue="0.92484874900000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="19"/>
@@ -1320,7 +1309,7 @@
                                     <action selector="Reset:" destination="dhd-tE-9Gu" eventType="touchUpInside" id="RTh-Ey-T69"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Remaining Points:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQF-OM-yFd">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remaining Points:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQF-OM-yFd">
                                 <rect key="frame" x="20" y="484" width="285" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="285" id="QnA-tc-hwF"/>
@@ -1607,9 +1596,13 @@
             <point key="canvasLocation" x="1406" y="-493"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ContinueButton_Up.png" width="412" height="98"/>
+        <image name="NewGameButton_Up.png" width="412" height="98"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="01y-4x-iNO"/>
+        <segue reference="gqu-8j-EKE"/>
         <segue reference="Hik-ON-fcD"/>
-        <segue reference="Ym7-ie-ty9"/>
+        <segue reference="fkF-W3-xbb"/>
     </inferredMetricsTieBreakers>
 </document>
