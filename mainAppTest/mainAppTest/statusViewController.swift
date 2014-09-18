@@ -40,6 +40,7 @@ class statusViewController: UIViewController {
         var speed:Int = player["speed"]!
         var exp:Int = player["exp"]!
         var level:Int = player["level"]!
+
         
         healthLabel.text = "\(health)"
         strengthLabel.text = "\(strength)"
@@ -50,17 +51,17 @@ class statusViewController: UIViewController {
         nameLevelLabel.text = "@\(useridonly) Level \(level)"
         
         var magicSteps:Int = 0
-        if (prefs.objectForKey("magicSteps") != nil) {
+        if (prefs.objectForKey("magicSteps")? != nil) {
             magicSteps = prefs.objectForKey("magicSteps") as Int
         }
         
         var enemiesBeaten:Int = 0
-        if (prefs.objectForKey("enemiesBeaten") != nil) {
+        if (prefs.objectForKey("enemiesBeaten")? != nil) {
             enemiesBeaten = prefs.objectForKey("enemiesBeaten") as Int
         }
         
         var speedFloat:Float = 0
-        if (prefs.objectForKey("speedFloat") != nil) {
+        if (prefs.objectForKey("speedFloat")? != nil) {
             speedFloat = prefs.objectForKey("speedFloat") as Float
         }
         

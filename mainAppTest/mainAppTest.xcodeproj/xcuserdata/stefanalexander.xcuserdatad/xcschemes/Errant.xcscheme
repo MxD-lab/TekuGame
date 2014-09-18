@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F8956B0019A194A700ED670B"
-               BuildableName = "Errant.app"
+               BuildableName = "mainAppTest.app"
                BlueprintName = "mainAppTest"
                ReferencedContainer = "container:mainAppTest.xcodeproj">
             </BuildableReference>
@@ -29,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F8956B1219A194A700ED670B"
-               BuildableName = "ErrantTests.xctest"
+               BuildableName = "mainAppTestTests.xctest"
                BlueprintName = "mainAppTestTests"
                ReferencedContainer = "container:mainAppTest.xcodeproj">
             </BuildableReference>
@@ -47,7 +47,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F8956B1219A194A700ED670B"
-               BuildableName = "ErrantTests.xctest"
+               BuildableName = "mainAppTestTests.xctest"
                BlueprintName = "mainAppTestTests"
                ReferencedContainer = "container:mainAppTest.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F8956B0019A194A700ED670B"
-            BuildableName = "Errant.app"
+            BuildableName = "mainAppTest.app"
             BlueprintName = "mainAppTest"
             ReferencedContainer = "container:mainAppTest.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F8956B0019A194A700ED670B"
-            BuildableName = "Errant.app"
+            BuildableName = "mainAppTest.app"
             BlueprintName = "mainAppTest"
             ReferencedContainer = "container:mainAppTest.xcodeproj">
          </BuildableReference>
@@ -94,7 +94,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F8956B0019A194A700ED670B"
-            BuildableName = "Errant.app"
+            BuildableName = "mainAppTest.app"
             BlueprintName = "mainAppTest"
             ReferencedContainer = "container:mainAppTest.xcodeproj">
          </BuildableReference>
