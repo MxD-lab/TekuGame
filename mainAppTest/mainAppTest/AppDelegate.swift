@@ -87,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         statusloop = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("checkStatus"), userInfo: nil, repeats: true)
         NSRunLoop.currentRunLoop().addTimer(loop, forMode: NSRunLoopCommonModes)
         NSRunLoop.currentRunLoop().addTimer(statusloop, forMode: NSRunLoopCommonModes)
-        
+        postPlayerStats()
         postLog("applicationDidEnterBackground")
     }
     
