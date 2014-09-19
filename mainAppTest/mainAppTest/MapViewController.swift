@@ -554,12 +554,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         var prefs = NSUserDefaults.standardUserDefaults()
         
-        var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
-        var health:Int = plStats[playerID]!["health"]!
-        var strength:Int = plStats[playerID]!["strength"]!
-        var magic:Int = plStats[playerID]!["magic"]!
-        var speed:Int = plStats[playerID]!["speed"]!
-        var assignpoints:Int = plStats[playerID]!["assignpoints"]!
+        var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
+        var health:Int = plStats[playerID]!["health"]! as Int
+        var strength:Int = plStats[playerID]!["strength"]! as Int
+        var magic:Int = plStats[playerID]!["magic"]! as Int
+        var speed:Int = plStats[playerID]!["speed"]! as Int
+//        var assignpoints:Int = plStats[playerID]!["assignpoints"]! as Int
         plStats[playerID]!["health"]! = health+healthinc
         plStats[playerID]!["strength"]! = strength+strengthinc
         plStats[playerID]!["magic"]! = magic+magicinc

@@ -89,14 +89,14 @@ class GameViewController: UIViewController {
             var enemiesbeaten = 0
             var prefs = NSUserDefaults.standardUserDefaults()
             prefs.removeObjectForKey("encounterStep")
-            if (prefs.objectForKey("enemiesBeaten") != nil) {
-                enemiesbeaten = prefs.objectForKey("enemiesBeaten") as Int
-                enemiesbeaten += 1
-                prefs.setObject(enemiesbeaten, forKey: "enemiesBeaten")
-            }
-            else {
-                prefs.setObject(1, forKey: "enemiesBeaten")
-            }
+//            if (prefs.objectForKey("enemiesBeaten") != nil) {
+//                enemiesbeaten = prefs.objectForKey("enemiesBeaten") as Int
+//                enemiesbeaten += 1
+//                prefs.setObject(enemiesbeaten, forKey: "enemiesBeaten")
+//            }
+//            else {
+//                prefs.setObject(1, forKey: "enemiesBeaten")
+//            }
             
             // Assign experience stuff when won.
             var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
@@ -104,8 +104,10 @@ class GameViewController: UIViewController {
             var exp:Int = plStats[currentuser]!["exp"]! as Int
             var level:Int = plStats[currentuser]!["level"]! as Int
             var assignpoints:Int = plStats[currentuser]!["assignpoints"]! as Int
+            var enemiesDefeated:Int = plStats[currentuser]!["enemiesDefeated"]! as Int
             
             exp += 1
+            enemiesDefeated += 1
             if (exp == 10 * level) {
                 level += 1
                 exp = 0
@@ -116,6 +118,7 @@ class GameViewController: UIViewController {
             plStats[currentuser]!["exp"]! = exp
             plStats[currentuser]!["level"]! = level
             plStats[currentuser]!["assignpoints"]! = assignpoints
+            plStats[currentuser]!["enemiesDefeated"]! = enemiesDefeated
             
             prefs.setObject(plStats, forKey: "playerStats")
             
