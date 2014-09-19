@@ -170,19 +170,15 @@ class CharacterCreateViewController: UIViewController
             if (prefs.objectForKey("playerStats") != nil) {
                 plStats = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
             }
-//            var stats = ["level": p.level, "health":p.health, "magic":p.magic, "speed":p.speed, "strength":p.strength, "assignpoints":p.points, "exp":p.exp]
             
             var magicHour = Int(arc4random_uniform(16)) + 8
+            var enemyStepCount = 0
+            updateEncounterStep(&enemyStepCount, 0)
             
-            var stats = ["level": p.level, "health":p.health, "strength":p.strength, "magic":p.magic, "speed":p.speed, "assignpoints":p.points, "exp":p.exp, "speedProgress":0, "enemiesDefeated":0, "magicHour":magicHour, "magicSteps":0, "date":returnDateString()] as [String:AnyObject]
+            var stats = ["level": p.level, "health":p.health, "strength":p.strength, "magic":p.magic, "speed":p.speed, "assignpoints":p.points, "exp":p.exp, "speedProgress":0, "enemiesDefeated":0, "magicHour":magicHour, "magicSteps":0, "date":returnDateString(), "healthGoal":5000, "strengthGoal":3, "magicGoal":1000, "enemyStepCount":enemyStepCount] as [String:AnyObject]
             
             plStats[playerID] = stats
             
-
-            prefs.removeObjectForKey("magicGoal")
-            prefs.removeObjectForKey("healthGoal")
-            prefs.removeObjectForKey("encounterStep")
-            prefs.removeObjectForKey("enemiesGoal")
             prefs.setObject(plStats, forKey: "playerStats")
             prefs.setObject(accounts, forKey: "useraccounts")
             prefs.setObject(playerID, forKey: "currentuser")

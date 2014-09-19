@@ -102,6 +102,10 @@ func getPlayerStats() {
                     var magicHourstr = data["magicHour"] as NSString
                     var magicStepsstr = data["magicSteps"] as NSString
                     var date = data["date"] as String
+                    var healthGoalstr = data["healthGoal"] as NSString
+                    var strengthGoalstr = data["strengthGoal"] as NSString
+                    var magicGoalstr = data["magicGoal"] as NSString
+                    var enemyStepCountstr = data["enemyStepCount"] as NSString
                     
                     var level:Int = Int(levelstr.doubleValue)
                     var health:Int = Int(healthstr.doubleValue)
@@ -114,9 +118,13 @@ func getPlayerStats() {
                     var enemiesDefeated:Int = Int(enemiesDefeatedstr.doubleValue)
                     var magicHour:Int = Int(magicHourstr.doubleValue)
                     var magicSteps:Int = Int(magicStepsstr.doubleValue)
+                    var healthGoal:Int = Int(healthGoalstr.doubleValue)
+                    var strengthGoal:Int = Int(strengthGoalstr.doubleValue)
+                    var magicGoal:Int = Int(magicGoalstr.doubleValue)
+                    var enemyStepCount:Int = Int(enemyStepCountstr.doubleValue)
                     
                     var plStats:[String:[String:AnyObject]] = [:]
-                    var stats = ["level": level, "health":health, "strength":strength, "magic":magic, "speed":speed, "assignpoints":points, "exp":experience, "speedProgress":speedProgress, "enemiesDefeated":enemiesDefeated, "magicHour":magicHour, "magicSteps":magicSteps, "date":date] as [String:AnyObject]
+                    var stats = ["level": level, "health":health, "strength":strength, "magic":magic, "speed":speed, "assignpoints":points, "exp":experience, "speedProgress":speedProgress, "enemiesDefeated":enemiesDefeated, "magicHour":magicHour, "magicSteps":magicSteps, "date":date, "healthGoal":healthGoal, "strengthGoal":strengthGoal, "magicGoal":magicGoal, "enemyStepCount":enemyStepCount] as [String:AnyObject]
                     plStats[currentuser] = stats
                     prefs.setObject(plStats, forKey: "playerStats")
                     break
@@ -146,9 +154,40 @@ func postPlayerStats() {
         var magicHour = plStats[playerID]!["magicHour"]! as Int
         var magicSteps = plStats[playerID]!["magicSteps"]! as Int
         var date = plStats[playerID]!["date"]! as String
+        var healthGoal = plStats[playerID]!["healthGoal"]! as Int
+        var strengthGoal = plStats[playerID]!["strengthGoal"]! as Int
+        var magicGoal = plStats[playerID]!["magicGoal"]! as Int
+        var enemyStepCount = plStats[playerID]!["enemyStepCount"]! as Int
         var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/playerdataForm/"
-        var str = "ID=\(playerID)&level=\(level)&health=\(health)&strength=\(strength)&magic=\(magic)&speed=\(speed)&points=\(points)&experience=\(exp)&speedProgress=\(speedProgress)&enemiesDefeated=\(enemiesDefeated)&magicHour=\(magicHour)&magicSteps=\(magicSteps)&date=\(date)&submit=submit"
+        var str = "ID=\(playerID)&level=\(level)&health=\(health)&strength=\(strength)&magic=\(magic)&speed=\(speed)&points=\(points)&experience=\(exp)&speedProgress=\(speedProgress)&enemiesDefeated=\(enemiesDefeated)&magicHour=\(magicHour)&magicSteps=\(magicSteps)&date=\(date)&healthGoal=\(healthGoal)&strengthGoal=\(strengthGoal)&magicGoal=\(magicGoal)&enemyStepCount=\(enemyStepCount)&submit=submit"
         post(urlstring, str)
     }
+}
+
+func updateEncounterStep(inout stepcount:Int, m7steps:Int) {
+    var thousands = lroundf(Float(m7steps) / 1000.0) + 1
+    stepcount = Int(thousands) * 1000 + Int(arc4random_uniform(200)) - 100
+    var appdel:AppDelegate = (UIApplication.sharedApplication().delegate) as AppDelegate
+    appdel.encounterstep = stepcount
+}
+
+
+func updateLocalPlayerStats(healthinc:Int, strengthinc:Int, magicinc:Int, speedinc:Int, inout stats:[String:[String:AnyObject]]) {
+    
+    var prefs = NSUserDefaults.standardUserDefaults()
+    var playerID = prefs.objectForKey("currentuser") as String
+    
+    var health:Int = stats[playerID]!["health"]! as Int
+    var strength:Int = stats[playerID]!["strength"]! as Int
+    var magic:Int = stats[playerID]!["magic"]! as Int
+    var speed:Int = stats[playerID]!["speed"]! as Int
+    stats[playerID]!["health"]! = health+healthinc
+    stats[playerID]!["strength"]! = strength+strengthinc
+    stats[playerID]!["magic"]! = magic+magicinc
+    stats[playerID]!["speed"]! = speed+speedinc
+    
+    prefs.setObject(stats, forKey: "playerStats")
+    
+    postLog("My current stats after updating are Health: \(health+healthinc), Strength: \(strength+strengthinc), Magic: \(magic+magicinc), Speed: \(speed+speedinc)")
 }
 

@@ -82,21 +82,12 @@ class GameViewController: UIViewController {
 
         if (userInfo.objectForKey("playerWin") != nil) {
             pwin = userInfo.objectForKey("playerWin") as Bool
-            println("Pwin: \(pwin)")
         }
 
         if (gmover && pwin && !incremented) {
             var enemiesbeaten = 0
             var prefs = NSUserDefaults.standardUserDefaults()
             prefs.removeObjectForKey("encounterStep")
-//            if (prefs.objectForKey("enemiesBeaten") != nil) {
-//                enemiesbeaten = prefs.objectForKey("enemiesBeaten") as Int
-//                enemiesbeaten += 1
-//                prefs.setObject(enemiesbeaten, forKey: "enemiesBeaten")
-//            }
-//            else {
-//                prefs.setObject(1, forKey: "enemiesBeaten")
-//            }
             
             // Assign experience stuff when won.
             var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
@@ -123,7 +114,6 @@ class GameViewController: UIViewController {
             prefs.setObject(plStats, forKey: "playerStats")
             
             incremented = true
-//            performSegueWithIdentifier("mainmap", sender: self)
             performSegueWithIdentifier("results", sender: self)
         }
         else if (gmover && !pwin && !segued) {
@@ -142,7 +132,6 @@ class GameViewController: UIViewController {
             plStats[currentuser]!["exp"]! = exp
             prefs.setObject(plStats, forKey: "playerStats")
 
-//            performSegueWithIdentifier("mainmap", sender: self)
             performSegueWithIdentifier("results", sender: self)
         }
     }

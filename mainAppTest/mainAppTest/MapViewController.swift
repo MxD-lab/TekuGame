@@ -39,9 +39,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // Internet Connection.
     @IBOutlet weak var netConnectionLabel: UILabel!
     
-    // Enemy encounter step count.
-    var encountStepCount:Int! = 0
-    
     // iBeacon
     let proximityUUID = NSUUID(UUIDString:"B9407F30-F5F8-466E-AFF9-25556B57FE6D")   // UUID of iBeacon.
     var region  = CLBeaconRegion()                                                  // Region defined for iBeacons.
@@ -57,17 +54,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     var healthGoal:Int = 0
     var speedFloat:Float = 0
+    var enemiesDefeated:Int = 0
     var magicHourInt:Int = 0
     var currentHourInt:Int = 0
     var prevMagicSteps:Int = 0
     var magicSteps:Int = 0
     var magicGoal:Int = 0
     var enemiesGoal:Int = 0
+    var enemyStepCount:Int = 0
     
     var labelTimer:NSTimer!
     var statusTimer:NSTimer!
     var postGetTimer:NSTimer!
     var encounterTimer:NSTimer!
+    
+    var prefs = NSUserDefaults.standardUserDefaults()
+    var plStats:[String:[String:AnyObject]] = [:]
     
     // Google Maps things.
     @IBOutlet var mainView:UIView!
@@ -95,38 +97,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             currentLocationBtn.enabled = false
         }
         
-        var prefs = NSUserDefaults.standardUserDefaults()
-//        if (prefs.objectForKey("speedFloat") != nil) {
-//            speedFloat = prefs.objectForKey("speedFloat") as Float
-//        }
-//        else {
-//            speedFloat = 0
-//            prefs.setObject(0, forKey: "speedFloat")
-//        }
-//        
-//        if (prefs.objectForKey("magicSteps") != nil) {
-//            prevMagicSteps = prefs.objectForKey("magicSteps") as Int
-//            magicSteps = prevMagicSteps
-//        }
-        
-        var plStats = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
+        plStats = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
         speedFloat = plStats[playerID]!["speedProgress"]! as Float
         prevMagicSteps = plStats[playerID]!["magicSteps"]! as Int
         magicSteps = prevMagicSteps
         
         prefs.setObject(true, forKey: "loggedIn")
-//        
-//        let index = advance(UIDevice.currentDevice().systemVersion.startIndex, 1)
-//        let numb = UIDevice.currentDevice().systemVersion[index]
-        
-        
-//        if(String(numb).toInt() >= 8) {
-//            clManager.requestAlwaysAuthorization()
-//            println("requestAlwaysAuthorization")
-//        }
-//        if ()
-        
-        // clManager.requestAlwaysAuthorization() iOS 8.0
+
         if (isConnectedToInternet()) {
             clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
             clManager.startUpdatingLocation()
@@ -147,7 +124,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func setButton() {
-        var prefs = NSUserDefaults.standardUserDefaults()
         var currentuser = prefs.objectForKey("currentuser") as String
         playerID = currentuser
         var idonly = playerID.componentsSeparatedByString("(")[0]
@@ -161,8 +137,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // Initial setup for map.
     func initialMapSetup() {
-        var prefs = NSUserDefaults.standardUserDefaults()
-        
         var initlat:CLLocationDegrees = 35.6896
         var initlong:CLLocationDegrees = 139.6917
         var initzoom:Float = 0
@@ -430,21 +404,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func checkHealthGoal() {
-        var prefs = NSUserDefaults.standardUserDefaults()
-        if (stepCount >= 5000 && prefs.objectForKey("healthGoal") != nil) {
-            healthGoal = prefs.objectForKey("healthGoal") as Int
-        }
-        else {
-            healthGoal = 5000
-            prefs.setObject(healthGoal, forKey: "healthGoal")
+        
+        if (healthGoal == 0) {
+            healthGoal = plStats[playerID]!["healthGoal"]! as Int
         }
         
         if (stepCount >= healthGoal) {
             healthGoal += 5000
-            prefs.setObject(healthGoal, forKey: "healthGoal")
-            println("StepCount: \(stepCount), healthGoal: \(healthGoal)")
+            plStats[playerID]!["healthGoal"]! = healthGoal
+            prefs.setObject(plStats, forKey: "playerStats")
             postLog("Walked \(stepCount) steps today, health incremented by 1.")
-            updateLocalPlayerStats(1, strengthinc: 0, magicinc: 0, speedinc: 0)
+            updateLocalPlayerStats(1, 0, 0, 0, &plStats)
         }
     }
     
@@ -455,46 +425,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         if (speedFloat >= 1) {
             speedFloat = 0
-            var prefs = NSUserDefaults.standardUserDefaults()
-            prefs.setObject(0, forKey: "speedFloat")
+            plStats[playerID]!["speedProgress"]! = speedFloat
+            prefs.setObject(plStats, forKey: "playerStats")
             postLog("Speed incremented by 1 from running.")
-            updateLocalPlayerStats(0, strengthinc: 0, magicinc: 0, speedinc: 1)
+            updateLocalPlayerStats(0, 0, 0, 1, &plStats)
         }
     }
     
     func checkMagicHour() {
-        var prefs = NSUserDefaults.standardUserDefaults()
-//        var currDate = NSDate()
-//        var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-//        var dateComponents = gregorian.components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.YearCalendarUnit, fromDate: currDate)
-//        currentHourInt = dateComponents.hour
-        
-//        if (prefs.objectForKey("magichour") != nil) {
-//            var magichour = prefs.objectForKey("magichour") as [String:String]
-//            if (magichour["date"]  == "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)") {
-//                var hour = magichour["hour"]!
-//                magicHourInt = hour.toInt()!
-//            }
-//            else {
-//                magichour["date"] = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
-//                magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
-//                magicSteps = 0
-//                var hour = magichour["hour"]!
-//                magicHourInt = hour.toInt()!
-//                prefs.setObject(magichour, forKey: "magichour")
-//                prefs.setObject(magicSteps, forKey: "magicSteps")
-//            }
-//        }
-//        else {
-//            var magichour:[String:String] = [:]
-//            magichour["date"] = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
-//            magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
-//            var hour = magichour["hour"]!
-//            magicHourInt = hour.toInt()!
-//            prefs.setObject(magichour, forKey: "magichour")
-//        }
-        
-        var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
         magicHourInt = plStats[playerID]!["magicHour"]! as Int
         var magicDate = plStats[playerID]!["date"]! as String
         
@@ -509,65 +447,36 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
         magicHourLabel.text = "Magic Hour: \(magicHourInt):00"
         
-        if (magicSteps > 1000 && prefs.objectForKey("magicGoal") != nil) {
-            magicGoal = prefs.objectForKey("magicGoal") as Int
+        if (magicGoal == 0) {
+            magicGoal = plStats[playerID]!["magicGoal"]! as Int
         }
-        else {
-            magicGoal = 1000
-            prefs.setObject(magicGoal, forKey: "magicGoal")
-        }
+        
         if (magicSteps >= magicGoal) {
             magicGoal += 1000
-            prefs.setObject(magicGoal, forKey: "magicGoal")
+            plStats[playerID]!["magicGoal"]! = magicGoal
+            prefs.setObject(plStats, forKey: "playerStats")
             postLog("Walked \(magicSteps) steps during magic hour (\(magicHourInt):00). Magic incremented by 1.")
-            updateLocalPlayerStats(0, strengthinc: 0, magicinc: 1, speedinc: 0)
+            updateLocalPlayerStats(0, 0, 1, 0, &plStats)
         }
     }
     
     func checkEnemiesGoal() {
         
-        var prefs = NSUserDefaults.standardUserDefaults()
-        var enemiesBeaten = 0
-        if (prefs.objectForKey("enemiesBeaten") == nil) {
-            prefs.setObject(enemiesBeaten, forKey: "enemiesBeaten")
-        }
-        else {
-            enemiesBeaten = prefs.objectForKey("enemiesBeaten") as Int
+        if (enemiesDefeated == 0) {
+            enemiesDefeated = plStats[playerID]!["enemiesDefeated"]! as Int
         }
         
-        if (enemiesBeaten >= 3 && prefs.objectForKey("enemiesGoal") != nil) {
-            enemiesGoal = prefs.objectForKey("enemiesGoal") as Int
-        }
-        else {
-            enemiesGoal = 3
-            prefs.setObject(enemiesGoal, forKey: "enemiesGoal")
+        if (enemiesGoal == 0) {
+            enemiesGoal = plStats[playerID]!["strengthGoal"]! as Int
         }
         
-        if (enemiesBeaten >= enemiesGoal) {
-            prefs.setObject(enemiesGoal+3, forKey: "enemiesGoal")
-            postLog("Defeated \(enemiesBeaten) enemies. Strength incremented by 1.")
-            updateLocalPlayerStats(0, strengthinc: 1, magicinc: 0, speedinc: 0)
+        if (enemiesDefeated >= enemiesGoal) {
+            enemiesGoal += 3
+            plStats[playerID]!["strengthGoal"]! = enemiesGoal
+            prefs.setObject(plStats, forKey: "playerStats")
+            postLog("Defeated \(enemiesDefeated) enemies. Strength incremented by 1.")
+            updateLocalPlayerStats(0, 1, 0, 0, &plStats)
         }
-    }
-    
-    func updateLocalPlayerStats(healthinc:Int, strengthinc:Int, magicinc:Int, speedinc:Int) {
-        
-        var prefs = NSUserDefaults.standardUserDefaults()
-        
-        var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
-        var health:Int = plStats[playerID]!["health"]! as Int
-        var strength:Int = plStats[playerID]!["strength"]! as Int
-        var magic:Int = plStats[playerID]!["magic"]! as Int
-        var speed:Int = plStats[playerID]!["speed"]! as Int
-//        var assignpoints:Int = plStats[playerID]!["assignpoints"]! as Int
-        plStats[playerID]!["health"]! = health+healthinc
-        plStats[playerID]!["strength"]! = strength+strengthinc
-        plStats[playerID]!["magic"]! = magic+magicinc
-        plStats[playerID]!["speed"]! = speed+speedinc
-
-        prefs.setObject(plStats, forKey: "playerStats")
-        
-        postLog("My current stats after updating are Health: \(health), Strength: \(strength), Magic: \(magic), Speed: \(speed)")
     }
     
     func activityToString(act:CMMotionActivity) -> String {
@@ -585,13 +494,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // Simply updates the label for step count.
     func updateStepLabel() {
         steplabel.text = "Steps：\(stepCount) steps"
-////        altitudeLabel.text = NSString(format: "Altitude: %.2f m +/- %.2f", altitudeNum, vAcc)
-//        if (speedNum > 0) {
-////            speedLabel.text = NSString(format: "Speed: %.2f m/s", speedNum)
-//            println(speedNum)
-//        }
-        
-        
+
         if (confidencenum == Float(CMMotionActivityConfidence.High.toRaw()) || confidencenum == Float(CMMotionActivityConfidence.Medium.toRaw())) {
             activityLabel.text = activitystring
         }
@@ -599,10 +502,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             activityLabel.text = ""
         }
         magicStepsLabel.text = "Magic Steps: \(magicSteps) steps"
-        var prefs = NSUserDefaults.standardUserDefaults()
-        prefs.setObject(speedFloat, forKey: "speedFloat")
-        prefs.setObject(magicSteps, forKey: "magicSteps")
-
+        plStats[playerID]!["speedProgress"]! = speedFloat
+        plStats[playerID]!["magicSteps"]! = magicSteps
+        prefs.setObject(plStats, forKey: "playerStats")
     }
     
     func checkStatus() {
@@ -619,49 +521,27 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return calender.dateFromComponents(components)
     }
     
-    // CoreLocation updates.
-//    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-//        var loc: CLLocation = locations[locations.count-1] as CLLocation
-//        altitudeNum = Float(loc.altitude)
-//        vAcc = Float(loc.verticalAccuracy)
-//        speedNum = loc.speed
-//    }
-    
     func checkEncounter() {
-        var prefs = NSUserDefaults.standardUserDefaults()
-        var currDate = NSDate()
-        var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-        var dateComponents = gregorian.components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.YearCalendarUnit, fromDate: currDate)
-        
-        var datestring = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
-        var encounterDict = ["date":datestring, "step":0]
-        
-        if (prefs.objectForKey("encounterStep") != nil) {
-            encounterDict = prefs.objectForKey("encounterStep") as [String:AnyObject]
+
+        if (enemyStepCount == 0) {
+            enemyStepCount = plStats[playerID]!["enemyStepCount"]! as Int
         }
         
-        var encounterDictString = encounterDict["date"]! as String
-        encountStepCount = encounterDict["step"]! as Int
-        encountLabel.text = "Next encount: \(encountStepCount)"
-        
-        if (encounterDictString != datestring || encountStepCount == 0) {
-            updateEncounterStep()
-            encounterDict = ["date":datestring, "step":encountStepCount]
-            prefs.setObject(encounterDict, forKey: "encounterStep")
+        var encountDate = plStats[playerID]!["date"]! as String
+
+        if (encountDate != returnDateString()) {
+            updateEncounterStep(&enemyStepCount, stepCount)
+            plStats[playerID]!["enemyStepCount"]! = enemyStepCount
+            prefs.setObject(plStats, forKey: "playerStats")
         }
         else {
-            if (encountStepCount < stepCount) {
+            if (enemyStepCount < stepCount) {
+                updateEncounterStep(&enemyStepCount, stepCount)
+                plStats[playerID]!["enemyStepCount"]! = enemyStepCount
+                prefs.setObject(plStats, forKey: "playerStats")
                 encount()
             }
         }
-    }
-    
-    func updateEncounterStep() {
-        
-        var thousands = lroundf(Float(stepCount) / 1000.0) + 1
-        encountStepCount = Int(thousands) * 1000 + Int(arc4random_uniform(200)) - 100
-        var appdel:AppDelegate = (UIApplication.sharedApplication().delegate) as AppDelegate
-        appdel.encounterstep = encountStepCount
     }
     
     func encount() {
@@ -669,7 +549,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if (state == UIApplicationState.Active) {
             postLog("Encountered enemy at \(stepCount).")
             performSegueWithIdentifier("map_game", sender: self)
-            updateEncounterStep()
+            updateEncounterStep(&enemyStepCount, stepCount)
         }
     }
     
@@ -688,20 +568,27 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         
         if (mapShown == true) {
-            var prefs = NSUserDefaults.standardUserDefaults()
             var cam:[String:Double] = ["lat":mapView_.camera.target.latitude, "long":mapView_.camera.target.longitude, "zoom":Double(mapView_.camera.zoom)]
             prefs.setObject(cam, forKey: "camera")
         }
     }
     
     override func viewDidDisappear(animated: Bool) {
-        labelTimer.invalidate()
-        statusTimer.invalidate()
-        postGetTimer.invalidate()
-        encounterTimer.invalidate()
-        labelTimer = nil
-        statusTimer = nil
-        postGetTimer = nil
-        encounterTimer = nil
+        if (labelTimer != nil) {
+            labelTimer.invalidate()
+            labelTimer = nil
+        }
+        if (statusTimer != nil) {
+            statusTimer.invalidate()
+            statusTimer = nil
+        }
+        if (postGetTimer != nil) {
+            postGetTimer.invalidate()
+            postGetTimer = nil
+        }
+        if (encounterTimer != nil) {
+            encounterTimer.invalidate()
+            encounterTimer = nil
+        }
     }
 }

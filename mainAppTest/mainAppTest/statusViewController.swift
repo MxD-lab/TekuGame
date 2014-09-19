@@ -53,22 +53,6 @@ class statusViewController: UIViewController {
         var useridonly = currentuser.componentsSeparatedByString("(")[0]
         nameLevelLabel.text = "@\(useridonly) Level \(level)"
         
-//        var magicSteps:Int = 0
-//        if (prefs.objectForKey("magicSteps")? != nil) {
-//            magicSteps = prefs.objectForKey("magicSteps") as Int
-//        }
-//        
-//        var enemiesBeaten:Int = 0
-//        if (prefs.objectForKey("enemiesBeaten")? != nil) {
-//            enemiesBeaten = prefs.objectForKey("enemiesBeaten") as Int
-//        }
-//        
-//        var speedFloat:Float = 0
-//        if (prefs.objectForKey("speedFloat")? != nil) {
-//            speedFloat = prefs.objectForKey("speedFloat") as Float
-//        }
-        
-        
         healthProgressBar.progress = Float(stepCount % 5000) / 5000
         speedProgressBar.progress = speedProgress
         magicProgressBar.progress = Float(magicSteps % 1000) / 1000
