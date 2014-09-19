@@ -166,23 +166,26 @@ class CharacterCreateViewController: UIViewController
                 accounts.addObject(playerID)
             }
             
-            var plStats:[String:[String:Int]] = [:]
+            var plStats:[String:[String:AnyObject]] = [:]
             if (prefs.objectForKey("playerStats") != nil) {
-                plStats = prefs.objectForKey("playerStats") as [String:[String:Int]]
+                plStats = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
             }
-            var stats = ["level": p.level, "health":p.health, "magic":p.magic, "speed":p.speed, "strength":p.strength, "assignpoints":p.points, "exp":p.exp]
+//            var stats = ["level": p.level, "health":p.health, "magic":p.magic, "speed":p.speed, "strength":p.strength, "assignpoints":p.points, "exp":p.exp]
+            
+            var magicHour = Int(arc4random_uniform(16)) + 8
+            
+            var stats = ["level": p.level, "health":p.health, "strength":p.strength, "magic":p.magic, "speed":p.speed, "assignpoints":p.points, "exp":p.exp, "speedProgress":0, "enemiesDefeated":0, "magicHour":magicHour, "magicSteps":0, "date":returnDateString()] as [String:AnyObject]
+            
             plStats[playerID] = stats
             
-            prefs.removeObjectForKey("speedFloat")
-            prefs.removeObjectForKey("magichour")
+
             prefs.removeObjectForKey("magicGoal")
-            prefs.removeObjectForKey("magicSteps")
             prefs.removeObjectForKey("healthGoal")
             prefs.removeObjectForKey("encounterStep")
-            prefs.removeObjectForKey("enemiesBeaten")
             prefs.removeObjectForKey("enemiesGoal")
             prefs.setObject(plStats, forKey: "playerStats")
             prefs.setObject(accounts, forKey: "useraccounts")
+            prefs.setObject(playerID, forKey: "currentuser")
             
             postLog("Created character. Health: \(p.health), magic: \(p.magic), speed: \(p.speed), strength: \(p.strength), remaining points: \(p.points)")
             

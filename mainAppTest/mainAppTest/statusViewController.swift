@@ -29,18 +29,21 @@ class statusViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         var prefs = NSUserDefaults.standardUserDefaults()
-        var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
+        var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
         var currentuser = prefs.objectForKey("currentuser") as String
-        
-        var player = plStats[currentuser]!
-        
-        var health:Int = player["health"]!
-        var strength:Int = player["strength"]!
-        var magic:Int = player["magic"]!
-        var speed:Int = player["speed"]!
-        var exp:Int = player["exp"]!
-        var level:Int = player["level"]!
 
+        var level = plStats[currentuser]!["level"]! as Int
+        var health = plStats[currentuser]!["health"]! as Int
+        var strength = plStats[currentuser]!["strength"]! as Int
+        var magic = plStats[currentuser]!["magic"]! as Int
+        var speed = plStats[currentuser]!["speed"]! as Int
+        var points = plStats[currentuser]!["assignpoints"]! as Int
+        var exp = plStats[currentuser]!["exp"]! as Int
+        var speedProgress = plStats[currentuser]!["speedProgress"]! as Float
+        var enemiesDefeated = plStats[currentuser]!["enemiesDefeated"]! as Int
+        var magicHour = plStats[currentuser]!["magicHour"]! as Int
+        var magicSteps = plStats[currentuser]!["magicSteps"]! as Int
+        var date = plStats[currentuser]!["date"]! as String
         
         healthLabel.text = "\(health)"
         strengthLabel.text = "\(strength)"
@@ -50,26 +53,26 @@ class statusViewController: UIViewController {
         var useridonly = currentuser.componentsSeparatedByString("(")[0]
         nameLevelLabel.text = "@\(useridonly) Level \(level)"
         
-        var magicSteps:Int = 0
-        if (prefs.objectForKey("magicSteps")? != nil) {
-            magicSteps = prefs.objectForKey("magicSteps") as Int
-        }
-        
-        var enemiesBeaten:Int = 0
-        if (prefs.objectForKey("enemiesBeaten")? != nil) {
-            enemiesBeaten = prefs.objectForKey("enemiesBeaten") as Int
-        }
-        
-        var speedFloat:Float = 0
-        if (prefs.objectForKey("speedFloat")? != nil) {
-            speedFloat = prefs.objectForKey("speedFloat") as Float
-        }
+//        var magicSteps:Int = 0
+//        if (prefs.objectForKey("magicSteps")? != nil) {
+//            magicSteps = prefs.objectForKey("magicSteps") as Int
+//        }
+//        
+//        var enemiesBeaten:Int = 0
+//        if (prefs.objectForKey("enemiesBeaten")? != nil) {
+//            enemiesBeaten = prefs.objectForKey("enemiesBeaten") as Int
+//        }
+//        
+//        var speedFloat:Float = 0
+//        if (prefs.objectForKey("speedFloat")? != nil) {
+//            speedFloat = prefs.objectForKey("speedFloat") as Float
+//        }
         
         
         healthProgressBar.progress = Float(stepCount % 5000) / 5000
-        speedProgressBar.progress = speedFloat
+        speedProgressBar.progress = speedProgress
         magicProgressBar.progress = Float(magicSteps % 1000) / 1000
-        strengthProgressBar.progress = Float(enemiesBeaten % 3) / 3
+        strengthProgressBar.progress = Float(enemiesDefeated % 3) / 3
         expProgressBar.progress = Float(Float(exp)/Float((level * 10)))
     }
     

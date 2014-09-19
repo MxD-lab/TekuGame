@@ -99,11 +99,11 @@ class GameViewController: UIViewController {
             }
             
             // Assign experience stuff when won.
-            var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
+            var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
             var currentuser = prefs.objectForKey("currentuser") as String
-            var exp:Int = plStats[currentuser]!["exp"]!
-            var level:Int = plStats[currentuser]!["level"]!
-            var assignpoints:Int = plStats[currentuser]!["assignpoints"]!
+            var exp:Int = plStats[currentuser]!["exp"]! as Int
+            var level:Int = plStats[currentuser]!["level"]! as Int
+            var assignpoints:Int = plStats[currentuser]!["assignpoints"]! as Int
             
             exp += 1
             if (exp == 10 * level) {

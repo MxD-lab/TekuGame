@@ -86,6 +86,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if (isConnectedToInternet()) {
             initialMapSetup()
             getPlayerLocation()
+            postPlayerStats()
             mapShown = true
         }
         else {
@@ -95,18 +96,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         
         var prefs = NSUserDefaults.standardUserDefaults()
-        if (prefs.objectForKey("speedFloat") != nil) {
-            speedFloat = prefs.objectForKey("speedFloat") as Float
-        }
-        else {
-            speedFloat = 0
-            prefs.setObject(0, forKey: "speedFloat")
-        }
+//        if (prefs.objectForKey("speedFloat") != nil) {
+//            speedFloat = prefs.objectForKey("speedFloat") as Float
+//        }
+//        else {
+//            speedFloat = 0
+//            prefs.setObject(0, forKey: "speedFloat")
+//        }
+//        
+//        if (prefs.objectForKey("magicSteps") != nil) {
+//            prevMagicSteps = prefs.objectForKey("magicSteps") as Int
+//            magicSteps = prevMagicSteps
+//        }
         
-        if (prefs.objectForKey("magicSteps") != nil) {
-            prevMagicSteps = prefs.objectForKey("magicSteps") as Int
-            magicSteps = prevMagicSteps
-        }
+        var plStats = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
+        speedFloat = plStats[playerID]!["speedProgress"]! as Float
+        prevMagicSteps = plStats[playerID]!["magicSteps"]! as Int
+        magicSteps = prevMagicSteps
         
         prefs.setObject(true, forKey: "loggedIn")
 //        
@@ -260,6 +266,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func postAndGet() {
         if (isConnectedToInternet()) {
             postPlayerLocation()
+            postPlayerStats()
             getPlayerLocation()
         }
     }
@@ -273,7 +280,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             post(urlstring, str)
         }
     }
-    
     
     // Gets JSON data from the server and updates corresponding fields such as pins on the map and number of nearby players.
     func getPlayerLocation() {
@@ -458,34 +464,47 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func checkMagicHour() {
         var prefs = NSUserDefaults.standardUserDefaults()
-        var currDate = NSDate()
-        var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-        var dateComponents = gregorian.components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.YearCalendarUnit, fromDate: currDate)
-        currentHourInt = dateComponents.hour
+//        var currDate = NSDate()
+//        var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+//        var dateComponents = gregorian.components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.YearCalendarUnit, fromDate: currDate)
+//        currentHourInt = dateComponents.hour
         
-        if (prefs.objectForKey("magichour") != nil) {
-            var magichour = prefs.objectForKey("magichour") as [String:String]
-            if (magichour["date"]  == "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)") {
-                var hour = magichour["hour"]!
-                magicHourInt = hour.toInt()!
-            }
-            else {
-                magichour["date"] = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
-                magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
-                magicSteps = 0
-                var hour = magichour["hour"]!
-                magicHourInt = hour.toInt()!
-                prefs.setObject(magichour, forKey: "magichour")
-                prefs.setObject(magicSteps, forKey: "magicSteps")
-            }
-        }
-        else {
-            var magichour:[String:String] = [:]
-            magichour["date"] = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
-            magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
-            var hour = magichour["hour"]!
-            magicHourInt = hour.toInt()!
-            prefs.setObject(magichour, forKey: "magichour")
+//        if (prefs.objectForKey("magichour") != nil) {
+//            var magichour = prefs.objectForKey("magichour") as [String:String]
+//            if (magichour["date"]  == "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)") {
+//                var hour = magichour["hour"]!
+//                magicHourInt = hour.toInt()!
+//            }
+//            else {
+//                magichour["date"] = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
+//                magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
+//                magicSteps = 0
+//                var hour = magichour["hour"]!
+//                magicHourInt = hour.toInt()!
+//                prefs.setObject(magichour, forKey: "magichour")
+//                prefs.setObject(magicSteps, forKey: "magicSteps")
+//            }
+//        }
+//        else {
+//            var magichour:[String:String] = [:]
+//            magichour["date"] = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
+//            magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
+//            var hour = magichour["hour"]!
+//            magicHourInt = hour.toInt()!
+//            prefs.setObject(magichour, forKey: "magichour")
+//        }
+        
+        var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
+        magicHourInt = plStats[playerID]!["magicHour"]! as Int
+        var magicDate = plStats[playerID]!["date"]! as String
+        
+        if (magicDate != returnDateString()) {
+            magicSteps = 0
+            magicHourInt = Int(arc4random_uniform(16)) + 8
+            plStats[playerID]!["magicHour"]! = magicHourInt
+            plStats[playerID]!["magicSteps"]! = 0
+            plStats[playerID]!["date"]! = returnDateString()
+            prefs.setObject(plStats, forKey: "playerStats")
         }
 
         magicHourLabel.text = "Magic Hour: \(magicHourInt):00"
@@ -566,11 +585,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // Simply updates the label for step count.
     func updateStepLabel() {
         steplabel.text = "Steps：\(stepCount) steps"
-//        altitudeLabel.text = NSString(format: "Altitude: %.2f m +/- %.2f", altitudeNum, vAcc)
-        if (speedNum > 0) {
-//            speedLabel.text = NSString(format: "Speed: %.2f m/s", speedNum)
-            println(speedNum)
-        }
+////        altitudeLabel.text = NSString(format: "Altitude: %.2f m +/- %.2f", altitudeNum, vAcc)
+//        if (speedNum > 0) {
+////            speedLabel.text = NSString(format: "Speed: %.2f m/s", speedNum)
+//            println(speedNum)
+//        }
         
         
         if (confidencenum == Float(CMMotionActivityConfidence.High.toRaw()) || confidencenum == Float(CMMotionActivityConfidence.Medium.toRaw())) {
@@ -601,12 +620,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     // CoreLocation updates.
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        var loc: CLLocation = locations[locations.count-1] as CLLocation
-        altitudeNum = Float(loc.altitude)
-        vAcc = Float(loc.verticalAccuracy)
-        speedNum = loc.speed
-    }
+//    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+//        var loc: CLLocation = locations[locations.count-1] as CLLocation
+//        altitudeNum = Float(loc.altitude)
+//        vAcc = Float(loc.verticalAccuracy)
+//        speedNum = loc.speed
+//    }
     
     func checkEncounter() {
         var prefs = NSUserDefaults.standardUserDefaults()

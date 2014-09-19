@@ -52,13 +52,13 @@ class GameScene: SKScene
         var userInfo = NSDictionary(object: false, forKey: "isGameOver")
         NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
         
-        var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
+        var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
         var currentuser = prefs.objectForKey("currentuser") as String
-        p.level = plStats[currentuser]!["level"]!
-        p.health = plStats[currentuser]!["health"]!
-        p.strength = plStats[currentuser]!["strength"]!
-        p.magic = plStats[currentuser]!["magic"]!
-        p.speed = plStats[currentuser]!["speed"]!
+        p.level = plStats[currentuser]!["level"]! as Int
+        p.health = plStats[currentuser]!["health"]! as Int
+        p.strength = plStats[currentuser]!["strength"]! as Int
+        p.magic = plStats[currentuser]!["magic"]! as Int
+        p.speed = plStats[currentuser]!["speed"]! as Int
         
         p.currentHealth = p.health;
         p.currentStrength = p.strength;

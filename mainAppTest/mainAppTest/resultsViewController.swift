@@ -30,14 +30,14 @@ class resultsViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         var prefs = NSUserDefaults.standardUserDefaults()
-        var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
+        var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
         var currentuser = prefs.objectForKey("currentuser") as String
-        var health:Int = plStats[currentuser]!["health"]!
-        var strength:Int = plStats[currentuser]!["strength"]!
-        var magic:Int = plStats[currentuser]!["magic"]!
-        var speed:Int = plStats[currentuser]!["speed"]!
-        var exp:Int = plStats[currentuser]!["exp"]!
-        var level:Int = plStats[currentuser]!["level"]!
+        var health:Int = plStats[currentuser]!["health"]! as Int
+        var strength:Int = plStats[currentuser]!["strength"]! as Int
+        var magic:Int = plStats[currentuser]!["magic"]! as Int
+        var speed:Int = plStats[currentuser]!["speed"]! as Int
+        var exp:Int = plStats[currentuser]!["exp"]! as Int
+        var level:Int = plStats[currentuser]!["level"]! as Int
         
         detailsLabel.numberOfLines = 0
         detailsLabel.text = ""

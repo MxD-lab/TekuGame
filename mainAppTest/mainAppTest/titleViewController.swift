@@ -10,6 +10,8 @@ import UIKit
 
 class titleViewController: UIViewController {
     
+    var currentuser = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -31,7 +33,12 @@ class titleViewController: UIViewController {
             loggedin = prefs.objectForKey("loggedIn") as Bool
         }
         
-        if (loggedin) {
+        if (prefs.objectForKey("currentuser") != nil) {
+            currentuser = prefs.objectForKey("currentuser") as String
+        }
+        
+        if (loggedin && currentuser != "") {
+            getPlayerStats()
             performSegueWithIdentifier("title_map", sender: self)
         }
         else {

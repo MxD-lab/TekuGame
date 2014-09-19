@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(application: UIApplication!) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        postLog("applicationWillResignActive")
     }
     
     func applicationDidEnterBackground(application: UIApplication!) {
@@ -54,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
         var prefs = NSUserDefaults.standardUserDefaults()
-        
+    
         var currDate = NSDate()
         var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
         var dateComponents = gregorian.components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.YearCalendarUnit, fromDate: currDate)
@@ -86,10 +87,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         statusloop = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("checkStatus"), userInfo: nil, repeats: true)
         NSRunLoop.currentRunLoop().addTimer(loop, forMode: NSRunLoopCommonModes)
         NSRunLoop.currentRunLoop().addTimer(statusloop, forMode: NSRunLoopCommonModes)
+        
+        postLog("applicationDidEnterBackground")
     }
     
     func applicationWillEnterForeground(application: UIApplication!) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        postLog("applicationWillEnterForeground")
     }
     
     func applicationDidBecomeActive(application: UIApplication!) {
@@ -106,10 +110,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var prefs = NSUserDefaults.standardUserDefaults()
         prefs.setObject(healthGoal, forKey: "healthGoal")
+        prefs.synchronize()
+        
+        postLog("applicationDidBecomeActive")
+//        println(prefs.objectForKey("playerStats"))
     }
     
     func applicationWillTerminate(application: UIApplication!) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        postPlayerStats()
+        postLog("applicationWillTerminate")
     }
     
     // Gets the number of steps taken from the start of the day to the current time.
@@ -224,32 +234,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func checkMagicHour() {
         var prefs = NSUserDefaults.standardUserDefaults()
-        var currDate = NSDate()
-        var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-        var dateComponents = gregorian.components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.YearCalendarUnit, fromDate: currDate)
-        currentHourInt = dateComponents.hour
+//        var currDate = NSDate()
+//        var gregorian = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+//        var dateComponents = gregorian.components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.YearCalendarUnit, fromDate: currDate)
+//        currentHourInt = dateComponents.hour
+//        
+//        if (prefs.objectForKey("magichour") != nil) {
+//            var magichour = prefs.objectForKey("magichour") as [String:String]
+//            if (magichour["date"]  == "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)") {
+//                var hour = magichour["hour"]!
+//                magicHourInt = hour.toInt()!
+//            }
+//            else {
+//                magichour["date"] = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
+//                magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
+//                var hour = magichour["hour"]!
+//                magicHourInt = hour.toInt()!
+//                prefs.setObject(magichour, forKey: "magichour")
+//            }
+//        }
+//        else {
+//            var magichour:[String:String] = [:]
+//            magichour["date"] = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
+//            magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
+//            var hour = magichour["hour"]!
+//            magicHourInt = hour.toInt()!
+//            prefs.setObject(magichour, forKey: "magichour")
+//        }
         
-        if (prefs.objectForKey("magichour") != nil) {
-            var magichour = prefs.objectForKey("magichour") as [String:String]
-            if (magichour["date"]  == "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)") {
-                var hour = magichour["hour"]!
-                magicHourInt = hour.toInt()!
-            }
-            else {
-                magichour["date"] = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
-                magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
-                var hour = magichour["hour"]!
-                magicHourInt = hour.toInt()!
-                prefs.setObject(magichour, forKey: "magichour")
-            }
-        }
-        else {
-            var magichour:[String:String] = [:]
-            magichour["date"] = "\(dateComponents.month) / \(dateComponents.day) / \(dateComponents.year)"
-            magichour["hour"] = "\(Int(arc4random_uniform(16)) + 8)"
-            var hour = magichour["hour"]!
-            magicHourInt = hour.toInt()!
-            prefs.setObject(magichour, forKey: "magichour")
+        var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
+        var playerID = prefs.objectForKey("currentuser") as String
+        magicHourInt = plStats[playerID]!["magicHour"]! as Int
+        var magicDate = plStats[playerID]!["date"]! as String
+        
+        if (magicDate != returnDateString()) {
+            magicsteps = 0
+            magicHourInt = Int(arc4random_uniform(16)) + 8
+            plStats[playerID]!["magicHour"]! = magicHourInt
+            plStats[playerID]!["magicSteps"]! = 0
+            plStats[playerID]!["date"]! = returnDateString()
+            prefs.setObject(plStats, forKey: "playerStats")
         }
         
         if (magicsteps > 1000 && prefs.objectForKey("magicGoal") != nil) {
@@ -293,13 +317,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var prefs = NSUserDefaults.standardUserDefaults()
         
-        var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
+        var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
         var playerID = prefs.objectForKey("currentuser") as String
-        var health:Int = plStats[playerID]!["health"]!
-        var strength:Int = plStats[playerID]!["strength"]!
-        var magic:Int = plStats[playerID]!["magic"]!
-        var speed:Int = plStats[playerID]!["speed"]!
-        var assignpoints:Int = plStats[playerID]!["assignpoints"]!
+        var health:Int = plStats[playerID]!["health"]! as Int
+        var strength:Int = plStats[playerID]!["strength"]! as Int
+        var magic:Int = plStats[playerID]!["magic"]! as Int
+        var speed:Int = plStats[playerID]!["speed"]! as Int
+        var assignpoints:Int = plStats[playerID]!["assignpoints"]! as Int
         plStats[playerID]!["health"]! = health+healthinc
         plStats[playerID]!["strength"]! = strength+strengthinc
         plStats[playerID]!["magic"]! = magic+magicinc

@@ -37,7 +37,6 @@ func post(urlstring:String!, querystring:String!) {
     var response: NSURLResponse? = nil
     var error: NSError? = nil
     
-    // Reply from server.
     NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&error)
 }
 
@@ -56,6 +55,13 @@ func returnTimeStampString() -> String! {
     return dtimestring
 }
 
+func returnDateString() -> String! {
+    var calendar = NSCalendar.currentCalendar()
+    var components = calendar.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: NSDate())
+    var datestring = "\(components.year)-\(addZero(components.month))-\(addZero(components.day))"
+    return datestring
+}
+
 func addZero(num:Int!) -> String! {
     return (num < 10) ? "0\(num)" : "\(num)"
 }
@@ -69,4 +75,80 @@ func postLog(message:String!) {
         var query = "playerID=\(currentuser)&time=\(timestamp)&message=\(message)&submit=submit"
         post(urlstring, query)
     }
+//    println(message)
 }
+
+func getPlayerStats() {
+    var prefs = NSUserDefaults.standardUserDefaults()
+    var currentuser = prefs.objectForKey("currentuser") as String
+    var versionstr:NSString = UIDevice.currentDevice().systemVersion
+    var versiondouble = versionstr.doubleValue
+    
+    if (versiondouble >= 8.0 || prefs.objectForKey("playerStats") == nil) {
+        var jsObj = getJSON("http://tekugame.mxd.media.ritsumei.ac.jp/json/playerdata.json")
+        if (jsObj != nil) {
+            for data in jsObj! {
+                var username = data["ID"] as String
+                if (currentuser == username) {
+                    var levelstr = data["level"] as NSString
+                    var healthstr = data["health"] as NSString
+                    var strengthstr = data["strength"] as NSString
+                    var magicstr = data["magic"] as NSString
+                    var speedstr = data["speed"] as NSString
+                    var pointsstr = data["points"] as NSString
+                    var experiencestr = data["experience"] as NSString
+                    var speedProgressstr = data["speedProgress"] as NSString
+                    var enemiesDefeatedstr = data["enemiesDefeated"] as NSString
+                    var magicHourstr = data["magicHour"] as NSString
+                    var magicStepsstr = data["magicSteps"] as NSString
+                    var date = data["date"] as String
+                    
+                    var level:Int = Int(levelstr.doubleValue)
+                    var health:Int = Int(healthstr.doubleValue)
+                    var strength:Int = Int(strengthstr.doubleValue)
+                    var magic:Int = Int(magicstr.doubleValue)
+                    var speed:Int = Int(speedstr.doubleValue)
+                    var points:Int = Int(pointsstr.doubleValue)
+                    var experience:Int = Int(experiencestr.doubleValue)
+                    var speedProgress:Float = Float(speedProgressstr.doubleValue)
+                    var enemiesDefeated:Int = Int(enemiesDefeatedstr.doubleValue)
+                    var magicHour:Int = Int(magicHourstr.doubleValue)
+                    var magicSteps:Int = Int(magicStepsstr.doubleValue)
+                    
+                    var plStats:[String:[String:AnyObject]] = [:]
+                    var stats = ["level": level, "health":health, "strength":strength, "magic":magic, "speed":speed, "assignpoints":points, "exp":experience, "speedProgress":speedProgress, "enemiesDefeated":enemiesDefeated, "magicHour":magicHour, "magicSteps":magicSteps, "date":date] as [String:AnyObject]
+                    plStats[currentuser] = stats
+                    prefs.setObject(plStats, forKey: "playerStats")
+                    break
+                }
+            }
+        }
+        else {
+            println("probably no internet")
+        }
+    }
+}
+
+func postPlayerStats() {
+    var prefs = NSUserDefaults.standardUserDefaults()
+    if (prefs.objectForKey("currentuser") != nil) {
+        var playerID = prefs.objectForKey("currentuser") as String
+        var plStats = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
+        var level = plStats[playerID]!["level"]! as Int
+        var health = plStats[playerID]!["health"]! as Int
+        var strength = plStats[playerID]!["strength"]! as Int
+        var magic = plStats[playerID]!["magic"]! as Int
+        var speed = plStats[playerID]!["speed"]! as Int
+        var points = plStats[playerID]!["assignpoints"]! as Int
+        var exp = plStats[playerID]!["exp"]! as Int
+        var speedProgress = plStats[playerID]!["speedProgress"]! as Float
+        var enemiesDefeated = plStats[playerID]!["enemiesDefeated"]! as Int
+        var magicHour = plStats[playerID]!["magicHour"]! as Int
+        var magicSteps = plStats[playerID]!["magicSteps"]! as Int
+        var date = plStats[playerID]!["date"]! as String
+        var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/playerdataForm/"
+        var str = "ID=\(playerID)&level=\(level)&health=\(health)&strength=\(strength)&magic=\(magic)&speed=\(speed)&points=\(points)&experience=\(exp)&speedProgress=\(speedProgress)&enemiesDefeated=\(enemiesDefeated)&magicHour=\(magicHour)&magicSteps=\(magicSteps)&date=\(date)&submit=submit"
+        post(urlstring, str)
+    }
+}
+
