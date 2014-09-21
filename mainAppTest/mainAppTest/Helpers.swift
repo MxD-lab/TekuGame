@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreMotion
 
 func isConnectedToInternet() -> Bool {
     var networkReachability:Reachability = Reachability.reachabilityForInternetConnection()
@@ -213,4 +214,53 @@ func setMarker(inout myview:GMSMapView!, lat:CLLocationDegrees, long:CLLocationD
     marker.icon = tintedicon
     marker.map = myview
     return marker
+}
+
+func activityToString(act:CMMotionActivity) -> String {
+    var actionName = ""
+    
+    if (act.unknown) { actionName += "Unknown " }
+    if (act.stationary) { actionName += "Stationary " }
+    if (act.walking) { actionName += "Walking " }
+    if (act.running) { actionName += "Running " }
+    if (act.automotive) { actionName += "Automotive " }
+    
+    return actionName
+}
+
+// Gets the number of steps taken from the start of the day to the current time.
+func getHistoricalSteps(handler:(Int, NSError!) -> Void) {
+    if(CMStepCounter.isStepCountingAvailable()){
+        var stepCounter = CMStepCounter()
+        var mainQueue:NSOperationQueue! = NSOperationQueue()
+        var todate:NSDate! = NSDate()
+        var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+        
+        dispatch_async(lowQueue, { () -> Void in
+            stepCounter.queryStepCountStartingFrom(startDateOfToday(), to: todate, toQueue: mainQueue, withHandler: handler)
+        })
+    }
+}
+
+//     Starts counting the number of steps.
+func updateSteps(stepHandler:(Int, NSDate!, NSError!) -> Void, activityHandler: (CMMotionActivity!) -> Void) {
+    var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+    var mainQueue:NSOperationQueue! = NSOperationQueue()
+    
+    if(CMStepCounter.isStepCountingAvailable()){
+        var stepCounter = CMStepCounter()
+        var todate:NSDate! = NSDate()
+        
+        dispatch_async(lowQueue, { () -> Void in
+          stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: stepHandler)
+        })
+    }
+    
+    if (CMMotionActivityManager.isActivityAvailable()) {
+        var activityManager = CMMotionActivityManager()
+        
+        dispatch_async(lowQueue, { () -> Void in
+            activityManager.startActivityUpdatesToQueue(mainQueue, withHandler: activityHandler)
+        })
+    }
 }

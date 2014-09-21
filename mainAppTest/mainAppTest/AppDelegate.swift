@@ -60,8 +60,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
         
         notified = false
-        getHistoricalSteps()
-        updateSteps()
+        getHistoricalSteps({numberOfSteps, error in self.prevSteps = numberOfSteps})
+        
+        var stepsHandler:(Int, NSDate!, NSError!) -> Void = { numberOfSteps, timestamp, error in
+            self.stepCount = numberOfSteps + self.prevSteps
+            self.magicsteps = self.prevmagicsteps
+            if (self.currentHourInt == self.magicHourInt) {
+                self.magicsteps = self.prevmagicsteps + numberOfSteps
+            }
+        }
+        var activityHandler:(CMMotionActivity!) -> Void = { activity in
+            if (activityToString(activity) != "") {
+                self.activitystring = activityToString(activity)
+                self.confidencenum = Float(activity.confidence.toRaw())
+            }
+        }
+        
+        updateSteps(stepsHandler, activityHandler)
         
         playerID = prefs.objectForKey("currentuser") as String
         plStats = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
@@ -92,9 +107,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             statusloop = nil
         }
         
-//        prefs.setObject(healthGoal, forKey: "healthGoal")
-//        prefs.synchronize()
-        
         postLog("applicationDidBecomeActive")
     }
     
@@ -104,91 +116,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         postLog("applicationWillTerminate")
     }
     
-    // Gets the number of steps taken from the start of the day to the current time.
-    func getHistoricalSteps() {
-        if(CMStepCounter.isStepCountingAvailable()){
-            var stepCounter = CMStepCounter()
-            var mainQueue:NSOperationQueue! = NSOperationQueue()
-            var todate:NSDate! = NSDate()
-            
-            var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-            
-            dispatch_async(lowQueue, { () -> Void in
-                stepCounter.queryStepCountStartingFrom(self.startDateOfToday(), to: todate, toQueue: mainQueue, withHandler: {numberOfSteps, error in
-                    self.prevSteps = numberOfSteps
-                })
-            })
-        }
-    }
-    
-    // Starts counting the number of steps.
-    // Change to:
-    // func updateSteps(inout stepCount:Int, inout prevSteps:Int, inout magicsteps:Int, inout prevmagicsteps:Int, currentHourInt:Int, magicHourInt:Int, inout activitystring:String, inout confidencenum:Float) {
-    // and move to Helpers.swift so that it could be used by both AppDelegate and MapViewController, maybe?
-    // activityToString() will need to be in Helpers.swift as well.
-    func updateSteps() {
-        
-        if(CMStepCounter.isStepCountingAvailable()){
-            var stepCounter = CMStepCounter()
-            var mainQueue:NSOperationQueue! = NSOperationQueue()
-            var todate:NSDate! = NSDate()
-            
-            var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-            
-            dispatch_async(lowQueue, { () -> Void in
-                stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: {numberOfSteps, timestamp, error in
-                    self.stepCount = numberOfSteps + self.prevSteps
-                    self.magicsteps = self.prevmagicsteps
-                    if (self.currentHourInt == self.magicHourInt) {
-                        self.magicsteps = self.prevmagicsteps + numberOfSteps
-                    }
-                })
-            })
-        }
-        
-        if (CMMotionActivityManager.isActivityAvailable()) {
-            var activityManager = CMMotionActivityManager()
-            var mainQueue:NSOperationQueue! = NSOperationQueue()
-            
-            var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-            
-            dispatch_async(lowQueue, { () -> Void in
-                activityManager.startActivityUpdatesToQueue(mainQueue, withHandler: { activity in
-                    if (self.activityToString(activity) != "") {
-                        self.activitystring = self.activityToString(activity)
-                        self.confidencenum = Float(activity.confidence.toRaw())
-                    }
-                })
-            })
-        }
-    }
-    
     func checkStatus() {
         checkRunningGoal()
         checkHealthGoal()
         checkMagicHour()
     }
-    
-//    func checkHealthGoal() {
-//        if (prefs.objectForKey("healthGoal") == nil) {
-//            healthGoal = 5000
-//        }
-//        
-//        if (stepCount >= healthGoal) {
-//            healthGoal += 5000
-//
-//            postLog("Walked \(stepCount) steps today, health incremented by 1.")
-//            updateLocalPlayerStats(1, 0, 0, 0, &plStats)
-//            
-//            var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-//            dispatch_async(lowQueue, { () -> Void in
-//                var notification = UILocalNotification()
-//                notification.fireDate = NSDate()
-//                notification.alertBody = "+1 Health from walking \(self.stepCount) steps!"
-//                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-//            })
-//        }
-//    }
     
     func checkHealthGoal() {
         
@@ -212,28 +144,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-//    func checkRunningGoal() {
-//        if (activitystring.rangeOfString("Running") != nil && (confidencenum == Float(CMMotionActivityConfidence.High.toRaw()) || confidencenum == Float(CMMotionActivityConfidence.Medium.toRaw()))) {
-//            speedFloat += 0.01
-//            println("Speed Float: \(speedFloat)")
-//        }
-//        
-//        if (speedFloat >= 1) {
-//            println("SpeedFloat: \(speedFloat)")
-//            speedFloat = 0
-//            prefs.setObject(0, forKey: "speedFloat")
-//            postLog("Speed incremented by 1 from running.")
-//            updateLocalPlayerStats(0, 0, 0, 1, &plStats)
-//            var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-//            dispatch_async(lowQueue, { () -> Void in
-//                var notification = UILocalNotification()
-//                notification.fireDate = NSDate()
-//                notification.alertBody = "+1 Speed from running!"
-//                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-//            })
-//        }
-//    }
-    
     func checkRunningGoal() {
         if (activitystring.rangeOfString("Running") != nil && (confidencenum == Float(CMMotionActivityConfidence.High.toRaw()) || confidencenum == Float(CMMotionActivityConfidence.Medium.toRaw()))) {
             speedFloat += 0.01
@@ -254,46 +164,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         }
     }
-    
-//    func checkMagicHour() {
-//        
-//        var playerID = prefs.objectForKey("currentuser") as String
-//        magicHourInt = plStats[playerID]!["magicHour"]! as Int
-//        var magicDate = plStats[playerID]!["date"]! as String
-//        
-//        if (magicDate != returnDateString()) {
-//            magicsteps = 0
-//            magicHourInt = Int(arc4random_uniform(16)) + 8
-//            plStats[playerID]!["magicHour"]! = magicHourInt
-//            plStats[playerID]!["magicSteps"]! = 0
-//            plStats[playerID]!["date"]! = returnDateString()
-//            prefs.setObject(plStats, forKey: "playerStats")
-//        }
-//        
-//        if (magicsteps > 1000 && prefs.objectForKey("magicGoal") != nil) {
-//            magicGoal = prefs.objectForKey("magicGoal") as Int
-//        }
-//        else {
-//            magicGoal = 1000
-//            prefs.setObject(magicGoal, forKey: "magicGoal")
-//        }
-//        if (magicsteps >= magicGoal) {
-//            
-////            println("Magic Goal: \(magicGoal)")
-//            
-//            magicGoal += 1000
-//            prefs.setObject(magicGoal, forKey: "magicGoal")
-//            postLog("Walked \(magicsteps) steps during magic hour (\(magicHourInt):00). Magic incremented by 1.")
-//            updateLocalPlayerStats(0, 0, 1, 0, &plStats)
-//            var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-//            dispatch_async(lowQueue, { () -> Void in
-//                var notification = UILocalNotification()
-//                notification.fireDate = NSDate()
-//                notification.alertBody = "+1 Magic from walking \(self.magicsteps) steps during magic hour!"
-//                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-//            })
-//        }
-//    }
     
     func checkMagicHour() {
         magicHourInt = plStats[playerID]!["magicHour"]! as Int
@@ -328,18 +198,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func activityToString(act:CMMotionActivity) -> String {
-        var actionName = ""
-        
-        if (act.unknown) { actionName += "Unknown " }
-        if (act.stationary) { actionName += "Stationary " }
-        if (act.walking) { actionName += "Walking " }
-        if (act.running) { actionName += "Running " }
-        if (act.automotive) { actionName += "Automotive " }
-        
-        return actionName
-    }
-    
     func notifySteps() {
         
         var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
@@ -358,13 +216,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
     }
     
-    // Returns an NSDate object of the beginning of the day.
-    func startDateOfToday() -> NSDate! {
-        var calender = NSCalendar.currentCalendar()
-        var components = calender.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: NSDate())
-        return calender.dateFromComponents(components)
-    }
-    
 }
-
-

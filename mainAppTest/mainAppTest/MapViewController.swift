@@ -17,8 +17,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // MapKit, CoreLocation
     @IBOutlet weak var statusButton: UIButton!
-//    @IBOutlet weak var speedLabel: UILabel!
-//    @IBOutlet weak var altitudeLabel: UILabel!
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var magicStepsLabel: UILabel!
     @IBOutlet weak var magicHourLabel: UILabel!
@@ -31,7 +29,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var altitudeNum:Float! = 0
     var vAcc:Float! = 0
     var speedNum:Double! = 0
-//    var players:[NSDictionary] = []         // NSArray of NSDictionary, each element is a player entry. This comes from the server.
     var allPins:[GMSMarker] = []         // All of the pins set on the Map including preset pins and players.
     var presetPins:[GMSMarker] = []      // Array of only the preset pins.
     var near_beacon:NSMutableArray = []     // Array of players with the same nearby beacon.
@@ -54,11 +51,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     var healthGoal:Int = 0
     var speedFloat:Float = 0
-    var enemiesDefeated:Int = 0
-    var magicHourInt:Int = 0
-    var currentHourInt:Int = 0
-    var prevMagicSteps:Int = 0
-    var magicSteps:Int = 0
+    var enemiesDefeated:Int! = 0
+    var magicHourInt:Int! = 0
+    var currentHourInt:Int! = 0
+    var prevMagicSteps:Int! = 0
+    var magicSteps:Int! = 0
     var magicGoal:Int = 0
     var enemiesGoal:Int = 0
     var enemyStepCount:Int = 0
@@ -80,8 +77,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getHistoricalSteps()
-        updateSteps()
+        var stepCounter = CMStepCounter()
+        getHistoricalSteps({numberOfSteps, error in self.prevSteps = numberOfSteps})
+        var stepsHandler:(Int, NSDate!, NSError!) -> Void = { numberOfSteps, timestamp, error in
+            self.stepCount = numberOfSteps + self.prevSteps
+            self.magicSteps = self.prevMagicSteps
+            if (self.currentHourInt == self.magicHourInt) {
+                self.magicSteps = self.prevMagicSteps + numberOfSteps
+            }
+        }
+        var activityHandler:(CMMotionActivity!) -> Void = { activity in
+            if (activityToString(activity) != "") {
+                self.activitystring = activityToString(activity)
+                self.confidencenum = Float(activity.confidence.toRaw())
+            }
+        }
+        updateSteps(stepsHandler, activityHandler)
         setButton()
         beaconSetup()
         if (isConnectedToInternet()) {
@@ -337,48 +348,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    // Gets the number of steps taken from the start of the day to the current time.
-    func getHistoricalSteps() {
-        if(CMStepCounter.isStepCountingAvailable()){
-            var stepCounter = CMStepCounter()
-            var mainQueue:NSOperationQueue! = NSOperationQueue()
-            var todate:NSDate! = NSDate()
-            
-            stepCounter.queryStepCountStartingFrom(startDateOfToday(), to: todate, toQueue: mainQueue, withHandler: {numberOfSteps, error in
-                self.prevSteps = numberOfSteps
-            })
-        }
-    }
-    
-    // Starts counting the number of steps.
-    func updateSteps() {
-        if(CMStepCounter.isStepCountingAvailable()){
-            var stepCounter = CMStepCounter()
-            var mainQueue:NSOperationQueue! = NSOperationQueue()
-            var todate:NSDate! = NSDate()
-            
-            stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: {numberOfSteps, timestamp, error in
-                self.stepCount = numberOfSteps + self.prevSteps
-                self.magicSteps = self.prevMagicSteps
-                if (self.currentHourInt == self.magicHourInt) {
-                    self.magicSteps = self.prevMagicSteps + numberOfSteps
-                }
-            })
-        }
-        
-        if (CMMotionActivityManager.isActivityAvailable()) {
-            var activityManager = CMMotionActivityManager()
-            var mainQueue:NSOperationQueue! = NSOperationQueue()
-            
-            activityManager.startActivityUpdatesToQueue(mainQueue, withHandler: { activity in
-                if (self.activityToString(activity) != "") {
-                    self.activitystring = self.activityToString(activity)
-                    self.confidencenum = Float(activity.confidence.toRaw())
-                }
-            })
-        }
-    }
-    
     func checkHealthGoal() {
         
         if (healthGoal == 0) {
@@ -455,18 +424,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    func activityToString(act:CMMotionActivity) -> String {
-        var actionName = ""
-        
-        if (act.unknown) { actionName += "Unknown " }
-        if (act.stationary) { actionName += "Stationary " }
-        if (act.walking) { actionName += "Walking " }
-        if (act.running) { actionName += "Running " }
-        if (act.automotive) { actionName += "Automotive " }
-        
-        return actionName
-    }
-    
     // Simply updates the label for step count.
     func updateStepLabel() {
         steplabel.text = "Steps：\(stepCount) steps"
@@ -489,8 +446,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         checkMagicHour()
         checkEnemiesGoal()
     }
-    
-    
     
     func checkEncounter() {
 
