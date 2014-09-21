@@ -78,6 +78,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         var stepCounter = CMStepCounter()
+        
         getHistoricalSteps({numberOfSteps, error in self.prevSteps = numberOfSteps})
         var stepsHandler:(Int, NSDate!, NSError!) -> Void = { numberOfSteps, timestamp, error in
             self.stepCount = numberOfSteps + self.prevSteps
@@ -93,8 +94,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
         }
         updateSteps(stepsHandler, activityHandler)
+        
         setButton()
         beaconSetup()
+        
         if (isConnectedToInternet()) {
             initialMapSetup()
             getPlayerLocation()
@@ -120,11 +123,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         var versionstr:NSString = UIDevice.currentDevice().systemVersion
         var versiondouble = versionstr.doubleValue
-        
         if (versiondouble >= 8.0) {
             clManager.requestWhenInUseAuthorization()
         }
-        
         labelTimer = setInterval("updateStepLabel", seconds: 1)
         statusTimer = setInterval("checkStatus", seconds: 2)
         postGetTimer = setInterval("postAndGet", seconds: 30)
@@ -238,10 +239,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 var bid = data["beaconid"] as String
                 var lati = data["latitude"] as NSString
                 var lon = data["longitude"] as NSString
+                var dat = data["date"] as String
+                
+                var displaydate = returnDateDifferenceString(dat)
                 
                 if (pid != playerID) {
                     var plCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(lati.doubleValue, lon.doubleValue)
-                    var pl = setMarker(&mapView_, lati.doubleValue, lon.doubleValue, pid, "player", UIColor.redColor())
+                    var pl = setMarker(&mapView_, lati.doubleValue, lon.doubleValue, pid, displaydate, UIColor.redColor())
                     allPins.append(pl)
                 }
                 if (bid == beaconID) {

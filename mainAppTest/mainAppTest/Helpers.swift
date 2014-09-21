@@ -48,7 +48,7 @@ func getJSON(urlstring:String!) -> [NSDictionary]? {
 func returnTimeStampString() -> String! {
     var calendar = NSCalendar.currentCalendar()
     var components = calendar.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond | .CalendarUnitTimeZone, fromDate: NSDate())
-    var dtimestring = "\(components.year)-\(addZero(components.month))-\(addZero(components.day))T\(addZero(components.hour)):\(addZero(components.minute)):\(addZero(components.second))+09:00"
+    var dtimestring = "\(components.year)-\(addZero(components.month))-\(addZero(components.day))T\(addZero(components.hour)):\(addZero(components.minute)):\(addZero(components.second))"
     return dtimestring
 }
 
@@ -68,6 +68,44 @@ func startDateOfToday() -> NSDate! {
 
 func addZero(num:Int!) -> String! {
     return (num < 10) ? "0\(num)" : "\(num)"
+}
+
+func returnDateDifferenceString(datestring:String) -> String {
+    
+    if (datestring == "0000-00-00 00:00:00") {
+        return "Last logged in - ago."
+    }
+    
+    var format = NSDateFormatter()
+    format.timeStyle = NSDateFormatterStyle.NoStyle
+    format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    var d = format.dateFromString(datestring)
+    var calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+    var components = calendar.components(NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit | NSCalendarUnit.SecondCalendarUnit, fromDate: d!, toDate: NSDate(), options: NSCalendarOptions.allZeros)
+    
+    var returnstring = "Last logged in "
+    
+    if (components.year > 0) {
+        returnstring += "\(components.year)" + ((components.year == 1) ? " year" : " years")
+    }
+    else if (components.month > 0) {
+        returnstring += "\(components.month)" + ((components.month == 1) ? " month" : " months")
+    }
+    else if (components.day > 0) {
+        returnstring += "\(components.day)" + ((components.day == 1) ? " day" : " days")
+    }
+    else if (components.hour > 0 || components.minute > 0)  {
+        returnstring += (components.hour > 0) ? "\(components.hour)" + ((components.hour == 1) ? " hour" : " hours") : ""
+        returnstring += (components.hour > 0 && components.minute > 0) ? " and " : ""
+        returnstring += (components.minute > 0) ? "\(components.minute)" + ((components.minute == 1) ? " minute" : " minutes") : ""
+    }
+    else {
+        returnstring += "\(components.second)" + ((components.second == 1) ? " second" : " seconds")
+    }
+    
+    returnstring += " ago."
+    
+    return returnstring
 }
 
 func postLog(message:String!) {
@@ -172,8 +210,11 @@ func postPlayerLocation(playerID:String!, beaconID:String!, myview:GMSMapView!) 
     if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Authorized || CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse) {
         var lat = myview.myLocation.coordinate.latitude
         var long = myview.myLocation.coordinate.longitude
+        var timestamp = returnTimeStampString()
         var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
-        var str = "phone=\(playerID!)&beacon=\(beaconID!)&longitude=\(long)&latitude=\(lat)&submit=submit"
+        var str = "phone=\(playerID!)&beacon=\(beaconID!)&longitude=\(long)&latitude=\(lat)&date=\(timestamp)&submit=submit"
+        println(urlstring)
+        println(str)
         post(urlstring, str)
     }
 }
