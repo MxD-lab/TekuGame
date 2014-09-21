@@ -161,15 +161,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             // Wait until current location is found to zoom to that place.
             timer = setInterval("gotoCurrentLocation", seconds: 1)
         }
-        
-        // Preset markers.
-//        var marker_bkc = setMarker(34.982397, long: 135.964603, title: "BKC", text: "すてにゃん", color: UIColor.blueColor())
-//        var marker_minamikusatsu = setMarker(35.003917, long: 135.947349, title: "南草津駅", text: "せやな", color: UIColor.blueColor())
-//        
-//        presetPins.append(marker_bkc)
-//        presetPins.append(marker_minamikusatsu)
-//        allPins.append(marker_bkc)
-//        allPins.append(marker_minamikusatsu)
     }
     
     func gotoCurrentLocation() {
@@ -226,19 +217,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // Simply posts and gets.
     func postAndGet() {
         if (isConnectedToInternet()) {
-            postPlayerLocation()
+            postPlayerLocation(playerID, beaconID, mapView_)
             postPlayerStats()
             getPlayerLocation()
-        }
-    }
-    
-    func postPlayerLocation() {
-        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Authorized || CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse) {
-            lat = mapView_.myLocation.coordinate.latitude
-            long = mapView_.myLocation.coordinate.longitude
-            var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
-            var str = "phone=\(playerID!)&beacon=\(beaconID!)&longitude=\(long!)&latitude=\(lat!)&submit=submit"
-            post(urlstring, str)
         }
     }
     

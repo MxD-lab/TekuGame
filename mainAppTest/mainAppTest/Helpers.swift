@@ -168,6 +168,16 @@ func postPlayerStats() {
     }
 }
 
+func postPlayerLocation(playerID:String!, beaconID:String!, myview:GMSMapView!) {
+    if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Authorized || CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse) {
+        var lat = myview.myLocation.coordinate.latitude
+        var long = myview.myLocation.coordinate.longitude
+        var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
+        var str = "phone=\(playerID!)&beacon=\(beaconID!)&longitude=\(long)&latitude=\(lat)&submit=submit"
+        post(urlstring, str)
+    }
+}
+
 func updateEncounterStep(inout stepcount:Int, m7steps:Int) {
     var thousands = lroundf(Float(m7steps) / 1000.0) + 1
     stepcount = Int(thousands) * 1000 + Int(arc4random_uniform(200)) - 100
