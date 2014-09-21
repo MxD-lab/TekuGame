@@ -80,7 +80,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        stepCount = 0
         getHistoricalSteps()
         updateSteps()
         setButton()
@@ -90,6 +89,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             getPlayerLocation()
             postPlayerStats()
             mapShown = true
+            clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+            clManager.startUpdatingLocation()
+            clManager.delegate = self
         }
         else {
             netConnectionLabel.text = "No Internet"
@@ -104,11 +106,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         prefs.setObject(true, forKey: "loggedIn")
 
-        if (isConnectedToInternet()) {
-            clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-            clManager.startUpdatingLocation()
-            clManager.delegate = self
-        }
         
         var versionstr:NSString = UIDevice.currentDevice().systemVersion
         var versiondouble = versionstr.doubleValue
@@ -146,10 +143,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             initlat = cam["lat"]!
             initlong = cam["long"]!
             initzoom = Float(cam["zoom"]!)
-            positionMap(initlat, long: initlong, zoom: initzoom)
+            positionMap(&mainView, &mapView_, initlat, initlong, initzoom)
         }
         else {
-            positionMap(initlat, long: initlong, zoom: initzoom)
+            positionMap(&mainView, &mapView_, initlat, initlong, initzoom)
             // Wait until current location is found to zoom to that place.
             timer = setInterval("gotoCurrentLocation", seconds: 1)
         }
@@ -162,27 +159,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 //        presetPins.append(marker_minamikusatsu)
 //        allPins.append(marker_bkc)
 //        allPins.append(marker_minamikusatsu)
-    }
-    
-    func positionMap(lat:CLLocationDegrees, long:CLLocationDegrees, zoom:Float) {
-        var camera:GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(lat, longitude: long, zoom: zoom)
-        mapView_ = GMSMapView(frame: mainView.bounds)
-        mapView_.camera = camera
-        mapView_.myLocationEnabled = true
-        mapView_.buildingsEnabled = false
-        mapView_.indoorEnabled = false
-        
-        mainView.addSubview(mapView_)
-    }
-    
-    func setMarker(lat:CLLocationDegrees, long:CLLocationDegrees, title:String, text:String, color:UIColor) -> GMSMarker {
-        var marker:GMSMarker = GMSMarker(position: CLLocationCoordinate2DMake(lat, long))
-        var tintedicon:UIImage = GMSMarker.markerImageWithColor(color)
-        marker.title = title
-        marker.snippet = text
-        marker.icon = tintedicon
-        marker.map = mapView_
-        return marker
     }
     
     func gotoCurrentLocation() {
@@ -273,7 +249,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                 if (pid != playerID) {
                     var plCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(lati.doubleValue, lon.doubleValue)
-                    var pl = setMarker(lati.doubleValue, long: lon.doubleValue, title: pid, text: "player", color: UIColor.redColor())
+                    var pl = setMarker(&mapView_, lati.doubleValue, lon.doubleValue, pid, "player", UIColor.redColor())
                     allPins.append(pl)
                 }
                 if (bid == beaconID) {
@@ -514,12 +490,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         checkEnemiesGoal()
     }
     
-    // Returns an NSDate object of the beginning of the day.
-    func startDateOfToday() -> NSDate! {
-        var calender = NSCalendar.currentCalendar()
-        var components = calender.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: NSDate())
-        return calender.dateFromComponents(components)
-    }
+    
     
     func checkEncounter() {
 

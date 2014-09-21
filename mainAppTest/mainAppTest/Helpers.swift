@@ -58,6 +58,13 @@ func returnDateString() -> String! {
     return datestring
 }
 
+// Returns an NSDate object of the beginning of the day.
+func startDateOfToday() -> NSDate! {
+    var calender = NSCalendar.currentCalendar()
+    var components = calender.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: NSDate())
+    return calender.dateFromComponents(components)
+}
+
 func addZero(num:Int!) -> String! {
     return (num < 10) ? "0\(num)" : "\(num)"
 }
@@ -187,3 +194,23 @@ func updateLocalPlayerStats(healthinc:Int, strengthinc:Int, magicinc:Int, speedi
     postLog("My current stats after updating are Health: \(health+healthinc), Strength: \(strength+strengthinc), Magic: \(magic+magicinc), Speed: \(speed+speedinc)")
 }
 
+func positionMap(inout mainview:UIView!, inout myview:GMSMapView!, lat:CLLocationDegrees, long:CLLocationDegrees, zoom:Float) {
+    var camera:GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(lat, longitude: long, zoom: zoom)
+    myview = GMSMapView(frame: mainview.bounds)
+    myview.camera = camera
+    myview.myLocationEnabled = true
+    myview.buildingsEnabled = false
+    myview.indoorEnabled = false
+    
+    mainview.addSubview(myview)
+}
+
+func setMarker(inout myview:GMSMapView!, lat:CLLocationDegrees, long:CLLocationDegrees, title:String, text:String, color:UIColor) -> GMSMarker {
+    var marker:GMSMarker = GMSMarker(position: CLLocationCoordinate2DMake(lat, long))
+    var tintedicon:UIImage = GMSMarker.markerImageWithColor(color)
+    marker.title = title
+    marker.snippet = text
+    marker.icon = tintedicon
+    marker.map = myview
+    return marker
+}
