@@ -64,6 +64,7 @@
 		A1DEB5D419BD6F0700F7A21E /* Undead1.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5B519BD6F0600F7A21E /* Undead1.png */; };
 		A1DEB5D519BD6F0700F7A21E /* Undead2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5B619BD6F0600F7A21E /* Undead2.png */; };
 		A1DEB5D619BD6F0700F7A21E /* Undead3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5B719BD6F0600F7A21E /* Undead3.png */; };
+		BC006C5A19CE90020011CC39 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BC006C5919CE90020011CC39 /* Reachability.m */; };
 		BC81B20219CA7DF8003BDF8C /* DownArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B1F319CA7DF8003BDF8C /* DownArrow.png */; };
 		BC81B20319CA7DF8003BDF8C /* GenericButton_Down.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B1F419CA7DF8003BDF8C /* GenericButton_Down.png */; };
 		BC81B20419CA7DF8003BDF8C /* GenericButton_Up.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B1F519CA7DF8003BDF8C /* GenericButton_Up.png */; };
@@ -213,6 +214,8 @@
 		A1DEB5B519BD6F0600F7A21E /* Undead1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Undead1.png; path = "../Art Assets/Sprites/Version 1.0/Undead1.png"; sourceTree = "<group>"; };
 		A1DEB5B619BD6F0600F7A21E /* Undead2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Undead2.png; path = "../Art Assets/Sprites/Version 1.0/Undead2.png"; sourceTree = "<group>"; };
 		A1DEB5B719BD6F0600F7A21E /* Undead3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Undead3.png; path = "../Art Assets/Sprites/Version 1.0/Undead3.png"; sourceTree = "<group>"; };
+		BC006C5819CE90020011CC39 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		BC006C5919CE90020011CC39 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		BC81B1F319CA7DF8003BDF8C /* DownArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DownArrow.png; sourceTree = "<group>"; };
 		BC81B1F419CA7DF8003BDF8C /* GenericButton_Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GenericButton_Down.png; sourceTree = "<group>"; };
 		BC81B1F519CA7DF8003BDF8C /* GenericButton_Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GenericButton_Up.png; sourceTree = "<group>"; };
@@ -413,6 +416,15 @@
 			name = Sprites;
 			sourceTree = "<group>";
 		};
+		BC006C5B19CE900B0011CC39 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				BC006C5819CE90020011CC39 /* Reachability.h */,
+				BC006C5919CE90020011CC39 /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		BC8A857C19C178B100335599 /* DeployGateSDK1.0.2.embeddedframework */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,6 +474,7 @@
 		F8956AF819A194A700ED670B = {
 			isa = PBXGroup;
 			children = (
+				BC006C5B19CE900B0011CC39 /* Reachability */,
 				BC8A857C19C178B100335599 /* DeployGateSDK1.0.2.embeddedframework */,
 				A1D183B619BEC84B00E03B28 /* HMSideMenu */,
 				F837D7FE19B3F8CE00A18D31 /* SystemConfiguration.framework */,
@@ -807,6 +820,7 @@
 				F825583E19AB1D630035EBF6 /* EnemyTypes.swift in Sources */,
 				F825584019AB1D630035EBF6 /* Player.swift in Sources */,
 				F8AC41E619B4148B00FD10C8 /* licenseViewController.swift in Sources */,
+				BC006C5A19CE90020011CC39 /* Reachability.m in Sources */,
 				F825583619AB1D3F0035EBF6 /* Combat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,15 +8,11 @@
 
 import Foundation
 
-// http://ios-blog.co.uk/tutorials/check-if-active-internet-connection-exists-on-ios-device/
 func isConnectedToInternet() -> Bool {
-    var url = NSURL.URLWithString("http://tekugame.mxd.media.ritsumei.ac.jp/json/playerandlocation.json")
-    var error:NSErrorPointer = nil
-    var data = NSData.dataWithContentsOfURL(url, options: NSDataReadingOptions.DataReadingUncached, error: error)
-    if ((data) != nil) {
-        return true
-    }
-    return false
+    var networkReachability:Reachability = Reachability.reachabilityForInternetConnection()
+    var networkStatus:NetworkStatus = networkReachability.currentReachabilityStatus()
+    
+    return (networkStatus.value != NotReachable.value)
 }
 
 // General posting function.
