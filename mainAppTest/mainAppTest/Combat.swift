@@ -18,7 +18,7 @@ func doAction(user:Entity, target:Entity, action:Action) -> [String:String]
         {
     /*PLAYER ACTIONS*/
     case Action.U_Examine:
-        return ["damage" : "0", "message" : "Health:\(target.currentHealth) Strength:\(target.currentStrength) Magic:\(target.currentMagic)"];
+        return ["damage" : "0", "message" : "Enemy: Health: \(target.currentHealth), Strength: \(target.currentStrength), Magic: \(target.currentMagic), Speed: \(target.currentSpeed)"];
     case Action.P_Uppercut:
         damage = user.currentStrength - (target.currentStrength/2);
         damage = ((damage < 0) ? 1 : damage);

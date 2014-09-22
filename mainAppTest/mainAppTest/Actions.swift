@@ -464,7 +464,7 @@ enum Action:String, Printable
         case Action.E_Instant_Death:
             return "Has a very low chance of instantly defeating the enemy.";
         default:
-            return "ERROR: NON-PLAYER MOVE USED!";
+            return "ERROR: NON-PLAYER MOVE!";
         }
     }
 }
