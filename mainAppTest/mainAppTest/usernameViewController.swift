@@ -40,11 +40,11 @@ class usernameViewController: UIViewController {
     
     func usernameAvailable() -> Bool {
         let url = "http://tekugame.mxd.media.ritsumei.ac.jp/json/playerandlocation.json"
-        var jsObj = getJSON(url)
+        var jsObj = getJSON(url) as [[String:AnyObject]]?
 
         if (jsObj != nil) {
             for data in jsObj! {
-                var pid = data["phoneid"] as String
+                var pid = data["phoneid"] as NSString
                 
                 if (pid == playerID) {
                     return false

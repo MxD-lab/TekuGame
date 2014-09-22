@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -368,6 +369,15 @@
                                             <segue destination="5kj-lA-l77" kind="show" identifier="map_status" id="6Ro-2r-JbP"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIL-PC-7EJ">
+                                        <rect key="frame" x="95" y="0.0" width="103" height="41"/>
+                                        <state key="normal" title="testbutton">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="testButtonPressed:" destination="kwz-uD-Hpi" eventType="touchUpInside" id="bgE-dJ-oiK"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -388,6 +398,7 @@
                         <outlet property="statusButton" destination="Ex8-bO-nfp" id="4jH-5G-D0k"/>
                         <outlet property="steplabel" destination="VZa-mL-EvR" id="djN-hb-Qa4"/>
                         <segue destination="htj-91-gVU" kind="show" identifier="map_game" id="SU0-Gz-9g0"/>
+                        <segue destination="xQG-js-w2u" kind="show" identifier="map_setup" id="miC-nm-wMg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mP6-nz-8e7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -677,7 +688,112 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hOq-hc-b1S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1451" y="1149"/>
+            <point key="canvasLocation" x="1465" y="1149"/>
+        </scene>
+        <!--Multi Player Setup View Controller-->
+        <scene sceneID="Bce-3I-t8a">
+            <objects>
+                <viewController id="xQG-js-w2u" customClass="multiPlayerSetupViewController" customModule="mainAppTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CYx-My-h6S"/>
+                        <viewControllerLayoutGuide type="bottom" id="G4E-DQ-g8W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aGF-xT-gru">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ButtonBlock.png" translatesAutoresizingMaskIntoConstraints="NO" id="Amt-Iy-ia5">
+                                <rect key="frame" x="0.0" y="-41" width="320" height="632"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Text_Button.png" translatesAutoresizingMaskIntoConstraints="NO" id="h8a-3b-z1f">
+                                <rect key="frame" x="7" y="448" width="307" height="67"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8q4-KA-sVn">
+                                <rect key="frame" x="0.0" y="467" width="320" height="43"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="19"/>
+                                <state key="normal" title="Return">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="returnPressed:" destination="xQG-js-w2u" eventType="touchUpInside" id="INk-Uq-XWL"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Beacon ID: -" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cU1-MN-YFw">
+                                <rect key="frame" x="29" y="20" width="264" height="52"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ltD-Ds-Db4">
+                                <rect key="frame" x="29" y="80" width="264" height="328"/>
+                                <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="battleIDLabel" destination="cU1-MN-YFw" id="Ok6-6F-g0s"/>
+                        <outlet property="battleTextView" destination="ltD-Ds-Db4" id="lQC-Mk-U7c"/>
+                        <segue destination="kwz-uD-Hpi" kind="show" identifier="setup_map" id="36D-z0-9Qt"/>
+                        <segue destination="V7l-na-E4b" kind="show" identifier="setup_battle" id="g5n-9g-YWW"/>
+                        <segue destination="ccQ-Wy-Uya" kind="show" identifier="test" id="faB-ZQ-gMe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V60-pK-LWg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2193" y="1149"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lVq-f7-ftv">
+            <objects>
+                <viewController id="ccQ-Wy-Uya" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CXA-Dd-KOu"/>
+                        <viewControllerLayoutGuide type="bottom" id="95P-ew-Kbc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SBi-yN-5M5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H6p-yh-AoI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2644" y="433"/>
+        </scene>
+        <!--Multi Player Setup View Controller-->
+        <scene sceneID="hoo-Kp-26J">
+            <objects>
+                <viewController id="V7l-na-E4b" customClass="multiPlayerSetupViewController" customModule="mainAppTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FIE-37-NFh"/>
+                        <viewControllerLayoutGuide type="bottom" id="smJ-w7-ASn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zb0-Oe-JWR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qOL-NF-jVL">
+                                <rect key="frame" x="139" y="127" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FAg-2q-5Ht" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2859" y="1149"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="zbf-jX-PLe">
@@ -1223,7 +1339,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="HjJ-Hv-ibE"/>
-        <segue reference="Ym7-ie-ty9"/>
-        <segue reference="WwE-7J-HCh"/>
+        <segue reference="fkF-W3-xbb"/>
+        <segue reference="36D-z0-9Qt"/>
     </inferredMetricsTieBreakers>
 </document>

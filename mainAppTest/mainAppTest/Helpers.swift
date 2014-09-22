@@ -37,11 +37,11 @@ func post(urlstring:String!, querystring:String!) {
     NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&error)
 }
 
-func getJSON(urlstring:String!) -> [NSDictionary]? {
+func getJSON(urlstring:String!) -> [[String:AnyObject]]? {
     var jsonData = NSData(contentsOfURL: NSURL(string: urlstring)) as NSData?
     if (jsonData != nil) {
         var error: NSError?
-        var jsObj = NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions.MutableContainers, error: &error) as [NSDictionary]?
+        var jsObj = NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions.MutableContainers, error: &error) as [[String:AnyObject]]?
         return jsObj
     }
     return nil
@@ -130,10 +130,10 @@ func getPlayerStats() -> [String:[String:AnyObject]]? {
     var versiondouble = versionstr.doubleValue
     
     if (versiondouble >= 8.0 || prefs.objectForKey("playerStats") == nil) {
-        var jsObj = getJSON("http://tekugame.mxd.media.ritsumei.ac.jp/json/playerdata.json")
+        var jsObj = getJSON("http://tekugame.mxd.media.ritsumei.ac.jp/json/playerdata.json") as [[String:AnyObject]]?
         if (jsObj != nil) {
             for data in jsObj! {
-                var username = data["ID"] as String
+                var username:String = data["ID"] as NSString
                 if (currentuser == username) {
                     var levelstr = data["level"] as NSString
                     var healthstr = data["health"] as NSString
@@ -146,7 +146,7 @@ func getPlayerStats() -> [String:[String:AnyObject]]? {
                     var enemiesDefeatedstr = data["enemiesDefeated"] as NSString
                     var magicHourstr = data["magicHour"] as NSString
                     var magicStepsstr = data["magicSteps"] as NSString
-                    var date = data["date"] as String
+                    var date = data["date"] as NSString
                     var healthGoalstr = data["healthGoal"] as NSString
                     var strengthGoalstr = data["strengthGoal"] as NSString
                     var magicGoalstr = data["magicGoal"] as NSString

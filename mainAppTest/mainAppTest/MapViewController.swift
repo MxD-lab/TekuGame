@@ -13,6 +13,10 @@ import CoreMotion
 import Darwin
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
+    @IBAction func testButtonPressed(sender: AnyObject) {
+        performSegueWithIdentifier("map_setup", sender: self)
+    }
+    
     @IBOutlet weak var encountLabel: UILabel!
     
     // MapKit, CoreLocation
@@ -234,11 +238,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             resetPins()
             
             for data in jsObj! {
-                var pid = data["phoneid"] as String
-                var bid = data["beaconid"] as String
+                var pid = data["phoneid"] as NSString
+                var bid = data["beaconid"] as NSString
                 var lati = data["latitude"] as NSString
                 var lon = data["longitude"] as NSString
-                var dat = data["date"] as String
+                var dat = data["date"] as NSString
                 
                 var displaydate = returnDateDifferenceString(dat)
                 
