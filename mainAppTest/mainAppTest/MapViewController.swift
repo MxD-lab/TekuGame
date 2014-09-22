@@ -130,9 +130,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         statusTimer = setInterval("checkStatus", seconds: 2)
         postGetTimer = setInterval("postAndGet", seconds: 30)
         encounterTimer = setInterval("checkEncounter", seconds: 1)
-        
-//        var appdel:AppDelegate = (UIApplication.sharedApplication().delegate) as AppDelegate
-//        appdel.encounterTimer = encounterTimer
     }
     
     func setButton() {
@@ -336,7 +333,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func checkHealthGoal() {
-        
         if (healthGoal == 0) {
             healthGoal = plStats[playerID]!["healthGoal"]! as Int
         }
@@ -347,6 +343,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             prefs.setObject(plStats, forKey: "playerStats")
             postLog("Walked \(stepCount) steps today, health incremented by 1.")
             updateLocalPlayerStats(1, 0, 0, 0, &plStats)
+            UIAlertView(title: "Congratulations!", message: "Health incremented by 1.", delegate: nil, cancelButtonTitle: "OK").show()
         }
     }
     
@@ -361,6 +358,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             prefs.setObject(plStats, forKey: "playerStats")
             postLog("Speed incremented by 1 from running.")
             updateLocalPlayerStats(0, 0, 0, 1, &plStats)
+            UIAlertView(title: "Congratulations!", message: "Speed incremented by 1.", delegate: nil, cancelButtonTitle: "OK").show()
         }
     }
     
@@ -371,9 +369,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if (magicDate != returnDateString()) {
             magicSteps = 0
             magicHourInt = Int(arc4random_uniform(16)) + 8
+            updateEncounterStep(&enemyStepCount, stepCount)
+            plStats[playerID]!["healthGoal"]! = 5000
             plStats[playerID]!["magicHour"]! = magicHourInt
             plStats[playerID]!["magicSteps"]! = 0
             plStats[playerID]!["date"]! = returnDateString()
+            plStats[playerID]!["enemyStepCount"]! = enemyStepCount
             prefs.setObject(plStats, forKey: "playerStats")
         }
 
@@ -389,6 +390,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             prefs.setObject(plStats, forKey: "playerStats")
             postLog("Walked \(magicSteps) steps during magic hour (\(magicHourInt):00). Magic incremented by 1.")
             updateLocalPlayerStats(0, 0, 1, 0, &plStats)
+            UIAlertView(title: "Congratulations!", message: "Magic incremented by 1.", delegate: nil, cancelButtonTitle: "OK").show()
         }
     }
     
@@ -408,6 +410,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             prefs.setObject(plStats, forKey: "playerStats")
             postLog("Defeated \(enemiesDefeated) enemies. Strength incremented by 1.")
             updateLocalPlayerStats(0, 1, 0, 0, &plStats)
+            UIAlertView(title: "Congratulations!", message: "Strength incremented by 1.", delegate: nil, cancelButtonTitle: "OK").show()
         }
     }
     
@@ -435,26 +438,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func checkEncounter() {
-
+        
         if (enemyStepCount == 0) {
             enemyStepCount = plStats[playerID]!["enemyStepCount"]! as Int
         }
-        
-        var encountDate = plStats[playerID]!["date"]! as String
-
-        if (encountDate != returnDateString()) {
+        var state = UIApplication.sharedApplication().applicationState
+        if (enemyStepCount < stepCount && state == UIApplicationState.Active) {
             updateEncounterStep(&enemyStepCount, stepCount)
             plStats[playerID]!["enemyStepCount"]! = enemyStepCount
             prefs.setObject(plStats, forKey: "playerStats")
-        }
-        else {
-            var state = UIApplication.sharedApplication().applicationState
-            if (enemyStepCount < stepCount && state == UIApplicationState.Active) {
-                updateEncounterStep(&enemyStepCount, stepCount)
-                plStats[playerID]!["enemyStepCount"]! = enemyStepCount
-                prefs.setObject(plStats, forKey: "playerStats")
-                encount()
-            }
+            encount()
         }
     }
     
