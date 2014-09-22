@@ -202,7 +202,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 self.manager.startRangingBeaconsInRegion(self.region)
             }
         case .Restricted, .Denied:
-            println("Restricted")
             currentLocationBtn.hidden = true
             currentLocationBtn.enabled = false
         }

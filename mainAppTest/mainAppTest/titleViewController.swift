@@ -37,6 +37,9 @@ class titleViewController: UIViewController {
             currentuser = prefs.objectForKey("currentuser") as String
         }
         
+        var versionstr:NSString = UIDevice.currentDevice().systemVersion
+        var versiondouble = versionstr.doubleValue
+        
         if (loggedin && currentuser != "") {
             if (isConnectedToInternet()) {
                 var stats = getPlayerStats()
@@ -44,11 +47,21 @@ class titleViewController: UIViewController {
                     performSegueWithIdentifier("title_map", sender: self)
                 }
                 else {
-                    UIAlertView(title: "Error", message: "Please check your internet connection.", delegate: nil, cancelButtonTitle: "OK").show()
+                    if (versiondouble >= 8.0) {
+                        UIAlertView(title: "Error", message: "Please check your internet connection.", delegate: nil, cancelButtonTitle: "OK").show()
+                    }
+                    else {
+                        performSegueWithIdentifier("title_map", sender: self)
+                    }
                 }
             }
             else {
-                UIAlertView(title: "Error", message: "Please check your internet connection.", delegate: nil, cancelButtonTitle: "OK").show()
+                if (versiondouble >= 8.0) {
+                    UIAlertView(title: "Error", message: "Please check your internet connection.", delegate: nil, cancelButtonTitle: "OK").show()
+                }
+                else {
+                    performSegueWithIdentifier("title_map", sender: self)
+                }
             }
         }
         else {

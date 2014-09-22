@@ -47,7 +47,6 @@ class usernameViewController: UIViewController {
                 var pid = data["phoneid"] as String
                 
                 if (pid == playerID) {
-                    println("Not available")
                     return false
                 }
             }

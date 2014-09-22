@@ -218,8 +218,6 @@ func postPlayerLocation(playerID:String!, beaconID:String!, myview:GMSMapView!) 
         var timestamp = returnTimeStampString()
         var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/form/index.php"
         var str = "phone=\(playerID!)&beacon=\(beaconID!)&longitude=\(long)&latitude=\(lat)&date=\(timestamp)&submit=submit"
-        println(urlstring)
-        println(str)
         post(urlstring, str)
     }
 }

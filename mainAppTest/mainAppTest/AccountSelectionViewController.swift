@@ -28,6 +28,9 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
     }
     
     @IBAction func startGamePressed(sender: AnyObject) {
+        var versionstr:NSString = UIDevice.currentDevice().systemVersion
+        var versiondouble = versionstr.doubleValue
+        
         if (isConnectedToInternet()) {
             var prefs = NSUserDefaults.standardUserDefaults()
             prefs.setObject(accounts[accountPickerView.selectedRowInComponent(0)] as String, forKey: "currentuser")
@@ -36,11 +39,21 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
                 performSegueWithIdentifier("accselect_map", sender: self)
             }
             else {
-                UIAlertView(title: "Error", message: "Please check your internet connection.", delegate: nil, cancelButtonTitle: "OK").show()
+                if (versiondouble >= 8.0) {
+                    UIAlertView(title: "Error", message: "Please check your internet connection.", delegate: nil, cancelButtonTitle: "OK").show()
+                }
+                else {
+                    performSegueWithIdentifier("accselect_map", sender: self)
+                }
             }
         }
         else {
-            UIAlertView(title: "Error", message: "Please check your internet connection.", delegate: nil, cancelButtonTitle: "OK").show()
+            if (versiondouble >= 8.0) {
+                UIAlertView(title: "Error", message: "Please check your internet connection.", delegate: nil, cancelButtonTitle: "OK").show()
+            }
+            else {
+                performSegueWithIdentifier("accselect_map", sender: self)
+            }
         }
     }
     
