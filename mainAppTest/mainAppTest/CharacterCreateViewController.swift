@@ -151,9 +151,9 @@ class CharacterCreateViewController: UIViewController
         if (segue.identifier == "charcreate_map" && playerID != "") {
             
             var prefs = NSUserDefaults.standardUserDefaults()
-            var accounts = NSMutableArray()
+            var accounts:[String] = []
             if ((prefs.objectForKey("useraccounts")) != nil) {
-                accounts = prefs.objectForKey("useraccounts") as NSMutableArray
+                accounts = prefs.objectForKey("useraccounts") as [String]
             }
             var hasAccount = false
             for account in accounts {
@@ -163,7 +163,7 @@ class CharacterCreateViewController: UIViewController
             }
             
             if (!hasAccount) {
-                accounts.addObject(playerID)
+                accounts.append(playerID)
             }
             
             var plStats:[String:[String:AnyObject]] = [:]

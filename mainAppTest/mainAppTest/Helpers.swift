@@ -38,10 +38,13 @@ func post(urlstring:String!, querystring:String!) {
 }
 
 func getJSON(urlstring:String!) -> [NSDictionary]? {
-    var jsonData = NSData(contentsOfURL: NSURL(string: urlstring))
-    var error: NSError?
-    var jsObj = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: &error) as [NSDictionary]?
-    return jsObj
+    var jsonData = NSData(contentsOfURL: NSURL(string: urlstring)) as NSData?
+    if (jsonData != nil) {
+        var error: NSError?
+        var jsObj = NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions.MutableContainers, error: &error) as [NSDictionary]?
+        return jsObj
+    }
+    return nil
 }
 
 // For testing.
@@ -120,7 +123,7 @@ func postLog(message:String!) {
 //    println(message)
 }
 
-func getPlayerStats() {
+func getPlayerStats() -> [String:[String:AnyObject]]? {
     var prefs = NSUserDefaults.standardUserDefaults()
     var currentuser = prefs.objectForKey("currentuser") as String
     var versionstr:NSString = UIDevice.currentDevice().systemVersion
@@ -169,14 +172,16 @@ func getPlayerStats() {
                     var stats = ["level": level, "health":health, "strength":strength, "magic":magic, "speed":speed, "assignpoints":points, "exp":experience, "speedProgress":speedProgress, "enemiesDefeated":enemiesDefeated, "magicHour":magicHour, "magicSteps":magicSteps, "date":date, "healthGoal":healthGoal, "strengthGoal":strengthGoal, "magicGoal":magicGoal, "enemyStepCount":enemyStepCount] as [String:AnyObject]
                     plStats[currentuser] = stats
                     prefs.setObject(plStats, forKey: "playerStats")
-                    break
+                    return plStats
                 }
             }
         }
-        else {
-            println("probably no internet")
-        }
     }
+    else if (prefs.objectForKey("playerStats") != nil) {
+        var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
+        return plStats
+    }
+    return nil
 }
 
 func postPlayerStats() {

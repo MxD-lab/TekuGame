@@ -40,6 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var prefs = NSUserDefaults.standardUserDefaults()
     var plStats:[String:[String:AnyObject]] = [:]
     
+    var encounterTimer:NSTimer!
+    
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
         GMSServices.provideAPIKey("AIzaSyAcMAlCJrkf-u4GG1jB5iPXNGs1FTC2kac")
@@ -58,6 +60,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
         var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+        
+//        if (encounterTimer != nil) {
+//            encounterTimer.invalidate()
+//            encounterTimer = nil
+//        }
         
         notified = false
         getHistoricalSteps({numberOfSteps, error in self.prevSteps = numberOfSteps})

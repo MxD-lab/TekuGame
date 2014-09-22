@@ -130,6 +130,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         statusTimer = setInterval("checkStatus", seconds: 2)
         postGetTimer = setInterval("postAndGet", seconds: 30)
         encounterTimer = setInterval("checkEncounter", seconds: 1)
+        
+//        var appdel:AppDelegate = (UIApplication.sharedApplication().delegate) as AppDelegate
+//        appdel.encounterTimer = encounterTimer
     }
     
     func setButton() {
@@ -446,7 +449,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             prefs.setObject(plStats, forKey: "playerStats")
         }
         else {
-            if (enemyStepCount < stepCount) {
+            var state = UIApplication.sharedApplication().applicationState
+            if (enemyStepCount < stepCount && state == UIApplicationState.Active) {
                 updateEncounterStep(&enemyStepCount, stepCount)
                 plStats[playerID]!["enemyStepCount"]! = enemyStepCount
                 prefs.setObject(plStats, forKey: "playerStats")

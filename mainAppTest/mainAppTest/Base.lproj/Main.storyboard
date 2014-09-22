@@ -887,7 +887,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="kwz-uD-Hpi" kind="show" identifier="accselect_map" id="taW-nz-cbX"/>
+                                    <action selector="startGamePressed:" destination="frR-iT-aVI" eventType="touchUpInside" id="xL3-cX-cSj"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bw2-mt-ZiU">
@@ -916,6 +916,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="accountPickerView" destination="sjD-ED-sfh" id="SCi-cK-sXb"/>
+                        <segue destination="kwz-uD-Hpi" kind="show" identifier="accselect_map" id="Gfq-5l-wc6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pGi-9f-fYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1220,8 +1221,8 @@
         <image name="title.png" width="800" height="450"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Rl4-W2-sjU"/>
-        <segue reference="9cB-Yh-hre"/>
         <segue reference="HjJ-Hv-ibE"/>
+        <segue reference="Ym7-ie-ty9"/>
+        <segue reference="WwE-7J-HCh"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -38,8 +38,18 @@ class titleViewController: UIViewController {
         }
         
         if (loggedin && currentuser != "") {
-            getPlayerStats()
-            performSegueWithIdentifier("title_map", sender: self)
+            if (isConnectedToInternet()) {
+                var stats = getPlayerStats()
+                if (stats != nil) {
+                    performSegueWithIdentifier("title_map", sender: self)
+                }
+                else {
+                    UIAlertView(title: "Error", message: "Please check your internet connection.", delegate: nil, cancelButtonTitle: "OK").show()
+                }
+            }
+            else {
+                UIAlertView(title: "Error", message: "Please check your internet connection.", delegate: nil, cancelButtonTitle: "OK").show()
+            }
         }
         else {
             performSegueWithIdentifier("title_acselect", sender: self)
@@ -54,4 +64,3 @@ class titleViewController: UIViewController {
         return Int(UIInterfaceOrientationMask.Portrait.toRaw())
     }
 }
- 

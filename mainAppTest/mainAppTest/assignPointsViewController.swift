@@ -30,13 +30,13 @@ class assignPointsViewController: UIViewController
         // Do any additional setup after loading the view, typically from a nib.
         
         var prefs = NSUserDefaults.standardUserDefaults()
-        var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
+        var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
         var currentuser = prefs.objectForKey("currentuser") as String
-        health = plStats[currentuser]!["health"]!
-        strength = plStats[currentuser]!["strength"]!
-        magic = plStats[currentuser]!["magic"]!
-        speed = plStats[currentuser]!["speed"]!
-        assignpoints = plStats[currentuser]!["assignpoints"]!
+        health = plStats[currentuser]!["health"]! as Int
+        strength = plStats[currentuser]!["strength"]! as Int
+        magic = plStats[currentuser]!["magic"]! as Int
+        speed = plStats[currentuser]!["speed"]! as Int
+        assignpoints = plStats[currentuser]!["assignpoints"]! as Int
         
         original.health = health
         original.strength = strength
@@ -158,7 +158,7 @@ class assignPointsViewController: UIViewController
             var prefs = NSUserDefaults.standardUserDefaults()
             var currentuser = prefs.objectForKey("currentuser") as String
             
-            var plStats = prefs.objectForKey("playerStats") as [String:[String:Int]]
+            var plStats = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
             plStats[currentuser]!["health"]! = health
             plStats[currentuser]!["strength"]! = strength
             plStats[currentuser]!["magic"]! = magic

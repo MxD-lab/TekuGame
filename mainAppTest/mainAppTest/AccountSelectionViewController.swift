@@ -11,7 +11,7 @@ import Accounts
 
 class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    var accounts:NSMutableArray! = NSMutableArray()
+    var accounts:[String] = []
     
     @IBOutlet weak var accountPickerView: UIPickerView!
     
@@ -21,12 +21,28 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
         
         var prefs = NSUserDefaults.standardUserDefaults()
         if ((prefs.objectForKey("useraccounts")) != nil) {
-            accounts = prefs.objectForKey("useraccounts") as NSMutableArray
+            accounts = prefs.objectForKey("useraccounts") as [String]
         }
         accountPickerView.delegate = self
         accountPickerView.reloadAllComponents()
     }
     
+    @IBAction func startGamePressed(sender: AnyObject) {
+        if (isConnectedToInternet()) {
+            var prefs = NSUserDefaults.standardUserDefaults()
+            prefs.setObject(accounts[accountPickerView.selectedRowInComponent(0)] as String, forKey: "currentuser")
+            var stats = getPlayerStats()
+            if (stats != nil) {
+                performSegueWithIdentifier("accselect_map", sender: self)
+            }
+            else {
+                UIAlertView(title: "Error", message: "Please check your internet connection.", delegate: nil, cancelButtonTitle: "OK").show()
+            }
+        }
+        else {
+            UIAlertView(title: "Error", message: "Please check your internet connection.", delegate: nil, cancelButtonTitle: "OK").show()
+        }
+    }
     
     func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
         return accounts[row] as String
@@ -36,7 +52,7 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
         var label = UILabel(frame: CGRectMake(0, 0, pickerView.frame.size.width, 44))
         label.font = UIFont(name: "Papyrus", size: 18)
         label.textColor = UIColor.blackColor()
-        label.text = accounts[row] as? String
+        label.text = accounts[row]
         label.textAlignment = NSTextAlignment.Center
         return label
     }
@@ -56,9 +72,6 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "accselect_map" && accounts.count > 0) {
-            var prefs = NSUserDefaults.standardUserDefaults()
-            prefs.setObject(accounts[accountPickerView.selectedRowInComponent(0)] as String, forKey: "currentuser")
-            getPlayerStats()
             var nextVC = segue.destinationViewController as MapViewController
             nextVC.playerID = accounts[accountPickerView.selectedRowInComponent(0)] as String
         }
