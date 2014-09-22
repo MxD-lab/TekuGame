@@ -139,7 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             healthGoal += 5000
             plStats[playerID]!["healthGoal"]! = healthGoal
             prefs.setObject(plStats, forKey: "playerStats")
-            postLog("Walked \(stepCount) steps today, health incremented by 1.")
+            postLog("Walked \(stepCount) steps today, health incremented by 1.(background)")
             updateLocalPlayerStats(1, 0, 0, 0, &plStats)
             var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
             dispatch_async(lowQueue, { () -> Void in
@@ -160,7 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             speedFloat = 0
             plStats[playerID]!["speedProgress"]! = speedFloat
             prefs.setObject(plStats, forKey: "playerStats")
-            postLog("Speed incremented by 1 from running.")
+            postLog("Speed incremented by 1 from running.(background)")
             updateLocalPlayerStats(0, 0, 0, 1, &plStats)
             var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
             dispatch_async(lowQueue, { () -> Void in
@@ -179,6 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (magicDate != returnDateString()) {
             magicsteps = 0
             magicHourInt = Int(arc4random_uniform(16)) + 8
+            plStats[playerID]!["healthGoal"]! = 5000
             plStats[playerID]!["magicHour"]! = magicHourInt
             plStats[playerID]!["magicSteps"]! = 0
             plStats[playerID]!["date"]! = returnDateString()
@@ -193,7 +194,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             magicGoal += 1000
             plStats[playerID]!["magicGoal"]! = magicGoal
             prefs.setObject(plStats, forKey: "playerStats")
-            postLog("Walked \(magicsteps) steps during magic hour (\(magicHourInt):00). Magic incremented by 1.")
+            postLog("Walked \(magicsteps) steps during magic hour (\(magicHourInt):00). Magic incremented by 1.(background)")
             updateLocalPlayerStats(0, 0, 1, 0, &plStats)
             var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
             dispatch_async(lowQueue, { () -> Void in
