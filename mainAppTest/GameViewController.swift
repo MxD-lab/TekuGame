@@ -102,7 +102,7 @@ class GameViewController: UIViewController {
             if (exp == 10 * level) {
                 level += 1
                 exp = 0
-                assignpoints += 20
+                assignpoints += 10
                 leveledUp = true
             }
             
