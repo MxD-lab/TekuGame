@@ -222,13 +222,25 @@ func postPlayerLocation(playerID:String!, beaconID:String!, myview:GMSMapView!) 
     }
 }
 
+func postToBattles(battleID:String!, enemAttack:String!, enemTarget:String!, playAttack:String!, turn:String!, currentPlayer:String!, status:String!) {
+    
+    var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/battleForm/index.php"
+    var str = "ID=\(battleID)&lastEnemyAttack=\(enemAttack)&lastPlayerAttack=\(playAttack)&turnPlayerID=\(turn)&status=\(status)&enemyTargetID=\(enemTarget)&currentPlayerID=\(currentPlayer)&submit=submit"
+    post(urlstring, str)
+}
+
+func postPlayersInBattle(pid:String!, bid:String!) {
+    var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/playersinbattle/index.php"
+    var str = "playerID=\(pid)&battleID=\(bid)&submit=submit"
+    post(urlstring, str)
+}
+
 func updateEncounterStep(inout stepcount:Int, m7steps:Int) {
     var thousands = lroundf(Float(m7steps) / 1000.0) + 1
     stepcount = Int(thousands) * 1000 + Int(arc4random_uniform(200)) - 100
     var appdel:AppDelegate = (UIApplication.sharedApplication().delegate) as AppDelegate
     appdel.encounterstep = stepcount
 }
-
 
 func updateLocalPlayerStats(healthinc:Int, strengthinc:Int, magicinc:Int, speedinc:Int, inout stats:[String:[String:AnyObject]]) {
     

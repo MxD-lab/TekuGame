@@ -13,22 +13,28 @@ class multiPlayerSetupViewController: UIViewController {
     @IBOutlet weak var battleIDLabel:UILabel!
     @IBOutlet weak var battleTextView:UITextView!
     var battleID:String! = "0"
-    var playerID:String!
+    var playerID:String! = ""
     var timer:NSTimer!
     var pcount = 0
-    var allPlayers:NSMutableArray! = NSMutableArray()
+    var allPlayers:[String] = []
     
     var prefs = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
         timer = setInterval("get", seconds: 1)
         playerID = prefs.objectForKey("currentuser") as String
     }
     
+    
     func setInterval(functionname:String, seconds:NSNumber) -> NSTimer {
         return NSTimer.scheduledTimerWithTimeInterval(seconds, target: self, selector: Selector(functionname), userInfo: nil, repeats: true)
+    }
+    
+    func setTimeout(functionname:String, seconds:NSNumber) -> NSTimer {
+        return NSTimer.scheduledTimerWithTimeInterval(seconds, target: self, selector: Selector(functionname), userInfo: nil, repeats: false)
     }
     
     func get() {
@@ -38,7 +44,6 @@ class multiPlayerSetupViewController: UIViewController {
         
         jsObj = getJSON(url)
         var battleExists:Bool = false
-        
         
         if (jsObj != nil) {
             for battle in jsObj! {
@@ -53,7 +58,7 @@ class multiPlayerSetupViewController: UIViewController {
         
         let playersurl = "http://tekugame.mxd.media.ritsumei.ac.jp/json/playersinbattle.json"
         var jsObj2 = getJSON(playersurl)
-        allPlayers = NSMutableArray()
+        allPlayers = []
         pcount = 0
         battleTextView.text = battleTextView.text + "Players:\n"
         
@@ -63,7 +68,7 @@ class multiPlayerSetupViewController: UIViewController {
                 if (bid == battleID) {
                     pcount++
                     var pid = player["playerID"] as NSString
-                    allPlayers.addObject(pid)
+                    allPlayers.append(pid)
                     battleTextView.text = battleTextView.text + "    \(pid)\n"
                 }
             }
@@ -72,36 +77,43 @@ class multiPlayerSetupViewController: UIViewController {
         battleTextView.text = battleTextView.text + "Player count: \(pcount)\n"
         
         if (!battleExists) {
-            postToBattles(battleID, enemAttack: "", enemTarget: "", playAttack: "", turn: "", currentPlayer: "", status: "Open")
+            postToBattles(battleID, "", "", "", "", "", "Open")
         }
         else {
             if (pcount == 2) {
-                if (allPlayers.containsObject(playerID)) {
-                    postToBattles(battleID, enemAttack: "", enemTarget: "", playAttack: "", turn: "", currentPlayer: "", status: "In Battle")
-                    performSegueWithIdentifier("test", sender: self)
+                var contains:Bool = false
+                for player in allPlayers {
+                    if (player == playerID) {
+                        contains = true
+                        break
+                    }
+                }
+                if (contains == true) {
+                    postToBattles(battleID, "", "", "", "", "", "In Battle")
+                    performSegueWithIdentifier("setup_battle", sender: nil)
                 }
                 else {
                     battleTextView.text = battleTextView.text + "Please wait for next battle.\n"
                 }
             }
             else {
-                postPlayersInBattle(playerID, bid: battleID)
+                postPlayersInBattle(playerID, battleID)
             }
         }
     }
     
-    func postToBattles(battleID:String!, enemAttack:String!, enemTarget:String!, playAttack:String!, turn:String!, currentPlayer:String!, status:String!) {
-        
-        var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/battleForm/index.php"
-        var str = "ID=\(battleID)&lastEnemyAttack=\(enemAttack)&lastPlayerAttack=\(playAttack)&turnPlayerID=\(turn)&status=\(status)&enemyTargetID=\(enemTarget)&currentPlayerID=\(currentPlayer)&submit=submit"
-        post(urlstring, str)
-    }
-    
-    func postPlayersInBattle(pid:String!, bid:String!) {
-        var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/playersinbattle/index.php"
-        var str = "playerID=\(pid)&battleID=\(bid)&submit=submit"
-        post(urlstring, str)
-    }
+//    func postToBattles(battleID:String!, enemAttack:String!, enemTarget:String!, playAttack:String!, turn:String!, currentPlayer:String!, status:String!) {
+//        
+//        var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/battleForm/index.php"
+//        var str = "ID=\(battleID)&lastEnemyAttack=\(enemAttack)&lastPlayerAttack=\(playAttack)&turnPlayerID=\(turn)&status=\(status)&enemyTargetID=\(enemTarget)&currentPlayerID=\(currentPlayer)&submit=submit"
+//        post(urlstring, str)
+//    }
+//    
+//    func postPlayersInBattle(pid:String!, bid:String!) {
+//        var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/playersinbattle/index.php"
+//        var str = "playerID=\(pid)&battleID=\(bid)&submit=submit"
+//        post(urlstring, str)
+//    }
     
     override func viewDidDisappear(animated: Bool) {
         if (timer != nil) {
@@ -128,7 +140,7 @@ class multiPlayerSetupViewController: UIViewController {
             timer.invalidate()
             timer = nil
         }
-        postPlayersInBattle(playerID, bid: "-1")
+        postPlayersInBattle(playerID, "-1")
         performSegueWithIdentifier("setup_map", sender: self)
     }
     
@@ -138,7 +150,11 @@ class multiPlayerSetupViewController: UIViewController {
                 timer.invalidate()
                 timer = nil
             }
+            var nextVC = segue.destinationViewController as GameViewController
+            nextVC.allPlayers = allPlayers
+            nextVC.battleID = battleID
         }
+
     }
 }
 

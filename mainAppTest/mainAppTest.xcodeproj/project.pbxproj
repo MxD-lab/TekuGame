@@ -66,9 +66,6 @@
 		A1DEB5D619BD6F0700F7A21E /* Undead3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DEB5B719BD6F0600F7A21E /* Undead3.png */; };
 		BC006C5A19CE90020011CC39 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BC006C5919CE90020011CC39 /* Reachability.m */; };
 		BC699A3D19CFF61D00D4E905 /* multiPlayerSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC699A3C19CFF61D00D4E905 /* multiPlayerSetupViewController.swift */; };
-		BC699A3F19D00D4900D4E905 /* MultiplayerGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC699A3E19D00D4900D4E905 /* MultiplayerGameViewController.swift */; };
-		BC699A4319D0107D00D4E905 /* MultiplayGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BC699A4219D0107D00D4E905 /* MultiplayGameScene.sks */; };
-		BC699A4519D0109C00D4E905 /* MultiplayGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC699A4419D0109C00D4E905 /* MultiplayGameScene.swift */; };
 		BC81B20219CA7DF8003BDF8C /* DownArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B1F319CA7DF8003BDF8C /* DownArrow.png */; };
 		BC81B20319CA7DF8003BDF8C /* GenericButton_Down.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B1F419CA7DF8003BDF8C /* GenericButton_Down.png */; };
 		BC81B20419CA7DF8003BDF8C /* GenericButton_Up.png in Resources */ = {isa = PBXBuildFile; fileRef = BC81B1F519CA7DF8003BDF8C /* GenericButton_Up.png */; };
@@ -221,9 +218,6 @@
 		BC006C5819CE90020011CC39 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		BC006C5919CE90020011CC39 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		BC699A3C19CFF61D00D4E905 /* multiPlayerSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = multiPlayerSetupViewController.swift; sourceTree = "<group>"; };
-		BC699A3E19D00D4900D4E905 /* MultiplayerGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameViewController.swift; sourceTree = "<group>"; };
-		BC699A4219D0107D00D4E905 /* MultiplayGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MultiplayGameScene.sks; sourceTree = "<group>"; };
-		BC699A4419D0109C00D4E905 /* MultiplayGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayGameScene.swift; sourceTree = "<group>"; };
 		BC81B1F319CA7DF8003BDF8C /* DownArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DownArrow.png; sourceTree = "<group>"; };
 		BC81B1F419CA7DF8003BDF8C /* GenericButton_Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GenericButton_Down.png; sourceTree = "<group>"; };
 		BC81B1F519CA7DF8003BDF8C /* GenericButton_Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GenericButton_Up.png; sourceTree = "<group>"; };
@@ -447,9 +441,6 @@
 			isa = PBXGroup;
 			children = (
 				BC699A3C19CFF61D00D4E905 /* multiPlayerSetupViewController.swift */,
-				BC699A3E19D00D4900D4E905 /* MultiplayerGameViewController.swift */,
-				BC699A4419D0109C00D4E905 /* MultiplayGameScene.swift */,
-				BC699A4219D0107D00D4E905 /* MultiplayGameScene.sks */,
 			);
 			name = "Multiplayer Battle";
 			sourceTree = "<group>";
@@ -543,10 +534,10 @@
 			isa = PBXGroup;
 			children = (
 				F837D80019B3F92E00A18D31 /* mainAppTest-Bridging-Header.h */,
+				F8956B0619A194A700ED670B /* AppDelegate.swift */,
 				F825583919AB1D4F0035EBF6 /* Classes and Enums */,
 				F825583219AB1D2C0035EBF6 /* Combat and Trait Handling */,
 				F8F4F0D019A5B6B3002D077D /* ViewControllers */,
-				F8956B0619A194A700ED670B /* AppDelegate.swift */,
 				BC699A4019D0102A00D4E905 /* Battle */,
 				BC699A4119D0104600D4E905 /* Multiplayer Battle */,
 				F8D8A2D519A2D7DE00CC6A0B /* Helpers.swift */,
@@ -768,7 +759,6 @@
 				F8956B0C19A194A700ED670B /* Main.storyboard in Resources */,
 				A1D183D919BED3BE00E03B28 /* E_Instant_Death.png in Resources */,
 				A1DEB5CC19BD6F0700F7A21E /* Humanoid2.png in Resources */,
-				BC699A4319D0107D00D4E905 /* MultiplayGameScene.sks in Resources */,
 				BC81B21C19CA9DF5003BDF8C /* Text_Button.png in Resources */,
 				F8956B0E19A194A700ED670B /* Images.xcassets in Resources */,
 				A1DEB5C919BD6F0700F7A21E /* Elemental4.png in Resources */,
@@ -828,7 +818,6 @@
 				F825583819AB1D480035EBF6 /* Actions.swift in Sources */,
 				F8213C2619A6D1AB00C72548 /* GameViewController.swift in Sources */,
 				F825583519AB1D3F0035EBF6 /* PlayerValues.swift in Sources */,
-				BC699A3F19D00D4900D4E905 /* MultiplayerGameViewController.swift in Sources */,
 				A1DEB59719BD6EDD00F7A21E /* AssetSelection.swift in Sources */,
 				F8D8A2DA19A2F7E800CC6A0B /* statusViewController.swift in Sources */,
 				F8D8A2D819A2EB1900CC6A0B /* AccountSelectionViewController.swift in Sources */,
@@ -848,7 +837,6 @@
 				F8956B2819A1B93000ED670B /* MapViewController.swift in Sources */,
 				F825583119AB1D280035EBF6 /* EnemyValues.swift in Sources */,
 				A1D183B919BEC84B00E03B28 /* HMSideMenu.m in Sources */,
-				BC699A4519D0109C00D4E905 /* MultiplayGameScene.swift in Sources */,
 				F825583E19AB1D630035EBF6 /* EnemyTypes.swift in Sources */,
 				F825584019AB1D630035EBF6 /* Player.swift in Sources */,
 				F8AC41E619B4148B00FD10C8 /* licenseViewController.swift in Sources */,

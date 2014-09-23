@@ -61,11 +61,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
         
-//        if (encounterTimer != nil) {
-//            encounterTimer.invalidate()
-//            encounterTimer = nil
-//        }
-        
         notified = false
         getHistoricalSteps({numberOfSteps, error in self.prevSteps = numberOfSteps})
         
@@ -89,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         plStats = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
         
         UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler({})
-        loop = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("notifySteps"), userInfo: nil, repeats: true)
+        loop = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("notifySteps"), userInfo: nil, repeats: true)
         statusloop = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("checkStatus"), userInfo: nil, repeats: true)
         NSRunLoop.currentRunLoop().addTimer(loop, forMode: NSRunLoopCommonModes)
         NSRunLoop.currentRunLoop().addTimer(statusloop, forMode: NSRunLoopCommonModes)
@@ -207,21 +202,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func notifySteps() {
-        
         var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
         
         dispatch_async(lowQueue, { () -> Void in
-            if (self.magicHourInt != -1) {
-                self.prefs.setObject(self.magicsteps, forKey: "magicSteps")
-            }
             if (!self.notified && self.encounterstep != 0 && self.stepCount >= self.encounterstep) {
-                self.notified = true
                 var notification = UILocalNotification()
                 notification.fireDate = NSDate()
                 notification.alertBody = "You've encountered a monster."
+                println("You've encountered a monster.")
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                self.notified = true
             }
         })
     }
-    
 }

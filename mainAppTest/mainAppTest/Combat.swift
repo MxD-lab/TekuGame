@@ -367,8 +367,8 @@ func doAction(user:Entity, target:Entity, action:Action) -> [String:String]
         damage = ((damage < 0) ? 1 : Int(Float(damage * 4/5)));
         target.currentHealth -= damage;
         
-        target.currentStrength = target.currentStrength * (90/100);
-        target.currentMagic = target.currentMagic * (90/100);
+        target.currentStrength = (target.currentStrength * 90) / 100;
+        target.currentMagic = (target.currentMagic * 90) / 100;
         return ["damage": "\(damage)", "message" : "Used: \(action.typeToStringE()): your strength and magic power decreased"];
     case Action.Smite:
         damage = user.currentMagic - (target.currentMagic/2);

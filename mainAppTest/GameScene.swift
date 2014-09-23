@@ -32,6 +32,18 @@ var doUpdate:Int = 0;
 
 class GameScene: SKScene
 {
+    //
+    var allPlayers:[String]! = []
+    var otherPlayers:NSMutableArray!
+    var hostID:String!
+    var playerID:String!
+    var battleID:String!
+    var turn:String! = ""
+    var choseAttack:Bool! = false
+    var enemyAttacking:Bool! = false
+    var isMultiplayer:Bool! = false
+    
+    
     var allActions:[(String, [Action])] = [("Utility", utility), ("Physical",physical),("Magic", magic)];
     
     let canDo:[Int] = [5,17,30,43,56,68,81,94,107,120];
@@ -49,6 +61,17 @@ class GameScene: SKScene
     
     override func didMoveToView(view: SKView)
     {
+        if (allPlayers.count > 0) {
+            isMultiplayer = true
+        }
+        if (isMultiplayer == true) {
+            setHost()
+            println("host: \(hostID)")
+        }
+        else {
+            println("is not multiplayer")
+        }
+        
         var userInfo = NSDictionary(object: false, forKey: "isGameOver")
         NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
         
@@ -67,8 +90,8 @@ class GameScene: SKScene
         
         e.level = p.level;
         
-        e.type = Types.allValues[Int(arc4random_uniform(9))];
-        e.subType = (e.type == Types.Elemental) ? Int(arc4random_uniform(3)):Int(arc4random_uniform(2));
+        e.type = Types.allValues[Int(arc4random_uniform(10))];
+        e.subType = (e.type == Types.Elemental) ? Int(arc4random_uniform(4)):Int(arc4random_uniform(3));
         e = setStats(e);
         e.currentHealth = e.health;
         e.currentStrength = e.strength;
@@ -215,6 +238,16 @@ class GameScene: SKScene
         addChild(enemyImage);
     }
     
+    func setHost() {
+        hostID = allPlayers[0] as String
+        for player in allPlayers {
+            var pid = player as String
+            if (pid < hostID) {
+                hostID = pid
+            }
+        }
+    }
+    
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent)
     {   /* Called when a touch begins */
         for touch: AnyObject in touches
@@ -292,6 +325,9 @@ class GameScene: SKScene
                 }
                 else if (somethingDead) {
                     somethingDead = false
+                    if (isMultiplayer == true) {
+                        postPlayersInBattle(playerID, "-1")
+                    }
                     var userInfo = ["isGameOver":true, "playerWin":playerWin]
                     NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
                 }

@@ -30,14 +30,32 @@ class GameViewController: UIViewController {
     var segued = false
     var pwin = false
     var leveledUp = false
+    var prefs = NSUserDefaults.standardUserDefaults()
+    
+    //
+    var allPlayers:[String]! = []
+    var battleID:String!
+//    var otherPlayers:NSMutableArray!
+//    var hostID:String!
+//    var playerID:String!
+//    var battleID:String!
+//    var turn:String! = ""
+//    var choseAttack:Bool! = false
+//    var enemyAttacking:Bool! = false
+    //
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             // Configure the view.
             let skView = self.view as SKView
-            skView.showsFPS = true
-            skView.showsNodeCount = true
+            skView.showsFPS = false
+            skView.showsNodeCount = false
+            scene.allPlayers = allPlayers
+            var playerID = prefs.objectForKey("currentuser") as String
+            scene.playerID = playerID
+            scene.battleID = battleID
             
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
@@ -86,7 +104,7 @@ class GameViewController: UIViewController {
 
         if (gmover && pwin && !incremented) {
             var enemiesbeaten = 0
-            var prefs = NSUserDefaults.standardUserDefaults()
+            
             prefs.removeObjectForKey("encounterStep")
             
             // Assign experience stuff when won.
