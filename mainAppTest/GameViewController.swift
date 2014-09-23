@@ -139,9 +139,9 @@ class GameViewController: UIViewController {
             
             var prefs = NSUserDefaults.standardUserDefaults()
             // Assign experience stuff when lost.
-            var plStats:[String:[String:Int]] = prefs.objectForKey("playerStats") as [String:[String:Int]]
+            var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
             var currentuser = prefs.objectForKey("currentuser") as String
-            var exp:Int = plStats[currentuser]!["exp"]!
+            var exp:Int = plStats[currentuser]!["exp"]! as Int
             
             if (exp > 0) {
                exp -= 1

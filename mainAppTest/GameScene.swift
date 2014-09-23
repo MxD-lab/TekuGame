@@ -51,13 +51,62 @@ class GameScene: SKScene
     var prefs = NSUserDefaults.standardUserDefaults()
     
     let background:SKSpriteNode = SKSpriteNode(imageNamed: "background.png");
-    let status:UILabel = UILabel(frame: CGRectMake( 0, 0, 320, 50));
+    var status:UILabel! = UILabel(frame: CGRectMake( 0, 0, 320, 50));
     let typePicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let actionPicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let enemyImage:SKSpriteNode = SKSpriteNode(imageNamed: "enemy.png");
-    let playerStatus:UILabel = UILabel(frame: CGRectMake(0,0,320, 50));
+    var playerStatus:UILabel = UILabel(frame: CGRectMake(0,0,320, 50));
 
     var step:Int = 0;
+    
+    func setPlayerStats(inout player_a:player) {
+        var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
+        var currentuser = prefs.objectForKey("currentuser") as String
+        player_a.level = plStats[currentuser]!["level"]! as Int
+        player_a.health = plStats[currentuser]!["health"]! as Int
+        player_a.strength = plStats[currentuser]!["strength"]! as Int
+        player_a.magic = plStats[currentuser]!["magic"]! as Int
+        player_a.speed = plStats[currentuser]!["speed"]! as Int
+        
+        player_a.currentHealth = p.health;
+        player_a.currentStrength = p.strength;
+        player_a.currentMagic = p.magic;
+        player_a.currentSpeed = p.speed;
+    }
+    
+    func setEnemyStats(inout enemy_a:enemy) {
+        enemy_a.level = p.level;
+        
+        enemy_a.type = Types.allValues[Int(arc4random_uniform(10))];
+        enemy_a.subType = (e.type == Types.Elemental) ? Int(arc4random_uniform(4)):Int(arc4random_uniform(3));
+        enemy_a = setStats(e);
+        enemy_a.currentHealth = e.health;
+        enemy_a.currentStrength = e.strength;
+        enemy_a.currentMagic = e.magic;
+        enemy_a.currentSpeed = e.speed;
+    }
+    
+    func setStatusBar(inout stat:UILabel!) {
+        stat.center = CGPointMake(160, 25);
+        stat.textAlignment = NSTextAlignment.Center;
+        stat.textColor = UIColor.blackColor();
+        stat.backgroundColor = UIColor.lightGrayColor();
+        stat.opaque = false;
+        stat.alpha = 0.75;
+        stat.font = UIFont(name: "Optima-ExtraBlack", size: 15);
+        stat.numberOfLines = 0;
+        stat.lineBreakMode = NSLineBreakMode.ByWordWrapping;
+    }
+    
+    func setPlayerStatusBar(inout pstat:UILabel) {
+        pstat.center = CGPointMake(160,518);
+        pstat.textAlignment = NSTextAlignment.Center;
+        pstat.backgroundColor = UIColor.lightGrayColor();
+        pstat.opaque = false;
+        pstat.alpha = 0.75;
+        pstat.font = UIFont(name: "Optima-ExtraBlack", size: 15);
+        pstat.numberOfLines = 2;
+    }
     
     override func didMoveToView(view: SKView)
     {
@@ -75,28 +124,8 @@ class GameScene: SKScene
         var userInfo = NSDictionary(object: false, forKey: "isGameOver")
         NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
         
-        var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
-        var currentuser = prefs.objectForKey("currentuser") as String
-        p.level = plStats[currentuser]!["level"]! as Int
-        p.health = plStats[currentuser]!["health"]! as Int
-        p.strength = plStats[currentuser]!["strength"]! as Int
-        p.magic = plStats[currentuser]!["magic"]! as Int
-        p.speed = plStats[currentuser]!["speed"]! as Int
-        
-        p.currentHealth = p.health;
-        p.currentStrength = p.strength;
-        p.currentMagic = p.magic;
-        p.currentSpeed = p.speed;
-        
-        e.level = p.level;
-        
-        e.type = Types.allValues[Int(arc4random_uniform(10))];
-        e.subType = (e.type == Types.Elemental) ? Int(arc4random_uniform(4)):Int(arc4random_uniform(3));
-        e = setStats(e);
-        e.currentHealth = e.health;
-        e.currentStrength = e.strength;
-        e.currentMagic = e.magic;
-        e.currentSpeed = e.speed;
+        setPlayerStats(&p)
+        setEnemyStats(&e)
         
         enemyImage.texture = getSprite(e);
         
@@ -106,25 +135,13 @@ class GameScene: SKScene
         postLog("Fight Begin - Enemy: type: \(e.type), subtype: \(e.subType), health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)");
         
         /* Setup your scene here */
-        status.center = CGPointMake(160, 25);
-        status.textAlignment = NSTextAlignment.Center;
-        status.textColor = UIColor.blackColor();
-        status.backgroundColor = UIColor.lightGrayColor();
-        status.opaque = false;
-        status.alpha = 0.75;
-        status.font = UIFont(name: "Optima-ExtraBlack", size: 15);
-        status.numberOfLines = 0;
-        status.lineBreakMode = NSLineBreakMode.ByWordWrapping;
+        setStatusBar(&status)
         view.addSubview(status)
         
-        playerStatus.center = CGPointMake(160,518);
-        playerStatus.textAlignment = NSTextAlignment.Center;
-        playerStatus.backgroundColor = UIColor.lightGrayColor();
-        playerStatus.opaque = false;
-        playerStatus.alpha = 0.75;
-        playerStatus.font = UIFont(name: "Optima-ExtraBlack", size: 15);
-        playerStatus.numberOfLines = 2;
+        setPlayerStatusBar(&playerStatus)
         view.addSubview(playerStatus);
+        
+        
         
         var p_uppercut = setMenuButton32("P_Uppercut.png") { () -> Void in self.actionAndStatus(Action.P_Uppercut);}
         var p_charged_strike = setMenuButton32("P_Charged_Strike.png") { () -> Void in self.actionAndStatus(Action.P_Charged_Strike);}
