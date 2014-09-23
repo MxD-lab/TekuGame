@@ -33,7 +33,7 @@ var doUpdate:Int = 0;
 class GameScene: SKScene
 {
     //
-    var allPlayers:[String]! = []
+    var allPlayers:[String] = []
     var otherPlayers:NSMutableArray!
     var hostID:String!
     var playerID:String!
@@ -43,6 +43,7 @@ class GameScene: SKScene
     var enemyAttacking:Bool! = false
     var isMultiplayer:Bool! = false
     
+    var allPlayerStats:[String:[String:AnyObject]]! = ["":[:]]
     
     var allActions:[(String, [Action])] = [("Utility", utility), ("Physical",physical),("Magic", magic)];
     
@@ -74,8 +75,8 @@ class GameScene: SKScene
         player_a.currentSpeed = p.speed;
     }
     
-    func setEnemyStats(inout enemy_a:enemy) {
-        enemy_a.level = p.level;
+    func setEnemyStats(inout enemy_a:enemy, level:Int) {
+        enemy_a.level = level;
         
         enemy_a.type = Types.allValues[Int(arc4random_uniform(10))];
         enemy_a.subType = (e.type == Types.Elemental) ? Int(arc4random_uniform(4)):Int(arc4random_uniform(3));
@@ -113,6 +114,7 @@ class GameScene: SKScene
         if (allPlayers.count > 0) {
             isMultiplayer = true
         }
+        
         if (isMultiplayer == true) {
             setHost()
             println("host: \(hostID)")
@@ -125,14 +127,6 @@ class GameScene: SKScene
         NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
         
         setPlayerStats(&p)
-        setEnemyStats(&e)
-        
-        enemyImage.texture = getSprite(e);
-        
-        turnPlayer = (p.speed > e.speed) ? true : false ;
-        
-        postLog("Fight Begin - Player: level: \(p.level), health: \(p.health), magic: \(p.magic), speed: \(p.speed), strength: \(p.strength), remaining points: \(p.points)");
-        postLog("Fight Begin - Enemy: type: \(e.type), subtype: \(e.subType), health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)");
         
         /* Setup your scene here */
         setStatusBar(&status)
@@ -140,8 +134,6 @@ class GameScene: SKScene
         
         setPlayerStatusBar(&playerStatus)
         view.addSubview(playerStatus);
-        
-        
         
         var p_uppercut = setMenuButton32("P_Uppercut.png") { () -> Void in self.actionAndStatus(Action.P_Uppercut);}
         var p_charged_strike = setMenuButton32("P_Charged_Strike.png") { () -> Void in self.actionAndStatus(Action.P_Charged_Strike);}
@@ -191,17 +183,17 @@ class GameScene: SKScene
             e_instant_death
         ];
         
-        for(var i = 9; i >= 0; i -= 1)
-        {
-            if(p.magic < canDo[i])
+        for can in canDo.reverse() {
+            if(p.magic < can)
             {
                 magicArr.removeLastObject();
             }
-            if(p.strength < canDo[i])
+            if(p.strength < can)
             {
                 physicalArr.removeLastObject();
             }
         }
+        
         physicalMenu = HMSideMenu(items: physicalArr);
         magicMenu = HMSideMenu(items: magicArr);
         
@@ -239,7 +231,7 @@ class GameScene: SKScene
             physicalButton,
             magicButton,
             examineButton
-            ]);
+        ]);
         
         typeMenu.menuPosition = HMSideMenuPositionLeft;
         view.addSubview(typeMenu);
@@ -250,9 +242,91 @@ class GameScene: SKScene
         background.zPosition = -2;
         addChild(background);
         
-        enemyImage.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 80);
-        enemyImage.zPosition = 1;
-        addChild(enemyImage);
+        if (isMultiplayer == true) {
+            println("multi")
+            
+            allPlayerStats.removeValueForKey("")
+            
+            var enemylevel:Int = 0
+            
+            for player in allPlayers {
+                var temp = getPlayer(player) as [String:AnyObject]!
+                allPlayerStats[player] = temp
+                var level = temp["level"]! as Int
+                enemylevel += level
+            }
+            
+            enemylevel = (enemylevel / allPlayers.count) + (allPlayers.count / 2);
+            
+            setEnemyStats(&e, level: enemylevel); // (sum of levels / # players)  +  (#players/2))
+            println("elevel \(e.level) \(enemylevel)");
+            enemyImage.texture = getSprite(e);
+            enemyImage.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 80);
+            enemyImage.zPosition = 1;
+            addChild(enemyImage);
+            initEnemy()
+            
+            turnPlayer = (p.speed > e.speed) ? true : false ;
+            postLog("Fight Begin - Player: level: \(p.level), health: \(p.health), magic: \(p.magic), speed: \(p.speed), strength: \(p.strength), remaining points: \(p.points)");
+            postLog("Fight Begin - Enemy: level: \(enemylevel), type: \(e.type), subtype: \(e.subType), health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)");
+        }
+        else {
+            println("player")
+            setEnemyStats(&e, level: p.level + Int(arc4random_uniform(2)));
+            enemyImage.texture = getSprite(e);
+            enemyImage.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 80);
+            enemyImage.zPosition = 1;
+            addChild(enemyImage);
+            turnPlayer = (p.speed > e.speed) ? true : false ;
+            postLog("Fight Begin - Player: level: \(p.level), health: \(p.health), magic: \(p.magic), speed: \(p.speed), strength: \(p.strength), remaining points: \(p.points)");
+            postLog("Fight Begin - Enemy: type: \(e.type), subtype: \(e.subType), health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)");
+        }
+    }
+    
+    func initEnemy() {
+        if (playerID == hostID) {
+            // post enemy
+            postEnemy(e);
+        }
+        else {
+            // get enemy
+            var battleEnemObj = getJSON("http://tekugame.mxd.media.ritsumei.ac.jp/json/battleenemies.json")
+            if (battleEnemObj != nil) {
+                for battle in battleEnemObj! {
+                    var ID = battle["ID"] as NSString
+                    if (ID == battleID) {
+                        var typestr = battle["type"] as NSString
+                        var subtypestr = battle["subtype"] as NSString
+                        var levelstr = battle["level"] as NSString
+                        var healthstr = battle["health"] as NSString
+                        var strengthstr = battle["strength"] as NSString
+                        var magicstr = battle["magic"] as NSString
+                        var speedstr = battle["speed"] as NSString
+                        
+                        var type = Int(typestr.doubleValue)
+                        var subtype = Int(subtypestr.doubleValue)
+                        var level = Int(levelstr.doubleValue)
+                        var health = Int(healthstr.doubleValue)
+                        var strength = Int(strengthstr.doubleValue)
+                        var magic = Int(magicstr.doubleValue)
+                        var speed = Int(speedstr.doubleValue)
+                        
+                        println("\(type) \(subtype) \(level) \(health) \(strength) \(magic) \(speed)")
+                        
+                        break
+                    }
+                }
+            }
+        }
+    }
+    
+    func postEnemy(enem:enemy) {
+        var url = "http://tekugame.mxd.media.ritsumei.ac.jp/battleenemiesForm/"
+        var atype = enem.type.typeToIndex() as Int
+        println(atype)
+        var query = "ID=\(battleID)&type=\(atype)&subtype=\(enem.subType)&level=\(enem.level)&health=\(enem.health)&strength=\(enem.strength)&magic=\(enem.magic)&speed=\(enem.speed)&submit=submit"
+        println(query)
+        post(url, query)
     }
     
     func setHost() {
@@ -344,6 +418,8 @@ class GameScene: SKScene
                     somethingDead = false
                     if (isMultiplayer == true) {
                         postPlayersInBattle(playerID, "-1")
+                        e.type = Types.empty
+                        postEnemy(e)
                     }
                     var userInfo = ["isGameOver":true, "playerWin":playerWin]
                     NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)

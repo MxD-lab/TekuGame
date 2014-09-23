@@ -42,7 +42,7 @@ class titleViewController: UIViewController {
         
         if (loggedin && currentuser != "") {
             if (isConnectedToInternet()) {
-                var stats = getPlayerStats()
+                var stats = getMyStats()
                 if (stats != nil) {
                     performSegueWithIdentifier("title_map", sender: self)
                 }

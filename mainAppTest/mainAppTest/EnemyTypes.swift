@@ -98,4 +98,33 @@ enum Types:String, Printable
             return "";
         }
     }
+    
+    func typeToIndex() -> Int
+    {
+        switch(self)
+            {
+        case Types.Humanoid:
+            return 0;
+        case Types.Insect:
+            return 1;
+        case Types.Alien:
+            return 2;
+        case Types.Beast:
+            return 3;
+        case Types.Construct:
+            return 4;
+        case Types.Undead:
+            return 5;
+        case Types.Elemental:
+            return 6;
+        case Types.Slime:
+            return 7;
+        case Types.Demon:
+            return 8;
+        case Types.Dragon:
+            return 9;
+        default:
+            return -1;
+        }
+    }
 }

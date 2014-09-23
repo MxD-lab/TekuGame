@@ -123,9 +123,62 @@ func postLog(message:String!) {
 //    println(message)
 }
 
-func getPlayerStats() -> [String:[String:AnyObject]]? {
+func getMyStats()  -> [String:[String:AnyObject]]? {
     var prefs = NSUserDefaults.standardUserDefaults()
     var currentuser = prefs.objectForKey("currentuser") as String
+    return getPlayerStats(currentuser)
+}
+
+func getPlayer(player:String) -> [String:AnyObject]? {
+    var jsObj = getJSON("http://tekugame.mxd.media.ritsumei.ac.jp/json/playerdata.json") as [[String:AnyObject]]?
+    if (jsObj != nil) {
+        for data in jsObj! {
+            var username:String = data["ID"] as NSString
+            if (player == username) {
+                var levelstr = data["level"] as NSString
+                var healthstr = data["health"] as NSString
+                var strengthstr = data["strength"] as NSString
+                var magicstr = data["magic"] as NSString
+                var speedstr = data["speed"] as NSString
+                var pointsstr = data["points"] as NSString
+                var experiencestr = data["experience"] as NSString
+                var speedProgressstr = data["speedProgress"] as NSString
+                var enemiesDefeatedstr = data["enemiesDefeated"] as NSString
+                var magicHourstr = data["magicHour"] as NSString
+                var magicStepsstr = data["magicSteps"] as NSString
+                var date = data["date"] as NSString
+                var healthGoalstr = data["healthGoal"] as NSString
+                var strengthGoalstr = data["strengthGoal"] as NSString
+                var magicGoalstr = data["magicGoal"] as NSString
+                var enemyStepCountstr = data["enemyStepCount"] as NSString
+                
+                var level:Int = Int(levelstr.doubleValue)
+                var health:Int = Int(healthstr.doubleValue)
+                var strength:Int = Int(strengthstr.doubleValue)
+                var magic:Int = Int(magicstr.doubleValue)
+                var speed:Int = Int(speedstr.doubleValue)
+                var points:Int = Int(pointsstr.doubleValue)
+                var experience:Int = Int(experiencestr.doubleValue)
+                var speedProgress:Float = Float(speedProgressstr.doubleValue)
+                var enemiesDefeated:Int = Int(enemiesDefeatedstr.doubleValue)
+                var magicHour:Int = Int(magicHourstr.doubleValue)
+                var magicSteps:Int = Int(magicStepsstr.doubleValue)
+                var healthGoal:Int = Int(healthGoalstr.doubleValue)
+                var strengthGoal:Int = Int(strengthGoalstr.doubleValue)
+                var magicGoal:Int = Int(magicGoalstr.doubleValue)
+                var enemyStepCount:Int = Int(enemyStepCountstr.doubleValue)
+                
+                var stats = ["level": level, "health":health, "strength":strength, "magic":magic, "speed":speed, "assignpoints":points, "exp":experience, "speedProgress":speedProgress, "enemiesDefeated":enemiesDefeated, "magicHour":magicHour, "magicSteps":magicSteps, "date":date, "healthGoal":healthGoal, "strengthGoal":strengthGoal, "magicGoal":magicGoal, "enemyStepCount":enemyStepCount] as [String:AnyObject]
+                return stats
+            }
+        }
+    }
+    return nil
+}
+
+func getPlayerStats(player:String) -> [String:[String:AnyObject]]? {
+    var prefs = NSUserDefaults.standardUserDefaults()
+//    var currentuser = prefs.objectForKey("currentuser") as String
     var versionstr:NSString = UIDevice.currentDevice().systemVersion
     var versiondouble = versionstr.doubleValue
     
@@ -134,7 +187,7 @@ func getPlayerStats() -> [String:[String:AnyObject]]? {
         if (jsObj != nil) {
             for data in jsObj! {
                 var username:String = data["ID"] as NSString
-                if (currentuser == username) {
+                if (player == username) {
                     var levelstr = data["level"] as NSString
                     var healthstr = data["health"] as NSString
                     var strengthstr = data["strength"] as NSString
@@ -170,7 +223,7 @@ func getPlayerStats() -> [String:[String:AnyObject]]? {
                     
                     var plStats:[String:[String:AnyObject]] = [:]
                     var stats = ["level": level, "health":health, "strength":strength, "magic":magic, "speed":speed, "assignpoints":points, "exp":experience, "speedProgress":speedProgress, "enemiesDefeated":enemiesDefeated, "magicHour":magicHour, "magicSteps":magicSteps, "date":date, "healthGoal":healthGoal, "strengthGoal":strengthGoal, "magicGoal":magicGoal, "enemyStepCount":enemyStepCount] as [String:AnyObject]
-                    plStats[currentuser] = stats
+                    plStats[player] = stats
                     prefs.setObject(plStats, forKey: "playerStats")
                     return plStats
                 }

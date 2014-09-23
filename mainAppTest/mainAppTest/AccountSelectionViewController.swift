@@ -34,7 +34,7 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
         if (isConnectedToInternet()) {
             var prefs = NSUserDefaults.standardUserDefaults()
             prefs.setObject(accounts[accountPickerView.selectedRowInComponent(0)] as String, forKey: "currentuser")
-            var stats = getPlayerStats()
+            var stats = getMyStats()
             if (stats != nil) {
                 performSegueWithIdentifier("accselect_map", sender: self)
             }

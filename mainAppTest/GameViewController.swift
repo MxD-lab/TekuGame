@@ -33,7 +33,7 @@ class GameViewController: UIViewController {
     var prefs = NSUserDefaults.standardUserDefaults()
     
     //
-    var allPlayers:[String]! = []
+    var allPlayers:[String] = []
     var battleID:String!
 //    var otherPlayers:NSMutableArray!
 //    var hostID:String!
