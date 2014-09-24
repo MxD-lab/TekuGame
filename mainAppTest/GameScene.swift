@@ -52,7 +52,9 @@ class GameScene: SKScene
     
     var prefs = NSUserDefaults.standardUserDefaults()
     
-    let background:SKSpriteNode = SKSpriteNode(imageNamed: "background.png");
+//    var backgroundPath:NSString = NSBundle.mainBundle().pathForResource("background", ofType: "png")!
+    let background:SKSpriteNode = SKSpriteNode(texture: SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("background", ofType: "png")! as NSString)));
+    //SKSpriteNode(imageNamed: "background.png");
     var status:UILabel! = UILabel(frame: CGRectMake( 0, 0, 320, 50));
     let typePicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let actionPicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
@@ -260,7 +262,8 @@ class GameScene: SKScene
                 
                 enemylevel = (enemylevel / allPlayers.count) + (allPlayers.count / 2);
                 setEnemyStats(&e, level: enemylevel); // (sum of levels / # players)  +  (#players/2))
-//                println("elevel \(e.level) \(enemylevel)");
+                e.type = Types.Humanoid
+                e.subType = 0
                 postLog("Fight Begin - Player: level: \(p.level), health: \(p.health), magic: \(p.magic), speed: \(p.speed), strength: \(p.strength), remaining points: \(p.points)");
                 postLog("Fight Begin - Enemy: level: \(enemylevel), type: \(e.type), subtype: \(e.subType), health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)");
             }
