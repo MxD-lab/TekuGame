@@ -17,6 +17,10 @@ class multiPlayerSetupViewController: UIViewController {
     var timer:NSTimer!
     var pcount = 0
     var allPlayers:[String] = []
+    var hostID:String! = ""
+    
+    var gamestarted = false
+    var beaconenem:enemy? = nil
     
     var prefs = NSUserDefaults.standardUserDefaults()
     
@@ -80,7 +84,7 @@ class multiPlayerSetupViewController: UIViewController {
             postToBattles(battleID, "", "", "", "", "", "Open")
         }
         else {
-            if (pcount == 2) {
+            if (pcount == 2 && gamestarted == false) {
                 var contains:Bool = false
                 for player in allPlayers {
                     if (player == playerID) {
@@ -89,8 +93,10 @@ class multiPlayerSetupViewController: UIViewController {
                     }
                 }
                 if (contains == true) {
+                    gamestarted = true
                     postToBattles(battleID, "", "", "", "", "", "In Battle")
-                    performSegueWithIdentifier("setup_battle", sender: nil)
+                    setHost()
+//                    performSegueWithIdentifier("setup_battle", sender: nil)
                 }
                 else {
                     battleTextView.text = battleTextView.text + "Please wait for next battle.\n"
@@ -98,6 +104,74 @@ class multiPlayerSetupViewController: UIViewController {
             }
             else {
                 postPlayersInBattle(playerID, battleID)
+            }
+        }
+        
+        if (gamestarted == true) {
+            if (playerID == hostID) {
+                performSegueWithIdentifier("setup_battle", sender: nil)
+            }
+            else {
+                println("waiting for enemy")
+                beaconenem = getEnemy()
+                if (beaconenem != nil) {
+                    performSegueWithIdentifier("setup_battle", sender: nil)
+                }
+            }
+        }
+    }
+    
+    func getEnemy() -> enemy? {
+        // get enemy
+        var battleEnemObj = getJSON("http://tekugame.mxd.media.ritsumei.ac.jp/json/battleenemies.json")
+        if (battleEnemObj != nil) {
+            for battle in battleEnemObj! {
+                var ID = battle["ID"] as NSString
+                if (ID == battleID) {
+                    var typestr = battle["type"] as NSString
+                    var subtypestr = battle["subtype"] as NSString
+                    var levelstr = battle["level"] as NSString
+                    var healthstr = battle["health"] as NSString
+                    var strengthstr = battle["strength"] as NSString
+                    var magicstr = battle["magic"] as NSString
+                    var speedstr = battle["speed"] as NSString
+                    
+                    var type = Int(typestr.doubleValue)
+                    var subtype = Int(subtypestr.doubleValue)
+                    var level = Int(levelstr.doubleValue)
+                    var health = Int(healthstr.doubleValue)
+                    var strength = Int(strengthstr.doubleValue)
+                    var magic = Int(magicstr.doubleValue)
+                    var speed = Int(speedstr.doubleValue)
+                    
+                    println("\(type) \(subtype) \(level) \(health) \(strength) \(magic) \(speed)")
+                    
+                    if (type == -1) {
+                        return nil
+                    }
+                    else {
+                        var en = enemy()
+                        en.type = Types.allValues[type]
+                        en.subType = subtype
+                        en.level = level
+                        en.health = health
+                        en.strength = strength
+                        en.magic = magic
+                        en.speed = speed
+                        return en
+                    }
+                }
+            }
+        }
+        return nil
+    }
+    
+    func setHost() {
+        hostID = allPlayers[0] as String
+        for player in allPlayers {
+            var pid = player as String
+            if (pid < hostID) {
+                hostID = pid
             }
         }
     }
@@ -153,8 +227,8 @@ class multiPlayerSetupViewController: UIViewController {
             var nextVC = segue.destinationViewController as GameViewController
             nextVC.allPlayers = allPlayers
             nextVC.battleID = battleID
+            nextVC.beaconenem = beaconenem
         }
-
     }
 }
 

@@ -42,6 +42,7 @@ class GameScene: SKScene
     var choseAttack:Bool! = false
     var enemyAttacking:Bool! = false
     var isMultiplayer:Bool! = false
+    var beaconenem:enemy?
     
     var allPlayerStats:[String:[String:AnyObject]]! = ["":[:]]
     
@@ -79,12 +80,12 @@ class GameScene: SKScene
         enemy_a.level = level;
         
         enemy_a.type = Types.allValues[Int(arc4random_uniform(10))];
-        enemy_a.subType = (e.type == Types.Elemental) ? Int(arc4random_uniform(4)):Int(arc4random_uniform(3));
-        enemy_a = setStats(e);
-        enemy_a.currentHealth = e.health;
-        enemy_a.currentStrength = e.strength;
-        enemy_a.currentMagic = e.magic;
-        enemy_a.currentSpeed = e.speed;
+        enemy_a.subType = (enemy_a.type == Types.Elemental) ? Int(arc4random_uniform(4)):Int(arc4random_uniform(3));
+        enemy_a = setStats(enemy_a);
+        enemy_a.currentHealth = enemy_a.health;
+        enemy_a.currentStrength = enemy_a.strength;
+        enemy_a.currentMagic = enemy_a.magic;
+        enemy_a.currentSpeed = enemy_a.speed;
     }
     
     func setStatusBar(inout stat:UILabel!) {
@@ -247,19 +248,26 @@ class GameScene: SKScene
             
             allPlayerStats.removeValueForKey("")
             
-            var enemylevel:Int = 0
-            
-            for player in allPlayers {
-                var temp = getPlayer(player) as [String:AnyObject]!
-                allPlayerStats[player] = temp
-                var level = temp["level"]! as Int
-                enemylevel += level
+            if (playerID == hostID) {
+                var enemylevel:Int = 0
+                
+                for player in allPlayers {
+                    var temp = getPlayer(player) as [String:AnyObject]!
+                    allPlayerStats[player] = temp
+                    var level = temp["level"]! as Int
+                    enemylevel += level
+                }
+                
+                enemylevel = (enemylevel / allPlayers.count) + (allPlayers.count / 2);
+                setEnemyStats(&e, level: enemylevel); // (sum of levels / # players)  +  (#players/2))
+//                println("elevel \(e.level) \(enemylevel)");
+                postLog("Fight Begin - Player: level: \(p.level), health: \(p.health), magic: \(p.magic), speed: \(p.speed), strength: \(p.strength), remaining points: \(p.points)");
+                postLog("Fight Begin - Enemy: level: \(enemylevel), type: \(e.type), subtype: \(e.subType), health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)");
             }
-            
-            enemylevel = (enemylevel / allPlayers.count) + (allPlayers.count / 2);
-            
-            setEnemyStats(&e, level: enemylevel); // (sum of levels / # players)  +  (#players/2))
-            println("elevel \(e.level) \(enemylevel)");
+            else {
+                e = beaconenem!
+                println("Enemy: level: \(e.level), type: \(e.type), subtype: \(e.subType), health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)")
+            }
             enemyImage.texture = getSprite(e);
             enemyImage.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 80);
             enemyImage.zPosition = 1;
@@ -267,8 +275,7 @@ class GameScene: SKScene
             initEnemy()
             
             turnPlayer = (p.speed > e.speed) ? true : false ;
-            postLog("Fight Begin - Player: level: \(p.level), health: \(p.health), magic: \(p.magic), speed: \(p.speed), strength: \(p.strength), remaining points: \(p.points)");
-            postLog("Fight Begin - Enemy: level: \(enemylevel), type: \(e.type), subtype: \(e.subType), health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)");
+            
         }
         else {
             println("player")
@@ -289,34 +296,7 @@ class GameScene: SKScene
             postEnemy(e);
         }
         else {
-            // get enemy
-            var battleEnemObj = getJSON("http://tekugame.mxd.media.ritsumei.ac.jp/json/battleenemies.json")
-            if (battleEnemObj != nil) {
-                for battle in battleEnemObj! {
-                    var ID = battle["ID"] as NSString
-                    if (ID == battleID) {
-                        var typestr = battle["type"] as NSString
-                        var subtypestr = battle["subtype"] as NSString
-                        var levelstr = battle["level"] as NSString
-                        var healthstr = battle["health"] as NSString
-                        var strengthstr = battle["strength"] as NSString
-                        var magicstr = battle["magic"] as NSString
-                        var speedstr = battle["speed"] as NSString
-                        
-                        var type = Int(typestr.doubleValue)
-                        var subtype = Int(subtypestr.doubleValue)
-                        var level = Int(levelstr.doubleValue)
-                        var health = Int(healthstr.doubleValue)
-                        var strength = Int(strengthstr.doubleValue)
-                        var magic = Int(magicstr.doubleValue)
-                        var speed = Int(speedstr.doubleValue)
-                        
-                        println("\(type) \(subtype) \(level) \(health) \(strength) \(magic) \(speed)")
-                        
-                        break
-                    }
-                }
-            }
+            
         }
     }
     

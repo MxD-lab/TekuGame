@@ -35,6 +35,7 @@ class GameViewController: UIViewController {
     //
     var allPlayers:[String] = []
     var battleID:String!
+    var beaconenem:enemy?
 //    var otherPlayers:NSMutableArray!
 //    var hostID:String!
 //    var playerID:String!
@@ -56,6 +57,7 @@ class GameViewController: UIViewController {
             var playerID = prefs.objectForKey("currentuser") as String
             scene.playerID = playerID
             scene.battleID = battleID
+            scene.beaconenem = beaconenem
             
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
