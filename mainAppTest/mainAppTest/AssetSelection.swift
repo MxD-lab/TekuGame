@@ -17,126 +17,125 @@ func getSprite(e:enemy) -> SKTexture
         switch(e.subType)
             {
         case 0:
-            var path:NSString = NSBundle.mainBundle().pathForResource("Humanoid1-2", ofType: "png")!
-            return SKTexture(image: UIImage(contentsOfFile: path)) //SKTexture(imageNamed: "Humanoid1-2.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Humanoid1-2", ofType: "png")! as NSString));
         case 1:
-            return SKTexture(imageNamed: "Humanoid2.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Humanoid2", ofType: "png")! as NSString));
         case 2:
-            return SKTexture(imageNamed: "Humanoid3.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Humanoid3", ofType: "png")! as NSString));
         default:
-            return SKTexture(imageNamed: "enemy.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("enemy", ofType: "png")! as NSString));
         }
     case Types.Insect:
         switch(e.subType)
             {
         case 0:
-            return SKTexture(imageNamed: "Insect1.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Insect1", ofType: "png")! as NSString));
         case 1:
-            return SKTexture(imageNamed: "Insect2.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Insect2", ofType: "png")! as NSString));
         case 2:
-            return SKTexture(imageNamed: "Insect3.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Insect3", ofType: "png")! as NSString));
         default:
-            return SKTexture(imageNamed: "enemy.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("enemy", ofType: "png")! as NSString));
         }
     case Types.Alien:
         switch(e.subType)
             {
         case 0:
-            return SKTexture(imageNamed: "Alien1.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Alien1", ofType: "png")! as NSString));
         case 1:
-            return SKTexture(imageNamed: "Alien2.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Alien2", ofType: "png")! as NSString));
         case 2:
-            return SKTexture(imageNamed: "Alien3.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Alien3", ofType: "png")! as NSString));
         default:
-            return SKTexture(imageNamed: "enemy.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("enemy", ofType: "png")! as NSString));
         }
     case Types.Beast:
         switch(e.subType)
             {
         case 0:
-            return SKTexture(imageNamed: "Beast1.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Beast1", ofType: "png")! as NSString));
         case 1:
-            return SKTexture(imageNamed: "Beast2.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Beast2", ofType: "png")! as NSString));
         case 2:
-            return SKTexture(imageNamed: "Beast3.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Beast3", ofType: "png")! as NSString));
         default:
-            return SKTexture(imageNamed: "enemy.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("enemy", ofType: "png")! as NSString));
         }
     case Types.Construct:
         switch(e.subType)
             {
         case 0:
-            return SKTexture(imageNamed: "Construct1.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Construct1", ofType: "png")! as NSString));
         case 1:
-            return SKTexture(imageNamed: "Construct2.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Construct2", ofType: "png")! as NSString));
         case 2:
-            return SKTexture(imageNamed: "Construct3.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Construct3", ofType: "png")! as NSString));
         default:
-            return SKTexture(imageNamed: "enemy.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("enemy", ofType: "png")! as NSString));
         }
     case Types.Undead:
         switch(e.subType)
             {
         case 0:
-            return SKTexture(imageNamed: "Undead1.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Undead1", ofType: "png")! as NSString));
         case 1:
-            return SKTexture(imageNamed: "Undead2.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Undead2", ofType: "png")! as NSString));
         case 2:
-            return SKTexture(imageNamed: "Undead3.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Undead3", ofType: "png")! as NSString));
         default:
-            return SKTexture(imageNamed: "enemy.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("enemy", ofType: "png")! as NSString));
         }
     case Types.Elemental:
         switch(e.subType)
             {
         case 0:
-            return SKTexture(imageNamed: "Elemental1.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Elemental1", ofType: "png")! as NSString));
         case 1:
-            return SKTexture(imageNamed: "Elemental2.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Elemental2", ofType: "png")! as NSString));
         case 2:
-            return SKTexture(imageNamed: "Elemental3.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Elemental3", ofType: "png")! as NSString));
         case 3:
-            return SKTexture(imageNamed: "Elemental4.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Elemental4", ofType: "png")! as NSString));
         default:
-            return SKTexture(imageNamed: "enemy.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("enemy", ofType: "png")! as NSString));
         }
     case Types.Slime:
         switch(e.subType)
             {
         case 0:
-            return SKTexture(imageNamed: "Slime1.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Slime1", ofType: "png")! as NSString));
         case 1:
-            return SKTexture(imageNamed: "Slime2.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Slime2", ofType: "png")! as NSString));
         case 2:
-            return SKTexture(imageNamed: "Slime3.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Slime3", ofType: "png")! as NSString));
         default:
-            return SKTexture(imageNamed: "enemy.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("enemy", ofType: "png")! as NSString));
         }
     case Types.Demon:
         switch(e.subType)
             {
         case 0:
-            return SKTexture(imageNamed: "Demon1.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Demon1", ofType: "png")! as NSString));
         case 1:
-            return SKTexture(imageNamed: "Demon2.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Demon2", ofType: "png")! as NSString));
         case 2:
-            return SKTexture(imageNamed: "Demon3.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Demon3", ofType: "png")! as NSString));
         default:
-            return SKTexture(imageNamed: "enemy.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("enemy", ofType: "png")! as NSString));
         }
     case Types.Dragon:
         switch(e.subType)
             {
         case 0:
-            return SKTexture(imageNamed: "Dragon1.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Dragon1", ofType: "png")! as NSString));
         case 1:
-            return SKTexture(imageNamed: "Dragon2.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Dragon2", ofType: "png")! as NSString));
         case 2:
-            return SKTexture(imageNamed: "Dragon3.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Dragon3", ofType: "png")! as NSString));
         default:
-            return SKTexture(imageNamed: "enemy.png");
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("enemy", ofType: "png")! as NSString));
         }
     default:
-        return SKTexture(imageNamed: "enemy.png");
+        return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("enemy", ofType: "png")! as NSString));
     }
 }

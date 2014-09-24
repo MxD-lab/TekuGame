@@ -52,13 +52,11 @@ class GameScene: SKScene
     
     var prefs = NSUserDefaults.standardUserDefaults()
     
-//    var backgroundPath:NSString = NSBundle.mainBundle().pathForResource("background", ofType: "png")!
     let background:SKSpriteNode = SKSpriteNode(texture: SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("background", ofType: "png")! as NSString)));
-    //SKSpriteNode(imageNamed: "background.png");
     var status:UILabel! = UILabel(frame: CGRectMake( 0, 0, 320, 50));
     let typePicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let actionPicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
-    let enemyImage:SKSpriteNode = SKSpriteNode(imageNamed: "enemy.png");
+    let enemyImage:SKSpriteNode = SKSpriteNode(texture: SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("enemy", ofType: "png")! as NSString)));
     var playerStatus:UILabel = UILabel(frame: CGRectMake(0,0,320, 50));
 
     var step:Int = 0;
@@ -138,16 +136,16 @@ class GameScene: SKScene
         setPlayerStatusBar(&playerStatus)
         view.addSubview(playerStatus);
         
-        var p_uppercut = setMenuButton32("P_Uppercut.png") { () -> Void in self.actionAndStatus(Action.P_Uppercut);}
-        var p_charged_strike = setMenuButton32("P_Charged_Strike.png") { () -> Void in self.actionAndStatus(Action.P_Charged_Strike);}
-        var p_meditation = setMenuButton32("P_Meditation.png") { () -> Void in self.actionAndStatus(Action.P_Meditation);}
-        var p_leg_sweep = setMenuButton32("P_Leg_Sweep.png") { () -> Void in self.actionAndStatus(Action.P_Leg_Sweep);}
-        var p_turbo_strike = setMenuButton32("P_Turbo_Strike.png") { () -> Void in self.actionAndStatus(Action.P_Turbo_Strike);}
-        var p_heart_strike = setMenuButton32("P_Heart_Strike.png") { () -> Void in self.actionAndStatus(Action.P_Heart_Strike);}
-        var p_muscle_training = setMenuButton32("P_Muscle_Training.png") { () -> Void in self.actionAndStatus(Action.P_Muscle_Training);}
-        var p_stomp = setMenuButton32("P_Stomp.png") { () -> Void in self.actionAndStatus(Action.P_Stomp);}
-        var p_sacrificial_strike = setMenuButton32("P_Sacrificial_Strike.png") { () -> Void in self.actionAndStatus(Action.P_Sacrificial_Strike);}
-        var p_overpower = setMenuButton32("P_Overpower.png") { () -> Void in self.actionAndStatus(Action.P_Overpower);}
+        var p_uppercut = setMenuButton32("P_Uppercut") { () -> Void in self.actionAndStatus(Action.P_Uppercut);}
+        var p_charged_strike = setMenuButton32("P_Charged_Strike") { () -> Void in self.actionAndStatus(Action.P_Charged_Strike);}
+        var p_meditation = setMenuButton32("P_Meditation") { () -> Void in self.actionAndStatus(Action.P_Meditation);}
+        var p_leg_sweep = setMenuButton32("P_Leg_Sweep") { () -> Void in self.actionAndStatus(Action.P_Leg_Sweep);}
+        var p_turbo_strike = setMenuButton32("P_Turbo_Strike") { () -> Void in self.actionAndStatus(Action.P_Turbo_Strike);}
+        var p_heart_strike = setMenuButton32("P_Heart_Strike") { () -> Void in self.actionAndStatus(Action.P_Heart_Strike);}
+        var p_muscle_training = setMenuButton32("P_Muscle_Training") { () -> Void in self.actionAndStatus(Action.P_Muscle_Training);}
+        var p_stomp = setMenuButton32("P_Stomp") { () -> Void in self.actionAndStatus(Action.P_Stomp);}
+        var p_sacrificial_strike = setMenuButton32("P_Sacrificial_Strike") { () -> Void in self.actionAndStatus(Action.P_Sacrificial_Strike);}
+        var p_overpower = setMenuButton32("P_Overpower") { () -> Void in self.actionAndStatus(Action.P_Overpower);}
         
         physicalArr = [
             p_uppercut,
@@ -162,16 +160,16 @@ class GameScene: SKScene
             p_overpower
         ];
         
-        var e_energy_ball = setMenuButton32("E_Energy_Ball.png") { () -> Void in self.actionAndStatus(Action.E_EnergyBall);}
-        var e_icy_wind = setMenuButton32("E_Icy_Wind.png") { () -> Void in self.actionAndStatus(Action.E_Icy_Wind);}
-        var e_barrier = setMenuButton32("E_Barrier.png") { () -> Void in self.actionAndStatus(Action.E_Barrier);}
-        var e_fireball = setMenuButton32("E_Fireball.png") { () -> Void in self.actionAndStatus(Action.E_Fireball);}
-        var e_sharpen_mind = setMenuButton32("E_Sharpen_Mind.png") { () -> Void in self.actionAndStatus(Action.E_Sharpen_Mind);}
-        var e_curse = setMenuButton32("E_Curse.png") { () -> Void in self.actionAndStatus(Action.E_Curse);}
-        var e_life_drain = setMenuButton32("E_Life_Drain.png") { () -> Void in self.actionAndStatus(Action.E_Life_Drain);}
-        var e_decay = setMenuButton32("E_Decay.png") { () -> Void in self.actionAndStatus(Action.E_Decay);}
-        var e_full_heal = setMenuButton32("E_Full_Heal.png") { () -> Void in self.actionAndStatus(Action.E_Full_Heal);}
-        var e_instant_death = setMenuButton32("E_Instant_Death.png") { () -> Void in self.actionAndStatus(Action.E_Instant_Death);}
+        var e_energy_ball = setMenuButton32("E_Energy_Ball") { () -> Void in self.actionAndStatus(Action.E_EnergyBall);}
+        var e_icy_wind = setMenuButton32("E_Icy_Wind") { () -> Void in self.actionAndStatus(Action.E_Icy_Wind);}
+        var e_barrier = setMenuButton32("E_Barrier") { () -> Void in self.actionAndStatus(Action.E_Barrier);}
+        var e_fireball = setMenuButton32("E_Fireball") { () -> Void in self.actionAndStatus(Action.E_Fireball);}
+        var e_sharpen_mind = setMenuButton32("E_Sharpen_Mind") { () -> Void in self.actionAndStatus(Action.E_Sharpen_Mind);}
+        var e_curse = setMenuButton32("E_Curse") { () -> Void in self.actionAndStatus(Action.E_Curse);}
+        var e_life_drain = setMenuButton32("E_Life_Drain") { () -> Void in self.actionAndStatus(Action.E_Life_Drain);}
+        var e_decay = setMenuButton32("E_Decay") { () -> Void in self.actionAndStatus(Action.E_Decay);}
+        var e_full_heal = setMenuButton32("E_Full_Heal") { () -> Void in self.actionAndStatus(Action.E_Full_Heal);}
+        var e_instant_death = setMenuButton32("E_Instant_Death") { () -> Void in self.actionAndStatus(Action.E_Instant_Death);}
         
         magicArr = [
             e_energy_ball,
@@ -205,7 +203,7 @@ class GameScene: SKScene
         magicMenu.menuPosition = HMSideMenuPositionRight;
         view.addSubview(magicMenu);
         
-        var physicalButton = setMenuButton64("Physical.png") { () -> Void in
+        var physicalButton = setMenuButton64("Physical") { () -> Void in
             if(!physicalMenu.isOpen && !magicMenu.isOpen)
             {
                 physicalMenu.open();
@@ -216,7 +214,7 @@ class GameScene: SKScene
                 physicalMenu.open();
             }
         }
-        var magicButton = setMenuButton64("Magic.png") { () -> Void in
+        var magicButton = setMenuButton64("Magic") { () -> Void in
             if(!physicalMenu.isOpen && !magicMenu.isOpen)
             {
                 magicMenu.open();
@@ -228,7 +226,7 @@ class GameScene: SKScene
             }
         }
         
-        var examineButton = setMenuButton64("U_Examine.png") { () -> Void in self.actionAndStatus(Action.U_Examine);}
+        var examineButton = setMenuButton64("U_Examine") { () -> Void in self.actionAndStatus(Action.U_Examine);}
         
         typeMenu = HMSideMenu(items: [
             physicalButton,
@@ -453,7 +451,8 @@ class GameScene: SKScene
         tempbutton.setMenuActionWithBlock(block)
         
         var tempbuttonIcon:UIImageView = UIImageView(frame: CGRectMake(0, 0, 56, 56))
-        tempbuttonIcon.image = UIImage(named: name)
+        tempbuttonIcon.image = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource(name, ofType: "png")! as NSString);
+        
         tempbutton.addSubview(tempbuttonIcon)
         
         return tempbutton
@@ -464,7 +463,7 @@ class GameScene: SKScene
         tempbutton.setMenuActionWithBlock(block)
         
         var tempbuttonIcon:UIImageView = UIImageView(frame: CGRectMake(0, 0, 64, 64))
-        tempbuttonIcon.image = UIImage(named: name)
+        tempbuttonIcon.image = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource(name, ofType: "png")! as NSString);
         tempbutton.addSubview(tempbuttonIcon)
         
         return tempbutton
