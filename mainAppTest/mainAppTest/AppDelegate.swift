@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
-        GMSServices.provideAPIKey("AIzaSyAcMAlCJrkf-u4GG1jB5iPXNGs1FTC2kac")
+        GMSServices.provideAPIKey("AIzaSyDIKiPrsh793BEv91Ms6qREgeZS0pcDtw8")
 //        DeployGateSDK.sharedInstance().launchApplicationWithAuthor("stefafafan", key: "3bf3b368dca9edd3fcfbbc5a75248c22fe775d0e")
         return true
     }
