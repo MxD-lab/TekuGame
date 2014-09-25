@@ -411,7 +411,7 @@ class GameScene: SKScene
                         else {
                             status.text = "\(turn)'s turn."
                         }
-                        doUpdate = 150;
+                        doUpdate = 500;
                     }
                     else if (turn == "enemy" && enemyAttacking == true) {
                         println("enemy attacking false")
@@ -444,7 +444,7 @@ class GameScene: SKScene
                     // 7. print "it is \(turn)'s turn"
                     // 8. if cplayer == enemy print "enemy used \(eattack) on \(etarget)" else print "\(cplayer) used \(attack) on enemy."
                     step++
-                    if (step % 50 == 0) {
+                    if (step % 100 == 0) {
                         checkBattle()
                     }
                 }
@@ -597,6 +597,7 @@ class GameScene: SKScene
                 break
             }
         }
+        turn = turnID
         
         // a. if JSON turn == myID goto 2.
         if (turnID == playerID) {
@@ -841,6 +842,8 @@ class GameScene: SKScene
     
     func actionAndStatus(a:Action)
     {
+        println("actionAndStatus \(turn) \(playerID)")
+        
         if(turnPlayer || turn == playerID)
         {
             var dict = doAction(p, e, a);
