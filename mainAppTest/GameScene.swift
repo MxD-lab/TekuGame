@@ -361,22 +361,28 @@ class GameScene: SKScene
                         turn = tempturn
                         
                         // 2. post turn, make sure to have damage parameter as well
-                        updateBattleStatusAndPost("", eTarget: "", pAttack: "", tur: turn, cPlayer: "", stat: "same")
+                        updateBattleStatusAndPost("", eTarget: "", pAttack: "", tur: turn, cPlayer: "", stat: "same", dam: "")
                         
                         // a. if turn == enemy, goto 3.
                         if (turn == "enemy") {
                             // 3. enemy chooses attack/target
                             // 4. post enemy attacks, goto 1.  (eattack = attack, etarget = target, pattack = "", tur = "", cplayer = "enemy", stat = "same")
+                            multiplayerEnemyAttack()
                         }
                         
                         // b. if turn == host, goto 5.
                         else if (turn == playerID) {
                             // 5. wait for player to choose attack
+                            // 6. post attack, goto 1.
+                            if(!typeMenu.isOpen)
+                            {
+                                typeMenu.open();
+                            }
                         }
                         
                         // c. else goto 7.
                         else {
-                            // 6. post attack, goto 1.
+                            // \(turn)'s turn.
                         }
                     }
                     else if (turn != "enemy" && turn != playerID) {
@@ -490,7 +496,49 @@ class GameScene: SKScene
         
     }
     
-    func updateBattleStatusAndPost(eAttack:String!, eTarget:String!, pAttack:String!, tur:String!, cPlayer:String!, stat:String!) {
+    func multiplayerEnemyAttack() {
+        var randomint:Int! = Int(arc4random_uniform(UInt32(playerCount)))
+        var target = allPlayers[randomint]
+        
+        if (target == playerID) {
+            var dict = doAction(e, p, selectAttack(e));
+            var mess = dict["message"]!
+            var dam = dict["damage"]!
+            postLog("Fight: Enemy Attack: \(mess). Damage: \(dam) Target: \(target)");
+            updateBattleStatusAndPost(mess, eTarget: target, pAttack: "", tur: "", cPlayer: "enemy", stat: "same", dam: dam)
+        }
+        else {
+            var targetStats = allPlayerStats[target]! as [String:AnyObject]!
+            var tempPlayer = player()
+
+            tempPlayer.level = targetStats["level"]! as Int
+            tempPlayer.health = targetStats["health"]! as Int
+            tempPlayer.strength = targetStats["strength"]! as Int
+            tempPlayer.magic = targetStats["magic"]! as Int
+            tempPlayer.speed = targetStats["speed"]! as Int
+            tempPlayer.currentHealth = tempPlayer.health
+            tempPlayer.currentStrength = tempPlayer.strength
+            tempPlayer.currentMagic = tempPlayer.magic
+            tempPlayer.currentSpeed = tempPlayer.speed
+            
+            var dict = doAction(e, tempPlayer, selectAttack(e));
+            var mess = dict["message"]!
+            var dam = dict["damage"]!
+            
+            allPlayerStats[target]!["health"]! = tempPlayer.currentHealth
+            allPlayerStats[target]!["magic"]! = tempPlayer.currentMagic
+            allPlayerStats[target]!["speed"]! = tempPlayer.currentSpeed
+            allPlayerStats[target]!["strength"]! = tempPlayer.currentStrength
+            
+            postLog("Fight: Enemy Attack: \(mess). Damage: \(dam) Target: \(target)");
+            updateBattleStatusAndPost(mess, eTarget: target, pAttack: "", tur: "", cPlayer: "enemy", stat: "same", dam: dam)
+        }
+        
+        // after a while,
+        turn = ""
+    }
+    
+    func updateBattleStatusAndPost(eAttack:String!, eTarget:String!, pAttack:String!, tur:String!, cPlayer:String!, stat:String!, dam:String!) {
         
         let url = "http://tekugame.mxd.media.ritsumei.ac.jp/json/battle.json"
         var jsObj = getJSON(url) as [[String:AnyObject]]?
@@ -501,6 +549,7 @@ class GameScene: SKScene
         var turnID = ""
         var currentPlayer = ""
         var status = ""
+        var damage = ""
         
         for battle in jsObj! {
             var id = battle["ID"] as NSString
@@ -512,6 +561,7 @@ class GameScene: SKScene
                 turnID = battle["turnPlayerID"] as NSString
                 currentPlayer = battle["currentPlayerID"] as NSString
                 status = battle["status"] as NSString
+                damage = battle["damage"] as NSString
                 break
             }
         }
@@ -534,13 +584,16 @@ class GameScene: SKScene
         if (stat != "same") {
             status = stat
         }
+        if (dam != "same") {
+            damage = dam
+        }
         
-        postToBattles(battleID, eAt: enemAttack, enemTarget: enemTarget, playAttack: playAttack, turn: turnID, currentPlayer: currentPlayer, status: status)
+        postToBattles(battleID, eAt: enemAttack, enemTarget: enemTarget, playAttack: playAttack, turn: turnID, currentPlayer: currentPlayer, status: status, damage: damage)
     }
     
-    func postToBattles(battleID:String!, eAt:String!, enemTarget:String!, playAttack:String!, turn:String!, currentPlayer:String!, status:String!) {
+    func postToBattles(battleID:String!, eAt:String!, enemTarget:String!, playAttack:String!, turn:String!, currentPlayer:String!, status:String!, damage:String!) {
         var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/battleForm/index.php"
-        var str = "ID=\(battleID)&lastEnemyAttack=\(eAt)&lastPlayerAttack=\(playAttack)&turnPlayerID=\(turn)&status=\(status)&enemyTargetID=\(enemTarget)&currentPlayerID=\(currentPlayer)&submit=submit"
+        var str = "ID=\(battleID)&lastEnemyAttack=\(eAt)&lastPlayerAttack=\(playAttack)&turnPlayerID=\(turn)&status=\(status)&enemyTargetID=\(enemTarget)&currentPlayerID=\(currentPlayer)&damage=\(damage)&submit=submit"
         post(urlstring, str)
     }
     
@@ -574,6 +627,8 @@ class GameScene: SKScene
                 self.status.text = "\(mess). Damage: \(dam).";
             }
             postLog("Fight: Player Attack: \(mess). Damage: \(dam)");
+            // post to server
+            // if host, nyan
             doUpdate = 150;
         }
     }
