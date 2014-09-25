@@ -415,6 +415,7 @@ class GameScene: SKScene
                     }
                     else if (turn == "enemy" && enemyAttacking == true) {
                         println("enemy attacking false")
+                        turnindex++
                         turn = ""
                         enemyAttacking = false
                     }
@@ -426,8 +427,6 @@ class GameScene: SKScene
                         checkAttackFromClient()
                         doUpdate = 150;
                     }
-                    
-                    turnindex++
                 }
                     
                 // Client
@@ -690,6 +689,7 @@ class GameScene: SKScene
             e.currentSpeed = eSpeed
             
             status.text = "\(playAttack). Damage: \(damage)\n"
+            turnindex++
             turn = ""
         }
     }
@@ -867,6 +867,7 @@ class GameScene: SKScene
             if (isMultiplayer == true) {
                 // post to server
                 updateBattleStatusAndPost("", eTarget: "", pAttack: mess, tur: "", cPlayer: playerID, stat: "same", dam: dam, cHealth: "", cStrength: "", cMagic: "", cSpeed: "", eHealth: "\(e.currentHealth)", eStrength: "\(e.currentStrength)", eMagic: "\(e.currentMagic)", eSpeed: "\(e.currentSpeed)")
+                turnindex++
                 turn = ""
             }
             postLog("Fight: Player Attack: \(mess). Damage: \(dam)");
