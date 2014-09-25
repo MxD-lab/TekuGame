@@ -45,6 +45,7 @@ class GameScene: SKScene
     var beaconenem:enemy?
     
     var allPlayerStats:[String:[String:AnyObject]]! = ["":[:]]
+    var playerSpeeds:[[String:AnyObject]] = []
     
     var allActions:[(String, [Action])] = [("Utility", utility), ("Physical",physical),("Magic", magic)];
     
@@ -244,8 +245,6 @@ class GameScene: SKScene
         addChild(background);
         
         if (isMultiplayer == true) {
-            println("multi")
-            
             allPlayerStats.removeValueForKey("")
             
             if (playerID == hostID) {
@@ -256,12 +255,14 @@ class GameScene: SKScene
                     allPlayerStats[player] = temp
                     var level = temp["level"]! as Int
                     enemylevel += level
+                    var speed = temp["speed"]! as Int
+                    var plspeed = ["speed":speed, "name":player] as [String:AnyObject]!
+                    playerSpeeds.append(plspeed)
                 }
                 
                 enemylevel = (enemylevel / allPlayers.count) + (allPlayers.count / 2);
                 setEnemyStats(&e, level: enemylevel); // (sum of levels / # players)  +  (#players/2))
-                e.type = Types.Humanoid
-                e.subType = 0
+                playerSpeeds.append(["speed":e.speed, "name":"enemy"])
                 postLog("Fight Begin - Player: level: \(p.level), health: \(p.health), magic: \(p.magic), speed: \(p.speed), strength: \(p.strength), remaining points: \(p.points)");
                 postLog("Fight Begin - Enemy: level: \(enemylevel), type: \(e.type), subtype: \(e.subType), health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)");
             }
@@ -273,7 +274,18 @@ class GameScene: SKScene
             enemyImage.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 80);
             enemyImage.zPosition = 1;
             addChild(enemyImage);
-            initEnemy()
+            if (playerID == hostID) {
+                postEnemy(e);
+                // sort players by speed
+                // update function does rest
+                println(playerSpeeds)
+                playerSpeeds = sorted(playerSpeeds, { (item1, item2) -> Bool in
+                    return item1["speed"]! as Int > item2["speed"]! as Int
+                })
+                println(playerSpeeds)
+                
+            }
+            
             
             turnPlayer = (p.speed > e.speed) ? true : false ;
             
