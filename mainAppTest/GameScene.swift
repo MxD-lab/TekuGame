@@ -34,15 +34,18 @@ class GameScene: SKScene
 {
     //
     var allPlayers:[String] = []
+    var playerCount:Int! = 0
     var otherPlayers:NSMutableArray!
     var hostID:String!
     var playerID:String!
     var battleID:String!
     var turn:String! = ""
+    var turnindex:Int = 0
     var choseAttack:Bool! = false
     var enemyAttacking:Bool! = false
     var isMultiplayer:Bool! = false
     var beaconenem:enemy?
+    var battleStarted:Bool! = false
     
     var allPlayerStats:[String:[String:AnyObject]]! = ["":[:]]
     var playerSpeeds:[[String:AnyObject]] = []
@@ -260,7 +263,9 @@ class GameScene: SKScene
                     playerSpeeds.append(plspeed)
                 }
                 
-                enemylevel = (enemylevel / allPlayers.count) + (allPlayers.count / 2);
+                playerCount = allPlayers.count
+                
+                enemylevel = (enemylevel / playerCount) + (playerCount / 2);
                 setEnemyStats(&e, level: enemylevel); // (sum of levels / # players)  +  (#players/2))
                 playerSpeeds.append(["speed":e.speed, "name":"enemy"])
                 postLog("Fight Begin - Player: level: \(p.level), health: \(p.health), magic: \(p.magic), speed: \(p.speed), strength: \(p.strength), remaining points: \(p.points)");
@@ -283,7 +288,10 @@ class GameScene: SKScene
                     return item1["speed"]! as Int > item2["speed"]! as Int
                 })
                 println(playerSpeeds)
-                
+                battleStarted = true
+            }
+            else {
+                battleStarted = true
             }
             
             
@@ -300,16 +308,6 @@ class GameScene: SKScene
             turnPlayer = (p.speed > e.speed) ? true : false ;
             postLog("Fight Begin - Player: level: \(p.level), health: \(p.health), magic: \(p.magic), speed: \(p.speed), strength: \(p.strength), remaining points: \(p.points)");
             postLog("Fight Begin - Enemy: type: \(e.type), subtype: \(e.subType), health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)");
-        }
-    }
-    
-    func initEnemy() {
-        if (playerID == hostID) {
-            // post enemy
-            postEnemy(e);
-        }
-        else {
-            
         }
     }
     
@@ -344,83 +342,206 @@ class GameScene: SKScene
         
         playerStatus.text = "Health: \(p.currentHealth)/\(p.health)     Speed:\(p.currentSpeed)/\(p.speed)\nStrength: \(p.currentStrength)/\(p.strength)     Magic:\(p.currentMagic)/\(p.magic)";
         
-        if(doUpdate > 0)
-        {
-            doUpdate -= 1;
+        if (isMultiplayer == true) {
+            if (battleStarted == true) {
+                
+                // check game over here-ish
+                
+                // Host
+                if (playerID == hostID) {
+                    if (turn == "") {
+                        // 1. choose turn
+                        var tempturn = playerSpeeds[turnindex % playerCount]["name"]! as String
+                        var tempturnHealth = allPlayerStats[tempturn]!["health"]! as Int
+                        while (tempturnHealth == 0) {
+                            turnindex++
+                            tempturn = playerSpeeds[turnindex % playerCount]["name"]! as String
+                            tempturnHealth = allPlayerStats[tempturn]!["health"]! as Int
+                        }
+                        turn = tempturn
+                        
+                        // 2. post turn, make sure to have damage parameter as well
+                        updateBattleStatusAndPost("", eTarget: "", pAttack: "", tur: turn, cPlayer: "", stat: "same")
+                        
+                        // a. if turn == enemy, goto 3.
+                        if (turn == "enemy") {
+                            // 3. enemy chooses attack/target
+                            // 4. post enemy attacks, goto 1.  (eattack = attack, etarget = target, pattack = "", tur = "", cplayer = "enemy", stat = "same")
+                        }
+                        
+                        // b. if turn == host, goto 5.
+                        else if (turn == playerID) {
+                            // 5. wait for player to choose attack
+                        }
+                        
+                        // c. else goto 7.
+                        else {
+                            // 6. post attack, goto 1.
+                        }
+                    }
+                    else if (turn != "enemy" && turn != playerID) {
+                        // 7. get JSON
+                        // a. if JSON includes playerAttack, print and goto 1.
+                        // b. else, goto 7.
+                    }
+                }
+                    
+                // Client
+                else {
+                    // 1. get JSON
+                        // a. if JSON turn == myID goto 2.
+                        // b. if JSON turn == enemy goto 6.
+                        // c. if JSON turn == other client goto 7.
+                        // d. if JSON turn == "" goto 8.
+                    // 2. print "it is your turn", enable UI
+                    // 3. post (eattack = "", etarget = "", pattack = "", tur = myID, cplayer = myID, stat = "same")
+                    // 4. wait for player to choose attack, print attack
+                    // 5. post attack (eattack = "", etarget = "", pattack = attack, tur = "", cplayer = myID, stat = "same")
+                    // 6. print "it is the enemy's turn"
+                    // 7. print "it is \(turn)'s turn"
+                    // 8. if cplayer == enemy print "enemy used \(eattack) on \(etarget)" else print "\(cplayer) used \(attack) on enemy."
+                }
+            }
+            else {
+                
+            }
         }
-        else
-        {
-            if (step < 150)
+            
+        // Single player
+        else {
+            if(doUpdate > 0)
             {
-                step += 1;
-                status.text = "You encountered a \(e.type.typeToStringE())";
+                doUpdate -= 1;
             }
             else
             {
-                somethingDead = false;
-                var playerWin:Bool = false;
-                
-                if(p.currentHealth <= 0 && e.currentHealth <= 0)
+                if (step < 150)
                 {
-                    status.text = "Both Died";
-                    postLog("Fight: Both Died");
-                    somethingDead = true;
-                }
-                else if(p.currentHealth <= 0 && e.currentHealth > 0)
-                {
-                    status.text = "Player Died";
-                    postLog("Fight: Player Died");
-                    somethingDead = true;
-                }
-                else if(e.currentHealth <= 0 && p.currentHealth > 0)
-                {
-                    status.text = "Enemy Died";
-                    postLog("Fight: Enemy Died");
-                    somethingDead = true;
-                    playerWin = true;
+                    step += 1;
+                    status.text = "You encountered a \(e.type.typeToStringE())";
                 }
                 else
                 {
-                    status.text = (turnPlayer) ? "Player Turn" : "Enemy Turn";
-                }
-                
-                if(turnPlayer && !typeMenu.isOpen)
-                {
-                    typeMenu.open();
-                }
-                
-                if(!turnPlayer && !somethingDead)
-                {
-                    var dict = doAction(e, p, selectAttack(e));
-                    var mess = dict["message"]!
-                    var dam = dict["damage"]!
-                    if(dam == "0")
+                    somethingDead = false;
+                    var playerWin:Bool = false;
+                    
+                    if(p.currentHealth <= 0 && e.currentHealth <= 0)
                     {
-                        self.status.text = "\(mess)."
+                        status.text = "Both Died";
+                        postLog("Fight: Both Died");
+                        somethingDead = true;
+                    }
+                    else if(p.currentHealth <= 0 && e.currentHealth > 0)
+                    {
+                        status.text = "Player Died";
+                        postLog("Fight: Player Died");
+                        somethingDead = true;
+                    }
+                    else if(e.currentHealth <= 0 && p.currentHealth > 0)
+                    {
+                        status.text = "Enemy Died";
+                        postLog("Fight: Enemy Died");
+                        somethingDead = true;
+                        playerWin = true;
                     }
                     else
                     {
-                        self.status.text = "\(mess). Damage: \(dam).";
+                        status.text = (turnPlayer) ? "Player Turn" : "Enemy Turn";
                     }
                     
-                    postLog("Fight: Enemy Attack: \(mess). Damage: \(dam)");
-                    doUpdate = 150;
-                    turnPlayer = !turnPlayer;
-                }
-                else if (somethingDead) {
-                    somethingDead = false
-                    if (isMultiplayer == true) {
-                        postPlayersInBattle(playerID, "-1")
-                        e.type = Types.empty
-                        postEnemy(e)
+                    if(turnPlayer && !typeMenu.isOpen)
+                    {
+                        typeMenu.open();
                     }
-                    var userInfo = ["isGameOver":true, "playerWin":playerWin]
-                    NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
+                    
+                    if(!turnPlayer && !somethingDead)
+                    {
+                        var dict = doAction(e, p, selectAttack(e));
+                        var mess = dict["message"]!
+                        var dam = dict["damage"]!
+                        if(dam == "0")
+                        {
+                            self.status.text = "\(mess)."
+                        }
+                        else
+                        {
+                            self.status.text = "\(mess). Damage: \(dam).";
+                        }
+                        
+                        postLog("Fight: Enemy Attack: \(mess). Damage: \(dam)");
+                        doUpdate = 150;
+                        turnPlayer = !turnPlayer;
+                    }
+                    else if (somethingDead) {
+                        somethingDead = false
+                        if (isMultiplayer == true) {
+                            postPlayersInBattle(playerID, "-1")
+                            e.type = Types.empty
+                            postEnemy(e)
+                        }
+                        var userInfo = ["isGameOver":true, "playerWin":playerWin]
+                        NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
+                    }
+                    
+                    doUpdate = 150;
                 }
-                
-                doUpdate = 150;
             }
         }
+        
+    }
+    
+    func updateBattleStatusAndPost(eAttack:String!, eTarget:String!, pAttack:String!, tur:String!, cPlayer:String!, stat:String!) {
+        
+        let url = "http://tekugame.mxd.media.ritsumei.ac.jp/json/battle.json"
+        var jsObj = getJSON(url) as [[String:AnyObject]]?
+        
+        var enemAttack = ""
+        var enemTarget = ""
+        var playAttack = ""
+        var turnID = ""
+        var currentPlayer = ""
+        var status = ""
+        
+        for battle in jsObj! {
+            var id = battle["ID"] as NSString
+            
+            if (id == battleID) {
+                enemAttack = battle["lastEnemyAttack"] as NSString
+                enemTarget = battle["enemyTargetID"] as NSString
+                playAttack = battle["lastPlayerAttack"] as NSString
+                turnID = battle["turnPlayerID"] as NSString
+                currentPlayer = battle["currentPlayerID"] as NSString
+                status = battle["status"] as NSString
+                break
+            }
+        }
+        
+        if (eAttack != "same") {
+            enemAttack = eAttack
+        }
+        if (eTarget != "same") {
+            enemTarget = eTarget
+        }
+        if (pAttack != "same") {
+            playAttack = pAttack
+        }
+        if (tur != "same") {
+            turnID = tur
+        }
+        if (cPlayer != "same") {
+            currentPlayer = cPlayer
+        }
+        if (stat != "same") {
+            status = stat
+        }
+        
+        postToBattles(battleID, eAt: enemAttack, enemTarget: enemTarget, playAttack: playAttack, turn: turnID, currentPlayer: currentPlayer, status: status)
+    }
+    
+    func postToBattles(battleID:String!, eAt:String!, enemTarget:String!, playAttack:String!, turn:String!, currentPlayer:String!, status:String!) {
+        var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/battleForm/index.php"
+        var str = "ID=\(battleID)&lastEnemyAttack=\(eAt)&lastPlayerAttack=\(playAttack)&turnPlayerID=\(turn)&status=\(status)&enemyTargetID=\(enemTarget)&currentPlayerID=\(currentPlayer)&submit=submit"
+        post(urlstring, str)
     }
     
     func setSomethingDead() {
