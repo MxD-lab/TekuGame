@@ -349,6 +349,9 @@ class GameScene: SKScene
 
                 // Host
                 if (playerID == hostID) {
+                    
+                    println("Host")
+                    
                     if(doUpdate > 0)
                     {
                         doUpdate -= 1;
@@ -357,22 +360,39 @@ class GameScene: SKScene
                         
                         // 1. choose turn
                         var tempturn = playerSpeeds[turnindex % playerCount]["name"]! as String
-                        var tempturnHealth = allPlayerStats[tempturn]!["health"]! as Int
+                        var tempturnHealth = 0
+                        if (tempturn == "enemy") {
+                            tempturnHealth = e.health
+                        }
+                        else {
+                            tempturnHealth = allPlayerStats[tempturn]!["health"]! as Int
+                        }
+                        
                         while (tempturnHealth == 0) {
                             turnindex++
                             tempturn = playerSpeeds[turnindex % playerCount]["name"]! as String
-                            tempturnHealth = allPlayerStats[tempturn]!["health"]! as Int
+                            if (tempturn == "enemy") {
+                                tempturnHealth = e.health
+                            }
+                            else {
+                                tempturnHealth = allPlayerStats[tempturn]!["health"]! as Int
+                            }
                         }
                         turn = tempturn
                         
+                        println("turn: \(turn)")
+                        
                         // 2. post turn
                         updateBattleStatusAndPost("", eTarget: "", pAttack: "", tur: turn, cPlayer: "", stat: "same", dam: "", cHealth: "same", cStrength: "same", cMagic: "same", cSpeed: "same", eHealth: "same", eStrength: "same", eMagic: "same", eSpeed: "same")
+                        
+                        println("update")
                         
                         // a. if turn == enemy, goto 3.
                         if (turn == "enemy" && !enemyAttacking) {
                             status.text = "Enemy's turn."
                             // 3. enemy chooses attack/target
                             // 4. post enemy attacks, goto 1.  (eattack = attack, etarget = target, pattack = "", tur = "", cplayer = "enemy", stat = "same")
+                            println("enemy attack")
                             multiplayerEnemyAttack()
                         }
                         
@@ -394,16 +414,20 @@ class GameScene: SKScene
                         doUpdate = 150;
                     }
                     else if (turn == "enemy" && enemyAttacking == true) {
+                        println("enemy attacking false")
                         turn = ""
                         enemyAttacking = false
                     }
                     else if (turn != "enemy" && turn != playerID) {
+                        println("wait client")
                         // 7. get JSON
                         // a. if JSON includes playerAttack, print and goto 1.
                         // b. else, goto 7.
                         checkAttackFromClient()
                         doUpdate = 150;
                     }
+                    
+                    turnindex++
                 }
                     
                 // Client
@@ -659,12 +683,12 @@ class GameScene: SKScene
             }
         }
         
-        e.currentHealth = eHealth
-        e.currentStrength = eStrength
-        e.currentMagic = eMagic
-        e.currentSpeed = eSpeed
-        
         if (playAttack != "") {
+            e.currentHealth = eHealth
+            e.currentStrength = eStrength
+            e.currentMagic = eMagic
+            e.currentSpeed = eSpeed
+            
             status.text = "\(playAttack). Damage: \(damage)\n"
             turn = ""
         }
