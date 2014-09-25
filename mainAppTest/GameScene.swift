@@ -346,10 +346,15 @@ class GameScene: SKScene
             if (battleStarted == true) {
                 
                 // check game over here-ish
-                
+
                 // Host
                 if (playerID == hostID) {
+                    if(doUpdate > 0)
+                    {
+                        doUpdate -= 1;
+                    }
                     if (turn == "") {
+                        
                         // 1. choose turn
                         var tempturn = playerSpeeds[turnindex % playerCount]["name"]! as String
                         var tempturnHealth = allPlayerStats[tempturn]!["health"]! as Int
@@ -360,11 +365,12 @@ class GameScene: SKScene
                         }
                         turn = tempturn
                         
-                        // 2. post turn, make sure to have damage parameter as well
-                        updateBattleStatusAndPost("", eTarget: "", pAttack: "", tur: turn, cPlayer: "", stat: "same", dam: "")
+                        // 2. post turn
+                        updateBattleStatusAndPost("", eTarget: "", pAttack: "", tur: turn, cPlayer: "", stat: "same", dam: "", cHealth: "same", cStrength: "same", cMagic: "same", cSpeed: "same", eHealth: "same", eStrength: "same", eMagic: "same", eSpeed: "same")
                         
                         // a. if turn == enemy, goto 3.
-                        if (turn == "enemy") {
+                        if (turn == "enemy" && !enemyAttacking) {
+                            status.text = "Enemy's turn."
                             // 3. enemy chooses attack/target
                             // 4. post enemy attacks, goto 1.  (eattack = attack, etarget = target, pattack = "", tur = "", cplayer = "enemy", stat = "same")
                             multiplayerEnemyAttack()
@@ -372,6 +378,7 @@ class GameScene: SKScene
                         
                         // b. if turn == host, goto 5.
                         else if (turn == playerID) {
+                            status.text = "\(playerID)'s turn."
                             // 5. wait for player to choose attack
                             // 6. post attack, goto 1.
                             if(!typeMenu.isOpen)
@@ -382,13 +389,20 @@ class GameScene: SKScene
                         
                         // c. else goto 7.
                         else {
-                            // \(turn)'s turn.
+                            status.text = "\(turn)'s turn."
                         }
+                        doUpdate = 150;
+                    }
+                    else if (turn == "enemy" && enemyAttacking == true) {
+                        turn = ""
+                        enemyAttacking = false
                     }
                     else if (turn != "enemy" && turn != playerID) {
                         // 7. get JSON
                         // a. if JSON includes playerAttack, print and goto 1.
                         // b. else, goto 7.
+                        checkAttackFromClient()
+                        doUpdate = 150;
                     }
                 }
                     
@@ -406,10 +420,11 @@ class GameScene: SKScene
                     // 6. print "it is the enemy's turn"
                     // 7. print "it is \(turn)'s turn"
                     // 8. if cplayer == enemy print "enemy used \(eattack) on \(etarget)" else print "\(cplayer) used \(attack) on enemy."
+                    step++
+                    if (step % 50 == 0) {
+                        checkBattle()
+                    }
                 }
-            }
-            else {
-                
             }
         }
             
@@ -496,16 +511,177 @@ class GameScene: SKScene
         
     }
     
+    func checkBattle() {
+        // 1. get JSON
+        let url = "http://tekugame.mxd.media.ritsumei.ac.jp/json/battle.json"
+        var jsObj = getJSON(url)
+        
+        var enemAttack = ""
+        var enemTarget = ""
+        var playAttack = ""
+        var turnID = ""
+        var currentPlayer = ""
+        var bstatus = ""
+        var damage = ""
+        var currentHealthstr:NSString = ""
+        var currentStrengthstr:NSString = ""
+        var currentMagicstr:NSString = ""
+        var currentSpeedstr:NSString = ""
+        
+        var currentHealth:Int = -1
+        var currentStrength:Int = -1
+        var currentMagic:Int = -1
+        var currentSpeed:Int = -1
+        
+        var enemyHealthstr:NSString = ""
+        var enemyStrengthstr:NSString = ""
+        var enemyMagicstr:NSString = ""
+        var enemySpeedstr:NSString = ""
+        
+        var enemyHealth:Int = -1
+        var enemyStrength:Int = -1
+        var enemyMagic:Int = -1
+        var enemySpeed:Int = -1
+        
+        for battle in jsObj! {
+            var id = battle["ID"] as NSString
+            
+            if (id == battleID) {
+                enemAttack = battle["lastEnemyAttack"] as NSString
+                enemTarget = battle["enemyTargetID"] as NSString
+                playAttack = battle["lastPlayerAttack"] as NSString
+                turnID = battle["turnPlayerID"] as NSString
+                currentPlayer = battle["currentPlayerID"] as NSString
+                bstatus = battle["status"] as NSString
+                damage = battle["damage"] as NSString
+                currentHealthstr = battle["currentHealth"] as NSString
+                currentStrengthstr = battle["currentStrength"] as NSString
+                currentMagicstr = battle["currentMagic"] as NSString
+                currentSpeedstr = battle["currentSpeed"] as NSString
+                enemyHealthstr = battle["enemyHealth"] as NSString
+                enemyStrengthstr = battle["enemyStrength"] as NSString
+                enemyMagicstr = battle["enemyMagic"] as NSString
+                enemySpeedstr = battle["enemySpeed"] as NSString
+                
+                currentHealth = currentHealthstr.integerValue
+                currentStrength = currentStrengthstr.integerValue
+                currentMagic = currentMagicstr.integerValue
+                currentSpeed = currentSpeedstr.integerValue
+                enemyHealth = enemyHealthstr.integerValue
+                enemyStrength = enemyStrengthstr.integerValue
+                enemyMagic = enemyMagicstr.integerValue
+                enemySpeed = enemySpeedstr.integerValue
+                break
+            }
+        }
+        
+        // a. if JSON turn == myID goto 2.
+        if (turnID == playerID) {
+            // 2. print "it is your turn", enable UI
+            status.text = "\(playerID)'s turn."
+            // 3. post (eattack = "", etarget = "", pattack = "", tur = myID, cplayer = myID, stat = "same")
+            updateBattleStatusAndPost("", eTarget: "", pAttack: "", tur: playerID, cPlayer: playerID, stat: "same", dam:"", cHealth: "", cStrength: "", cMagic: "", cSpeed: "", eHealth: "same", eStrength: "same", eMagic: "same", eSpeed: "same")
+            if(!typeMenu.isOpen)
+            {
+                typeMenu.open();
+            }
+            // 4. wait for player to choose attack, print attack
+            // 5. post attack (eattack = "", etarget = "", pattack = attack, tur = "", cplayer = myID, stat = "same")
+            // Done in actionAndStatus()
+        }
+        
+        // b. if JSON turn == enemy goto 6.
+        else if (turnID == "enemy") {
+            // 6. print "it is the enemy's turn"
+            status.text = "Enemy's turn.\n"
+        }
+        
+        // c. if JSON turn == other client goto 7.
+        else if (turnID != "") {
+            // 7. print "it is \(turn)'s turn"
+            status.text = "\(turnID)'s turn.\n"
+        }
+        
+        // d. if JSON turn == "" goto 8.
+        else if (turnID == "") {
+            // 8. if cplayer == enemy print "enemy used \(eattack) on \(etarget)" else print "\(cplayer) used \(attack) on enemy."
+            if (currentPlayer == "enemy") {
+                status.text = "\(enemAttack) Target: \(enemTarget) Damage: \(damage).\n"
+                if (enemTarget == playerID) {
+                    p.currentHealth = currentHealth
+                    p.currentMagic = currentMagic
+                    p.currentSpeed = currentSpeed
+                    p.currentStrength = currentStrength
+                }
+                e.currentHealth = enemyHealth
+                e.currentStrength = enemyStrength
+                e.currentMagic = enemyMagic
+                e.currentSpeed = enemySpeed
+            }
+            else if (currentPlayer != "") {
+                status.text = "\(currentPlayer): \(playAttack) Damage: \(damage).\n"
+            }
+        }
+    }
+    
+    func checkAttackFromClient() {
+        let url = "http://tekugame.mxd.media.ritsumei.ac.jp/json/battle.json"
+        var jsObj = getJSON(url)
+        
+        var playAttack = ""
+        var damage = ""
+        var eHealthstr:NSString = ""
+        var eStrengthstr:NSString = ""
+        var eMagicStr:NSString = ""
+        var eSpeedstr:NSString = ""
+        
+        var eHealth = -1
+        var eStrength = -1
+        var eMagic = -1
+        var eSpeed = -1
+        
+        for battle in jsObj! {
+            var id = battle["ID"] as NSString
+            
+            if (id == battleID) {
+                playAttack = battle["lastPlayerAttack"] as NSString
+                damage = battle["damage"] as NSString
+                eHealthstr = battle["enemyHealth"] as NSString
+                eStrengthstr = battle["enemyStrength"] as NSString
+                eMagicStr = battle["enemyMagic"] as NSString
+                eSpeedstr = battle["enemySpeed"] as NSString
+                
+                eHealth = eHealthstr.integerValue
+                eStrength = eStrengthstr.integerValue
+                eMagic = eMagicStr.integerValue
+                eSpeed = eSpeedstr.integerValue
+                break
+            }
+        }
+        
+        e.currentHealth = eHealth
+        e.currentStrength = eStrength
+        e.currentMagic = eMagic
+        e.currentSpeed = eSpeed
+        
+        if (playAttack != "") {
+            status.text = "\(playAttack). Damage: \(damage)\n"
+            turn = ""
+        }
+    }
+    
     func multiplayerEnemyAttack() {
         var randomint:Int! = Int(arc4random_uniform(UInt32(playerCount)))
         var target = allPlayers[randomint]
+        enemyAttacking = true
         
         if (target == playerID) {
             var dict = doAction(e, p, selectAttack(e));
             var mess = dict["message"]!
             var dam = dict["damage"]!
             postLog("Fight: Enemy Attack: \(mess). Damage: \(dam) Target: \(target)");
-            updateBattleStatusAndPost(mess, eTarget: target, pAttack: "", tur: "", cPlayer: "enemy", stat: "same", dam: dam)
+            updateBattleStatusAndPost(mess, eTarget: target, pAttack: "", tur: "", cPlayer: "enemy", stat: "same", dam: dam, cHealth: "", cStrength: "", cMagic: "", cSpeed: "", eHealth: "\(e.currentHealth)", eStrength: "\(e.currentStrength)", eMagic: "\(e.currentMagic)", eSpeed: "\(e.currentSpeed)")
+            status.text = "Enemy: \(mess). Target: \(target) Damage: \(dam).";
         }
         else {
             var targetStats = allPlayerStats[target]! as [String:AnyObject]!
@@ -531,14 +707,12 @@ class GameScene: SKScene
             allPlayerStats[target]!["strength"]! = tempPlayer.currentStrength
             
             postLog("Fight: Enemy Attack: \(mess). Damage: \(dam) Target: \(target)");
-            updateBattleStatusAndPost(mess, eTarget: target, pAttack: "", tur: "", cPlayer: "enemy", stat: "same", dam: dam)
+            updateBattleStatusAndPost(mess, eTarget: target, pAttack: "", tur: "", cPlayer: "enemy", stat: "same", dam: dam, cHealth: "\(tempPlayer.currentHealth)", cStrength: "\(tempPlayer.currentStrength)", cMagic: "\(tempPlayer.currentMagic)", cSpeed: "\(tempPlayer.currentSpeed)", eHealth: "\(e.currentHealth)", eStrength: "\(e.currentStrength)", eMagic: "\(e.currentMagic)", eSpeed: "\(e.currentSpeed)")
+            status.text = "Enemy: \(mess). Target: \(target) Damage: \(dam).";
         }
-        
-        // after a while,
-        turn = ""
     }
     
-    func updateBattleStatusAndPost(eAttack:String!, eTarget:String!, pAttack:String!, tur:String!, cPlayer:String!, stat:String!, dam:String!) {
+    func updateBattleStatusAndPost(eAttack:String!, eTarget:String!, pAttack:String!, tur:String!, cPlayer:String!, stat:String!, dam:String!, cHealth:String!, cStrength:String!, cMagic:String!, cSpeed:String!, eHealth:String!, eStrength:String!, eMagic:String!, eSpeed:String!) {
         
         let url = "http://tekugame.mxd.media.ritsumei.ac.jp/json/battle.json"
         var jsObj = getJSON(url) as [[String:AnyObject]]?
@@ -550,6 +724,14 @@ class GameScene: SKScene
         var currentPlayer = ""
         var status = ""
         var damage = ""
+        var currHealth = ""
+        var currStrength = ""
+        var currMagic = ""
+        var currSpeed = ""
+        var enemHealth = ""
+        var enemStrength = ""
+        var enemMagic = ""
+        var enemSpeed = ""
         
         for battle in jsObj! {
             var id = battle["ID"] as NSString
@@ -562,6 +744,14 @@ class GameScene: SKScene
                 currentPlayer = battle["currentPlayerID"] as NSString
                 status = battle["status"] as NSString
                 damage = battle["damage"] as NSString
+                currHealth = battle["currentHealth"] as NSString
+                currStrength = battle["currentStrength"] as NSString
+                currMagic = battle["currentMagic"] as NSString
+                currSpeed = battle["currentSpeed"] as NSString
+                enemHealth = battle["enemyHealth"] as NSString
+                enemStrength = battle["enemyStrength"] as NSString
+                enemMagic = battle["enemyMagic"] as NSString
+                enemSpeed = battle["enemySpeed"] as NSString
                 break
             }
         }
@@ -587,13 +777,37 @@ class GameScene: SKScene
         if (dam != "same") {
             damage = dam
         }
+        if (cHealth != "same") {
+            currHealth = cHealth
+        }
+        if (cStrength != "same") {
+            currStrength = cStrength
+        }
+        if (cMagic != "same") {
+            currMagic = cMagic
+        }
+        if (cSpeed != "same") {
+            currSpeed = cSpeed
+        }
+        if (eHealth != "same") {
+            enemHealth = eHealth
+        }
+        if (eStrength != "same") {
+            enemStrength = eStrength
+        }
+        if (eMagic != "same") {
+            enemMagic = eMagic
+        }
+        if (eSpeed != "same") {
+            enemSpeed = eSpeed
+        }
         
-        postToBattles(battleID, eAt: enemAttack, enemTarget: enemTarget, playAttack: playAttack, turn: turnID, currentPlayer: currentPlayer, status: status, damage: damage)
+        postToBattles(battleID, eAt: enemAttack, enemTarget: enemTarget, playAttack: playAttack, turn: turnID, currentPlayer: currentPlayer, status: status, damage: damage, currentHealth: currHealth, currentStrength: currStrength, currentMagic: currMagic, currentSpeed: currSpeed, enemyHealth: enemHealth, enemyStrength: enemStrength, enemyMagic: enemMagic, enemySpeed: enemSpeed)
     }
     
-    func postToBattles(battleID:String!, eAt:String!, enemTarget:String!, playAttack:String!, turn:String!, currentPlayer:String!, status:String!, damage:String!) {
+    func postToBattles(battleID:String!, eAt:String!, enemTarget:String!, playAttack:String!, turn:String!, currentPlayer:String!, status:String!, damage:String!, currentHealth:String!, currentStrength:String!, currentMagic:String!, currentSpeed:String!, enemyHealth:String!, enemyStrength:String!, enemyMagic:String!, enemySpeed:String!) {
         var urlstring = "http://tekugame.mxd.media.ritsumei.ac.jp/battleForm/index.php"
-        var str = "ID=\(battleID)&lastEnemyAttack=\(eAt)&lastPlayerAttack=\(playAttack)&turnPlayerID=\(turn)&status=\(status)&enemyTargetID=\(enemTarget)&currentPlayerID=\(currentPlayer)&damage=\(damage)&submit=submit"
+        var str = "ID=\(battleID)&lastEnemyAttack=\(eAt)&lastPlayerAttack=\(playAttack)&turnPlayerID=\(turn)&status=\(status)&enemyTargetID=\(enemTarget)&currentPlayerID=\(currentPlayer)&damage=\(damage)&currentHealth=\(currentHealth)&currentStrength=\(currentStrength)&currentMagic=\(currentMagic)&currentSpeed=\(currentSpeed)&enemyHealth=\(enemyHealth)&enemyStrength=\(enemyStrength)&enemyMagic=\(enemyMagic)&enemySpeed=\(enemySpeed)&submit=submit"
         post(urlstring, str)
     }
     
@@ -603,7 +817,7 @@ class GameScene: SKScene
     
     func actionAndStatus(a:Action)
     {
-        if(turnPlayer)
+        if(turnPlayer || turn == playerID)
         {
             var dict = doAction(p, e, a);
             turnPlayer = !turnPlayer;
@@ -626,9 +840,12 @@ class GameScene: SKScene
             {
                 self.status.text = "\(mess). Damage: \(dam).";
             }
+            if (isMultiplayer == true) {
+                // post to server
+                updateBattleStatusAndPost("", eTarget: "", pAttack: mess, tur: "", cPlayer: playerID, stat: "same", dam: dam, cHealth: "", cStrength: "", cMagic: "", cSpeed: "", eHealth: "\(e.currentHealth)", eStrength: "\(e.currentStrength)", eMagic: "\(e.currentMagic)", eSpeed: "\(e.currentSpeed)")
+                turn = ""
+            }
             postLog("Fight: Player Attack: \(mess). Damage: \(dam)");
-            // post to server
-            // if host, nyan
             doUpdate = 150;
         }
     }
