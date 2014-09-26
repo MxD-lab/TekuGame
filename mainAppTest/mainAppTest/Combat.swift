@@ -356,7 +356,7 @@ func doAction(user:Entity, target:Entity, action:Action) -> [String:String]
         for(var i = 0; i < 2; i += 1)
         {
             rand = Int(arc4random_uniform(3) + 1);
-            damage += (rand%3 != 1) ? (user.currentStrength - (17 * (target.currentStrength / 2)) / 20) : 0;
+            damage += (rand%3 == 1) ? (user.currentStrength - (17 * (target.currentStrength / 2)) / 20) : 0;
         }
         damage = (damage <= 0) ? 1 : damage;
         target.currentHealth -= damage;
