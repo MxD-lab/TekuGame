@@ -471,14 +471,21 @@ class GameScene: SKScene
                 var playerWin:Bool = (e.currentHealth <= 0)
                 if (isMultiplayer == true) {
                     postPlayersInBattle(playerID, "-1")
+                    
                     e.type = Types.empty
                     postEnemy(e)
+                    if (getPlayerCount() == 0) {
+                        updateBattleStatusAndPost("", eTarget: "", pAttack: "", tur: "", cPlayer: "", stat: "Open", dam: "", cHealth: "", cStrength: "", cMagic: "", cSpeed: "", eHealth: "", eStrength: "", eMagic: "", eSpeed: "")
+                    }
+                    else {
+                        updateBattleStatusAndPost("same", eTarget: "same", pAttack: "same", tur: "same", cPlayer: "same", stat: "Battle Finished", dam: "same", cHealth: "same", cStrength: "same", cMagic: "same", cSpeed: "same", eHealth: "same", eStrength: "same", eMagic: "same", eSpeed: "same")
+                    }
                 }
                 var userInfo = ["isGameOver":true, "playerWin":playerWin]
                 NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
             }
         }
-            
+             
         // Single player
         else {
             if(doUpdate > 0)
@@ -556,6 +563,26 @@ class GameScene: SKScene
             }
         }
         
+    }
+    
+    func getPlayerCount() -> Int {
+        let playersurl = "http://tekugame.mxd.media.ritsumei.ac.jp/json/playersinbattle.json"
+        var jsObj2 = getJSON(playersurl)
+        allPlayers = []
+        var pcount = 0
+        
+        if (jsObj2 != nil) {
+            for player in jsObj2! {
+                var bid = player["battleID"] as NSString!
+                if (bid == battleID) {
+                    pcount++
+                    var pid = player["playerID"] as NSString
+                    allPlayers.append(pid)
+                }
+            }
+        }
+        
+        return pcount
     }
     
     func checkBattle() {
