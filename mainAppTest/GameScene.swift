@@ -683,6 +683,18 @@ class GameScene: SKScene
             }
             else if (currentPlayer != "") {
                 status.text = "\(currentPlayer): \(playAttack) Damage: \(damage).\n"
+                
+                
+                e.currentHealth = enemyHealth
+                e.currentStrength = enemyStrength
+                e.currentMagic = enemyMagic
+                e.currentSpeed = enemySpeed
+                
+                allPlayerStats[currentPlayer]!["health"]! = currentHealth
+                allPlayerStats[currentPlayer]!["magic"]! = currentMagic
+                allPlayerStats[currentPlayer]!["speed"]! = currentSpeed
+                allPlayerStats[currentPlayer]!["strength"]! = currentStrength
+                
             }
         }
     }
