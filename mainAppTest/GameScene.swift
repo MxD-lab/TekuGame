@@ -46,6 +46,7 @@ class GameScene: SKScene
     var isMultiplayer:Bool! = false
     var beaconenem:enemy?
     var battleStarted:Bool! = false
+    var multiplayOver:Bool! = false
     
     var allPlayerStats:[String:[String:AnyObject]]! = ["":[:]]
     var playerSpeeds:[[String:AnyObject]] = []
@@ -249,30 +250,32 @@ class GameScene: SKScene
         
         if (isMultiplayer == true) {
             allPlayerStats.removeValueForKey("")
+            var enemylevel:Int = 0
+            
+            for player in allPlayers {
+                var temp = getPlayer(player) as [String:AnyObject]!
+                allPlayerStats[player] = temp
+                var level = temp["level"]! as Int
+                enemylevel += level
+                var speed = temp["speed"]! as Int
+                var plspeed = ["speed":speed, "name":player] as [String:AnyObject]!
+                playerSpeeds.append(plspeed)
+            }
             
             if (playerID == hostID) {
-                var enemylevel:Int = 0
-                
-                for player in allPlayers {
-                    var temp = getPlayer(player) as [String:AnyObject]!
-                    allPlayerStats[player] = temp
-                    var level = temp["level"]! as Int
-                    enemylevel += level
-                    var speed = temp["speed"]! as Int
-                    var plspeed = ["speed":speed, "name":player] as [String:AnyObject]!
-                    playerSpeeds.append(plspeed)
-                }
-                
                 playerCount = allPlayers.count
-                
                 enemylevel = (enemylevel / playerCount) + (playerCount / 2);
-                setEnemyStats(&e, level: enemylevel); // (sum of levels / # players)  +  (#players/2))
+                setEnemyStats(&e, level: enemylevel);
                 playerSpeeds.append(["speed":e.speed, "name":"enemy"])
                 postLog("Fight Begin - Player: level: \(p.level), health: \(p.health), magic: \(p.magic), speed: \(p.speed), strength: \(p.strength), remaining points: \(p.points)");
                 postLog("Fight Begin - Enemy: level: \(enemylevel), type: \(e.type), subtype: \(e.subType), health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)");
             }
             else {
                 e = beaconenem!
+                e.currentHealth = e.health
+                e.currentMagic = e.magic
+                e.currentSpeed = e.speed
+                e.currentStrength = e.strength
                 println("Enemy: level: \(e.level), type: \(e.type), subtype: \(e.subType), health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)")
             }
             enemyImage.texture = getSprite(e);
@@ -343,14 +346,10 @@ class GameScene: SKScene
         playerStatus.text = "Health: \(p.currentHealth)/\(p.health)     Speed:\(p.currentSpeed)/\(p.speed)\nStrength: \(p.currentStrength)/\(p.strength)     Magic:\(p.currentMagic)/\(p.magic)";
         
         if (isMultiplayer == true) {
-            if (battleStarted == true) {
-                
-                // check game over here-ish
+            if (battleStarted == true && multiplayOver == false) {
 
                 // Host
                 if (playerID == hostID) {
-                    
-                    println("Host")
                     
                     if(doUpdate > 0)
                     {
@@ -360,20 +359,20 @@ class GameScene: SKScene
                         if (turn == "") {
                             
                             // 1. choose turn
-                            var tempturn = playerSpeeds[turnindex % playerCount]["name"]! as String
+                            var tempturn = playerSpeeds[turnindex % playerSpeeds.count]["name"]! as String
                             var tempturnHealth = 0
                             if (tempturn == "enemy") {
-                                tempturnHealth = e.health
+                                tempturnHealth = e.currentHealth
                             }
                             else {
                                 tempturnHealth = allPlayerStats[tempturn]!["health"]! as Int
                             }
                             
-                            while (tempturnHealth == 0) {
+                            while (tempturnHealth <= 0) {
                                 turnindex++
                                 tempturn = playerSpeeds[turnindex % playerCount]["name"]! as String
                                 if (tempturn == "enemy") {
-                                    tempturnHealth = e.health
+                                    tempturnHealth = e.currentHealth
                                 }
                                 else {
                                     tempturnHealth = allPlayerStats[tempturn]!["health"]! as Int
@@ -452,6 +451,38 @@ class GameScene: SKScene
                         checkBattle()
                     }
                 }
+                
+                // check game over
+                if (e.currentHealth <= 0) {
+                    multiplayOver = true
+                    println("Enemy Died.")
+                }
+                else {
+                    
+                    println("Name: enemy Health: \(e.currentHealth)")
+                    
+                    var playersLiving:[Bool] = allPlayers.map({(var name) -> Bool in
+                        var pHealth = self.allPlayerStats[name]!["health"]! as Int
+                        println("Name: \(name) Health: \(pHealth)")
+                        return pHealth > 0
+                    })
+                    
+                    if (!contains(playersLiving, true)) {
+                        multiplayOver = true
+                        println("Players Died.")
+                    }
+                }
+            }
+            
+            if (multiplayOver == true) {
+                var playerWin:Bool = (e.currentHealth <= 0)
+                if (isMultiplayer == true) {
+                    postPlayersInBattle(playerID, "-1")
+                    e.type = Types.empty
+                    postEnemy(e)
+                }
+                var userInfo = ["isGameOver":true, "playerWin":playerWin]
+                NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
             }
         }
             
@@ -522,11 +553,7 @@ class GameScene: SKScene
                     }
                     else if (somethingDead) {
                         somethingDead = false
-                        if (isMultiplayer == true) {
-                            postPlayersInBattle(playerID, "-1")
-                            e.type = Types.empty
-                            postEnemy(e)
-                        }
+
                         var userInfo = ["isGameOver":true, "playerWin":playerWin]
                         NSNotificationCenter.defaultCenter().postNotificationName("GameOver", object: self, userInfo: userInfo)
                     }
@@ -539,6 +566,7 @@ class GameScene: SKScene
     }
     
     func checkBattle() {
+        println("checkBattle")
         // 1. get JSON
         let url = "http://tekugame.mxd.media.ritsumei.ac.jp/json/battle.json"
         var jsObj = getJSON(url)
@@ -632,9 +660,11 @@ class GameScene: SKScene
         
         // d. if JSON turn == "" goto 8.
         else if (turnID == "") {
+            println("turnID == \'\'")
             // 8. if cplayer == enemy print "enemy used \(eattack) on \(etarget)" else print "\(cplayer) used \(attack) on enemy."
             if (currentPlayer == "enemy") {
                 status.text = "\(enemAttack) Target: \(enemTarget) Damage: \(damage).\n"
+                println("\(enemAttack) Target: \(enemTarget) Damage: \(damage).\n")
                 if (enemTarget == playerID) {
                     p.currentHealth = currentHealth
                     p.currentMagic = currentMagic
@@ -645,6 +675,11 @@ class GameScene: SKScene
                 e.currentStrength = enemyStrength
                 e.currentMagic = enemyMagic
                 e.currentSpeed = enemySpeed
+                
+                allPlayerStats[enemTarget]!["health"]! = currentHealth
+                allPlayerStats[enemTarget]!["magic"]! = currentMagic
+                allPlayerStats[enemTarget]!["speed"]! = currentSpeed
+                allPlayerStats[enemTarget]!["strength"]! = currentStrength
             }
             else if (currentPlayer != "") {
                 status.text = "\(currentPlayer): \(playAttack) Damage: \(damage).\n"
@@ -709,8 +744,14 @@ class GameScene: SKScene
             var dict = doAction(e, p, selectAttack(e));
             var mess = dict["message"]!
             var dam = dict["damage"]!
+            
+            allPlayerStats[target]!["health"]! = p.currentHealth
+            allPlayerStats[target]!["magic"]! = p.currentMagic
+            allPlayerStats[target]!["speed"]! = p.currentSpeed
+            allPlayerStats[target]!["strength"]! = p.currentStrength
+            
             postLog("Fight: Enemy Attack: \(mess). Damage: \(dam) Target: \(target)");
-            updateBattleStatusAndPost(mess, eTarget: target, pAttack: "", tur: "", cPlayer: "enemy", stat: "same", dam: dam, cHealth: "", cStrength: "", cMagic: "", cSpeed: "", eHealth: "\(e.currentHealth)", eStrength: "\(e.currentStrength)", eMagic: "\(e.currentMagic)", eSpeed: "\(e.currentSpeed)")
+            updateBattleStatusAndPost(mess, eTarget: target, pAttack: "", tur: "", cPlayer: "enemy", stat: "same", dam: dam, cHealth: "\(p.currentHealth)", cStrength: "\(p.currentStrength)", cMagic: "\(p.currentMagic)", cSpeed: "\(p.currentSpeed)", eHealth: "\(e.currentHealth)", eStrength: "\(e.currentStrength)", eMagic: "\(e.currentMagic)", eSpeed: "\(e.currentSpeed)")
             status.text = "Enemy: \(mess). Target: \(target) Damage: \(dam).";
         }
         else {
