@@ -17,7 +17,7 @@ func getSprite(e:enemy) -> SKTexture
         switch(e.subType)
             {
         case 0:
-            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Humanoid1-2", ofType: "png")! as NSString));
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Humanoid1", ofType: "png")! as NSString));
         case 1:
             return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Humanoid2", ofType: "png")! as NSString));
         case 2:

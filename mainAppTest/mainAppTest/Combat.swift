@@ -18,7 +18,7 @@ func doAction(user:Entity, target:Entity, action:Action) -> [String:String]
         {
     /*PLAYER ACTIONS*/
     case Action.U_Examine:
-        return ["damage" : "0", "message" : "Enemy: Health: \(target.currentHealth), Strength: \(target.currentStrength), Magic: \(target.currentMagic), Speed: \(target.currentSpeed)"];
+        return ["damage" : "0", "message" : "Enemy: Level: \(target.level), Health: \(target.currentHealth), Strength: \(target.currentStrength), Magic: \(target.currentMagic), Speed: \(target.currentSpeed)"];
     
     case Action.P_Uppercut:
         damage = user.currentStrength - (target.currentStrength/2);
@@ -83,13 +83,13 @@ func doAction(user:Entity, target:Entity, action:Action) -> [String:String]
     case Action.P_Overpower:
         if((user.currentHealth + user.currentStrength) >= (target.currentHealth + target.currentStrength))
         {
-            damage = user.health + user.strength;
+            damage = user.currentHealth + user.currentStrength;
             target.currentHealth -= damage;
             return ["damage": "\(damage)", "message" : "Used: \(action.typeToStringE()): you overpowered your enemy"];
         }
         else
         {
-            damage = target.health + target.strength;
+            damage = target.currentHealth + target.currentStrength;
             user.currentHealth -= damage;
             return ["damage": "\(damage)", "message" : "Used: \(action.typeToStringE()): your enemy overpowered you"];
         }
