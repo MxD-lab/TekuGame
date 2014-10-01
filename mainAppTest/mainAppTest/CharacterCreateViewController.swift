@@ -31,7 +31,7 @@ class CharacterCreateViewController: UIViewController
         p.strength = 5;
         p.magic = 5;
         p.speed = 5;
-        p.points = 15;
+        p.points = 20;
         
         original.health = p.health;
         original.strength = p.strength;

@@ -152,6 +152,7 @@ class GameViewController: UIViewController {
             }
             
             plStats[currentuser]!["exp"]! = exp
+            plStats[currentuser]!["enemiesDefeated"]! = enemiesDefeated
             prefs.setObject(plStats, forKey: "playerStats")
 
             performSegueWithIdentifier("results", sender: self)

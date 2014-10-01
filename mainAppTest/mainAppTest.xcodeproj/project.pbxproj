@@ -91,13 +91,6 @@
 		BC8787B419C032A80001C9DD /* usernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8787B319C032A80001C9DD /* usernameViewController.swift */; };
 		BC8A857919C14FE800335599 /* resultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A857819C14FE800335599 /* resultsViewController.swift */; };
 		BC8A857B19C1502D00335599 /* assignPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A857A19C1502D00335599 /* assignPointsViewController.swift */; };
-		BC8A858719C178B100335599 /* ACKNOWLEDGEMENTS.txt in Resources */ = {isa = PBXBuildFile; fileRef = BC8A857D19C178B100335599 /* ACKNOWLEDGEMENTS.txt */; };
-		BC8A858819C178B100335599 /* CHANGELOG.txt in Resources */ = {isa = PBXBuildFile; fileRef = BC8A857E19C178B100335599 /* CHANGELOG.txt */; };
-		BC8A858919C178B100335599 /* DeployGateSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC8A857F19C178B100335599 /* DeployGateSDK.framework */; };
-		BC8A858A19C178B100335599 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = BC8A858019C178B100335599 /* LICENSE.txt */; };
-		BC8A858B19C178B100335599 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = BC8A858119C178B100335599 /* README.txt */; };
-		BC8A858C19C178B100335599 /* DeployGateSDK.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC8A858319C178B100335599 /* DeployGateSDK.strings */; };
-		BC8A858D19C178B100335599 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC8A858519C178B100335599 /* Info.plist */; };
 		F8213C2619A6D1AB00C72548 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8213C2519A6D1AB00C72548 /* GameViewController.swift */; };
 		F8213C2819A6D27500C72548 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F8213C2719A6D27500C72548 /* GameScene.sks */; };
 		F8213C2A19A6D28500C72548 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8213C2919A6D28500C72548 /* GameScene.swift */; };
@@ -243,14 +236,6 @@
 		BC8787B319C032A80001C9DD /* usernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = usernameViewController.swift; sourceTree = "<group>"; };
 		BC8A857819C14FE800335599 /* resultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resultsViewController.swift; sourceTree = "<group>"; };
 		BC8A857A19C1502D00335599 /* assignPointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignPointsViewController.swift; sourceTree = "<group>"; };
-		BC8A857D19C178B100335599 /* ACKNOWLEDGEMENTS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ACKNOWLEDGEMENTS.txt; sourceTree = "<group>"; };
-		BC8A857E19C178B100335599 /* CHANGELOG.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.txt; sourceTree = "<group>"; };
-		BC8A857F19C178B100335599 /* DeployGateSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DeployGateSDK.framework; sourceTree = "<group>"; };
-		BC8A858019C178B100335599 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		BC8A858119C178B100335599 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		BC8A858419C178B100335599 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DeployGateSDK.strings; sourceTree = "<group>"; };
-		BC8A858519C178B100335599 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Info.plist; sourceTree = "<group>"; };
-		BC8A858619C178B100335599 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DeployGateSDK.strings; sourceTree = "<group>"; };
 		F8213C2519A6D1AB00C72548 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = ../GameViewController.swift; sourceTree = "<group>"; };
 		F8213C2719A6D27500C72548 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = ../GameScene.sks; sourceTree = "<group>"; };
 		F8213C2919A6D28500C72548 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = ../GameScene.swift; sourceTree = "<group>"; };
@@ -320,7 +305,6 @@
 				F837D7EF19B3F89500A18D31 /* CoreText.framework in Frameworks */,
 				F837D7ED19B3F88F00A18D31 /* CoreData.framework in Frameworks */,
 				F837D7EB19B3F88800A18D31 /* AVFoundation.framework in Frameworks */,
-				BC8A858919C178B100335599 /* DeployGateSDK.framework in Frameworks */,
 				F837D7E719B3F84600A18D31 /* GoogleMaps.framework in Frameworks */,
 				F8F4F0AF19A5B169002D077D /* SpriteKit.framework in Frameworks */,
 				F8956B3019A1C23500ED670B /* CoreMotion.framework in Frameworks */,
@@ -452,28 +436,6 @@
 			name = "Multiplayer Battle";
 			sourceTree = "<group>";
 		};
-		BC8A857C19C178B100335599 /* DeployGateSDK1.0.2.embeddedframework */ = {
-			isa = PBXGroup;
-			children = (
-				BC8A857D19C178B100335599 /* ACKNOWLEDGEMENTS.txt */,
-				BC8A857E19C178B100335599 /* CHANGELOG.txt */,
-				BC8A857F19C178B100335599 /* DeployGateSDK.framework */,
-				BC8A858019C178B100335599 /* LICENSE.txt */,
-				BC8A858119C178B100335599 /* README.txt */,
-				BC8A858219C178B100335599 /* Resources */,
-			);
-			path = DeployGateSDK1.0.2.embeddedframework;
-			sourceTree = "<group>";
-		};
-		BC8A858219C178B100335599 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				BC8A858319C178B100335599 /* DeployGateSDK.strings */,
-				BC8A858519C178B100335599 /* Info.plist */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		F825583219AB1D2C0035EBF6 /* Combat and Trait Handling */ = {
 			isa = PBXGroup;
 			children = (
@@ -502,7 +464,6 @@
 			isa = PBXGroup;
 			children = (
 				BC006C5B19CE900B0011CC39 /* Reachability */,
-				BC8A857C19C178B100335599 /* DeployGateSDK1.0.2.embeddedframework */,
 				A1D183B619BEC84B00E03B28 /* HMSideMenu */,
 				F837D7FE19B3F8CE00A18D31 /* SystemConfiguration.framework */,
 				F837D7FC19B3F8C800A18D31 /* QuartzCore.framework */,
@@ -721,11 +682,9 @@
 				A1A3968C19DA439E0024A37B /* Dragon3.png in Resources */,
 				A1A3969919DA439E0024A37B /* Slime3.png in Resources */,
 				A1A3969C19DA439E0024A37B /* Undead3.png in Resources */,
-				BC8A858A19C178B100335599 /* LICENSE.txt in Resources */,
 				BC81B20C19CA7DF8003BDF8C /* NewGameButton_Up.png in Resources */,
 				A1D183E019BED3BE00E03B28 /* P_Meditation.png in Resources */,
 				BC81B21619CA7F8D003BDF8C /* ContinueButton_Up.png in Resources */,
-				BC8A858C19C178B100335599 /* DeployGateSDK.strings in Resources */,
 				A1A3968619DA439E0024A37B /* Construct3.png in Resources */,
 				A1A3969B19DA439E0024A37B /* Undead2.png in Resources */,
 				A1A3969819DA439E0024A37B /* Slime2.png in Resources */,
@@ -736,7 +695,6 @@
 				A1A3969219DA439E0024A37B /* Humanoid2.png in Resources */,
 				BC81B20419CA7DF8003BDF8C /* GenericButton_Up.png in Resources */,
 				BC81B21819CA8116003BDF8C /* title.png in Resources */,
-				BC8A858719C178B100335599 /* ACKNOWLEDGEMENTS.txt in Resources */,
 				A1A3969519DA439E0024A37B /* Insect2.png in Resources */,
 				A1D183DC19BED3BE00E03B28 /* Magic.png in Resources */,
 				A1A3968A19DA439E0024A37B /* Dragon1.png in Resources */,
@@ -770,14 +728,12 @@
 				A1D183D719BED3BE00E03B28 /* E_Full_Heal.png in Resources */,
 				A1D183E419BED3BE00E03B28 /* P_Stomp.png in Resources */,
 				BC81B21519CA7F8D003BDF8C /* ContinueButton_Down.png in Resources */,
-				BC8A858819C178B100335599 /* CHANGELOG.txt in Resources */,
 				A1A3968919DA439E0024A37B /* Demon3.png in Resources */,
 				F8956B0C19A194A700ED670B /* Main.storyboard in Resources */,
 				A1A3968719DA439E0024A37B /* Demon1.png in Resources */,
 				A1D183D919BED3BE00E03B28 /* E_Instant_Death.png in Resources */,
 				BC81B21C19CA9DF5003BDF8C /* Text_Button.png in Resources */,
 				F8956B0E19A194A700ED670B /* Images.xcassets in Resources */,
-				BC8A858D19C178B100335599 /* Info.plist in Resources */,
 				A1D183D519BED3BE00E03B28 /* E_Energy_Ball.png in Resources */,
 				A1D183DD19BED3BE00E03B28 /* P_Charged_Strike.png in Resources */,
 				A1A3969F19DA43E70024A37B /* Background-1.png in Resources */,
@@ -788,7 +744,6 @@
 				BC81B20519CA7DF8003BDF8C /* GenericButtonUpSelected.png in Resources */,
 				F837D7E919B3F85F00A18D31 /* GoogleMaps.bundle in Resources */,
 				A1A3968119DA439E0024A37B /* Beast1.png in Resources */,
-				BC8A858B19C178B100335599 /* README.txt in Resources */,
 				BC81B21419CA7F8D003BDF8C /* ButtonBlock.png in Resources */,
 				A1A3967E19DA439E0024A37B /* Alien1.png in Resources */,
 				A1A3968219DA439E0024A37B /* Beast2.png in Resources */,
@@ -874,15 +829,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		BC8A858319C178B100335599 /* DeployGateSDK.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BC8A858419C178B100335599 /* en */,
-				BC8A858619C178B100335599 /* ja */,
-			);
-			name = DeployGateSDK.strings;
-			sourceTree = "<group>";
-		};
 		F8956B0A19A194A700ED670B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

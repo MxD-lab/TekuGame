@@ -47,6 +47,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var beaconJoinBtn: UIButton!
     @IBOutlet weak var beaconIDLabel: UILabel!
     var beaconDictionary:[String:[String:String]]! = ["":["":""]]
+    @IBOutlet weak var beaconView: UIView!
     
     // CoreMotion
     @IBOutlet var steplabel: UILabel!   // Label display number of counts of today's steps.
@@ -109,12 +110,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             getPlayerLocation()
             postPlayerStats()
             mapShown = true
+            beaconView.hidden = false
             clManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
             clManager.startUpdatingLocation()
             clManager.delegate = self
         }
         else {
             netConnectionLabel.text = "No Internet"
+            beaconView.hidden = true
             currentLocationBtn.hidden = true
             currentLocationBtn.enabled = false
         }
@@ -188,7 +191,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                 beaconDictionary[bid] = ["longitude":long, "latitude":lat, "playersNeeded":pneed]
                 
-                var marker = setMarker(&mapView_, lat.doubleValue, long.doubleValue, bid, "Players Needed: \(pneed)", UIColor.blueColor())
+                var marker = setMarker(&mapView_, lat.doubleValue, long.doubleValue, "Beacon: \(bid)", "Players Needed: \(pneed)", UIColor.blueColor())
                 presetPins.append(marker)
                 allPins.append(marker)
             }
@@ -368,9 +371,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         if (beacon.proximity == CLProximity.Unknown) {
             beaconDistanceProgressBar.progress = 0
+            beaconView.hidden = true
         }
-        else {
+        else if (mapShown == true) {
             beaconDistanceProgressBar.progress = (20.0 - Float(beacon.accuracy)) / 20.0
+            beaconView.hidden = false
         }
 //        else if (beacon.proximity == CLProximity.Immediate) {
 //            beaconDistanceProgressBar.progress = (20.0 - Float(beacon.accuracy)) / 20.0
@@ -422,6 +427,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             magicHourInt = Int(arc4random_uniform(16)) + 8
             updateEncounterStep(&enemyStepCount, stepCount)
             plStats[playerID]!["healthGoal"]! = 5000
+            plStats[playerID]!["magicGoal"]! = 1000
             plStats[playerID]!["magicHour"]! = magicHourInt
             plStats[playerID]!["magicSteps"]! = 0
             plStats[playerID]!["date"]! = returnDateString()
