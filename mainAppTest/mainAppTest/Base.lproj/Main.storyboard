@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -314,6 +313,31 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IFi-5A-4GK">
+                                <rect key="frame" x="18" y="304" width="117" height="110"/>
+                                <subviews>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tjN-QZ-tNn">
+                                        <rect key="frame" x="16" y="54" width="84" height="2"/>
+                                    </progressView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIL-PC-7EJ">
+                                        <rect key="frame" x="7" y="64" width="103" height="41"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="15"/>
+                                        <state key="normal" title="Join">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="testButtonPressed:" destination="kwz-uD-Hpi" eventType="touchUpInside" id="bgE-dJ-oiK"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Beacon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTf-PT-VP8">
+                                        <rect key="frame" x="8" y="8" width="102" height="38"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.84999999999999998" colorSpace="calibratedWhite"/>
+                            </view>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v9Q-4N-LkZ">
                                 <rect key="frame" x="18" y="424" width="284" height="130"/>
                                 <subviews>
@@ -342,7 +366,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.81000000000000005" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="0.84999999999999998" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Acl-hv-wMj">
                                 <rect key="frame" x="18" y="28" width="284" height="40"/>
@@ -369,15 +393,6 @@
                                             <segue destination="5kj-lA-l77" kind="show" identifier="map_status" id="6Ro-2r-JbP"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIL-PC-7EJ">
-                                        <rect key="frame" x="95" y="0.0" width="103" height="41"/>
-                                        <state key="normal" title="testbutton">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="testButtonPressed:" destination="kwz-uD-Hpi" eventType="touchUpInside" id="bgE-dJ-oiK"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -389,6 +404,9 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="activityLabel" destination="KRf-3N-jE0" id="6yz-WU-fu7"/>
+                        <outlet property="beaconDistanceProgressBar" destination="tjN-QZ-tNn" id="KLD-Gi-qit"/>
+                        <outlet property="beaconIDLabel" destination="fTf-PT-VP8" id="4HZ-lY-bAm"/>
+                        <outlet property="beaconJoinBtn" destination="UIL-PC-7EJ" id="2c6-YR-l1n"/>
                         <outlet property="currentLocationBtn" destination="RiL-MP-DSb" id="xUf-z4-5s7"/>
                         <outlet property="encountLabel" destination="uqp-1a-ogx" id="UxA-qg-6si"/>
                         <outlet property="magicHourLabel" destination="QRL-ff-gXv" id="FOJ-h1-JOd"/>
@@ -1291,8 +1309,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="36D-z0-9Qt"/>
-        <segue reference="SU0-Gz-9g0"/>
-        <segue reference="fkF-W3-xbb"/>
+        <segue reference="cqu-o8-iqZ"/>
         <segue reference="HjJ-Hv-ibE"/>
+        <segue reference="fkF-W3-xbb"/>
     </inferredMetricsTieBreakers>
 </document>

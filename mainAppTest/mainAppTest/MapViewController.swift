@@ -24,8 +24,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var magicStepsLabel: UILabel!
     @IBOutlet weak var magicHourLabel: UILabel!
-//    @IBOutlet weak var beaconDistanceLabel: UILabel!
-//    @IBOutlet weak var beaconPlayerCountLabel: UILabel!
     var clManager = CLLocationManager()
     var playerID:String!                    // Player's ID passed from the previous ViewController.
     var lat:NSNumber!                       // Player's GPS coordinates (latitude).
@@ -45,6 +43,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var region  = CLBeaconRegion()                                                  // Region defined for iBeacons.
     var manager = CLLocationManager()                                               // Location manager for iBeacons.
     var beaconID:String! = ""                                                       // ID of the nearest beacon.
+    @IBOutlet weak var beaconDistanceProgressBar: UIProgressView!
+    @IBOutlet weak var beaconJoinBtn: UIButton!
+    @IBOutlet weak var beaconIDLabel: UILabel!
+    var beaconDictionary:[String:[String:String]]! = ["":["":""]]
     
     // CoreMotion
     @IBOutlet var steplabel: UILabel!   // Label display number of counts of today's steps.
@@ -166,6 +168,31 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             // Wait until current location is found to zoom to that place.
             timer = setInterval("gotoCurrentLocation", seconds: 1)
         }
+        
+        // getJSON from beacon database,
+        // add to preset pins and all pins
+        // also add to dictionary
+        getBeacons()
+    }
+    
+    func getBeacons() {
+        var url = "http://tekugame.mxd.media.ritsumei.ac.jp/json/beacons.json"
+        var jsObj = getJSON(url)
+        
+        if (jsObj != nil) {
+            for data in jsObj! {
+                var bid = data["ID"] as NSString
+                var long = data["longitude"] as NSString
+                var lat = data["latitude"] as NSString
+                var pneed = data["playersNeeded"] as NSString
+                
+                beaconDictionary[bid] = ["longitude":long, "latitude":lat, "playersNeeded":pneed]
+                
+                var marker = setMarker(&mapView_, lat.doubleValue, long.doubleValue, bid, "Players Needed: \(pneed)", UIColor.blueColor())
+                presetPins.append(marker)
+                allPins.append(marker)
+            }
+        }
     }
     
     func gotoCurrentLocation() {
@@ -185,12 +212,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // Setup for beacon.
     func beaconSetup() {
+        println("beaconSetup")
         region = CLBeaconRegion(proximityUUID:proximityUUID,identifier:"EstimoteRegion")
         manager.delegate = self
         switch CLLocationManager.authorizationStatus() {
         case .Authorized, .AuthorizedWhenInUse:
+            println("startRangingBeaconsInRegion")
             self.manager.startRangingBeaconsInRegion(self.region)
         case .NotDetermined:
+            println("NotDetermined")
             let position = 1
             let index = advance(UIDevice.currentDevice().systemVersion.startIndex, position)
             let numb = UIDevice.currentDevice().systemVersion[index]
@@ -251,10 +281,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     var pl = setMarker(&mapView_, lati.doubleValue, lon.doubleValue, pid, displaydate, UIColor.redColor())
                     allPins.append(pl)
                 }
-                if (bid == beaconID) {
-                    near_beacon.addObject(data)
-//                    beaconPlayerCountLabel.text = "\(near_beacon.count)"
-                }
+//                if (bid == beaconID) {
+//                    near_beacon.addObject(data)
+////                    beaconPlayerCountLabel.text = "\(near_beacon.count)"
+//                }
             }
         }
     }
@@ -280,10 +310,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {
+        println("didStartMonitoringForRegion")
         manager.requestStateForRegion(region)
     }
     
     func locationManager(manager: CLLocationManager!, didDetermineState state: CLRegionState, forRegion inRegion: CLRegion!) {
+        println("didDetermineState")
         if (state == .Inside) {
             manager.startRangingBeaconsInRegion(region)
         }
@@ -294,13 +326,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println("didFailWithError")
     }
     
     func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
+        println("didEnterRegion")
         manager.startRangingBeaconsInRegion(region as CLBeaconRegion)
     }
     
     func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
+        println("didExitRegion")
         manager.stopRangingBeaconsInRegion(region as CLBeaconRegion)
     }
     
@@ -319,21 +354,33 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         accuracy        :   精度
         rssi            :   電波強度
         */
-        self.beaconID = "\(beacon.major)\(beacon.minor)"
+        beaconID = "\(beacon.major)\(beacon.minor)"
+        beaconIDLabel.text = "Beacon: \(beaconID)"
+        
+//        println("beaconID \(beaconID) \((20.0 - Float(beacon.accuracy)) / 20.0)")
+        
+        if (Float(beacon.accuracy) <= 5.0 && beacon.proximity != CLProximity.Unknown) {
+            beaconJoinBtn.enabled = true
+        }
+        else {
+            beaconJoinBtn.enabled = false
+        }
         
         if (beacon.proximity == CLProximity.Unknown) {
-//            beaconDistanceLabel.text = "Unknown Proximity"
-            return
+            beaconDistanceProgressBar.progress = 0
         }
-        else if (beacon.proximity == CLProximity.Immediate) {
-//            beaconDistanceLabel.text = "Immediate"
+        else {
+            beaconDistanceProgressBar.progress = (20.0 - Float(beacon.accuracy)) / 20.0
         }
-        else if (beacon.proximity == CLProximity.Near) {
-//            beaconDistanceLabel.text = "Near"
-        }
-        else if (beacon.proximity == CLProximity.Far) {
-//            beaconDistanceLabel.text = "Far"
-        }
+//        else if (beacon.proximity == CLProximity.Immediate) {
+//            beaconDistanceProgressBar.progress = (20.0 - Float(beacon.accuracy)) / 20.0
+//        }
+//        else if (beacon.proximity == CLProximity.Near) {
+//            beaconDistanceProgressBar.progress = (20.0 - Float(beacon.accuracy)) / 20.0
+//        }
+//        else if (beacon.proximity == CLProximity.Far) {
+//            beaconDistanceProgressBar.progress = (20.0 - Float(beacon.accuracy)) / 20.0
+//        }
     }
     
     func checkHealthGoal() {
@@ -476,6 +523,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if (segue.identifier == "map_status") {
             var nextVC = segue.destinationViewController as statusViewController
             nextVC.stepCount = stepCount
+        }
+        else if (segue.identifier == "map_setup") {
+            var nextVC = segue.destinationViewController as multiPlayerSetupViewController
+            nextVC.battleID = beaconID
+            var pneed = beaconDictionary[beaconID]!["playersNeeded"]! as NSString
+            nextVC.pneed = pneed.integerValue
         }
         
         if (mapShown == true) {

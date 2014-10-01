@@ -12,10 +12,11 @@ class multiPlayerSetupViewController: UIViewController {
     
     @IBOutlet weak var battleIDLabel:UILabel!
     @IBOutlet weak var battleTextView:UITextView!
-    var battleID:String! = "0"
-    var playerID:String! = ""
+    var battleID:String!
+    var playerID:String!
     var timer:NSTimer!
     var pcount = 0
+    var pneed:Int!
     var allPlayers:[String] = []
     var hostID:String! = ""
     
@@ -27,7 +28,7 @@ class multiPlayerSetupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
+        battleIDLabel.text = "Battle ID: \(battleID)"
         timer = setInterval("get", seconds: 1)
         playerID = prefs.objectForKey("currentuser") as String
     }
@@ -78,13 +79,13 @@ class multiPlayerSetupViewController: UIViewController {
             }
         }
         
-        battleTextView.text = battleTextView.text + "Player count: \(pcount)\n"
+        battleTextView.text = battleTextView.text + "Player count: \(pcount) / \(pneed)\n"
         
         if (!battleExists) {
             postToBattles(battleID, "", "", "", "", "", "Open")
         }
         else {
-            if (pcount == 2 && gamestarted == false) {
+            if (pcount == pneed && gamestarted == false) {
                 var contains:Bool = false
                 for player in allPlayers {
                     if (player == playerID) {
