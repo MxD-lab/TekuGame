@@ -93,9 +93,9 @@ func getSprite(e:enemy) -> SKTexture
         case 1:
             return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Elemental2", ofType: "png")! as NSString));
         case 2:
-            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Elemental3", ofType: "png")! as NSString));
-        case 3:
             return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Elemental4", ofType: "png")! as NSString));
+        case 3:
+            return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Elemental3", ofType: "png")! as NSString));
         default:
             return SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("enemy", ofType: "png")! as NSString));
         }

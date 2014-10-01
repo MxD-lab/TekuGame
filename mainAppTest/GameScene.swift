@@ -59,7 +59,7 @@ class GameScene: SKScene
     
     var prefs = NSUserDefaults.standardUserDefaults()
     
-    let background:SKSpriteNode = SKSpriteNode(texture: SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("background", ofType: "png")! as NSString)));
+    let background:SKSpriteNode = SKSpriteNode(texture: SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Background-1", ofType: "png")! as NSString)));
     var status:UILabel! = UILabel(frame: CGRectMake( 0, 0, 320, 50));
     let typePicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));
     let actionPicker:UIPickerView = UIPickerView(frame: CGRectMake(0, 0, 568, 20));

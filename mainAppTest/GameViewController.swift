@@ -144,7 +144,9 @@ class GameViewController: UIViewController {
             var plStats:[String:[String:AnyObject]] = prefs.objectForKey("playerStats") as [String:[String:AnyObject]]
             var currentuser = prefs.objectForKey("currentuser") as String
             var exp:Int = plStats[currentuser]!["exp"]! as Int
+            var enemiesDefeated:Int = plStats[currentuser]!["enemiesDefeated"]! as Int
             
+            enemiesDefeated += 1
             if (exp > 0) {
                exp -= 1
             }
