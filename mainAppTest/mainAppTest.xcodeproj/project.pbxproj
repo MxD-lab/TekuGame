@@ -42,7 +42,7 @@
 		A1CD58B519DCEC8900F3E514 /* E_Barrier.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD589E19DCEC8900F3E514 /* E_Barrier.png */; };
 		A1CD58B619DCEC8900F3E514 /* E_Curse.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD589F19DCEC8900F3E514 /* E_Curse.png */; };
 		A1CD58B719DCEC8900F3E514 /* E_Decay.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A019DCEC8900F3E514 /* E_Decay.png */; };
-		A1CD58B819DCEC8900F3E514 /* E_EnergyBall.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A119DCEC8900F3E514 /* E_EnergyBall.png */; };
+		A1CD58B819DCEC8900F3E514 /* E_Energy_Ball.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A119DCEC8900F3E514 /* E_Energy_Ball.png */; };
 		A1CD58B919DCEC8900F3E514 /* E_Fireball.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A219DCEC8900F3E514 /* E_Fireball.png */; };
 		A1CD58BA19DCEC8900F3E514 /* E_Full_Heal.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A319DCEC8900F3E514 /* E_Full_Heal.png */; };
 		A1CD58BB19DCEC8900F3E514 /* E_Icy_Wind.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A419DCEC8900F3E514 /* E_Icy_Wind.png */; };
@@ -187,7 +187,7 @@
 		A1CD589E19DCEC8900F3E514 /* E_Barrier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Barrier.png; sourceTree = "<group>"; };
 		A1CD589F19DCEC8900F3E514 /* E_Curse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Curse.png; sourceTree = "<group>"; };
 		A1CD58A019DCEC8900F3E514 /* E_Decay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Decay.png; sourceTree = "<group>"; };
-		A1CD58A119DCEC8900F3E514 /* E_EnergyBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_EnergyBall.png; sourceTree = "<group>"; };
+		A1CD58A119DCEC8900F3E514 /* E_Energy_Ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Energy_Ball.png; sourceTree = "<group>"; };
 		A1CD58A219DCEC8900F3E514 /* E_Fireball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Fireball.png; sourceTree = "<group>"; };
 		A1CD58A319DCEC8900F3E514 /* E_Full_Heal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Full_Heal.png; sourceTree = "<group>"; };
 		A1CD58A419DCEC8900F3E514 /* E_Icy_Wind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Icy_Wind.png; sourceTree = "<group>"; };
@@ -331,9 +331,9 @@
 		A1A3969D19DA43CC0024A37B /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				A1A3969E19DA43E70024A37B /* Background-1.png */,
 				A1CD58CC19DCECBC00F3E514 /* Background-2.png */,
 				A1CD58CD19DCECBC00F3E514 /* Background-3.png */,
-				A1A3969E19DA43E70024A37B /* Background-1.png */,
 			);
 			name = Backgrounds;
 			sourceTree = "<group>";
@@ -353,7 +353,7 @@
 				A1CD589E19DCEC8900F3E514 /* E_Barrier.png */,
 				A1CD589F19DCEC8900F3E514 /* E_Curse.png */,
 				A1CD58A019DCEC8900F3E514 /* E_Decay.png */,
-				A1CD58A119DCEC8900F3E514 /* E_EnergyBall.png */,
+				A1CD58A119DCEC8900F3E514 /* E_Energy_Ball.png */,
 				A1CD58A219DCEC8900F3E514 /* E_Fireball.png */,
 				A1CD58A319DCEC8900F3E514 /* E_Full_Heal.png */,
 				A1CD58A419DCEC8900F3E514 /* E_Icy_Wind.png */,
@@ -509,12 +509,12 @@
 			children = (
 				F837D80019B3F92E00A18D31 /* mainAppTest-Bridging-Header.h */,
 				F8956B0619A194A700ED670B /* AppDelegate.swift */,
+				F8D8A2D519A2D7DE00CC6A0B /* Helpers.swift */,
 				F825583919AB1D4F0035EBF6 /* Classes and Enums */,
 				F825583219AB1D2C0035EBF6 /* Combat and Trait Handling */,
 				F8F4F0D019A5B6B3002D077D /* ViewControllers */,
 				BC699A4019D0102A00D4E905 /* Battle */,
 				BC699A4119D0104600D4E905 /* Multiplayer Battle */,
-				F8D8A2D519A2D7DE00CC6A0B /* Helpers.swift */,
 				F8956B0A19A194A700ED670B /* Main.storyboard */,
 				F8956B1619A194A700ED670B /* mainAppTestTests */,
 				F8956B0D19A194A700ED670B /* Images.xcassets */,
@@ -709,7 +709,7 @@
 				BC81B21819CA8116003BDF8C /* title.png in Resources */,
 				A1A3969519DA439E0024A37B /* Insect2.png in Resources */,
 				A1A3968A19DA439E0024A37B /* Dragon1.png in Resources */,
-				A1CD58B819DCEC8900F3E514 /* E_EnergyBall.png in Resources */,
+				A1CD58B819DCEC8900F3E514 /* E_Energy_Ball.png in Resources */,
 				A1A3969419DA439E0024A37B /* Insect1.png in Resources */,
 				BC81B20B19CA7DF8003BDF8C /* NewGameButton_Down.png in Resources */,
 				A1A3968419DA439E0024A37B /* Construct1.png in Resources */,
