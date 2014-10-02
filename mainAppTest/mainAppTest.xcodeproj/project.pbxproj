@@ -39,30 +39,32 @@
 		A1A3969B19DA439E0024A37B /* Undead2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1A3967C19DA439E0024A37B /* Undead2.png */; };
 		A1A3969C19DA439E0024A37B /* Undead3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1A3967D19DA439E0024A37B /* Undead3.png */; };
 		A1A3969F19DA43E70024A37B /* Background-1.png in Resources */ = {isa = PBXBuildFile; fileRef = A1A3969E19DA43E70024A37B /* Background-1.png */; };
+		A1CD58B519DCEC8900F3E514 /* E_Barrier.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD589E19DCEC8900F3E514 /* E_Barrier.png */; };
+		A1CD58B619DCEC8900F3E514 /* E_Curse.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD589F19DCEC8900F3E514 /* E_Curse.png */; };
+		A1CD58B719DCEC8900F3E514 /* E_Decay.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A019DCEC8900F3E514 /* E_Decay.png */; };
+		A1CD58B819DCEC8900F3E514 /* E_EnergyBall.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A119DCEC8900F3E514 /* E_EnergyBall.png */; };
+		A1CD58B919DCEC8900F3E514 /* E_Fireball.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A219DCEC8900F3E514 /* E_Fireball.png */; };
+		A1CD58BA19DCEC8900F3E514 /* E_Full_Heal.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A319DCEC8900F3E514 /* E_Full_Heal.png */; };
+		A1CD58BB19DCEC8900F3E514 /* E_Icy_Wind.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A419DCEC8900F3E514 /* E_Icy_Wind.png */; };
+		A1CD58BC19DCEC8900F3E514 /* E_Instant_Death.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A519DCEC8900F3E514 /* E_Instant_Death.png */; };
+		A1CD58BD19DCEC8900F3E514 /* E_Life_Drain.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A619DCEC8900F3E514 /* E_Life_Drain.png */; };
+		A1CD58BE19DCEC8900F3E514 /* E_Sharpen_Mind.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A719DCEC8900F3E514 /* E_Sharpen_Mind.png */; };
+		A1CD58BF19DCEC8900F3E514 /* Magic.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A819DCEC8900F3E514 /* Magic.png */; };
+		A1CD58C019DCEC8900F3E514 /* P_Charged_Strike.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58A919DCEC8900F3E514 /* P_Charged_Strike.png */; };
+		A1CD58C119DCEC8900F3E514 /* P_Heart_Strike.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58AA19DCEC8900F3E514 /* P_Heart_Strike.png */; };
+		A1CD58C219DCEC8900F3E514 /* P_Leg_Sweep.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58AB19DCEC8900F3E514 /* P_Leg_Sweep.png */; };
+		A1CD58C319DCEC8900F3E514 /* P_Meditation.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58AC19DCEC8900F3E514 /* P_Meditation.png */; };
+		A1CD58C419DCEC8900F3E514 /* P_Muscle_Training.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58AD19DCEC8900F3E514 /* P_Muscle_Training.png */; };
+		A1CD58C519DCEC8900F3E514 /* P_Overpower.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58AE19DCEC8900F3E514 /* P_Overpower.png */; };
+		A1CD58C619DCEC8900F3E514 /* P_Sacrificial_Strike.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58AF19DCEC8900F3E514 /* P_Sacrificial_Strike.png */; };
+		A1CD58C719DCEC8900F3E514 /* P_Stomp.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58B019DCEC8900F3E514 /* P_Stomp.png */; };
+		A1CD58C819DCEC8900F3E514 /* P_Turbo_Strike.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58B119DCEC8900F3E514 /* P_Turbo_Strike.png */; };
+		A1CD58C919DCEC8900F3E514 /* P_Uppercut.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58B219DCEC8900F3E514 /* P_Uppercut.png */; };
+		A1CD58CA19DCEC8900F3E514 /* Physical.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58B319DCEC8900F3E514 /* Physical.png */; };
+		A1CD58CB19DCEC8900F3E514 /* U_Examine.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58B419DCEC8900F3E514 /* U_Examine.png */; };
+		A1CD58CE19DCECBC00F3E514 /* Background-2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58CC19DCECBC00F3E514 /* Background-2.png */; };
+		A1CD58CF19DCECBC00F3E514 /* Background-3.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CD58CD19DCECBC00F3E514 /* Background-3.png */; };
 		A1D183B919BEC84B00E03B28 /* HMSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D183B819BEC84B00E03B28 /* HMSideMenu.m */; };
-		A1D183D219BED3BE00E03B28 /* E_Barrier.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183BB19BED3BE00E03B28 /* E_Barrier.png */; };
-		A1D183D319BED3BE00E03B28 /* E_Curse.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183BC19BED3BE00E03B28 /* E_Curse.png */; };
-		A1D183D419BED3BE00E03B28 /* E_Decay.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183BD19BED3BE00E03B28 /* E_Decay.png */; };
-		A1D183D519BED3BE00E03B28 /* E_Energy_Ball.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183BE19BED3BE00E03B28 /* E_Energy_Ball.png */; };
-		A1D183D619BED3BE00E03B28 /* E_Fireball.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183BF19BED3BE00E03B28 /* E_Fireball.png */; };
-		A1D183D719BED3BE00E03B28 /* E_Full_Heal.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C019BED3BE00E03B28 /* E_Full_Heal.png */; };
-		A1D183D819BED3BE00E03B28 /* E_Icy_Wind.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C119BED3BE00E03B28 /* E_Icy_Wind.png */; };
-		A1D183D919BED3BE00E03B28 /* E_Instant_Death.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C219BED3BE00E03B28 /* E_Instant_Death.png */; };
-		A1D183DA19BED3BE00E03B28 /* E_Life_Drain.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C319BED3BE00E03B28 /* E_Life_Drain.png */; };
-		A1D183DB19BED3BE00E03B28 /* E_Sharpen_Mind.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C419BED3BE00E03B28 /* E_Sharpen_Mind.png */; };
-		A1D183DC19BED3BE00E03B28 /* Magic.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C519BED3BE00E03B28 /* Magic.png */; };
-		A1D183DD19BED3BE00E03B28 /* P_Charged_Strike.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C619BED3BE00E03B28 /* P_Charged_Strike.png */; };
-		A1D183DE19BED3BE00E03B28 /* P_Heart_Strike.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C719BED3BE00E03B28 /* P_Heart_Strike.png */; };
-		A1D183DF19BED3BE00E03B28 /* P_Leg_Sweep.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C819BED3BE00E03B28 /* P_Leg_Sweep.png */; };
-		A1D183E019BED3BE00E03B28 /* P_Meditation.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183C919BED3BE00E03B28 /* P_Meditation.png */; };
-		A1D183E119BED3BE00E03B28 /* P_Muscle_Training.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183CA19BED3BE00E03B28 /* P_Muscle_Training.png */; };
-		A1D183E219BED3BE00E03B28 /* P_Overpower.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183CB19BED3BE00E03B28 /* P_Overpower.png */; };
-		A1D183E319BED3BE00E03B28 /* P_Sacrificial_Strike.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183CC19BED3BE00E03B28 /* P_Sacrificial_Strike.png */; };
-		A1D183E419BED3BE00E03B28 /* P_Stomp.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183CD19BED3BE00E03B28 /* P_Stomp.png */; };
-		A1D183E519BED3BE00E03B28 /* P_Turbo_Strike.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183CE19BED3BE00E03B28 /* P_Turbo_Strike.png */; };
-		A1D183E619BED3BE00E03B28 /* P_Uppercut.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183CF19BED3BE00E03B28 /* P_Uppercut.png */; };
-		A1D183E719BED3BE00E03B28 /* Physical.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183D019BED3BE00E03B28 /* Physical.png */; };
-		A1D183E819BED3BE00E03B28 /* U_Examine.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D183D119BED3BE00E03B28 /* U_Examine.png */; };
 		A1DEB59719BD6EDD00F7A21E /* AssetSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DEB59619BD6EDD00F7A21E /* AssetSelection.swift */; };
 		BC006C5A19CE90020011CC39 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BC006C5919CE90020011CC39 /* Reachability.m */; };
 		BC699A3D19CFF61D00D4E905 /* multiPlayerSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC699A3C19CFF61D00D4E905 /* multiPlayerSetupViewController.swift */; };
@@ -182,31 +184,33 @@
 		A1A3967C19DA439E0024A37B /* Undead2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Undead2.png; sourceTree = "<group>"; };
 		A1A3967D19DA439E0024A37B /* Undead3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Undead3.png; sourceTree = "<group>"; };
 		A1A3969E19DA43E70024A37B /* Background-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background-1.png"; sourceTree = "<group>"; };
+		A1CD589E19DCEC8900F3E514 /* E_Barrier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Barrier.png; sourceTree = "<group>"; };
+		A1CD589F19DCEC8900F3E514 /* E_Curse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Curse.png; sourceTree = "<group>"; };
+		A1CD58A019DCEC8900F3E514 /* E_Decay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Decay.png; sourceTree = "<group>"; };
+		A1CD58A119DCEC8900F3E514 /* E_EnergyBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_EnergyBall.png; sourceTree = "<group>"; };
+		A1CD58A219DCEC8900F3E514 /* E_Fireball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Fireball.png; sourceTree = "<group>"; };
+		A1CD58A319DCEC8900F3E514 /* E_Full_Heal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Full_Heal.png; sourceTree = "<group>"; };
+		A1CD58A419DCEC8900F3E514 /* E_Icy_Wind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Icy_Wind.png; sourceTree = "<group>"; };
+		A1CD58A519DCEC8900F3E514 /* E_Instant_Death.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Instant_Death.png; sourceTree = "<group>"; };
+		A1CD58A619DCEC8900F3E514 /* E_Life_Drain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Life_Drain.png; sourceTree = "<group>"; };
+		A1CD58A719DCEC8900F3E514 /* E_Sharpen_Mind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Sharpen_Mind.png; sourceTree = "<group>"; };
+		A1CD58A819DCEC8900F3E514 /* Magic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Magic.png; sourceTree = "<group>"; };
+		A1CD58A919DCEC8900F3E514 /* P_Charged_Strike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Charged_Strike.png; sourceTree = "<group>"; };
+		A1CD58AA19DCEC8900F3E514 /* P_Heart_Strike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Heart_Strike.png; sourceTree = "<group>"; };
+		A1CD58AB19DCEC8900F3E514 /* P_Leg_Sweep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Leg_Sweep.png; sourceTree = "<group>"; };
+		A1CD58AC19DCEC8900F3E514 /* P_Meditation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Meditation.png; sourceTree = "<group>"; };
+		A1CD58AD19DCEC8900F3E514 /* P_Muscle_Training.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Muscle_Training.png; sourceTree = "<group>"; };
+		A1CD58AE19DCEC8900F3E514 /* P_Overpower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Overpower.png; sourceTree = "<group>"; };
+		A1CD58AF19DCEC8900F3E514 /* P_Sacrificial_Strike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Sacrificial_Strike.png; sourceTree = "<group>"; };
+		A1CD58B019DCEC8900F3E514 /* P_Stomp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Stomp.png; sourceTree = "<group>"; };
+		A1CD58B119DCEC8900F3E514 /* P_Turbo_Strike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Turbo_Strike.png; sourceTree = "<group>"; };
+		A1CD58B219DCEC8900F3E514 /* P_Uppercut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Uppercut.png; sourceTree = "<group>"; };
+		A1CD58B319DCEC8900F3E514 /* Physical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Physical.png; sourceTree = "<group>"; };
+		A1CD58B419DCEC8900F3E514 /* U_Examine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = U_Examine.png; sourceTree = "<group>"; };
+		A1CD58CC19DCECBC00F3E514 /* Background-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background-2.png"; sourceTree = "<group>"; };
+		A1CD58CD19DCECBC00F3E514 /* Background-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background-3.png"; sourceTree = "<group>"; };
 		A1D183B719BEC84B00E03B28 /* HMSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSideMenu.h; sourceTree = "<group>"; };
 		A1D183B819BEC84B00E03B28 /* HMSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSideMenu.m; sourceTree = "<group>"; };
-		A1D183BB19BED3BE00E03B28 /* E_Barrier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Barrier.png; sourceTree = "<group>"; };
-		A1D183BC19BED3BE00E03B28 /* E_Curse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Curse.png; sourceTree = "<group>"; };
-		A1D183BD19BED3BE00E03B28 /* E_Decay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Decay.png; sourceTree = "<group>"; };
-		A1D183BE19BED3BE00E03B28 /* E_Energy_Ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Energy_Ball.png; sourceTree = "<group>"; };
-		A1D183BF19BED3BE00E03B28 /* E_Fireball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Fireball.png; sourceTree = "<group>"; };
-		A1D183C019BED3BE00E03B28 /* E_Full_Heal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Full_Heal.png; sourceTree = "<group>"; };
-		A1D183C119BED3BE00E03B28 /* E_Icy_Wind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Icy_Wind.png; sourceTree = "<group>"; };
-		A1D183C219BED3BE00E03B28 /* E_Instant_Death.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Instant_Death.png; sourceTree = "<group>"; };
-		A1D183C319BED3BE00E03B28 /* E_Life_Drain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Life_Drain.png; sourceTree = "<group>"; };
-		A1D183C419BED3BE00E03B28 /* E_Sharpen_Mind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E_Sharpen_Mind.png; sourceTree = "<group>"; };
-		A1D183C519BED3BE00E03B28 /* Magic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Magic.png; sourceTree = "<group>"; };
-		A1D183C619BED3BE00E03B28 /* P_Charged_Strike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Charged_Strike.png; sourceTree = "<group>"; };
-		A1D183C719BED3BE00E03B28 /* P_Heart_Strike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Heart_Strike.png; sourceTree = "<group>"; };
-		A1D183C819BED3BE00E03B28 /* P_Leg_Sweep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Leg_Sweep.png; sourceTree = "<group>"; };
-		A1D183C919BED3BE00E03B28 /* P_Meditation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Meditation.png; sourceTree = "<group>"; };
-		A1D183CA19BED3BE00E03B28 /* P_Muscle_Training.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Muscle_Training.png; sourceTree = "<group>"; };
-		A1D183CB19BED3BE00E03B28 /* P_Overpower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Overpower.png; sourceTree = "<group>"; };
-		A1D183CC19BED3BE00E03B28 /* P_Sacrificial_Strike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Sacrificial_Strike.png; sourceTree = "<group>"; };
-		A1D183CD19BED3BE00E03B28 /* P_Stomp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Stomp.png; sourceTree = "<group>"; };
-		A1D183CE19BED3BE00E03B28 /* P_Turbo_Strike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Turbo_Strike.png; sourceTree = "<group>"; };
-		A1D183CF19BED3BE00E03B28 /* P_Uppercut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = P_Uppercut.png; sourceTree = "<group>"; };
-		A1D183D019BED3BE00E03B28 /* Physical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Physical.png; sourceTree = "<group>"; };
-		A1D183D119BED3BE00E03B28 /* U_Examine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = U_Examine.png; sourceTree = "<group>"; };
 		A1DEB59619BD6EDD00F7A21E /* AssetSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetSelection.swift; sourceTree = "<group>"; };
 		BC006C5819CE90020011CC39 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		BC006C5919CE90020011CC39 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -327,6 +331,8 @@
 		A1A3969D19DA43CC0024A37B /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				A1CD58CC19DCECBC00F3E514 /* Background-2.png */,
+				A1CD58CD19DCECBC00F3E514 /* Background-3.png */,
 				A1A3969E19DA43E70024A37B /* Background-1.png */,
 			);
 			name = Backgrounds;
@@ -344,29 +350,29 @@
 		A1D183BA19BED3BE00E03B28 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				A1D183BB19BED3BE00E03B28 /* E_Barrier.png */,
-				A1D183BC19BED3BE00E03B28 /* E_Curse.png */,
-				A1D183BD19BED3BE00E03B28 /* E_Decay.png */,
-				A1D183BE19BED3BE00E03B28 /* E_Energy_Ball.png */,
-				A1D183BF19BED3BE00E03B28 /* E_Fireball.png */,
-				A1D183C019BED3BE00E03B28 /* E_Full_Heal.png */,
-				A1D183C119BED3BE00E03B28 /* E_Icy_Wind.png */,
-				A1D183C219BED3BE00E03B28 /* E_Instant_Death.png */,
-				A1D183C319BED3BE00E03B28 /* E_Life_Drain.png */,
-				A1D183C419BED3BE00E03B28 /* E_Sharpen_Mind.png */,
-				A1D183C519BED3BE00E03B28 /* Magic.png */,
-				A1D183C619BED3BE00E03B28 /* P_Charged_Strike.png */,
-				A1D183C719BED3BE00E03B28 /* P_Heart_Strike.png */,
-				A1D183C819BED3BE00E03B28 /* P_Leg_Sweep.png */,
-				A1D183C919BED3BE00E03B28 /* P_Meditation.png */,
-				A1D183CA19BED3BE00E03B28 /* P_Muscle_Training.png */,
-				A1D183CB19BED3BE00E03B28 /* P_Overpower.png */,
-				A1D183CC19BED3BE00E03B28 /* P_Sacrificial_Strike.png */,
-				A1D183CD19BED3BE00E03B28 /* P_Stomp.png */,
-				A1D183CE19BED3BE00E03B28 /* P_Turbo_Strike.png */,
-				A1D183CF19BED3BE00E03B28 /* P_Uppercut.png */,
-				A1D183D019BED3BE00E03B28 /* Physical.png */,
-				A1D183D119BED3BE00E03B28 /* U_Examine.png */,
+				A1CD589E19DCEC8900F3E514 /* E_Barrier.png */,
+				A1CD589F19DCEC8900F3E514 /* E_Curse.png */,
+				A1CD58A019DCEC8900F3E514 /* E_Decay.png */,
+				A1CD58A119DCEC8900F3E514 /* E_EnergyBall.png */,
+				A1CD58A219DCEC8900F3E514 /* E_Fireball.png */,
+				A1CD58A319DCEC8900F3E514 /* E_Full_Heal.png */,
+				A1CD58A419DCEC8900F3E514 /* E_Icy_Wind.png */,
+				A1CD58A519DCEC8900F3E514 /* E_Instant_Death.png */,
+				A1CD58A619DCEC8900F3E514 /* E_Life_Drain.png */,
+				A1CD58A719DCEC8900F3E514 /* E_Sharpen_Mind.png */,
+				A1CD58A819DCEC8900F3E514 /* Magic.png */,
+				A1CD58A919DCEC8900F3E514 /* P_Charged_Strike.png */,
+				A1CD58AA19DCEC8900F3E514 /* P_Heart_Strike.png */,
+				A1CD58AB19DCEC8900F3E514 /* P_Leg_Sweep.png */,
+				A1CD58AC19DCEC8900F3E514 /* P_Meditation.png */,
+				A1CD58AD19DCEC8900F3E514 /* P_Muscle_Training.png */,
+				A1CD58AE19DCEC8900F3E514 /* P_Overpower.png */,
+				A1CD58AF19DCEC8900F3E514 /* P_Sacrificial_Strike.png */,
+				A1CD58B019DCEC8900F3E514 /* P_Stomp.png */,
+				A1CD58B119DCEC8900F3E514 /* P_Turbo_Strike.png */,
+				A1CD58B219DCEC8900F3E514 /* P_Uppercut.png */,
+				A1CD58B319DCEC8900F3E514 /* Physical.png */,
+				A1CD58B419DCEC8900F3E514 /* U_Examine.png */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -678,89 +684,91 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1CD58C319DCEC8900F3E514 /* P_Meditation.png in Resources */,
 				A1A3969119DA439E0024A37B /* Humanoid1.png in Resources */,
 				A1A3968C19DA439E0024A37B /* Dragon3.png in Resources */,
 				A1A3969919DA439E0024A37B /* Slime3.png in Resources */,
 				A1A3969C19DA439E0024A37B /* Undead3.png in Resources */,
 				BC81B20C19CA7DF8003BDF8C /* NewGameButton_Up.png in Resources */,
-				A1D183E019BED3BE00E03B28 /* P_Meditation.png in Resources */,
 				BC81B21619CA7F8D003BDF8C /* ContinueButton_Up.png in Resources */,
 				A1A3968619DA439E0024A37B /* Construct3.png in Resources */,
 				A1A3969B19DA439E0024A37B /* Undead2.png in Resources */,
+				A1CD58BE19DCEC8900F3E514 /* E_Sharpen_Mind.png in Resources */,
+				A1CD58B719DCEC8900F3E514 /* E_Decay.png in Resources */,
 				A1A3969819DA439E0024A37B /* Slime2.png in Resources */,
 				A1A3968819DA439E0024A37B /* Demon2.png in Resources */,
 				A1A3969019DA439E0024A37B /* Elemental4.png in Resources */,
+				A1CD58C519DCEC8900F3E514 /* P_Overpower.png in Resources */,
 				BC81B20D19CA7DF8003BDF8C /* SpeedButton_Gain.png in Resources */,
-				A1D183DA19BED3BE00E03B28 /* E_Life_Drain.png in Resources */,
+				A1CD58C419DCEC8900F3E514 /* P_Muscle_Training.png in Resources */,
 				A1A3969219DA439E0024A37B /* Humanoid2.png in Resources */,
 				BC81B20419CA7DF8003BDF8C /* GenericButton_Up.png in Resources */,
+				A1CD58BB19DCEC8900F3E514 /* E_Icy_Wind.png in Resources */,
+				A1CD58BD19DCEC8900F3E514 /* E_Life_Drain.png in Resources */,
+				A1CD58BA19DCEC8900F3E514 /* E_Full_Heal.png in Resources */,
 				BC81B21819CA8116003BDF8C /* title.png in Resources */,
 				A1A3969519DA439E0024A37B /* Insect2.png in Resources */,
-				A1D183DC19BED3BE00E03B28 /* Magic.png in Resources */,
 				A1A3968A19DA439E0024A37B /* Dragon1.png in Resources */,
-				A1D183E619BED3BE00E03B28 /* P_Uppercut.png in Resources */,
+				A1CD58B819DCEC8900F3E514 /* E_EnergyBall.png in Resources */,
 				A1A3969419DA439E0024A37B /* Insect1.png in Resources */,
 				BC81B20B19CA7DF8003BDF8C /* NewGameButton_Down.png in Resources */,
 				A1A3968419DA439E0024A37B /* Construct1.png in Resources */,
-				A1D183D419BED3BE00E03B28 /* E_Decay.png in Resources */,
 				A1A3968E19DA439E0024A37B /* Elemental2.png in Resources */,
 				A1A3969619DA439E0024A37B /* Insect3.png in Resources */,
 				BC81B21A19CA8412003BDF8C /* Generic_Gray_Button.png in Resources */,
-				A1D183D819BED3BE00E03B28 /* E_Icy_Wind.png in Resources */,
-				A1D183DB19BED3BE00E03B28 /* E_Sharpen_Mind.png in Resources */,
 				BC81B20E19CA7DF8003BDF8C /* SpeedButton_Loss.png in Resources */,
-				A1D183DE19BED3BE00E03B28 /* P_Heart_Strike.png in Resources */,
-				A1D183E319BED3BE00E03B28 /* P_Sacrificial_Strike.png in Resources */,
+				A1CD58CE19DCECBC00F3E514 /* Background-2.png in Resources */,
 				F825584319AB20540035EBF6 /* DoAction.png in Resources */,
+				A1CD58CA19DCEC8900F3E514 /* Physical.png in Resources */,
+				A1CD58C819DCEC8900F3E514 /* P_Turbo_Strike.png in Resources */,
 				BC81B20A19CA7DF8003BDF8C /* MagicButton_Loss.png in Resources */,
 				BC81B20219CA7DF8003BDF8C /* DownArrow.png in Resources */,
+				A1CD58C619DCEC8900F3E514 /* P_Sacrificial_Strike.png in Resources */,
 				BC81B21E19CAC3D9003BDF8C /* black.png in Resources */,
 				BC81B20319CA7DF8003BDF8C /* GenericButton_Down.png in Resources */,
 				F88AE19B19A5C45700A9C227 /* enemy.png in Resources */,
 				BC81B20F19CA7DF8003BDF8C /* StrengthButton_Gain.png in Resources */,
-				A1D183E219BED3BE00E03B28 /* P_Overpower.png in Resources */,
+				A1CD58CB19DCEC8900F3E514 /* U_Examine.png in Resources */,
 				A1A3967F19DA439E0024A37B /* Alien2.png in Resources */,
 				F8213C2819A6D27500C72548 /* GameScene.sks in Resources */,
-				A1D183E119BED3BE00E03B28 /* P_Muscle_Training.png in Resources */,
+				A1CD58C019DCEC8900F3E514 /* P_Charged_Strike.png in Resources */,
 				A1A3968319DA439E0024A37B /* Beast3.png in Resources */,
-				A1D183D619BED3BE00E03B28 /* E_Fireball.png in Resources */,
-				A1D183D219BED3BE00E03B28 /* E_Barrier.png in Resources */,
-				A1D183D719BED3BE00E03B28 /* E_Full_Heal.png in Resources */,
-				A1D183E419BED3BE00E03B28 /* P_Stomp.png in Resources */,
 				BC81B21519CA7F8D003BDF8C /* ContinueButton_Down.png in Resources */,
 				A1A3968919DA439E0024A37B /* Demon3.png in Resources */,
+				A1CD58C119DCEC8900F3E514 /* P_Heart_Strike.png in Resources */,
+				A1CD58C719DCEC8900F3E514 /* P_Stomp.png in Resources */,
+				A1CD58C219DCEC8900F3E514 /* P_Leg_Sweep.png in Resources */,
 				F8956B0C19A194A700ED670B /* Main.storyboard in Resources */,
 				A1A3968719DA439E0024A37B /* Demon1.png in Resources */,
-				A1D183D919BED3BE00E03B28 /* E_Instant_Death.png in Resources */,
 				BC81B21C19CA9DF5003BDF8C /* Text_Button.png in Resources */,
 				F8956B0E19A194A700ED670B /* Images.xcassets in Resources */,
-				A1D183D519BED3BE00E03B28 /* E_Energy_Ball.png in Resources */,
-				A1D183DD19BED3BE00E03B28 /* P_Charged_Strike.png in Resources */,
 				A1A3969F19DA43E70024A37B /* Background-1.png in Resources */,
 				A1A3969319DA439E0024A37B /* Humanoid3.png in Resources */,
 				A1A3968B19DA439E0024A37B /* Dragon2.png in Resources */,
 				A1A3968D19DA439E0024A37B /* Elemental1.png in Resources */,
+				A1CD58B919DCEC8900F3E514 /* E_Fireball.png in Resources */,
 				F88AE19C19A5C45700A9C227 /* background.png in Resources */,
 				BC81B20519CA7DF8003BDF8C /* GenericButtonUpSelected.png in Resources */,
 				F837D7E919B3F85F00A18D31 /* GoogleMaps.bundle in Resources */,
+				A1CD58B519DCEC8900F3E514 /* E_Barrier.png in Resources */,
+				A1CD58CF19DCECBC00F3E514 /* Background-3.png in Resources */,
+				A1CD58C919DCEC8900F3E514 /* P_Uppercut.png in Resources */,
 				A1A3968119DA439E0024A37B /* Beast1.png in Resources */,
 				BC81B21419CA7F8D003BDF8C /* ButtonBlock.png in Resources */,
 				A1A3967E19DA439E0024A37B /* Alien1.png in Resources */,
 				A1A3968219DA439E0024A37B /* Beast2.png in Resources */,
 				BC81B20919CA7DF8003BDF8C /* MagicButton_Gain.png in Resources */,
 				A1A3968019DA439E0024A37B /* Alien3.png in Resources */,
+				A1CD58BF19DCEC8900F3E514 /* Magic.png in Resources */,
 				A1A3969719DA439E0024A37B /* Slime1.png in Resources */,
-				A1D183E519BED3BE00E03B28 /* P_Turbo_Strike.png in Resources */,
 				BC81B20819CA7DF8003BDF8C /* HealthButton_Loss.png in Resources */,
 				A1A3968F19DA439E0024A37B /* Elemental3.png in Resources */,
 				A1A3968519DA439E0024A37B /* Construct2.png in Resources */,
+				A1CD58BC19DCEC8900F3E514 /* E_Instant_Death.png in Resources */,
+				A1CD58B619DCEC8900F3E514 /* E_Curse.png in Resources */,
 				BC81B21019CA7DF8003BDF8C /* StrengthButton_Loss.png in Resources */,
 				A1A3969A19DA439E0024A37B /* Undead1.png in Resources */,
 				BC81B20619CA7DF8003BDF8C /* GenericButtonUpUnselected.png in Resources */,
-				A1D183D319BED3BE00E03B28 /* E_Curse.png in Resources */,
-				A1D183DF19BED3BE00E03B28 /* P_Leg_Sweep.png in Resources */,
-				A1D183E819BED3BE00E03B28 /* U_Examine.png in Resources */,
-				A1D183E719BED3BE00E03B28 /* Physical.png in Resources */,
 				BC81B20719CA7DF8003BDF8C /* HealthButton_Gain.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

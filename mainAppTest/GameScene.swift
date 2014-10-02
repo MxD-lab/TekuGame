@@ -119,6 +119,20 @@ class GameScene: SKScene
     
     override func didMoveToView(view: SKView)
     {
+        var randBackround:Int = Int(arc4random_uniform(3));
+        if(randBackround == 0)
+        {
+            background.texture = SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Background-1", ofType: "png")! as NSString));
+        }
+        else if(randBackround == 1)
+        {
+            background.texture = SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Background-2", ofType: "png")! as NSString));
+        }
+        else
+        {
+            background.texture = SKTexture(image: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("Background-3", ofType: "png")! as NSString));
+        }
+        
         allLivingPlayers = allPlayers
         if (allPlayers.count > 0) {
             isMultiplayer = true
