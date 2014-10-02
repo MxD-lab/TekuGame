@@ -372,37 +372,44 @@ func activityToString(act:CMMotionActivity) -> String {
     return actionName
 }
 
-/*  */
+/* Get the historical step count from the start of the day until now. */
 func getHistoricalSteps(handler:(Int, NSError!) -> Void) {
+    
+    // When step counting is available.
     if(CMStepCounter.isStepCountingAvailable()){
+        
         var stepCounter = CMStepCounter()
         var mainQueue:NSOperationQueue! = NSOperationQueue()
         var todate:NSDate! = NSDate()
         var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
         
+        // Get the historical step count with handler.
         dispatch_async(lowQueue, { () -> Void in
             stepCounter.queryStepCountStartingFrom(startDateOfToday(), to: todate, toQueue: mainQueue, withHandler: handler)
         })
     }
 }
 
-//     Starts counting the number of steps.
+/* Update step related things with handlers. */
 func updateSteps(stepHandler:(Int, NSDate!, NSError!) -> Void, activityHandler: (CMMotionActivity!) -> Void) {
     var lowQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
     var mainQueue:NSOperationQueue! = NSOperationQueue()
     
+    // If step counting is available.
     if(CMStepCounter.isStepCountingAvailable()){
         var stepCounter = CMStepCounter()
-        var todate:NSDate! = NSDate()
         
+        // Start step count updating with the step handler.
         dispatch_async(lowQueue, { () -> Void in
           stepCounter.startStepCountingUpdatesToQueue(mainQueue, updateOn: 1, withHandler: stepHandler)
         })
     }
     
+    // If activity is available.
     if (CMMotionActivityManager.isActivityAvailable()) {
         var activityManager = CMMotionActivityManager()
         
+        // Start activity updates with the activity handler.
         dispatch_async(lowQueue, { () -> Void in
             activityManager.startActivityUpdatesToQueue(mainQueue, withHandler: activityHandler)
         })
