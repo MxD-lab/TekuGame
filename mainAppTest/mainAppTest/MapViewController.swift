@@ -13,9 +13,14 @@ import CoreMotion
 import Darwin
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
+    
+    var didButtonSegue = false;
+    
     @IBAction func testButtonPressed(sender: AnyObject) {
+        didButtonSegue = true;
         performSegueWithIdentifier("map_setup", sender: self)
     }
+    
     
     @IBOutlet weak var encountLabel: UILabel!
     
@@ -216,6 +221,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // Setup for beacon.
     func beaconSetup() {
         println("beaconSetup")
+        beaconView.hidden = true
         region = CLBeaconRegion(proximityUUID:proximityUUID,identifier:"EstimoteRegion")
         manager.delegate = self
         switch CLLocationManager.authorizationStatus() {
@@ -360,7 +366,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         beaconID = "\(beacon.major)\(beacon.minor)"
         beaconIDLabel.text = "Beacon: \(beaconID)"
         
-//        println("beaconID \(beaconID) \((20.0 - Float(beacon.accuracy)) / 20.0)")
+        println("beacon.proximity \(beacon.proximity) isequaltoUnknown??: \(beacon.proximity == CLProximity.Unknown)")
+        
         
         if (Float(beacon.accuracy) <= 5.0 && beacon.proximity != CLProximity.Unknown) {
             beaconJoinBtn.enabled = true
@@ -377,15 +384,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             beaconDistanceProgressBar.progress = (20.0 - Float(beacon.accuracy)) / 20.0
             beaconView.hidden = false
         }
-//        else if (beacon.proximity == CLProximity.Immediate) {
-//            beaconDistanceProgressBar.progress = (20.0 - Float(beacon.accuracy)) / 20.0
-//        }
-//        else if (beacon.proximity == CLProximity.Near) {
-//            beaconDistanceProgressBar.progress = (20.0 - Float(beacon.accuracy)) / 20.0
-//        }
-//        else if (beacon.proximity == CLProximity.Far) {
-//            beaconDistanceProgressBar.progress = (20.0 - Float(beacon.accuracy)) / 20.0
-//        }
     }
     
     func checkHealthGoal() {
@@ -532,9 +530,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         else if (segue.identifier == "map_setup") {
             var nextVC = segue.destinationViewController as multiPlayerSetupViewController
-            nextVC.battleID = beaconID
-            var pneed = beaconDictionary[beaconID]!["playersNeeded"]! as NSString
-            nextVC.pneed = pneed.integerValue
+
+            if(didButtonSegue == true)
+            {
+                nextVC.battleID = "0";
+                nextVC.pneed = 1;
+            }
+            else
+            {
+                nextVC.battleID = beaconID
+                var pneed = beaconDictionary[beaconID]!["playersNeeded"]! as NSString
+                nextVC.pneed = pneed.integerValue
+            }
         }
         
         if (mapShown == true) {

@@ -11,6 +11,8 @@ import Accounts
 
 class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    var accountStore = ACAccountStore()
+    var twitterAccounts = NSArray()
     var accounts:[String] = []
     
     @IBOutlet weak var accountPickerView: UIPickerView!
@@ -19,46 +21,81 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        var prefs = NSUserDefaults.standardUserDefaults()
-        if ((prefs.objectForKey("useraccounts")) != nil) {
-            accounts = prefs.objectForKey("useraccounts") as [String]
+        getAccounts()
+        accountPickerView.reloadAllComponents()
+    }
+    
+    @IBAction func refreshPickerViewPressed(sender: AnyObject) {
+        getAccounts()
+        accountPickerView.reloadAllComponents()
+    }
+    
+    func getAccounts() {
+        var accountType:ACAccountType! = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+        var haveAccess:Bool = false
+        accountStore.requestAccessToAccountsWithType(accountType, options: nil, { granted, error in
+            if (granted) {
+                self.twitterAccounts = self.accountStore.accountsWithAccountType(accountType)
+            }
+            else {
+                println(error.description)
+            }
+        })
+        
+        for acc in twitterAccounts {
+            accounts.append(acc.username)
+        }
+        
+        let url = "http://tekugame.mxd.media.ritsumei.ac.jp/json/playerdata.json"
+        var players = getJSON(url)
+        
+        var index = 0
+        for acc in accounts {
+            var inDatabase = false
+            for pl in players! {
+                var currentplayername = pl["ID"] as NSString
+                if ("\(acc) (Twitter)" == currentplayername) {
+                    inDatabase = true
+                    println("in database")
+                }
+            }
+            if (inDatabase == false) {
+                accounts.removeAtIndex(index)
+                println("removed \(acc)")
+            }
+            index++
         }
         accountPickerView.delegate = self
-        accountPickerView.reloadAllComponents()
     }
     
     @IBAction func startGamePressed(sender: AnyObject) {
         var versionstr:NSString = UIDevice.currentDevice().systemVersion
         var versiondouble = versionstr.doubleValue
         
-        if (isConnectedToInternet()) {
-            var prefs = NSUserDefaults.standardUserDefaults()
-            prefs.setObject(accounts[accountPickerView.selectedRowInComponent(0)] as String, forKey: "currentuser")
-            var stats = getMyStats()
-            if (stats != nil) {
-                performSegueWithIdentifier("accselect_map", sender: self)
-            }
-            else {
-                if (versiondouble >= 8.0) {
-                    UIAlertView(title: "Error", message: "Please check your internet connection.", delegate: nil, cancelButtonTitle: "OK").show()
-                }
-                else {
-                    performSegueWithIdentifier("accselect_map", sender: self)
-                }
-            }
+        var prefs = NSUserDefaults.standardUserDefaults()
+        var username: AnyObject = accounts[accountPickerView.selectedRowInComponent(0)]
+        var selecteduser = "\(username) (Twitter)"
+        prefs.setObject(selecteduser, forKey: "currentuser")
+        
+        if (versiondouble < 8.0) {
+            performSegueWithIdentifier("accselect_map", sender: self)
         }
         else {
-            if (versiondouble >= 8.0) {
-                UIAlertView(title: "Error", message: "Please check your internet connection.", delegate: nil, cancelButtonTitle: "OK").show()
+            if (isConnectedToInternet()) {
+                
+                var stats = getMyStats()
+                
+                if (stats != nil) {
+                    performSegueWithIdentifier("accselect_map", sender: self)
+                }
+                else {
+                    UIAlertView(title: "Error", message: "Error occured when trying to load your stats from the server.", delegate: nil, cancelButtonTitle: "OK").show()
+                }
             }
             else {
-                performSegueWithIdentifier("accselect_map", sender: self)
+                UIAlertView(title: "Error", message: "Please check your internet connection.", delegate: nil, cancelButtonTitle: "OK").show()
             }
         }
-    }
-    
-    func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
-        return accounts[row] as String
     }
     
     func pickerView(pickerView: UIPickerView!, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView! {
@@ -86,7 +123,8 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "accselect_map" && accounts.count > 0) {
             var nextVC = segue.destinationViewController as MapViewController
-            nextVC.playerID = accounts[accountPickerView.selectedRowInComponent(0)] as String
+            var selecteduser = "\(accounts[accountPickerView.selectedRowInComponent(0)]) (Twitter)"
+            nextVC.playerID = selecteduser
         }
     }
     
@@ -98,4 +136,3 @@ class AccountSelectionViewController: UIViewController, UIPickerViewDelegate, UI
         return Int(UIInterfaceOrientationMask.Portrait.toRaw())
     }
 }
-

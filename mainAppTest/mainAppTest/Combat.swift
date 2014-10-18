@@ -220,7 +220,7 @@ func doAction(user:Entity, target:Entity, action:Action) -> [String:String]
         for(var i = 0; i < 8; i += 1)
         {
             rand = Int(arc4random_uniform(8) + 1);
-            damage += (rand % 8 != 1) ? (user.currentStrength - ( 3 * (target.currentStrength / 2)) / 20) : 0;
+            damage += (rand % 8 == 1) ? (user.currentStrength - ( 3 * (target.currentStrength / 2)) / 20) : 0;
         }
         damage = (damage <= 0) ? 1 : damage;
         target.currentHealth -= damage;
@@ -297,7 +297,7 @@ func doAction(user:Entity, target:Entity, action:Action) -> [String:String]
     case Action.TriBite:
         var rand:Int = 0;
         var didHurtSelf:String = "";
-        for(var i = 0; i < 8; i += 1)
+        for(var i = 0; i < 3; i += 1)
         {
             rand = Int(arc4random_uniform(3) + 1);
             if(rand%3 == 1)
@@ -418,7 +418,7 @@ func doAction(user:Entity, target:Entity, action:Action) -> [String:String]
     
     case Action.Blight:
         damage = user.currentMagic - (target.currentMagic / 2);
-        damage = (damage <= 0) ? 1 : Int(Float(damage * 4/5));
+        damage = (damage <= 0) ? 1 : ((4 * damage) / 5);
         target.currentHealth -= damage;
         
         target.currentStrength = (9 * target.currentStrength) / 10;

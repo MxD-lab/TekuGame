@@ -207,7 +207,7 @@ func getMyStats() -> [String:[String:AnyObject]]? {
     var player = prefs.objectForKey("currentuser") as String
     var versionstr:NSString = UIDevice.currentDevice().systemVersion
     var versiondouble = versionstr.doubleValue
-    
+        
     // If iOS 8 or the playerStats is nil.
     if (versiondouble >= 8.0 || prefs.objectForKey("playerStats") == nil) {
         

@@ -292,7 +292,7 @@ class GameScene: SKScene
                 println("Enemy: level: \(e.level), type: \(e.type), subtype: \(e.subType), health: \(e.health), magic: \(e.magic), speed: \(e.speed), strength: \(e.strength)")
             }
             enemyImage.texture = getSprite(e);
-            enemyImage.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 80);
+            enemyImage.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
             enemyImage.zPosition = 1;
             addChild(enemyImage);
             if (playerID == hostID) {

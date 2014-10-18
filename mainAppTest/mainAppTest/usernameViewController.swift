@@ -20,6 +20,10 @@ class usernameViewController: UIViewController {
         errorLabel.text = ""
     }
     
+    @IBAction func returnPressed(sender: AnyObject) {
+        playerID = "";
+        performSegueWithIdentifier("username_accreate", sender: self)
+    }
     @IBAction func donePressed(sender: AnyObject) {
         if (usernameTextField.text == "") {
             usernameTextField.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.5)

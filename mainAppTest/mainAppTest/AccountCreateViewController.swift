@@ -30,7 +30,14 @@ class AccountCreateViewController: UIViewController {
             var acctype = playerID.componentsSeparatedByString("(")[1]
             acctype = acctype.componentsSeparatedByString(")")[0]
             playerIDLabel.text = "Logged in as @\(idonly)"
-            accountTypeLabel.text = "Account Type: \(acctype)"
+            if(acctype == "tekugame")
+            {
+                accountTypeLabel.text = "Account Type: Errant"
+            }
+            else
+            {
+                accountTypeLabel.text = "Account Type: Twitter"
+            }
             createCharacterBtn.hidden = false
             createBtn.hidden = false
         }
