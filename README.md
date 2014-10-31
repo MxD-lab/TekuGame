@@ -9,6 +9,10 @@ Ongoing project between WPI and Ritsumeikan students.
 * [Maxwell Perlman](http://github.com/MaxwellP) - Lead Designer and Programmer
 * [Asuka Wakao](http://github.com/AsukaWakao) - Programmer
   
+###Borrowed libraries  
+  
+[HMSideMenu](https://github.com/HeshamMegid/HMSideMenu) for menu systems during combat.  
+
 ###References  
 
 Swift + MapKit  
